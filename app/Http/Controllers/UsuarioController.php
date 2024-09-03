@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
 
 class UsuarioController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('permission:gestionar-usuarios-ver|gestionar-usuarios-crear|gestionar-usuarios-editar|gestionar-usuarios-eliminar', ['only' => ['index']]);
@@ -23,13 +24,13 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = User::paginate(5);
-        return view('usuarios.index', compact('usuarios'));
+        return view('usuarios.usuarios.index', compact('usuarios'));
     }
 
     public function create()
     {
         $roles = Role::pluck('name', 'name')->all();
-        return view('usuarios.crear', compact('roles'));
+        return view('usuarios.usuarios.crear', compact('roles'));
     }
 
     public function store(Request $request)
@@ -47,16 +48,16 @@ class UsuarioController extends Controller
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente');
+        return redirect()->route('usuarios.usuarios.index')->with('success', 'Usuario creado exitosamente');
     }
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
         $roles = Role::pluck('name', 'name')->all();
-        $userRole = $user->roles->pluck('name')->all();
+        $userRoles = $user->roles->pluck('name')->all();
 
-        return view('usuarios.editar', compact('user', 'roles', 'userRole'));
+        return view('usuarios.usuarios.editar', compact('user', 'roles', 'userRoles'));
     }
 
     public function update(Request $request, $id)
@@ -87,7 +88,7 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         User::findOrFail($id)->delete();
-        return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado exitosamente');
+        return redirect()->route('usuarios.usuarios.index')->with('success', 'Usuario eliminado exitosamente');
     }
 
     public function updateProfile(Request $request, $id)
@@ -105,7 +106,7 @@ class UsuarioController extends Controller
 
     public function showChangePasswordForm($id)
     {
-        return view('usuarios.cambiar-contrasena');
+        return view('usuarios.usuarios.cambiar-contrasena');
     }
 
     public function updatePassword(Request $request, $id)
@@ -117,6 +118,6 @@ class UsuarioController extends Controller
         $user = User::findOrFail($id);
         $user->update(['password' => Hash::make($request->password)]);
 
-        return redirect()->route('usuarios.perfil', $id)->with('success', 'Contraseña actualizada exitosamente');
+        return redirect()->route('usuarios.usuarios.perfil', $id)->with('success', 'Contraseña actualizada exitosamente');
     }
 }

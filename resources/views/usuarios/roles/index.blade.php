@@ -11,7 +11,6 @@
                 <div class="card">
                     <div class="card-body">
                         <div style="margin-top: 15px;">
-                            <a href="{{ route('home') }}" class="btn btn-danger">Home</a>
                             @can('crear-rol')
                             <a class="btn btn-warning" href="{{ route('roles.create') }}">Nuevo</a>
                             @endcan
@@ -26,17 +25,18 @@
                             <tbody>
                                 @foreach($roles as $role)
                                 <tr>
-                                    <td scope="row">{{$role->name}}</td>
-                                    <td scope="row">
-
+                                    <td>{{ $role->name }}</td>
+                                    <td>
                                         @can('editar-rol')
                                         <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">Editar</a>
                                         @endcan
 
                                         @can('borrar-rol')
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style'=>'display:inline']) !!}
-                                        {!! Form::submit('Borrar', ['class' => 'btn btn-danger']) !!}
-                                        {!! Form::close() !!}
+                                        <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display:inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Borrar</button>
+                                        </form>
                                         @endcan
                                     </td>
                                 </tr>
@@ -44,7 +44,7 @@
                             </tbody>
                         </table>
                         <div class="pagination justify-content-end">
-                            {!! $roles ->links() !!}
+                            {{ $roles->links() }}
                         </div>
                     </div>
                 </div>

@@ -11,13 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class RolController extends Controller
 {
-    function __construct()
-    {
-        $this->middleware('permission:gestionar-roles-ver|gestionar-roles-crear|gestionar-roles-editar|gestionar-roles-eliminar', ['only' => ['index']]);
-        $this->middleware('permission:gestionar-roles-crear', ['only' => ['create', 'store']]);
-        $this->middleware('permission:gestionar-roles-editar', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:gestionar-roles-eliminar', ['only' => ['destroy']]);
-    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +20,7 @@ class RolController extends Controller
     public function index()
     {
         $roles = Role::paginate(5);
-        return view('roles.index', compact('roles'));
+        return view('usuarios.roles.index', compact('roles'));
     }
 
     /**
@@ -37,7 +31,7 @@ class RolController extends Controller
     public function create()
     {
         $permission = Permission::get();
-        return view('roles.crear', compact('permission'));
+        return view('usuarios.roles.crear', compact('permission'));
     }
 
     /**
@@ -52,7 +46,7 @@ class RolController extends Controller
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
         session()->flash('success', 'Rol creado exitosamente');
-        return redirect()->route('roles.index');
+        return redirect()->route('usuarios.roles.index');
     }
 
     /**
@@ -79,7 +73,7 @@ class RolController extends Controller
         $rolePermissions = DB::table('role_has_permissions')->where('role_has_permissions.role_id', $id)
             ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
             ->all();
-        return view('roles.editar', compact('role', 'permission', 'rolePermissions'));
+        return view('usuarios.roles.editar', compact('role', 'permission', 'rolePermissions'));
     }
 
     /**
@@ -100,7 +94,7 @@ class RolController extends Controller
         $role->syncPermissions($request->input('permission'));
 
         session()->flash('success', 'Rol actualizado exitosamente');
-        return redirect()->route('roles.index');
+        return redirect()->route('usuarios.roles.index');
     }
 
     /**

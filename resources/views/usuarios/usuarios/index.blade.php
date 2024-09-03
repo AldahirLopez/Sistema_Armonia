@@ -11,7 +11,6 @@
                 <div class="card">
                     <div class="card-body">
                         <div style="margin-top: 15px;">
-                            <a href="{{ route('home') }}" class="btn btn-danger">Home</a>
                             @can('crear-usuarios')
                                 <a class="btn btn-warning" href="{{ route('usuarios.create') }}">Nuevo</a>
                             @endcan
@@ -47,11 +46,7 @@
                                                     href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a>
                                             @endcan
 
-                                            @can('borrar-usuarios')
-                                                {!! Form::open(['method' => 'DELETE', 'route' => ['usuarios.destroy', $usuario->id], 'style' => 'display:inline']) !!}
-                                                {!! Form::submit('Borrar', ['class' => 'btn btn-danger']) !!}
-                                                {!! Form::close() !!}
-                                            @endcan
+
                                         </td>
                                     </tr>
                                 @endforeach
