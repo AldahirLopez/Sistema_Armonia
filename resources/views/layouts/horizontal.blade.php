@@ -22,7 +22,7 @@
                 </a>
             </div>
 
-            <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+            <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
 
@@ -38,18 +38,15 @@
         <div class="d-flex">
 
             <div class="dropdown d-inline-block d-lg-none ms-2">
-                <button type="button" class="btn header-item" id="page-header-search-dropdown" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn header-item" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="search" class="icon-lg"></i>
                 </button>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                    aria-labelledby="page-header-search-dropdown">
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-search-dropdown">
 
                     <form class="p-3">
                         <div class="form-group m-0">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search ..."
-                                    aria-label="Search Result">
+                                <input type="text" class="form-control" placeholder="Search ..." aria-label="Search Result">
 
                                 <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
                             </div>
@@ -59,59 +56,34 @@
             </div>
 
             <div class="dropdown d-none d-sm-inline-block">
-                <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    @switch(Session::get('lang'))
-                        @case('ru')
-                            <img src="{{ URL::asset('build/images/flags/russia.jpg') }}" alt="Header Language"
-                                height="16">
-                        @break
-                        @case('it')
-                            <img src="{{ URL::asset('build/images/flags/italy.jpg') }}" alt="Header Language"
-                                height="16">
-                        @break
-                        @case('de')
-                            <img src="{{ URL::asset('build/images/flags/germany.jpg') }}" alt="Header Language"
-                                height="16">
-                        @break
-                        @case('es')
-                            <img src="{{ URL::asset('build/images/flags/spain.jpg') }}" alt="Header Language"
-                                height="16">
-                        @break
-                        @default
-                            <img src="{{ URL::asset('build/images/flags/us.jpg') }}" alt="Header Language" height="16">
-                    @endswitch
+                <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img id="header-lang-img" src="build/images/flags/us.jpg" alt="Header Language" height="16">
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
 
-                    <a href="{{ url('index/en') }}" class="dropdown-item notify-item language" data-lang="eng">
-                        <img src="{{ URL::asset('build/images/flags/us.jpg') }}" alt="user-image" class="me-1"
-                            height="12"> <span class="align-middle">English</span>
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
+                        <img src="build/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
                     </a>
                     <!-- item-->
-                    <a href="{{ url('index/es') }}" class="dropdown-item notify-item language" data-lang="sp">
-                        <img src="{{ URL::asset('build/images/flags/spain.jpg') }}" alt="user-image" class="me-1"
-                            height="12"> <span class="align-middle">Spanish</span>
+                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
+                        <img src="build/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
                     </a>
 
                     <!-- item-->
-                    <a href="{{ url('index/de') }}" class="dropdown-item notify-item language" data-lang="gr">
-                        <img src="{{ URL::asset('build/images/flags/germany.jpg') }}" alt="user-image" class="me-1"
-                            height="12"> <span class="align-middle">German</span>
+                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
+                        <img src="build/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
                     </a>
 
                     <!-- item-->
-                    <a href="{{ url('index/it') }}" class="dropdown-item notify-item language" data-lang="it">
-                        <img src="{{ URL::asset('build/images/flags/italy.jpg') }}" alt="user-image" class="me-1"
-                            height="12"> <span class="align-middle">Italian</span>
+                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
+                        <img src="build/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
                     </a>
 
                     <!-- item-->
-                    <a href="{{ url('index/ru') }}" class="dropdown-item notify-item language" data-lang="ru">
-                        <img src="{{ URL::asset('build/images/flags/russia.jpg') }}" alt="user-image" class="me-1"
-                            height="12"> <span class="align-middle">Russian</span>
+                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
+                        <img src="build/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
                     </a>
-
                 </div>
             </div>
 
@@ -123,8 +95,7 @@
             </div>
 
             <div class="dropdown d-none d-lg-inline-block ms-1">
-                <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+                <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="grid" class="icon-lg"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
@@ -175,14 +146,11 @@
             </div>
 
             <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item noti-icon position-relative"
-                    id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+                <button type="button" class="btn header-item noti-icon position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="bell" class="icon-lg"></i>
                     <span class="badge bg-danger rounded-pill">5</span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                    aria-labelledby="page-header-notifications-dropdown">
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
                     <div class="p-3">
                         <div class="row align-items-center">
                             <div class="col">
@@ -196,23 +164,20 @@
                     <div data-simplebar style="max-height: 230px;">
                         <a href="#!" class="text-reset notification-item">
                             <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <img src="build/images/users/avatar-3.jpg" class="rounded-circle avatar-sm"
-                                        alt="user-pic">
-                                </div>
+                                <img src="build/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-sm" alt="user-pic">
                                 <div class="flex-grow-1">
                                     <h6 class="mb-1">James Lemire</h6>
                                     <div class="font-size-13 text-muted">
                                         <p class="mb-1">It will seem like simplified English.</p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>1 hours
-                                                ago</span></p>
+                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>1 hours ago</span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </a>
                         <a href="#!" class="text-reset notification-item">
                             <div class="d-flex">
-                                <div class="flex-shrink-0 avatar-sm me-3">
+                                <div class="avatar-sm me-3">
                                     <span class="avatar-title bg-primary rounded-circle font-size-16">
                                         <i class="bx bx-cart"></i>
                                     </span>
@@ -221,15 +186,14 @@
                                     <h6 class="mb-1">Your order is placed</h6>
                                     <div class="font-size-13 text-muted">
                                         <p class="mb-1">If several languages coalesce the grammar</p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>3 min
-                                                ago</span></p>
+                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>3 min ago</span></p>
                                     </div>
                                 </div>
                             </div>
                         </a>
                         <a href="#!" class="text-reset notification-item">
                             <div class="d-flex">
-                                <div class="flex-shrink-0 avatar-sm me-3">
+                                <div class="avatar-sm me-3">
                                     <span class="avatar-title bg-success rounded-circle font-size-16">
                                         <i class="bx bx-badge-check"></i>
                                     </span>
@@ -238,8 +202,7 @@
                                     <h6 class="mb-1">Your item is shipped</h6>
                                     <div class="font-size-13 text-muted">
                                         <p class="mb-1">If several languages coalesce the grammar</p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>2 min
-                                                ago</span></p>
+                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>3 min ago</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -247,16 +210,13 @@
 
                         <a href="#!" class="text-reset notification-item">
                             <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <img src="build/images/users/avatar-6.jpg" class="rounded-circle avatar-sm"
-                                        alt="user-pic">
-                                </div>
+                                <img src="build/images/users/avatar-6.jpg" class="me-3 rounded-circle avatar-sm" alt="user-pic">
                                 <div class="flex-grow-1">
                                     <h6 class="mb-1">Salena Layfield</h6>
                                     <div class="font-size-13 text-muted">
                                         <p class="mb-1">As a skeptical Cambridge friend of mine occidental.</p>
-                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>1 min
-                                                ago</span></p>
+                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>1 hours ago</span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -277,31 +237,89 @@
             </div>
 
             <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item topbar-light bg-light-subtle border-start border-end"
-                    id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user"
-                        src="@if (Auth::user()->avatar != ''){{ URL::asset('build/images/users/'. Auth::user()->avatar) }}@else{{ URL::asset('build/images/users/avatar-1.jpg') }}@endif"
-                        alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ Auth::user()->name }}</span>
+                <button type="button" class="btn header-item topbar-light bg-light-subtle border-start border-end" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="rounded-circle header-profile-user" src="build/images/users/avatar-1.jpg" alt="Header Avatar">
+                    <span class="d-none d-xl-inline-block ms-1 fw-medium">Shawn L.</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href="#!"><i
-                            class="mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</a>
-                    <a class="dropdown-item" href="#!"><i
-                            class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock screen</a>
+                    <a class="dropdown-item" href="apps-contacts-profile"><i class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Profile</a>
+                    <a class="dropdown-item" href="auth-lock-screen"><i class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock screen</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="javascript:void();"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                            class="mdi mdi-logout font-size-16 align-middle me-1"></i> <span key="t-logout">Log
-                            Out</span></a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+                    <a class="dropdown-item" href="auth-logout"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
                 </div>
             </div>
 
         </div>
     </div>
 </header>
+
+<div class="topnav">
+    <div class="container-fluid">
+        <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+
+            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="index" id="topnav-dashboard" role="button">
+                            <i data-feather="home"></i><span data-key="t-dashboards">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-more" role="button">
+                            <i data-feather="file-text"></i><span data-key="t-extra-pages">Extra Pages</span>
+                            <div class="arrow-down"></div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-more">
+
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-auth" role="button">
+                                    <span data-key="t-authentication">Authentication</span>
+                                    <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-auth">
+                                    <a href="auth-login" class="dropdown-item" data-key="t-login">Login</a>
+                                    <a href="auth-register" class="dropdown-item" data-key="t-register">Register</a>
+                                    <a href="auth-recoverpw" class="dropdown-item" data-key="t-recover-password">Recover
+                                        Password</a>
+                                    <a href="auth-lock-screen" class="dropdown-item" data-key="t-lock-screen">Lock
+                                        Screen</a>
+                                    <a href="auth-logout" class="dropdown-item" data-key="t-logout">Log Out</a>
+                                    <a href="auth-confirm-mail" class="dropdown-item" data-key="t-confirm-mail">Confirm
+                                        Mail</a>
+                                    <a href="auth-email-verification" class="dropdown-item" data-key="t-email-verification">Email verification</a>
+                                    <a href="auth-two-step-verification" class="dropdown-item" data-key="t-two-step-verification">Two step verification</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-utility" role="button">
+                                    <span data-key="t-utility">Utility</span>
+                                    <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-utility">
+                                    <a href="pages-starter" class="dropdown-item" data-key="t-starter-page">Starter
+                                        Page</a>
+                                    <a href="pages-maintenance" class="dropdown-item" data-key="t-maintenance">Maintenance</a>
+                                    <a href="pages-comingsoon" class="dropdown-item" data-key="t-coming-soon">Coming
+                                        Soon</a>
+                                    <a href="pages-404" class="dropdown-item" data-key="t-error-404">Error 404</a>
+                                    <a href="pages-500" class="dropdown-item" data-key="t-error-500">Error 500</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="layouts-horizontal" role="button">
+                            <i data-feather="layout"></i><span data-key="t-horizontal">Horizontal</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

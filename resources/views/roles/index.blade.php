@@ -12,7 +12,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                @can('crear-rol')
+                @can('gestionar-roles-crear')
                 <a href="{{ route('roles.create') }}" class="btn btn-warning">Nuevo</a>
                 @endcan
             </div>
@@ -25,16 +25,16 @@
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody> 
                             @foreach($roles as $role)
                             <tr>
                                 <td>{{ $role->name }}</td>
                                 <td>
-                                    @can('editar-rol')
+                                    @can('gestionar-roles-editar')
                                     <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-info">Editar</a>
                                     @endcan
 
-                                    @can('borrar-rol')
+                                    @can('gestionar-roles-eliminar')
                                     <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display:inline;">
                                         @csrf
                                         @method('DELETE')

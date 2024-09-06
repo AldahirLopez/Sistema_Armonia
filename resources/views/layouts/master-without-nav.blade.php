@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title> @yield('title') | Minia - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title> @yield('title') | Minia - Laravel 10 Admin & Dashboard Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

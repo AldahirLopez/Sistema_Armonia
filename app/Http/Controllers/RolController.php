@@ -31,7 +31,7 @@ class RolController extends Controller
         $roles = Role::paginate(5);
         return view('roles.index', compact('roles', 'permission'));
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      *
