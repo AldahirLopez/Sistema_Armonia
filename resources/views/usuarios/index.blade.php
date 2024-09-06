@@ -12,7 +12,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                @can('crear-usuarios')
+                @can('gestionar-usuarios-crear')
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">Nuevo</button>
                 @endcan
             </div>
@@ -42,11 +42,11 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @can('editar-usuarios')
+                                    @can('gestionar-usuarios-editar')
                                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal-{{$usuario->id}}">Editar</button>
                                     @endcan
 
-                                    @can('borrar-usuarios')
+                                    @can('gestionar-usuarios-eliminar')
                                     <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')

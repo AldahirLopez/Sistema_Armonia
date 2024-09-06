@@ -22,6 +22,13 @@
 
                     <div class="mb-3">
                         <label for="permissions" class="form-label">Permisos</label>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="select-all" onclick="toggleAllPermissions()">
+                            <label class="form-check-label" for="select-all">
+                                Seleccionar Todos
+                            </label>
+                        </div>
+
                         <div class="row">
                             @foreach($permission as $value)
                             <div class="col-md-3">
@@ -43,4 +50,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    function toggleAllPermissions() {
+        const selectAllCheckbox = document.getElementById('select-all');
+        const checkboxes = document.querySelectorAll('input[name="permission[]"]');
+        checkboxes.forEach(checkbox => checkbox.checked = selectAllCheckbox.checked);
+    }
+</script>
 @endsection
