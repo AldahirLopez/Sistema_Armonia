@@ -5,10 +5,10 @@
             <div class="navbar-brand-box">
                 <a href="index" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="build/images/logo-sm.svg" alt="" height="24">
+                        <img src="build/images/logoarmonia.png" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="build/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Minia</span>
+                        <img src="build/images/logoarmonia.png" alt="" height="24"> <span class="logo-txt">Sistema</span>
                     </span>
                 </a>
 

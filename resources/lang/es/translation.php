@@ -124,8 +124,9 @@ return [
   "Logout" => "Cerrar sesión",
   "Extra_pages" => "Páginas extra",
   "Utility" => "Utilidad",
-  "Placeholders"=>"marcador de posición",
-  "Toast"=>"Tostado",
-
+  "Placeholders" => "marcador de posición",
+  "Toast" => "Tostado",
+  'Estaciones' => 'Estaciones',
+  'Roles' => 'Roles', 
+  'Usuarios' => 'Usuarios', 
 ];
-?>
