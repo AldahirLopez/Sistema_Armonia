@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('localidad')->nullable();
             $table->string('municipio')->nullable();
             $table->string('entidad_federativa')->nullable();
+            $table->string('entre_calles')->nullable();
             
             $table->string('tipo'); // 'fiscal' o 'servicio'
             $table->timestamps();

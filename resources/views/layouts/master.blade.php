@@ -2,6 +2,23 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <!-- Aplicar el tema guardado en localStorage antes de cargar la página -->
+    <script>
+        (function() {
+            // Verificar el tema almacenado en localStorage
+            var savedTheme = localStorage.getItem('theme') || 'light'; // Por defecto, tema claro
+            var bodyClasses = document.documentElement.classList;
+
+            // Aplicar el tema seleccionado
+            if (savedTheme === 'dark') {
+                bodyClasses.add('dark-mode'); // Añadir clase para tema oscuro
+                document.documentElement.setAttribute('data-bs-theme', 'dark');
+            } else {
+                bodyClasses.remove('dark-mode');
+                document.documentElement.setAttribute('data-bs-theme', 'light');
+            }
+        })();
+    </script>
     <meta charset="utf-8" />
     <title> @yield('title') | Minia - Laravel 10 Admin & Dashboard Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,6 +57,22 @@
 
     <!-- JAVASCRIPT -->
     @include('layouts.vendor-scripts')
+
+    <!-- Script para cambiar el tema dinámicamente -->
+    <script>
+        document.getElementById('mode-setting-btn').addEventListener('click', function() {
+            var body = document.documentElement;
+            var currentTheme = body.getAttribute('data-bs-theme');
+
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-bs-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-bs-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
 </body>
 
 </html>
