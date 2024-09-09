@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EstacionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -17,16 +18,28 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
-Route::resource('roles', RolController::class);
-Route::resource('usuarios', UsuarioController::class);
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
-//Update User Details
-Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
-Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
+Route::group(['middleware' => ['auth']], function () {
+    //Roles
+    Route::resource('roles', RolController::class);
 
-Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+    //Usuarios
+    Route::resource('usuarios', UsuarioController::class);
+
+    //Estaciones
+
+    Route::get('/estaciones/usuario', [EstacionController::class, 'estacion_usuario'])->name('estaciones.usuario');
+    Route::resource('estaciones', EstacionController::class);
 
 
-//Language Translation
-Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
+
+    //Update User Details
+    Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
+    Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
+
+    Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+    //Language Translation
+    Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
+
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
+});

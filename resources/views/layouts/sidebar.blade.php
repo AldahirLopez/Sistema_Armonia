@@ -97,6 +97,14 @@
                     </a>
                 </li>
 
+                <!-- Roles Menu Item -->
+                <li>
+                    <a href="{{ route('estaciones.index') }}" class="waves-effect">
+                        <i class="bx bx-gas-pump"></i>
+                        <span data-key="t-roles">Estaciones</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->
