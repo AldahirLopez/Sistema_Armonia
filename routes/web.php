@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
     //Estaciones
 
     Route::get('/estaciones/usuario', [EstacionController::class, 'estacion_usuario'])->name('estaciones.usuario');
+    Route::get('/estaciones/disponibles', [EstacionController::class, 'estacion_generales'])->name('estaciones.disponibles');
     Route::resource('estaciones', EstacionController::class);
 
 

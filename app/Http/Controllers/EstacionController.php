@@ -55,7 +55,7 @@ class EstacionController extends Controller
         $estaciones = Estacion::all();
         return view('armonia.estacion.estaciones_generales', compact('estaciones'));
     }
-
+ 
     // Guardar estación
     public function store(Request $request)
     {

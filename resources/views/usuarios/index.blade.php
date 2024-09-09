@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-header">
                 @can('gestionar-usuarios-crear')
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">Nuevo</button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">Nuevo</button>
                 @endcan
             </div>
             <div class="card-body">
@@ -43,14 +43,14 @@
                                 </td>
                                 <td>
                                     @can('gestionar-usuarios-editar')
-                                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal-{{$usuario->id}}">Editar</button>
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal-{{$usuario->id}}"><i class="bx bx-pencil"></i></button>
                                     @endcan
 
                                     @can('gestionar-usuarios-eliminar')
                                     <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Borrar</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');"> <i class="bx bx-trash"></i></button>
                                     </form>
                                     @endcan
                                 </td>
@@ -75,7 +75,7 @@
 <div class="modal fade" id="nuevoUsuarioModal" tabindex="-1" aria-labelledby="nuevoUsuarioModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-success-subtle" >
                 <h5 class="modal-title" id="nuevoUsuarioModalLabel">Alta de usuarios</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

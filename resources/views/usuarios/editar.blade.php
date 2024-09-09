@@ -1,7 +1,7 @@
 <div class="modal fade" id="editarUsuarioModal-{{$usuario->id}}" tabindex="-1" aria-labelledby="editarUsuarioModalLabel-{{$usuario->id}}" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-warning-subtle">
                 <h5 class="modal-title" id="editarUsuarioModalLabel-{{$usuario->id}}">Edición de usuarios</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

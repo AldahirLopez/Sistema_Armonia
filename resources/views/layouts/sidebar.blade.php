@@ -50,14 +50,6 @@
                     </ul>
                 </li>
 
-                <!-- Layouts -->
-                <li>
-                    <a href="layouts-horizontal">
-                        <i data-feather="layout"></i>
-                        <span data-key="t-horizontal">@lang('translation.Horizontal')</span>
-                    </a>
-                </li>
-
                 <!-- Multi-Level Dropdown -->
                 <li>
                     <a href="javascript:void(0);" class="has-arrow">

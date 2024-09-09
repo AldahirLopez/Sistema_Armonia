@@ -6,7 +6,7 @@
 @component('components.breadcrumb')
 @slot('li_1') Estaciones @endslot
 @slot('title') Estaciones de Servicio @endslot
-@endcomponent
+@endcomponent 
 
 <div class="row">
     <div class="col-lg-12">

@@ -3,24 +3,25 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="index" class="logo logo-dark">
+                <a href="{{ url('/') }}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="build/images/logoarmonia.png" alt="" height="24">
+                        <img src="{{ asset('build/images/logoarmonia.png') }}" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="build/images/logoarmonia.png" alt="" height="24"> <span class="logo-txt">Sistema</span>
+                        <img src="{{ asset('build/images/logoarmonia.png') }}" alt="" height="24"> <span class="logo-txt">Sistema</span>
                     </span>
                 </a>
 
-                <a href="index" class="logo logo-light">
+                <a href="{{ url('/') }}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="build/images/logo-sm.svg" alt="" height="24">
+                        <img src="{{ asset('build/images/logoarmonia.png') }}" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="build/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Minia</span>
+                        <img src="{{ asset('build/images/logoarmonia.png') }}" alt="" height="24"> <span class="logo-txt">Minia</span>
                     </span>
                 </a>
             </div>
+
 
             <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
                 <i class="fa fa-fw fa-bars"></i>
