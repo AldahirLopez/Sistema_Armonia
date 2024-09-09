@@ -80,8 +80,11 @@
 <div class="modal fade" id="editarEstacionModal-{{ $estacion->id }}" tabindex="-1" role="dialog" aria-labelledby="editarEstacionLabel-{{ $estacion->id }}" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-success text-white">
-                <h5 class="modal-title" id="editarEstacionLabel-{{ $estacion->id }}">Editar Estación</h5>
+            <!-- Cambia el color del encabezado a azul oscuro, con letras blancas -->
+            <div class="modal-header bg-warning-subtle text-white">
+                <h5 class="modal-title" id="editarEstacionLabel-{{ $estacion->id }}">
+                    <i class="bx bx-edit"></i> Editar Estación
+                </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -138,11 +141,13 @@
 </div>
 @endforeach
 
+
+
 <!-- Modal para generar nueva estación -->
 <div class="modal fade" id="generarEstacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-success text-white">
+            <div class="modal-header bg-success-subtle text-white">
                 <h5 class="modal-title" id="exampleModalLabel">Generar Nueva Estación</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
