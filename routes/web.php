@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::put('estacion/{id}/direcciones', [DireccionController::class, 'updateDireccion'])->name('direcciones.update');
 
+    Route::delete('estacion/{id}/direcciones', [DireccionController::class, 'destroy'])->name('direcciones.destroy');
+
     Route::get('/municipios/{estado}', [DireccionController::class, 'getMunicipios']);
 
     //Update User Details

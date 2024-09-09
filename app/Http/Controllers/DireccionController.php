@@ -71,7 +71,7 @@ class DireccionController extends Controller
 
         // Capitaliza el tipo de dirección
         $tipoDireccionCapitalizado = ucfirst($tipoDireccion);
- 
+
         // Crear una nueva dirección en la segunda base de datos
         $direccion = new Direccion();
         $direccion->setConnection('segunda_db');  // Usar la conexión a la segunda base de datos
@@ -183,6 +183,42 @@ class DireccionController extends Controller
     {
         foreach (['calle', 'numero_ext', 'numero_int', 'colonia', 'codigo_postal', 'municipio', 'localidad'] as $field) {
             $direccion->$field = $request->input("{$field}_{$tipo}");
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            // Obtener la dirección con el ID dado
+            $direccion = Direccion::findOrFail($id);
+
+            // Verificar si la dirección está asociada a una estación (fiscal o de servicio)
+            $estacionFiscal = Estacion::on('segunda_db')->where('domicilio_fiscal_id', $direccion->id)->first();
+            $estacionServicio = Estacion::on('segunda_db')->where('domicilio_servicio_id', $direccion->id)->first();
+
+            // Si la dirección está asociada como fiscal, eliminar la referencia
+            if ($estacionFiscal) {
+                $estacionFiscal->domicilio_fiscal_id = null;
+                $estacionFiscal->save();
+            }
+
+            // Si la dirección está asociada como de servicio, eliminar la referencia
+            if ($estacionServicio) {
+                $estacionServicio->domicilio_servicio_id = null;
+                $estacionServicio->save();
+            }
+
+            // Eliminar la dirección de la base de datos
+            $direccion->delete();
+
+            // Redirigir con un mensaje de éxito
+            return redirect()->back()->with('success', 'Dirección eliminada exitosamente.');
+        } catch (ModelNotFoundException $e) {
+            // Manejo del error si la dirección no se encuentra
+            return redirect()->back()->with('error', 'La dirección no se pudo encontrar.');
+        } catch (\Exception $e) {
+            // Manejo de otros errores
+            return redirect()->back()->with('error', 'Ocurrió un error al intentar eliminar la dirección.');
         }
     }
 }

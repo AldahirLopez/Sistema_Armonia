@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-header">
                 @can('gestionar-roles-crear')
-                <a href="{{ route('roles.create') }}" class="btn btn-warning">Nuevo</a>
+                <a href="{{ route('roles.create') }}" class="btn btn-success">Nuevo</a>
                 @endcan
             </div>
             <div class="card-body">
@@ -31,7 +31,7 @@
                                 <td>{{ $role->name }}</td>
                                 <td>
                                     @can('gestionar-roles-editar')
-                                    <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-info">Editar</a>
+                                    <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning">Editar</a>
                                     @endcan
 
                                     @can('gestionar-roles-eliminar')
