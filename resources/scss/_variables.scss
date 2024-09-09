@@ -86,17 +86,17 @@ $table-dark-border-color: tint-color($gray-800, 7.5%);
 // Color system
 
 // scss-docs-start gray-color-variables
-$white:    #fff;
+$white: #fff;
 $gray-100: #f8f9fa;
 $gray-200: #e9e9ef;
 $gray-300: #f6f6f6;
 $gray-400: #ced4da;
 $gray-500: #adb5bd;
 $gray-600: #74788d;
-$gray-700: #313533;//#495057;
+$gray-700: #313533; //#495057;
 $gray-800: #2c302e;
 $gray-900: #212529;
-$black:    #000;
+$black: #000;
 // scss-docs-end gray-color-variables
 
 // fusv-disable
@@ -116,16 +116,16 @@ $grays: (
 // fusv-enable
 
 // scss-docs-start color-variables
-$blue:    #5156be;
-$indigo:  #564ab1;
-$purple:  #6f42c1;
-$pink:    #e83e8c;
-$red:     #fd625e;
-$orange:  #f1734f;
-$yellow:  #ffbf53;
-$green:   #2ab57d;
-$teal:    #050505;
-$cyan:    #4ba6ef;
+$blue: #5156be;
+$indigo: #564ab1;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: #fd625e;
+$orange: #f1734f;
+$yellow: #ffbf53;
+$green: #2ab57d;
+$teal: #050505;
+$cyan: #4ba6ef;
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
@@ -265,7 +265,8 @@ $blues: (
   "blue-600": $blue-600,
   "blue-700": $blue-700,
   "blue-800": $blue-800,
-  "blue-900": $blue-900);
+  "blue-900": $blue-900
+);
 
 $indigos: (
   "indigo-100": $indigo-100,
@@ -276,7 +277,8 @@ $indigos: (
   "indigo-600": $indigo-600,
   "indigo-700": $indigo-700,
   "indigo-800": $indigo-800,
-  "indigo-900": $indigo-900);
+  "indigo-900": $indigo-900
+);
 
 $purples: (
   "purple-100": $purple-100,
@@ -287,7 +289,8 @@ $purples: (
   "purple-600": $purple-600,
   "purple-700": $purple-700,
   "purple-800": $purple-800,
-  "purple-900": $purple-900);
+  "purple-900": $purple-900
+);
 
 $pinks: (
   "pink-100": $pink-100,
@@ -298,7 +301,8 @@ $pinks: (
   "pink-600": $pink-600,
   "pink-700": $pink-700,
   "pink-800": $pink-800,
-  "pink-900": $pink-900);
+  "pink-900": $pink-900
+);
 
 $reds: (
   "red-100": $red-100,
@@ -309,7 +313,8 @@ $reds: (
   "red-600": $red-600,
   "red-700": $red-700,
   "red-800": $red-800,
-  "red-900": $red-900);
+  "red-900": $red-900
+);
 
 $oranges: (
   "orange-100": $orange-100,
@@ -320,7 +325,8 @@ $oranges: (
   "orange-600": $orange-600,
   "orange-700": $orange-700,
   "orange-800": $orange-800,
-  "orange-900": $orange-900);
+  "orange-900": $orange-900
+);
 
 $yellows: (
   "yellow-100": $yellow-100,
@@ -331,7 +337,8 @@ $yellows: (
   "yellow-600": $yellow-600,
   "yellow-700": $yellow-700,
   "yellow-800": $yellow-800,
-  "yellow-900": $yellow-900);
+  "yellow-900": $yellow-900
+);
 
 $greens: (
   "green-100": $green-100,
@@ -342,7 +349,8 @@ $greens: (
   "green-600": $green-600,
   "green-700": $green-700,
   "green-800": $green-800,
-  "green-900": $green-900);
+  "green-900": $green-900
+);
 
 $teals: (
   "teal-100": $teal-100,
@@ -353,7 +361,8 @@ $teals: (
   "teal-600": $teal-600,
   "teal-700": $teal-700,
   "teal-800": $teal-800,
-  "teal-900": $teal-900);
+  "teal-900": $teal-900
+);
 
 $cyans: (
   "cyan-100": $cyan-100,
@@ -364,7 +373,8 @@ $cyans: (
   "cyan-600": $cyan-600,
   "cyan-700": $cyan-700,
   "cyan-800": $cyan-800,
-  "cyan-900": $cyan-900);
+  "cyan-900": $cyan-900
+);
 // fusv-enable
 
 // scss-docs-start theme-color-variables
@@ -431,7 +441,7 @@ $escaped-characters: (
   ("#", "%23"),
   ("(", "%28"),
   (")", "%29"),
-  );
+);
 
 // Options
 //
@@ -485,7 +495,7 @@ $spacers: (
   3: $spacer,
   4: $spacer * 1.5,
   5: $spacer * 3,
-  );
+);
 
 $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
 // scss-docs-end spacer-variables-maps
@@ -498,7 +508,8 @@ $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
 $position-values: (
   0: 0,
   50: 50%,
-  100: 100%);
+  100: 100%
+);
 // scss-docs-end position-map
 
 
@@ -608,10 +619,11 @@ $border-widths: (
   2: 2px,
   3: 3px,
   4: 4px,
-  5: 5px);
+  5: 5px
+);
 $border-style: solid;
 $border-color: $gray-200;
-$border-color-translucent:  $gray-400;
+$border-color-translucent: $gray-400;
 // scss-docs-end border-variables
 
 // scss-docs-start border-radius-variables
@@ -674,7 +686,7 @@ $aspect-ratios: (
 
 // scss-docs-start font-variables
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: 'IBM Plex Sans',sans-serif;
+$font-family-sans-serif: 'IBM Plex Sans', sans-serif;
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 // stylelint-enable value-keyword-case
 $font-family-base: var(--#{$prefix}font-sans-serif);
@@ -683,7 +695,7 @@ $font-family-code: var(--#{$prefix}font-monospace);
 // $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
 // $font-size-base affects the font size of the body text
 $font-size-root: null;
-$font-size-base:  0.875rem; // Assumes the browser default, typically `16px`
+$font-size-base: 0.875rem; // Assumes the browser default, typically `16px`
 $font-size-sm: $font-size-base * .875;
 $font-size-lg: $font-size-base * 1.25;
 
@@ -736,7 +748,8 @@ $display-font-sizes: (
   3: 4rem,
   4: 3.5rem,
   5: 3rem,
-  6: 2.5rem);
+  6: 2.5rem
+);
 
 $display-font-family: null;
 $display-font-style: null;
@@ -775,7 +788,7 @@ $hr-border-color: null; // Allows for inherited colors
 $hr-border-width: var(--#{$prefix}border-width);
 $hr-opacity: .25;
 
-$vr-border-width:             var(--#{$prefix}border-width) ;
+$vr-border-width: var(--#{$prefix}border-width);
 $legend-margin-bottom: .5rem;
 $legend-font-size: 1.5rem;
 $legend-font-weight: null;
@@ -786,7 +799,7 @@ $list-inline-padding: .5rem;
 
 $mark-padding: .1875em;
 $mark-bg: #fcf8e3;
-$mark-color:                  $body-color ;
+$mark-color: $body-color ;
 // scss-docs-end type-variables
 
 
@@ -810,15 +823,15 @@ $table-th-font-weight: null;
 
 $table-striped-color: $table-color;
 $table-striped-bg-factor: .05;
-$table-striped-bg: var(--#{$prefix}tertiary-bg) ;
+$table-striped-bg: var(--#{$prefix}tertiary-bg);
 
 $table-active-color: $table-color;
 $table-active-bg-factor: .1;
-$table-active-bg:  var(--#{$prefix}tertiary-bg);
+$table-active-bg: var(--#{$prefix}tertiary-bg);
 
 $table-hover-color: $table-color;
 $table-hover-bg-factor: .075;
-$table-hover-bg:   var(--#{$prefix}tertiary-bg);
+$table-hover-bg: var(--#{$prefix}tertiary-bg);
 
 $table-border-factor: .1;
 $table-border-width: var(--#{$prefix}border-width);
@@ -844,7 +857,7 @@ $table-variants: (
   "danger": shift-color($danger, $table-bg-scale),
   "light": $light,
   "dark": $dark,
-  );
+);
 // scss-docs-end table-loop
 
 
@@ -910,7 +923,7 @@ $btn-active-box-shadow: inset 0 3px 5px rgba($black, .125);
 $btn-link-color: var(--#{$prefix}link-color);
 $btn-link-hover-color: var(--#{$prefix}link-hover-color);
 $btn-link-disabled-color: $gray-600;
-$btn-link-focus-shadow-rgb:   to-rgb(mix(color-contrast($link-color), $link-color, 15%)) ;
+$btn-link-focus-shadow-rgb: to-rgb(mix(color-contrast($link-color), $link-color, 15%));
 
 // Allows for customizing button radius independently from global border radius
 $btn-border-radius: var(--#{$prefix}border-radius);
@@ -972,7 +985,7 @@ $input-disabled-border-color: null;
 $input-color: var(--#{$prefix}body-color);
 $input-border-color: var(--#{$prefix}border-color);
 $input-border-width: $input-btn-border-width;
-$input-box-shadow:                      var(--#{$prefix}box-shadow-inset) ;
+$input-box-shadow: var(--#{$prefix}box-shadow-inset);
 
 $input-border-radius: var(--#{$prefix}border-radius);
 $input-border-radius-sm: var(--#{$prefix}border-radius-sm);
@@ -997,7 +1010,7 @@ $input-height: add($input-line-height * 1em, add($input-padding-y * 2, $input-he
 $input-height-sm: add($input-line-height * 1em, add($input-padding-y-sm * 2, $input-height-border, false));
 $input-height-lg: add($input-line-height * 1em, add($input-padding-y-lg * 2, $input-height-border, false));
 
-$input-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+$input-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
 $form-color-width: 3rem;
 // scss-docs-end form-input-variables
@@ -1088,7 +1101,7 @@ $form-select-feedback-icon-size: $input-height-inner-half $input-height-inner-ha
 $form-select-border-width: $input-border-width;
 $form-select-border-color: $input-border-color;
 $form-select-border-radius: $input-border-radius;
-$form-select-box-shadow:          var(--#{$prefix}box-shadow-inset) ;
+$form-select-box-shadow: var(--#{$prefix}box-shadow-inset);
 
 $form-select-focus-border-color: $input-focus-border-color;
 $form-select-focus-width: $input-focus-width;
@@ -1113,7 +1126,7 @@ $form-range-track-height: .5rem;
 $form-range-track-cursor: pointer;
 $form-range-track-bg: var(--#{$prefix}tertiary-bg);
 $form-range-track-border-radius: 1rem;
-$form-range-track-box-shadow:     var(--#{$prefix}box-shadow-inset) ;
+$form-range-track-box-shadow: var(--#{$prefix}box-shadow-inset);
 
 $form-range-thumb-width: 1rem;
 $form-range-thumb-height: $form-range-thumb-width;
@@ -1146,7 +1159,7 @@ $form-floating-label-height: 1.5em;
 $form-floating-label-opacity: .65;
 $form-floating-label-transform: scale(.85) translateY(-.5rem) translateX(.15rem);
 $form-floating-label-disabled-color: $gray-600;
-$form-floating-transition: opacity .1s ease-in-out,transform .1s ease-in-out;
+$form-floating-transition: opacity .1s ease-in-out, transform .1s ease-in-out;
 // scss-docs-end form-floating-variables
 
 // Form validation
@@ -1186,7 +1199,8 @@ $form-validation-states: (
     "tooltip-bg-color": var(--#{$prefix}danger),
     "focus-box-shadow": 0 0 $input-btn-focus-blur $input-focus-width rgba(var(--#{$prefix}danger-rgb), $input-btn-focus-color-opacity),
     "border-color": var(--#{$prefix}form-invalid-border-color),
-  ));
+  )
+);
 // scss-docs-end form-validation-states
 
 // Z-index master list
@@ -1213,7 +1227,8 @@ $zindex-levels: (
   0: 0,
   1: 1,
   2: 2,
-  3: 3);
+  3: 3
+);
 // scss-docs-end zindex-levels-map
 
 
@@ -1226,7 +1241,7 @@ $nav-link-font-size: null;
 $nav-link-font-weight: null;
 $nav-link-color: var(--#{$prefix}link-color);
 $nav-link-hover-color: var(--#{$prefix}link-hover-color);
-$nav-link-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+$nav-link-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
 $nav-link-disabled-color: var(--#{$prefix}secondary-color);
 $nav-link-focus-box-shadow: $focus-ring-box-shadow;
 
@@ -1271,7 +1286,8 @@ $navbar-toggler-border-radius: $btn-border-radius;
 $navbar-toggler-focus-width: $btn-focus-width;
 $navbar-toggler-transition: box-shadow .15s ease-in-out;
 
-$navbar-light-color: rgba(var(--#{$prefix}emphasis-color-rgb), .65);
+$navbar-light-color: rgba(var(--#{$prefix}emphasis-color-rgb), .65
+);
 $navbar-light-hover-color: rgba(var(--#{$prefix}emphasis-color-rgb), .8);
 $navbar-light-active-color: rgba(var(--#{$prefix}emphasis-color-rgb), 1);
 $navbar-light-disabled-color: rgba(var(--#{$prefix}emphasis-color-rgb), .3);
@@ -1287,7 +1303,7 @@ $navbar-dark-color: rgba($white, .55);
 $navbar-dark-hover-color: rgba($white, .75);
 $navbar-dark-active-color: $white;
 $navbar-dark-disabled-color: rgba($white, .25);
-$navbar-dark-icon-color:            $navbar-dark-color ;
+$navbar-dark-icon-color: $navbar-dark-color ;
 $navbar-dark-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
 $navbar-dark-toggler-border-color: rgba($white, .1);
 $navbar-dark-brand-color: $navbar-dark-active-color;
@@ -1387,7 +1403,7 @@ $pagination-disabled-color: var(--#{$prefix}secondary-color);
 $pagination-disabled-bg: var(--#{$prefix}secondary-bg);
 $pagination-disabled-border-color: var(--#{$prefix}border-color);
 
-$pagination-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+$pagination-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
 $pagination-border-radius-sm: var(--#{$prefix}border-radius-sm);
 $pagination-border-radius-lg: var(--#{$prefix}border-radius-lg);
@@ -1414,7 +1430,7 @@ $card-border-color: var(--#{$prefix}border-color);
 $card-border-radius: var(--#{$prefix}border-radius);
 $card-box-shadow: null;
 $card-inner-border-radius: subtract($card-border-radius, $card-border-width);
-$card-cap-padding-y:  $card-spacer-y;
+$card-cap-padding-y: $card-spacer-y;
 $card-cap-padding-x: $card-spacer-x;
 $card-cap-bg: var(--#{$prefix}secondary-bg);
 $card-cap-color: null;

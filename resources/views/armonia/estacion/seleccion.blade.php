@@ -15,7 +15,7 @@
     <div class="col-lg-4">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title" style="margin-top: 20px;">Estaciones de Servicio</h5>
+                <h5 class="card-title" style="margin-block-start: 20px;">Estaciones de Servicio</h5>
                 <div class="d-flex justify-content-between">
                     <div class="text-primary">
                         <h2><i class="bx bx-cog"></i><i class="bx bx-gas-pump"></i></h2>
@@ -35,7 +35,7 @@
     <div class="col-lg-4">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title" style="margin-top: 20px;">Estaciones de Servicio Disponibles</h5>
+                <h5 class="card-title" style="margin-block-start: 20px;">Estaciones de Servicio Disponibles</h5>
                 <div class="d-flex justify-content-between">
                     <div class="text-primary">
                         <h2><i class="bx bx-check-circle"></i><i class="bx bx-gas-pump"></i></h2>

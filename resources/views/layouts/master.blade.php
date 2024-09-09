@@ -20,12 +20,12 @@
         })();
     </script>
     <meta charset="utf-8" />
-    <title> @yield('title') | Minia - Laravel 10 Admin & Dashboard Template</title>
+    <title> @yield('title') | Armonia y Contraste Ambiental</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ URL::asset('build/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ URL::asset('build/images/logoarmonia.png') }}">
     @include('layouts.head-css')
 </head>
 

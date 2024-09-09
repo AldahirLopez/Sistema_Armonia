@@ -17,7 +17,7 @@
                         <img src="{{ asset('build/images/logoarmonia.png') }}" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('build/images/logoarmonia.png') }}" alt="" height="24"> <span class="logo-txt">Minia</span>
+                        <img src="{{ asset('build/images/logoarmonia.png') }}" alt="" height="24"> <span class="logo-txt">Sistema</span>
                     </span>
                 </a>
             </div>
