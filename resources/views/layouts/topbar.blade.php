@@ -61,7 +61,7 @@
                         <a href="#!" class="text-reset notification-item">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
-                                    <img src="build/images/users/avatar-3.jpg" class="rounded-circle avatar-sm"
+                                    <img src="{{ asset('build/images/users/avatar-3.jpg') }}" class="rounded-circle avatar-sm"
                                         alt="user-pic">
                                 </div>
                                 <div class="flex-grow-1">
@@ -112,7 +112,7 @@
                         <a href="#!" class="text-reset notification-item">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
-                                    <img src="build/images/users/avatar-6.jpg" class="rounded-circle avatar-sm"
+                                    <img src="{{ asset('build/images/users/avatar-6.jpg') }}" class="rounded-circle avatar-sm"
                                         alt="user-pic">
                                 </div>
                                 <div class="flex-grow-1">
