@@ -7,7 +7,7 @@
 @slot('li_1') Estaciones @endslot
 @slot('title') Estaciones de Servicio @endslot
 @endcomponent
-
+@include('partials.alertas') <!-- Incluyendo las alertas -->
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -29,6 +29,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>Tipo de Estacion</th>
                                 <th>Número de estación</th>
                                 <th>Razón Social</th>
                                 <th>Estado</th>
@@ -39,6 +40,7 @@
                         <tbody id="tablaEstaciones">
                             @foreach($estaciones as $estacion)
                             <tr>
+                                <td>{{ $estacion->tipo_estacion }}</td>
                                 <td>{{ $estacion->num_estacion }}</td>
                                 <td>{{ $estacion->razon_social }}</td>
                                 <td>{{ $estacion->estado_republica }}</td>
@@ -93,6 +95,16 @@
                     @method('PUT')
                     <div class="row">
                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tipo_estacion">Tipo de servicio</label>
+                                <select name="tipo_estacion" id="tipo_estacion" class="form-select" required>
+                                    <option value="" disabled {{ is_null($estacion->tipo_estacion) ? 'selected' : '' }}>Seleccione el tipo de servicio</option>
+                                    <option value="Transporte" {{ $estacion->tipo_estacion == 'Transporte' ? 'selected' : '' }}>Transporte</option>
+                                    <option value="Estacion de servicio" {{ $estacion->tipo_estacion == 'Estacion de servicio' ? 'selected' : '' }}>Estación de servicio</option>
+                                    <option value="Almacenamiento" {{ $estacion->tipo_estacion == 'Almacenamiento' ? 'selected' : '' }}>Almacenamiento</option>
+                                </select>
+                            </div>
+
                             <div class="form-group">
                                 <label for="numestacion">Número de estación</label>
                                 <input type="text" name="numestacion" class="form-control" value="{{ $estacion->num_estacion }}" required>
@@ -157,6 +169,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="tipo_estacion">Tipo de servicio</label>
+                                <select name="tipo_estacion" id="tipo_estacion" class="form-select" required>
+                                    <option value="" disabled selected>Seleccione el tipo de servicio</option>
+                                    <option value="Transporte">Transporte</option>
+                                    <option value="Estacion de servicio">Estación de servicio</option>
+                                    <option value="Almacenamiento">Almacenamiento</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="numestacion">Número de estación</label>
                                 <input type="text" name="numestacion" class="form-control" required value="{{ old('numestacion') }}">
                             </div>
@@ -194,7 +215,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 text-center mt-3">
-                        <button type="submit" class="btn btn-primary">Generar</button>
+                        <button type="submit" class="btn btn-success">Generar</button>
                     </div>
                 </form>
             </div>

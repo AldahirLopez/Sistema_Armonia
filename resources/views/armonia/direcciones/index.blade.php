@@ -18,7 +18,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <a href="{{ route('estaciones.usuario') }}" class="btn btn-danger">
-                        <i class="bx bx-arrow-back"></i> Regresar
+                        <i class="bx bx-arrow-back"></i>
                     </a>
                 </div>
 

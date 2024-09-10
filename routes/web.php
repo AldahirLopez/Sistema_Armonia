@@ -3,6 +3,8 @@
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\EstacionController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\ServicioAnexo30Controller;
+use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +52,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::put('/direcciones/{id}', [DireccionController::class, 'updateDireccion'])->name('direcciones.update');
 
+    //Servicios
+    Route::resource('servicios', ServiciosController::class);
+
+    //Servicio Anexo 30
+    Route::resource('anexo', ServicioAnexo30Controller::class);
 
     //Update User Details
     Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');

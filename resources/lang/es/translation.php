@@ -129,4 +129,6 @@ return [
   'Estaciones' => 'Estaciones',
   'Roles' => 'Roles', 
   'Usuarios' => 'Usuarios', 
+  'Anexo 30' => 'Anexo 30', 
+  'Servicios' => 'Servicios', 
 ];

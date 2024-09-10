@@ -92,6 +92,14 @@
                     </a>
                 </li>
 
+                <!-- Estaciones -->
+                <li>
+                    <a href="{{ route('servicios.index') }}" class="waves-effect">
+                        <i class="bx bx-cog"></i>
+                        <span data-key="t-estaciones">@lang('translation.Servicios')</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar End -->

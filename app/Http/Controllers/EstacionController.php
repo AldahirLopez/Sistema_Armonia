@@ -19,8 +19,6 @@ class EstacionController extends Controller
         return view('armonia.estacion.seleccion');
     }
 
-
-
     // Obtener estaciones del usuario autenticado
     public function estacion_usuario()
     {
@@ -28,21 +26,21 @@ class EstacionController extends Controller
         $estados = Estados::where('id_country', 42)->get();
         $estaciones = [];
 
+        // Si el usuario es Administrador o Auditor, obtener todas las estaciones
         if ($usuario->hasAnyRole(['Administrador', 'Auditor'])) {
             $estaciones = Estacion::all();
         } else {
+            // Obtener estaciones directas del usuario
             $estacionesDirectas = Estacion::where('usuario_id', $usuario->id)->get();
-            $estacionesRelacionadas = collect();
 
-            if (!$usuario->hasAnyRole(['Administrador', 'Auditor'])) {
-                $relaciones = Usuario_Estacion::where('usuario_id', $usuario->id)->get();
-                foreach ($relaciones as $relacion) {
-                    $estacionRelacionada = Estacion::find($relacion->estacion_id);
-                    if ($estacionRelacionada) {
-                        $estacionesRelacionadas->push($estacionRelacionada);
-                    }
-                }
-            }
+            // Obtener estaciones relacionadas a través de la tabla pivote Usuario_Estacion
+            $estacionesRelacionadas = Estacion::whereIn('id', function ($query) use ($usuario) {
+                $query->select('estacion_id')
+                    ->from('usuario_estacion')
+                    ->where('usuario_id', $usuario->id);
+            })->get();
+
+            // Combinar las estaciones directas y relacionadas, eliminando duplicados
             $estaciones = $estacionesDirectas->merge($estacionesRelacionadas)->unique('id');
         }
 
@@ -55,13 +53,14 @@ class EstacionController extends Controller
         $estaciones = Estacion::all();
         return view('armonia.estacion.estaciones_generales', compact('estaciones'));
     }
- 
+
     // Guardar estación
     public function store(Request $request)
     {
         try {
             // Validación de los datos recibidos del formulario
             $data = $request->validate([
+                'tipo_estacion' => 'required|string|max:255',
                 'numestacion' => 'required|string|max:255',
                 'razonsocial' => 'required|string|max:255',
                 'rfc' => 'required|string|max:255',
@@ -82,6 +81,7 @@ class EstacionController extends Controller
 
             // Crear la nueva instancia de Estacion y asignar los datos validados
             $estacionServicio = new Estacion();
+            $estacionServicio->tipo_estacion = $data['tipo_estacion'];
             $estacionServicio->num_estacion = $data['numestacion'];
             $estacionServicio->razon_social = $data['razonsocial'];
             $estacionServicio->rfc = $data['rfc'];
@@ -112,7 +112,7 @@ class EstacionController extends Controller
             $estacion = Estacion::findOrFail($id);
             $estacion->delete();
 
-            return redirect()->route('estaciones.usuario')->with('success', 'Estación eliminada exitosamente.');
+            return redirect()->route('estaciones.usuario')->with('warning', 'Estación eliminada exitosamente.');
         } catch (\Exception $e) {
             return redirect()->route('estaciones.usuario')->with('error', 'Error al eliminar la estación.');
         }
@@ -123,6 +123,7 @@ class EstacionController extends Controller
     {
         // Validación de los datos recibidos del formulario
         $request->validate([
+            'tipo_estacion' => 'required|string|max:255',
             'numestacion' => 'required|string|max:255',
             'razonsocial' => 'required|string|max:255',
             'rfc' => 'required|string|max:255',
@@ -137,6 +138,7 @@ class EstacionController extends Controller
             $estacion = Estacion::findOrFail($id);
 
             // Actualizar los campos con los datos del formulario
+            $estacion->tipo_estacion = $request->input('tipo_estacion');
             $estacion->num_estacion = $request->input('numestacion');
             $estacion->razon_social = $request->input('razonsocial');
             $estacion->rfc = $request->input('rfc');
