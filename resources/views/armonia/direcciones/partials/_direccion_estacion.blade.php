@@ -12,24 +12,24 @@
             <th>Colonia</th>
             <th>Código Postal</th>
             <th>Localidad</th>
-            <th>Acciones</th> <!-- Columna para el botón de eliminar -->
+            <th>Acciones</th> <!-- Columna para los botones de acciones -->
         </tr>
     </thead>
     <tbody>
         <tr>
-
             <td>{{ $direccionEstacion->entidad_federativa }}</td>
             <td>{{ $direccionEstacion->municipio }}</td>
             <td>{{ $direccionEstacion->calle }}</td>
-            <td>{{ $direccionFiscal->entre_calles }}</td>
+            <td>{{ $direccionEstacion->entre_calles }}</td>
             <td>{{ $direccionEstacion->numero_exterior }}</td>
             <td>{{ $direccionEstacion->numero_interior }}</td>
             <td>{{ $direccionEstacion->colonia }}</td>
             <td>{{ $direccionEstacion->codigo_postal }}</td>
             <td>{{ $direccionEstacion->localidad }}</td>
             <td>
+
                 <!-- Botón de eliminar -->
-                <form action="{{ route('direcciones.destroy', $direccionEstacion->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta dirección?');">
+                <form action="{{ route('direcciones.destroy', $direccionEstacion->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta dirección?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>

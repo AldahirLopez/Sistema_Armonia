@@ -212,7 +212,7 @@ class DireccionController extends Controller
             $direccion->delete();
 
             // Redirigir con un mensaje de éxito
-            return redirect()->back()->with('success', 'Dirección eliminada exitosamente.');
+            return redirect()->back()->with('warning', 'Dirección eliminada exitosamente.');
         } catch (ModelNotFoundException $e) {
             // Manejo del error si la dirección no se encuentra
             return redirect()->back()->with('error', 'La dirección no se pudo encontrar.');

@@ -48,6 +48,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/municipios/{estado}', [DireccionController::class, 'getMunicipios']);
 
+    Route::put('/direcciones/{id}', [DireccionController::class, 'updateDireccion'])->name('direcciones.update');
+
+
     //Update User Details
     Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
     Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');

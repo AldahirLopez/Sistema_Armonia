@@ -29,7 +29,12 @@
 
                     <!-- Incluir la tabla de Dirección de Estación -->
                     @include('armonia.direcciones.partials._direccion_estacion')
+
+
                 </div>
+                <!-- Incluir los modales para editar direcciones -->
+                @include('armonia.direcciones.partials._modal_direccion_fiscal_edit')
+                @include('armonia.direcciones.partials._modal_direccion_estacion_edit')
 
                 <!-- Incluir los modales -->
                 @include('armonia.direcciones.partials._modal_direccion_fiscal')
