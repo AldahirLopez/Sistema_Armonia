@@ -55,4 +55,12 @@ class Estacion extends Model
     {
         return $this->belongsTo(Direccion::class, 'domicilio_servicio_id', 'id');
     }
+
+    /**
+     * Relación de muchos a muchos entre Estacion y ServicioAnexo.
+     */
+    public function estacionServicio()
+    {
+        return $this->hasMany(Estacion_Servicio::class, 'id_estacion', 'id');
+    }
 }

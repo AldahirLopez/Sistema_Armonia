@@ -11,5 +11,20 @@ class ServicioAnexo extends Model
 
     protected $connection = 'segunda_db';
     protected $table = 'servicio_anexo_30';
-    
+
+
+    // Agrega 'nomenclatura' al arreglo fillable para permitir la asignación masiva
+    protected $fillable = [
+        'nomenclatura',
+        'pending_apro_servicio',
+        'pending_deletion_servicio',
+        'id_usuario',
+        // Añade aquí cualquier otro campo que deba ser asignado de manera masiva
+    ];
+
+    // Relación con el modelo User
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
+    }
 }

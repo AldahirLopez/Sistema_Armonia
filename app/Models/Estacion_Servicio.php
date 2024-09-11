@@ -14,4 +14,16 @@ class Estacion_Servicio extends Model
 
     // Especificar la tabla asociada al modelo
     protected $table = 'estacion_servicio';
+
+    // Agrega 'id_servicio_anexo' y otros campos al arreglo fillable para permitir la asignación masiva
+    protected $fillable = [
+        'id_servicio_anexo',
+        'id_estacion',
+        // Añade aquí cualquier otro campo que deba ser asignado de manera masiva
+    ];
+
+    public function servicioAnexo()
+    {
+        return $this->belongsTo(ServicioAnexo::class, 'id_servicio_anexo', 'id');
+    }
 }

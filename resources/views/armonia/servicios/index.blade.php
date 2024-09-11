@@ -18,7 +18,7 @@
                 <h5 class="card-title" style="margin-block-start: 20px;">Servicios</h5>
                 <div class="d-flex justify-content-between">
                     <div class="text-primary">
-                        <h2><i class="bx bx-gear"></i></h2>
+                        <h2><i class="bx bx-cog"></i><i class="bx bx-folder-open"></i></h2>
                     </div>
                     <div class="d-flex flex-column align-items-center">
                         <h4><span></span></h4>

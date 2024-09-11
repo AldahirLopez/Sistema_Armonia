@@ -19,8 +19,7 @@ class DireccionController extends Controller
         $estacion = Estacion::findOrFail($id);
         $estados = Estados::where('id_country', 42)->get();
 
-        $estado_id = Estados::where('description', $estacion->estado_republica)->first()->id ?? null;
-        $municipios = $estado_id ? Municipios::where('id_state', $estado_id)->get() : collect();
+        $municipios = $this->getMunicipiosFromEstado($estacion->estado_republica);
 
         $direccionFiscal = Direccion::find($estacion->domicilio_fiscal_id);
         $direccionEstacion = Direccion::find($estacion->domicilio_servicio_id);
@@ -31,17 +30,86 @@ class DireccionController extends Controller
     // Guardar nueva dirección
     public function guardarDireccion(Request $request)
     {
-        // Registrar las variables enviadas al controlador en el archivo de logs
-        //\Log::info('Datos recibidos:', $request->all());
-        // Validación inicial en la segunda base de datos
-        $request->validate([
+        $this->validate($request, [
             'direccionSelect' => 'required|in:fiscal,estacion',
-            'estacion_id' => 'required|exists:segunda_db.estacion,id',  // Validación en la segunda base de datos
+            'estacion_id' => 'required|exists:segunda_db.estacion,id',
         ]);
 
-        // Determina el tipo de dirección y realiza la validación correspondiente
         $tipoDireccion = $request->input('direccionSelect');
-        $camposValidacion = [
+        $this->validateDireccion($request, $tipoDireccion);
+
+        $direccion = $this->createDireccion($request, $tipoDireccion);
+
+        $this->updateEstacionWithDireccion($request->input('estacion_id'), $direccion->id, $tipoDireccion);
+
+        return redirect()->back()->with('success', 'Dirección guardada exitosamente.');
+    }
+
+    // Obtener datos de una dirección para edición
+    public function obtenerDatosDireccion($id)
+    {
+        try {
+            $direccion = Direccion::findOrFail($id);
+
+            return response()->json($direccion);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'No se pudo encontrar la dirección.'], 404);
+        }
+    }
+
+    // Actualizar dirección
+    public function updateDireccion(Request $request, $id)
+    {
+        try {
+            $direccion = Direccion::findOrFail($id);
+            $tipoDireccion = $request->input('direccionSelect');
+
+            $this->validateDireccion($request, $tipoDireccion);
+
+            $this->updateFields($direccion, $request, $tipoDireccion);
+
+            $direccion->save();
+
+            return redirect()->back()->with('success', 'Dirección actualizada exitosamente.');
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'Error al actualizar la dirección.');
+        }
+    }
+
+    // Obtener municipios basado en el estado seleccionado
+    public function getMunicipios($estadoId)
+    {
+        return response()->json(Municipios::where('id_state', $estadoId)->get());
+    }
+
+    // Eliminar dirección
+    public function destroy($id)
+    {
+        try {
+            $direccion = Direccion::findOrFail($id);
+            $this->removeDireccionFromEstacion($direccion->id);
+
+            $direccion->delete();
+
+            return redirect()->back()->with('warning', 'Dirección eliminada exitosamente.');
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'La dirección no se pudo encontrar.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Ocurrió un error al intentar eliminar la dirección.');
+        }
+    }
+
+    // Métodos auxiliares
+
+    private function getMunicipiosFromEstado($estadoDescription)
+    {
+        $estado = Estados::where('description', $estadoDescription)->first();
+        return $estado ? Municipios::where('id_state', $estado->id)->get() : collect();
+    }
+
+    private function validateDireccion(Request $request, $tipo)
+    {
+        $campos = [
             'fiscal' => [
                 'entre_calles_fiscal' => 'required|max:255',
                 'calle_fiscal' => 'required|max:255',
@@ -66,159 +134,62 @@ class DireccionController extends Controller
             ],
         ];
 
-        // Validación específica para el tipo de dirección
-        $request->validate($camposValidacion[$tipoDireccion]);
+        $this->validate($request, $campos[$tipo]);
+    }
 
-        // Capitaliza el tipo de dirección
-        $tipoDireccionCapitalizado = ucfirst($tipoDireccion);
-
-        // Crear una nueva dirección en la segunda base de datos
+    private function createDireccion(Request $request, $tipoDireccion)
+    {
         $direccion = new Direccion();
-        $direccion->setConnection('segunda_db');  // Usar la conexión a la segunda base de datos
-        $direccion->tipo = $tipoDireccionCapitalizado;
-        $direccion->entre_calles = $request->input("entre_calles_{$tipoDireccion}");
-        $direccion->calle = $request->input("calle_{$tipoDireccion}");
-        $direccion->numero_exterior = $request->input("numero_ext_{$tipoDireccion}");
-        $direccion->numero_interior = $request->input("numero_int_{$tipoDireccion}");
-        $direccion->colonia = $request->input("colonia_{$tipoDireccion}");
-        $direccion->codigo_postal = $request->input("codigo_postal_{$tipoDireccion}");
-        $direccion->localidad = $request->input("localidad_{$tipoDireccion}");
-        $direccion->municipio = $request->input("municipio_id_{$tipoDireccion}");
+        $direccion->setConnection('segunda_db');
+        $direccion->tipo = ucfirst($tipoDireccion);
 
-        // Asignar el valor del estado según el tipo de dirección
+        $this->updateFields($direccion, $request, $tipoDireccion);
+
         if ($tipoDireccion == 'fiscal') {
-            $estadoId = $request->input("entidad_federativa_{$tipoDireccion}");
-            $estado = Estados::on('segunda_db')->findOrFail($estadoId);
+            $estado = Estados::on('segunda_db')->findOrFail($request->input("entidad_federativa_fiscal"));
             $direccion->entidad_federativa = $estado->description;
         } else {
-            $direccion->entidad_federativa = $request->input("entidad_federativa_{$tipoDireccion}");
+            $direccion->entidad_federativa = $request->input("entidad_federativa_estacion");
         }
 
-        // Guardar la dirección
         $direccion->save();
 
-        // Actualizar la referencia de la dirección en la estación correspondiente en la segunda base de datos
-        $estacion = Estacion::on('segunda_db')->findOrFail($request->input('estacion_id'));  // Cambia la conexión a la segunda base de datos
+        return $direccion;
+    }
+
+    private function updateEstacionWithDireccion($estacionId, $direccionId, $tipoDireccion)
+    {
+        $estacion = Estacion::on('segunda_db')->findOrFail($estacionId);
+
         if ($tipoDireccion == 'fiscal') {
-            $estacion->domicilio_fiscal_id = $direccion->id;
+            $estacion->domicilio_fiscal_id = $direccionId;
         } else {
-            $estacion->domicilio_servicio_id = $direccion->id;
+            $estacion->domicilio_servicio_id = $direccionId;
         }
+
         $estacion->save();
-
-        return redirect()->back()->with('success', 'Dirección guardada exitosamente.');
-    }
-
-
-
-    // Obtener datos de una dirección para edición
-    public function obtenerDatosDireccion($id)
-    {
-        try {
-            $direccion = Direccion::findOrFail($id);
-
-            return response()->json([
-                'id' => $direccion->id,
-                'calle' => $direccion->calle,
-                'numero_exterior' => $direccion->numero,
-                'numero_interior' => $direccion->numero_interior,
-                'colonia' => $direccion->colonia,
-                'codigo_postal' => $direccion->codigo_postal,
-                'municipio' => $direccion->municipio,
-                'localidad' => $direccion->localidad,
-                'entidad_federativa' => $direccion->entidad_federativa
-            ]);
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'No se pudo encontrar la dirección.'], 404);
-        }
-    }
-
-    // Actualizar dirección
-    public function updateDireccion(Request $request, $id)
-    {
-        try {
-            $direccion = Direccion::findOrFail($id);
-
-            $this->validateDireccion($request, $request->direccionSelect);
-
-            if ($request->direccionSelect == 'fiscal') {
-                $this->updateFields($direccion, $request, 'fiscal');
-                $estado = Estados::on('segunda_db')->findOrFail($request->entidad_federativa_fiscal);
-                $direccion->entidad_federativa = $estado->description;
-            } else {
-                $this->updateFields($direccion, $request, 'estacion');
-                $direccion->entidad_federativa = $request->entidad_federativa_estacion;
-            }
-
-            $direccion->save();
-
-            return redirect()->back()->with('success', 'Dirección actualizada exitosamente.');
-        } catch (ModelNotFoundException $e) {
-            return redirect()->back()->with('error', 'Error al actualizar la dirección.');
-        }
-    }
-
-    // Obtener municipios basado en el estado seleccionado
-    public function getMunicipios($estadoId)
-    {
-        return response()->json(Municipios::where('id_state', $estadoId)->get());
-    }
-
-    // Helper methods to validate and update address fields
-    private function validateDireccion(Request $request, $tipo)
-    {
-        $request->validate([
-            "calle_{$tipo}" => 'required|max:255',
-            "numero_ext_{$tipo}" => 'required|max:10',
-            "numero_int_{$tipo}" => 'nullable|max:10',
-            "colonia_{$tipo}" => 'required|max:255',
-            "codigo_postal_{$tipo}" => 'required',
-            "municipio_id_{$tipo}" => 'required',
-            "localidad_{$tipo}" => 'required',
-            "entidad_federativa_{$tipo}" => 'required',
-        ]);
     }
 
     private function updateFields(Direccion $direccion, Request $request, $tipo)
     {
-        foreach (['calle', 'numero_ext', 'numero_int', 'colonia', 'codigo_postal', 'municipio', 'localidad'] as $field) {
+        foreach (['entre_calles', 'calle', 'numero_ext', 'numero_int', 'colonia', 'codigo_postal', 'municipio', 'localidad'] as $field) {
             $direccion->$field = $request->input("{$field}_{$tipo}");
         }
     }
 
-    public function destroy($id)
+    private function removeDireccionFromEstacion($direccionId)
     {
-        try {
-            // Obtener la dirección con el ID dado
-            $direccion = Direccion::findOrFail($id);
+        $estacionFiscal = Estacion::on('segunda_db')->where('domicilio_fiscal_id', $direccionId)->first();
+        $estacionServicio = Estacion::on('segunda_db')->where('domicilio_servicio_id', $direccionId)->first();
 
-            // Verificar si la dirección está asociada a una estación (fiscal o de servicio)
-            $estacionFiscal = Estacion::on('segunda_db')->where('domicilio_fiscal_id', $direccion->id)->first();
-            $estacionServicio = Estacion::on('segunda_db')->where('domicilio_servicio_id', $direccion->id)->first();
+        if ($estacionFiscal) {
+            $estacionFiscal->domicilio_fiscal_id = null;
+            $estacionFiscal->save();
+        }
 
-            // Si la dirección está asociada como fiscal, eliminar la referencia
-            if ($estacionFiscal) {
-                $estacionFiscal->domicilio_fiscal_id = null;
-                $estacionFiscal->save();
-            }
-
-            // Si la dirección está asociada como de servicio, eliminar la referencia
-            if ($estacionServicio) {
-                $estacionServicio->domicilio_servicio_id = null;
-                $estacionServicio->save();
-            }
-
-            // Eliminar la dirección de la base de datos
-            $direccion->delete();
-
-            // Redirigir con un mensaje de éxito
-            return redirect()->back()->with('warning', 'Dirección eliminada exitosamente.');
-        } catch (ModelNotFoundException $e) {
-            // Manejo del error si la dirección no se encuentra
-            return redirect()->back()->with('error', 'La dirección no se pudo encontrar.');
-        } catch (\Exception $e) {
-            // Manejo de otros errores
-            return redirect()->back()->with('error', 'Ocurrió un error al intentar eliminar la dirección.');
+        if ($estacionServicio) {
+            $estacionServicio->domicilio_servicio_id = null;
+            $estacionServicio->save();
         }
     }
 }
