@@ -19,7 +19,7 @@ Iniciar Sesión
                             <div class="text-center mb-4">
                                 <a href="index" class="d-block auth-logo">
                                     <img src="build/images/logoarmonia.png" alt="" height="28">
-                                    <span class="logo-txt">Armonia y Contraste Ambiental S.A. de C.V:</span>
+                                    <span class="logo-txt">Armonia y Contraste Ambiental S.A. de C.VVV:</span>
                                 </a>
                             </div>
                             <div class="text-center">
