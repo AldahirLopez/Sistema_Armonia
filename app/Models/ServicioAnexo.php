@@ -27,4 +27,10 @@ class ServicioAnexo extends Model
     {
         return $this->belongsTo(User::class, 'id_usuario');
     }
+
+    // Relación de muchos a muchos con Estacion
+    public function estaciones()
+    {
+        return $this->belongsToMany(Estacion::class, 'estacion_servicio', 'id_servicio_anexo', 'id_estacion');
+    }
 }

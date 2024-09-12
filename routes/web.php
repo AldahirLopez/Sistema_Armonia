@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DireccionController;
+use App\Http\Controllers\DocumentacionAnexo30Controller;
 use App\Http\Controllers\EstacionController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\RolController;
@@ -68,8 +69,19 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('/eliminar-servicio-anexo/{id}/{notificationId}', [NotificacionController::class, 'EliminarServicioAnexo30'])->name('eliminar.servicio.anexo');
 
+    //Documentacion de Anexo 30 
+    Route::get('/servicios/anexo_30/documentos', [DocumentacionAnexo30Controller::class, 'menu'])->name('armonia.servicios.anexo_30.documentos.menu');
+
+    Route::get('/documentacion/general', [DocumentacionAnexo30Controller::class, 'documentosGenerales'])->name('documentacion.general');
+
+    Route::get('/documentacion/informatica', [DocumentacionAnexo30Controller::class, 'documentosInformaticos'])->name('documentacion.informatica');
+
+    Route::get('/documentacion/medicion', [DocumentacionAnexo30Controller::class, 'documentosMedicion'])->name('documentacion.medicion');
+    
+    Route::get('/documentacion/inspeccion', [DocumentacionAnexo30Controller::class, 'documentosInspeccion'])->name('documentacion.inspeccion');
 
 
+    Route::get('/servicios/anexo_30/documentos/generales', [DocumentacionAnexo30Controller::class, 'documentosGenerales'])->name('armonia.servicios.anexo_30.documentos.generales');
     //Route::get('/notificaciones', [NotificacionController::class, 'obtenerNotificacionesPendientes'])->name('notificaciones.pendientes');
 
 
