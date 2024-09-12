@@ -18,10 +18,16 @@ class NotificacionesMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $pendientes = Auth::user()->unreadNotifications;
-
-        // Compartir la variable $pendientes en todas las vistas
-        view()->share('pendientes', $pendientes);
+        // Verificar si el usuario está autenticado
+        if (Auth::check()) {
+            // Si el usuario está autenticado, obtener sus notificaciones no leídas
+            $pendientes = Auth::user()->unreadNotifications;
+            // Compartir las notificaciones en todas las vistas
+            view()->share('pendientes', $pendientes);
+        } else {
+            // Si el usuario no está autenticado, pasar un valor vacío o nulo
+            view()->share('pendientes', collect([]));
+        }
 
         return $next($request);
     }

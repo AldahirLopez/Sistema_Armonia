@@ -60,6 +60,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('anexo', ServicioAnexo30Controller::class);
 
     //Notificaciones 
+    Route::get('notificaciones/{id}', [NotificacionController::class, 'mostrarNotificacion'])->name('notificaciones.mostrar');
+
+    Route::post('/anexo/aprobar/{id}/{notificationId}', [NotificacionController::class, 'AprobarServicioAnexo30'])->name('aprobar.servicio.anexo');
+
+    Route::get('/notificaciones', [NotificacionController::class, 'listarNotificacionesAnexo30'])->name('notificaciones.listar');
+
+    Route::delete('/eliminar-servicio-anexo/{id}/{notificationId}', [NotificacionController::class, 'EliminarServicioAnexo30'])->name('eliminar.servicio.anexo');
+
+
+
     //Route::get('/notificaciones', [NotificacionController::class, 'obtenerNotificacionesPendientes'])->name('notificaciones.pendientes');
 
 

@@ -55,10 +55,10 @@
                     <div class="p-3">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h6 class="m-0"> Notifications </h6>
+                                <h6 class="m-0"> Pendientes de aprobacion </h6>
                             </div>
                             <div class="col-auto">
-                                <a href="#!" class="small text-reset text-decoration-underline"> Unread ({{ $pendientes->count() }})</a>
+                                <a class="small text-reset text-decoration-underline"> Unread ({{ $pendientes->count() }})</a>
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                         @php
                         $data = $notificacion->data; // Acceder al campo 'data' que contiene la información de la notificación
                         @endphp
-                        <a href="{{ url('/servicios-pendientes/'.$data['servicio_id']) }}" class="text-reset notification-item">
+                        <a href="{{ route('notificaciones.mostrar', $notificacion->id) }}" class="text-reset notification-item">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 avatar-sm me-3">
                                     <span class="avatar-title bg-warning rounded-circle font-size-16">
@@ -99,10 +99,11 @@
                     </div>
 
                     <div class="p-2 border-top d-grid">
-                        <a class="btn btn-sm btn-link font-size-14 text-center" href="#">
+                        <a class="btn btn-sm btn-link font-size-14 text-center" href="{{ route('notificaciones.listar') }}">
                             <i class="mdi mdi-arrow-right-circle me-1"></i> <span>Ver más..</span>
                         </a>
                     </div>
+
                 </div>
             </div>
 
