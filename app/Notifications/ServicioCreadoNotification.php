@@ -24,7 +24,8 @@ class ServicioCreadoNotification extends Notification
     // Define los canales por los cuales se enviará la notificación
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['database'];
+        //return ['mail', 'database'];
     }
 
     // Define el contenido del correo
@@ -43,6 +44,7 @@ class ServicioCreadoNotification extends Notification
             'servicio_id' => $this->servicio->id,
             'nomenclatura' => $this->servicio->nomenclatura,
             'mensaje' => 'Se ha creado un nuevo servicio con la nomenclatura ' . $this->servicio->nomenclatura,
+            'usuario' => $this->servicio->usuario->name ?? 'Usuario no definido', // Acceder a la relación 'usuario' directamente
         ];
     }
 }

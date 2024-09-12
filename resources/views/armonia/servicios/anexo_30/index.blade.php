@@ -57,41 +57,39 @@
                             Acciones
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="accionesServicio{{ $servicio->id }}">
-
-
-                            @can('Generar-documentacion-anexo_30')
+                            @if($servicio->pending_apro_servicio)
+                            <!-- Si el servicio está aprobado, muestra las opciones -->
                             <li>
                                 <form action="#" method="GET">
                                     <input type="hidden" name="id" value="{{ $servicio->id }}">
-                                    <button type="submit" class="dropdown-item {{ !$servicio->pending_apro_servicio || $servicio->pending_deletion_servicio ? 'disabled' : '' }}">
+                                    <button type="submit" class="dropdown-item">
                                         <i class="bi bi-folder-fill"></i> Documentación
                                     </button>
                                 </form>
                             </li>
-                            @endcan
-
-                            @can('Generar-expediente-anexo_30')
                             <li>
-                                <a href="#" class="dropdown-item {{ !$servicio->pending_apro_servicio || $servicio->pending_deletion_servicio ? 'disabled' : '' }}">
+                                <a href="#" class="dropdown-item">
                                     <i class="bi bi-folder-fill"></i> Expediente
                                 </a>
                             </li>
-                            @endcan
-
-                            @can('borrar-servicio_anexo_30')
                             <li>
                                 <form action="{{ route('anexo.destroy', $servicio->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="dropdown-item text-danger" {{ $servicio->pending_deletion_servicio || !$servicio->pending_apro_servicio ? 'disabled' : '' }}>
+                                    <button class="dropdown-item text-danger">
                                         <i class="bi bi-trash-fill"></i> Eliminar
                                     </button>
                                 </form>
                             </li>
-                            @endcan
-
+                            @else
+                            <!-- Si el servicio no está aprobado, muestra el mensaje -->
+                            <li class="dropdown-item text-muted">
+                                Servicio pendiente de aprobación
+                            </li>
+                            @endif
                         </ul>
                     </div>
+
                 </div>
             </div>
         </div>

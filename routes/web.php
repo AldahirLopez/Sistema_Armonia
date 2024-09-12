@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\EstacionController;
+use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ServicioAnexo30Controller;
 use App\Http\Controllers\ServiciosController;
@@ -57,6 +58,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Servicio Anexo 30
     Route::resource('anexo', ServicioAnexo30Controller::class);
+
+    //Notificaciones 
+    //Route::get('/notificaciones', [NotificacionController::class, 'obtenerNotificacionesPendientes'])->name('notificaciones.pendientes');
+
 
     //Update User Details
     Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');

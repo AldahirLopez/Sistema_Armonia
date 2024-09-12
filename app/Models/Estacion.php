@@ -17,6 +17,7 @@ class Estacion extends Model
 
     // Definir los campos que pueden ser asignados masivamente
     protected $fillable = [
+        'tipo_estacion',
         'num_estacion',
         'razon_social',
         'rfc',

@@ -10,60 +10,45 @@ use Illuminate\Support\Facades\Auth;
 
 class NotificacionController extends Controller
 {
+    // Obtener notificaciones no leídas (pendientes)
+    public function obtenerNotificacionesPendientes()
+    {
+        $pendientes = Auth::user()->unreadNotifications;
 
-    //Creando Notificaciones
+        return view('partials.notificaciones', compact('pendientes'));
+    }
+
+    // Enviar notificaciones a los administradores cuando se crea un nuevo servicio
     public function notificarNuevoServicio(ServicioAnexo $servicio)
     {
-        // Obtener los administradores
+        // Obtener todos los usuarios con rol de administrador
         $administradores = User::role('Administrador')->get();
 
-        // Verificar si hay administradores
         if ($administradores->isEmpty()) {
             return redirect()->back()->with('error', 'No hay administradores disponibles para enviar la notificación.');
         }
 
-        // Verificar que cada administrador tenga un correo válido
-        foreach ($administradores as $admin) {
-            if (empty($admin->email)) {
-                return redirect()->back()->with('error', 'Uno o más administradores no tienen un correo válido.');
-            }
-        }
-
-        // Enviar la notificación a todos los administradores
         Notification::send($administradores, new ServicioCreadoNotification($servicio));
 
-        return redirect()->back()->with('success', 'Notificación enviada al administrador.');
+        return redirect()->back()->with('success', 'Notificación enviada a los administradores.');
     }
-
-
-
-
 
     // Marcar notificación como leída
     public function marcarLeida($id)
     {
-        // Obtener el usuario autenticado
-        $user = Auth::user();
+        $notification = Auth::user()->notifications->find($id);
 
-        // Obtener la notificación por ID usando la relación notifications sin paréntesis
-        $notification = $user->notifications->where('id', $id)->first();
-
-        // Verificar si la notificación existe
         if ($notification) {
-            $notification->markAsRead(); // Marcar la notificación como leída
+            $notification->markAsRead();
         }
 
         return redirect()->back();
     }
 
-
     // Ver todas las notificaciones
     public function todas()
     {
-        // Obtener el usuario autenticado
-        $user = Auth::user();
-        // Acceder a las notificaciones sin paréntesis
-        $notifications = $user->notifications;
+        $notifications = Auth::user()->notifications;
 
         return view('notificaciones.todas', compact('notifications'));
     }
