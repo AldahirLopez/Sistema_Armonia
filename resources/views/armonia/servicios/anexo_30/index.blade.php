@@ -18,7 +18,7 @@
         <div class="card border-0 shadow-sm">
             <div class="card-body d-flex justify-content-between align-items-center">
                 <a href="#" class="btn btn-danger">
-                    <i class="bx bx-arrow-back"></i> Volver
+                    <i class="bx bx-arrow-back"></i>
                 </a>
                 @if($estaciones->isNotEmpty())
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#generarServicioModal">
