@@ -69,20 +69,27 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::delete('/eliminar-servicio-anexo/{id}/{notificationId}', [NotificacionController::class, 'EliminarServicioAnexo30'])->name('eliminar.servicio.anexo');
 
-    //Documentacion de Anexo 30 
-    Route::get('/servicios/anexo_30/documentos', [DocumentacionAnexo30Controller::class, 'menu'])->name('armonia.servicios.anexo_30.documentos.menu');
+    // Menú de Documentación Anexo 30
+    Route::get('/servicios/anexo_30/documentos/menu', [DocumentacionAnexo30Controller::class, 'menu'])->name('armonia.servicios.anexo_30.documentos.menu');
 
-    Route::get('/documentacion/general', [DocumentacionAnexo30Controller::class, 'documentosGenerales'])->name('documentacion.general');
+    // Rutas para categorías de documentación
+    Route::prefix('documentacion')->group(function () {
+        // Documentación General
+        Route::get('/general', [DocumentacionAnexo30Controller::class, 'documentosGenerales'])->name('documentacion.general');
+        Route::post('/general/store', [DocumentacionAnexo30Controller::class, 'store'])->name('documentacion.general.store');
 
-    Route::get('/documentacion/informatica', [DocumentacionAnexo30Controller::class, 'documentosInformaticos'])->name('documentacion.informatica');
+        // Documentación Informática
+        Route::get('/informatica', [DocumentacionAnexo30Controller::class, 'documentosInformaticos'])->name('documentacion.informatica');
+        Route::post('/informatica/store', [DocumentacionAnexo30Controller::class, 'store'])->name('documentacion.informatica.store');
 
-    Route::get('/documentacion/medicion', [DocumentacionAnexo30Controller::class, 'documentosMedicion'])->name('documentacion.medicion');
-    
-    Route::get('/documentacion/inspeccion', [DocumentacionAnexo30Controller::class, 'documentosInspeccion'])->name('documentacion.inspeccion');
+        // Documentación de Medición
+        Route::get('/medicion', [DocumentacionAnexo30Controller::class, 'documentosMedicion'])->name('documentacion.medicion');
+        Route::post('/medicion/store', [DocumentacionAnexo30Controller::class, 'store'])->name('documentacion.medicion.store');
 
-
-    Route::get('/servicios/anexo_30/documentos/generales', [DocumentacionAnexo30Controller::class, 'documentosGenerales'])->name('armonia.servicios.anexo_30.documentos.generales');
-    //Route::get('/notificaciones', [NotificacionController::class, 'obtenerNotificacionesPendientes'])->name('notificaciones.pendientes');
+        // Documentación Inspección
+        Route::get('/inspeccion', [DocumentacionAnexo30Controller::class, 'documentosInspeccion'])->name('documentacion.inspeccion');
+        Route::post('/inspeccion/store', [DocumentacionAnexo30Controller::class, 'store'])->name('documentacion.inspeccion.store');
+    });
 
 
     //Update User Details

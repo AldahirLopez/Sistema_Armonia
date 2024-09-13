@@ -74,11 +74,27 @@ class ServicioAnexo30Controller extends Controller
         $servicio = ServicioAnexo::findOrFail($id);
         $usuario = Auth::user();
 
+        // Ruta personalizada para la carpeta del servicio
+        $anio = now()->year;
+        $customFolderPath = "Servicios/Anexo_30/{$anio}/{$usuario->id}/{$servicio->nomenclatura}";
+
+        // Verificar si el usuario es administrador
         if ($usuario->hasRole('Administrador')) {
+
+            // Verificar si la carpeta existe y eliminarla
+            if (Storage::disk('public')->exists($customFolderPath)) {
+                Storage::disk('public')->deleteDirectory($customFolderPath);
+            } else {
+                return redirect()->route('anexo.index')->with('error', 'La carpeta no existe o ya fue eliminada.');
+            }
+
+            // Eliminar el servicio de la base de datos
             $servicio->delete();
-            return redirect()->route('anexo.index')->with('warning', 'El servicio ha sido eliminado exitosamente.');
+
+            return redirect()->route('anexo.index')->with('warning', 'El servicio y su carpeta han sido eliminados exitosamente.');
         }
 
+        // Si no es administrador, marcar el servicio como pendiente de eliminación
         $servicio->update([
             'pending_deletion_servicio' => true,
             'date_eliminated_at' => now(),
@@ -88,6 +104,7 @@ class ServicioAnexo30Controller extends Controller
 
         return redirect()->route('anexo.index')->with('info', 'La solicitud de eliminación está pendiente de aprobación.');
     }
+
 
     private function getUsuariosConRol(string $roleName)
     {
@@ -108,9 +125,35 @@ class ServicioAnexo30Controller extends Controller
     private function createServiceDirectory($userId, $nomenclatura)
     {
         $anio = now()->year;
-        $customFolderPath = "Servicios/Anexo_30/{$anio}/{$userId}/{$nomenclatura}";
-        Storage::disk('public')->makeDirectory($customFolderPath);
+        $baseFolderPath = "Servicios/Anexo_30/{$anio}/{$userId}/{$nomenclatura}";
+
+        // Carpetas base: documentos, expediente, pagos, facturas
+        $mainFolders = [
+            'documentos',
+            'expediente',
+            'pagos',
+            'facturas',
+        ];
+
+        // Crear las carpetas base
+        foreach ($mainFolders as $folder) {
+            Storage::disk('public')->makeDirectory("{$baseFolderPath}/{$folder}");
+        }
+
+        // Subcarpetas dentro de "documentos"
+        $subfolders = [
+            'generales',
+            'medicion',
+            'sistema_informatico',
+            'inspeccion',
+        ];
+
+        // Crear las subcarpetas dentro de "documentos"
+        foreach ($subfolders as $subfolder) {
+            Storage::disk('public')->makeDirectory("{$baseFolderPath}/documentos/{$subfolder}");
+        }
     }
+
 
     public function generarNomenclatura($usuario)
     {

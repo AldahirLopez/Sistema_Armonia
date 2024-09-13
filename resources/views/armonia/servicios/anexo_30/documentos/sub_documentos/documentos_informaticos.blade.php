@@ -7,7 +7,7 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Servicios @endslot
-@slot('title') Documentación General del Servicio {{ $servicio->nomenclatura }} @endslot
+@slot('title') Documentación del Sistema Informatico del Servicio {{ $servicio->nomenclatura }} @endslot
 @endcomponent
 
 <div class="row">
@@ -88,7 +88,7 @@
                                                     <input type="file" name="rutadoc_estacion" class="form-control" required>
                                                 </div>
                                                 <input type="hidden" name="servicio_id" value="{{ $servicio->id }}">
-                                                <input type="hidden" name="categoria" value="generales">
+                                                <input type="hidden" name="categoria" value="informatica">
                                                 <input type="hidden" name="nombre" value="{{ $doc['descripcion'] }}">
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

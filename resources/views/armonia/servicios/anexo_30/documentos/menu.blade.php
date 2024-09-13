@@ -10,13 +10,22 @@
 @slot('title') Documentación del Servicio {{ $servicio->nomenclatura }} @endslot
 @endcomponent
 
+<div class="d-flex justify-content-between mb-4">
+    <form action="{{ route('anexo.index') }}" method="GET" style="display:inline;">
+        <input type="hidden" name="id" value="{{ $servicio->id }}">
+        <button type="submit" class="btn btn-danger">
+            <i class="bx bx-arrow-back"></i>
+        </button>
+    </form>
+</div>
+
 <div class="row">
-    @php
+    @php 
     $documentaciones = [
-    ['title' => 'Documentación General', 'action' => route('documentacion.general')],
-    ['title' => 'Documentación Informática', 'action' => route('documentacion.informatica')],
-    ['title' => 'Documentación de Medición', 'action' => route('documentacion.medicion')],
-    ['title' => 'Documentación Inspección', 'action' => route('documentacion.inspeccion')],
+    ['title' => 'Documentación General', 'action' => route('documentacion.general', ['id' => $servicio->id])],
+    ['title' => 'Documentación Informática', 'action' => route('documentacion.informatica', ['id' => $servicio->id])],
+    ['title' => 'Documentación de Medición', 'action' => route('documentacion.medicion', ['id' => $servicio->id])],
+    ['title' => 'Documentación Inspección', 'action' => route('documentacion.inspeccion', ['id' => $servicio->id])],
     ];
     @endphp
 

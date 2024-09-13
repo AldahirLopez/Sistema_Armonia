@@ -27,10 +27,10 @@
                     @csrf
                     <!-- Botón para aprobar -->
                     <button type="submit" class="btn btn-success">Aprobar Servicio</button>
-                    <a href="#" class="btn btn-danger">Cancelar</a>
+                    <a href="{{ route('notificaciones.listar') }}" class="btn btn-danger">Cancelar</a>
                 </form>
             </div>
         </div>
     </div>
-</div>
+</div> 
 @endsection
