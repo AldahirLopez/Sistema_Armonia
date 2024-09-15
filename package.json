@@ -25,6 +25,8 @@
         "rimraf": "^5.0.5",
         "rtlcss": "^4.1.1",
         "sass-loader": "^13.2.2",
+        "metismenu": "^3.0.7",
         "vite-plugin-static-copy": "^0.14.0"
+        
     }
 }

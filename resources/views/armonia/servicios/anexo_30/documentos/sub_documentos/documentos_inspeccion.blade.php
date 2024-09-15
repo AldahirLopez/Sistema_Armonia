@@ -7,8 +7,10 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Servicios @endslot
-@slot('title') Documentación de Inpeccion en Sitio del Servicio {{ $servicio->nomenclatura }} @endslot
+@slot('title') Documentación de Inspección en Sitio del Servicio {{ $servicio->nomenclatura }} @endslot
 @endcomponent
+
+@include('partials.alertas') <!-- Incluyendo las alertas -->
 
 <div class="row">
     <div class="col-lg-12">
@@ -38,11 +40,14 @@
                             @php
                             $docExists = false;
                             $docUrl = '';
-                            $nombreEsperado = str_replace(' ', '_', $doc['descripcion']) . '-' . now()->format('Y-m-d');
+                            $documentId = null;
+
+                            // Comparar el nombre del documento almacenado con el nombre esperado
                             foreach ($documentos as $documento) {
-                            if ($documento->nombre === $nombreEsperado) {
+                            if ($documento->nombre === $doc['descripcion']) {
                             $docExists = true;
                             $docUrl = $documento->ruta;
+                            $documentId = $documento->id;
                             break;
                             }
                             }
@@ -51,15 +56,26 @@
                                 <td>{{ $doc['descripcion'] }}</td>
                                 <td>{{ $doc['tipo'] }}</td>
                                 <td>
-                                    <!-- Botón dinámico que abre modal de agregar o editar según la existencia del documento -->
+                                    <!-- Botón de agregar o editar -->
                                     <button type="button" class="btn btn-{{ $docExists ? 'warning' : 'success' }} btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#documentoModal-{{ Str::slug($doc['descripcion']) }}">
-                                        <i class="bx bx-{{ $docExists ? 'edit-alt' : 'upload' }}"></i> {{ $docExists ? '' : '' }}
+                                        <i class="bx bx-{{ $docExists ? 'edit-alt' : 'upload' }}"></i>
                                     </button>
+
+                                    <!-- Botón de eliminar solo si el documento existe -->
+                                    @if($docExists)
+                                    <form action="{{ route('documentacion.general.delete', $documentId) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres borrar este documento?');">
+                                            <i class="bx bx-trash"></i>
+                                        </button>
+                                    </form>
+                                    @endif
                                 </td>
                                 <td>
                                     @if($docExists)
-                                    <a href="{{ $docUrl }}" class="btn btn-info btn-sm" download>
+                                    <a href="{{ Storage::url($docUrl) }}" class="btn btn-info btn-sm" download>
                                         <i class="bx bx-download"></i>
                                     </a>
                                     @else
@@ -68,7 +84,7 @@
                                 </td>
                             </tr>
 
-                            <!-- Modal para agregar o editar documento (mismo modal para ambas acciones) -->
+                            <!-- Modal para agregar o editar documento -->
                             <div class="modal fade" id="documentoModal-{{ Str::slug($doc['descripcion']) }}"
                                 tabindex="-1" aria-labelledby="documentoModalLabel-{{ Str::slug($doc['descripcion']) }}"
                                 aria-hidden="true">

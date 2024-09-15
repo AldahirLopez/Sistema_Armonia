@@ -20,6 +20,11 @@
                 <a href="#" class="btn btn-danger">
                     <i class="bx bx-arrow-back"></i>
                 </a>
+
+                <a href="{{ route('documentacion.generarPDF') }}" class="btn btn-primary mx-auto">
+                    <i class="bx bxs-file-pdf"></i> Generar Lista Completa PDF
+                </a>
+
                 @if($estaciones->isNotEmpty())
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#generarServicioModal">
                     <i class="bx bx-plus-circle"></i> Generar Nuevo Servicio
@@ -34,15 +39,16 @@
     </div>
 </div>
 
+
 <!-- Mostrar servicios -->
 <div class="row">
     @forelse($servicios as $servicio)
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card border-light shadow-sm h-100">
+    <div class="col-lg-4 col-md-6 mb-4 d-flex">
+        <div class="card border-light shadow-sm h-100 w-100">
             <div class="card-header bg-transparent border-0 pb-0">
-                <h5 class="card-title font-weight-bold text-dark">{{ $servicio->nomenclatura }}</h5>
+                <h5 class="card-title font-weight-bold text-dark text-truncate">{{ $servicio->nomenclatura }}</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body d-flex flex-column justify-content-between">
                 <!-- Estado del servicio -->
                 <p class="text-muted">
                     @if($servicio->pending_apro_servicio)
@@ -64,7 +70,7 @@
                     @endif
                 </p>
 
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center mt-auto">
                     @if($servicio->pending_apro_servicio)
                     <!-- Botones de acción con íconos y estilo más sutil -->
                     <a href="{{ route('armonia.servicios.anexo_30.documentos.menu', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm">
@@ -91,7 +97,6 @@
     </div>
     @endforelse
 </div>
-
 
 <!-- Paginación -->
 <div class="d-flex justify-content-center mt-4">

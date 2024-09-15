@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Documentos;
 use App\Models\Estacion;
 use App\Models\ServicioAnexo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class DocumentacionAnexo30Controller extends Controller
 {
-    public function menu(Request $request) 
+    public function menu(Request $request)
     {
         // Capturar el id del request
         $id = $request->input('id');
@@ -51,29 +54,14 @@ class DocumentacionAnexo30Controller extends Controller
             if ($request->has('id')) {
                 $id = $request->input('id');
                 $servicio = ServicioAnexo::findOrFail($id);
-                $anio = date('Y');
-                $userId = Auth::id();
-                $nomenclatura = str_replace([' ', '.'], '_', $servicio->nomenclatura);
-                $customFolderPath = "Servicios/Anexo_30/{$anio}/{$userId}/{$nomenclatura}/documentos/{$categoria}";
+
+                // Obtener los documentos de la base de datos relacionados con el servicio y la categoría
+                $documentos = Documentos::where('servicio_id', $id)
+                    ->where('categoria', $categoria)
+                    ->get();
 
                 // Definir los documentos requeridos para cada categoría
                 $requiredDocuments = $this->getRequiredDocuments($categoria);
-
-                $documentos = [];
-                if (Storage::disk('public')->exists($customFolderPath)) {
-                    $archivos = Storage::disk('public')->files($customFolderPath);
-                    foreach ($archivos as $archivo) {
-                        $nombreArchivo = pathinfo($archivo, PATHINFO_FILENAME);
-                        $extension = pathinfo($archivo, PATHINFO_EXTENSION);
-                        $rutaArchivo = Storage::url($archivo);
-
-                        $documentos[] = (object)[
-                            'nombre' => $nombreArchivo,
-                            'ruta' => $rutaArchivo,
-                            'extension' => $extension
-                        ];
-                    }
-                }
 
                 return view("armonia.servicios.anexo_30.documentos.sub_documentos.{$vista}", compact('requiredDocuments', 'documentos', 'id', 'servicio'));
             } else {
@@ -83,6 +71,7 @@ class DocumentacionAnexo30Controller extends Controller
             return redirect()->route('anexo.index')->with('error', 'Error al obtener la documentación: ' . $e->getMessage());
         }
     }
+
 
     // Obtener los documentos requeridos según la categoría
     private function getRequiredDocuments($categoria)
@@ -151,7 +140,7 @@ class DocumentacionAnexo30Controller extends Controller
     {
         // Validar los datos del formulario
         $request->validate([
-            'rutadoc_estacion' => 'required|file|mimes:pdf,jpg,jpeg,png,doc,docx', // Ajusta los tipos de archivo y tamaño si es necesario
+            'rutadoc_estacion' => 'required|file|mimes:pdf,jpg,jpeg,png,doc,docx', // Ajustar tipos de archivo y tamaño si es necesario
             'servicio_id' => 'required',
             'nombre' => 'required|string',
         ]);
@@ -176,12 +165,86 @@ class DocumentacionAnexo30Controller extends Controller
             $extension = $archivo->getClientOriginalExtension();
             $nombreArchivo = str_replace(' ', '_', $nombreDocumento) . '-' . now()->format('Y-m-d') . '.' . $extension;
 
-            // Subir el archivo a la carpeta correspondiente
-            $rutaArchivo = $archivo->storeAs($customFolderPath, $nombreArchivo, 'public');
+            // Verificar si el documento ya existe
+            $documento = Documentos::where('servicio_id', $servicioId)
+                ->where('categoria', $categoria)
+                ->where('nombre', $nombreDocumento)
+                ->first();
 
-            return redirect()->back()->with('success', 'Documento subido exitosamente.');
+            // Si el documento existe, actualiza el archivo y la ruta, de lo contrario crea uno nuevo
+            if ($documento) {
+                // Eliminar el archivo antiguo si existe
+                if (Storage::exists($documento->ruta)) {
+                    Storage::delete($documento->ruta);
+                }
+
+                // Subir el nuevo archivo y actualizar la ruta en la base de datos
+                $rutaArchivo = $archivo->storeAs($customFolderPath, $nombreArchivo, 'public');
+                $documento->ruta = $rutaArchivo;
+                $documento->save();
+
+                return redirect()->back()->with('success', 'Documento actualizado exitosamente.');
+            } else {
+                // Subir el archivo a la carpeta correspondiente y crear un nuevo registro
+                $rutaArchivo = $archivo->storeAs($customFolderPath, $nombreArchivo, 'public');
+                Documentos::create([
+                    'nombre' => $nombreDocumento,
+                    'ruta' => $rutaArchivo,
+                    'servicio_id' => $servicioId,
+                    'categoria' => $categoria,
+                    'usuario_id' => $userId,
+                ]);
+
+                return redirect()->back()->with('success', 'Documento subido exitosamente.');
+            }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error al subir el documento: ' . $e->getMessage());
+        }
+    }
+
+
+    public function destroy($id)
+    {
+        try {
+            // Buscar el documento por su ID
+            $documento = Documentos::findOrFail($id);
+
+            // Obtener la ruta relativa eliminando el prefijo de Storage::url()
+            $rutaArchivo = str_replace('/storage/', '', $documento->ruta);
+
+            // Eliminar el archivo físico si existe
+            if (Storage::disk('public')->exists($rutaArchivo)) {
+                Storage::disk('public')->delete($rutaArchivo);
+            }
+
+            // Eliminar el registro en la base de datos
+            $documento->delete();
+
+            return redirect()->back()->with('warning', 'Documento eliminado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Ocurrió un error al intentar eliminar el documento: ' . $e->getMessage());
+        }
+    }
+
+    public function generarPDF()
+    {
+        try {
+            // Obtener todas las categorías y sus documentos
+            $categorias = ['generales', 'informatica', 'medicion', 'inspeccion'];
+            $allDocuments = [];
+    
+            // Obtener los documentos de cada categoría
+            foreach ($categorias as $categoria) {
+                $allDocuments[$categoria] = $this->getRequiredDocuments($categoria);
+            }
+    
+            // Generar el PDF usando la plantilla que guardaste
+            $pdf = Pdf::loadView('armonia.servicios.anexo_30.documentos.componentes.requisitos_pdf', compact('allDocuments'));
+    
+            // Descargar el PDF con todos los requisitos
+            return $pdf->download('lista_completa_requisitos_anexo_30_31.pdf');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al generar el PDF: ' . $e->getMessage());
         }
     }
 }

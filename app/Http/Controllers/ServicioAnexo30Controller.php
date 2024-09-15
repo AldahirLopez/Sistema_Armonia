@@ -144,7 +144,7 @@ class ServicioAnexo30Controller extends Controller
         $subfolders = [
             'generales',
             'medicion',
-            'sistema_informatico',
+            'informatica',
             'inspeccion',
         ];
 
