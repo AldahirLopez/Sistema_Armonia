@@ -3,6 +3,7 @@
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\DocumentacionAnexo30Controller;
 use App\Http\Controllers\EstacionController;
+use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ServicioAnexo30Controller;
@@ -95,6 +96,11 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
 
+    //Expediente de Servicios Anexos 
+    Route::get('expediente/{id}', [ExpedienteController::class, 'index'])->name('expediente.index');
+
+    // Ruta para generar el expediente
+    Route::post('/generar-expediente', [ExpedienteController::class, 'generarExpediente'])->name('expediente.generar');
 
     //Update User Details
     Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');

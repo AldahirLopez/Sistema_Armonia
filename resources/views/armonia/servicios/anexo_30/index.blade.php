@@ -22,7 +22,7 @@
                 </a>
 
                 <a href="{{ route('documentacion.generarPDF') }}" class="btn btn-primary mx-auto">
-                    <i class="bx bxs-file-pdf"></i> Generar Lista Completa PDF
+                    <i class="bx bxs-file-pdf"></i> Generar Lista de Requisitos
                 </a>
 
                 @if($estaciones->isNotEmpty())
@@ -75,6 +75,11 @@
                     <!-- Botones de acción con íconos y estilo más sutil -->
                     <a href="{{ route('armonia.servicios.anexo_30.documentos.menu', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm">
                         <i class="bx bx-folder-open"></i> Documentación
+                    </a>
+
+                    <!-- Botones de acción con íconos y estilo más sutil -->
+                    <a href="{{ route('expediente.index', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm">
+                        <i class="bx bx-folder-open"></i> Expediente
                     </a>
                     <form action="{{ route('anexo.destroy', $servicio->id) }}" method="POST" style="display:inline;">
                         @csrf

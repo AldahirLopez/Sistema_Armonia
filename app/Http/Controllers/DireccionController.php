@@ -120,7 +120,7 @@ class DireccionController extends Controller
                 'municipio_id_fiscal' => 'required',
                 'localidad_fiscal' => 'required|max:255',
                 'entidad_federativa_fiscal' => 'required',
-            ],
+            ], 
             'estacion' => [
                 'entre_calles_estacion' => 'required|max:255',
                 'calle_estacion' => 'required|max:255',
@@ -172,7 +172,7 @@ class DireccionController extends Controller
 
     private function updateFields(Direccion $direccion, Request $request, $tipo)
     {
-        foreach (['entre_calles', 'calle', 'numero_ext', 'numero_int', 'colonia', 'codigo_postal', 'municipio', 'localidad'] as $field) {
+        foreach (['entre_calles', 'calle', 'numero_exterior', 'numero_interior', 'colonia', 'codigo_postal', 'municipio', 'localidad'] as $field) {
             $direccion->$field = $request->input("{$field}_{$tipo}");
         }
     }
