@@ -35,8 +35,6 @@
                 @include('armonia.servicios.anexo_30.expediente.componentes.expedienteCard', ['service' => $servicioAnexo])
             </div>
 
-
-            <!-- Dictamenes Informáticos 
             <div class="col-md-4 mb-4">
                 @include('armonia.servicios.anexo_30.expediente.componentes.dictamenesCard', [
                 'title' => 'Dictámenes Informáticos',
@@ -44,14 +42,13 @@
                 ])
             </div>
 
-             Dictamenes Medición 
             <div class="col-md-4 mb-4">
                 @include('armonia.servicios.anexo_30.expediente.componentes.dictamenesCard', [
                 'title' => 'Dictámenes de Medición',
                 'type' => 'medicion'
                 ])
             </div>
-
+            <!-- 
             @if(auth()->check() && auth()->user()->hasRole('Administrador'))
             Certificado Section 
             <div class="col-md-4 mb-4">
@@ -76,6 +73,19 @@
 'servicioAnexo' => $servicioAnexo,
 'estacion' => $estacion,
 'estados' => $estados
+])
+
+@include('armonia.servicios.anexo_30.expediente.partials.generarDictamenInformaticosForm', [
+'title' => 'Dictámenes Informáticos',
+'type' => 'informatico',
+'servicioAnexo' => $servicioAnexo,
+'estacion' => $estacion
+])
+
+@include('armonia.servicios.anexo_30.expediente.partials.generarDictamenMedicionForm', [
+'title' => 'Dictámenes de Medición',
+'servicioAnexo' => $servicioAnexo,
+'estacion' => $estacion
 ])
 
 @endsection

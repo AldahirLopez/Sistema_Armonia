@@ -1,3 +1,7 @@
-*
-!public/
-!.gitignore
+# Ignora todo dentro de storage
+/storage/*
+
+# Permite storage/app/templates/Anexo30
+!/storage/app/templates/
+!/storage/app/templates/Anexo30/
+!/storage/app/templates/Anexo30/**

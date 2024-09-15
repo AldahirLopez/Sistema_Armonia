@@ -95,6 +95,11 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div class="form-group">
+                <label for="cantidad">Cantidad</label>
+                <input type="number" name="cantidad" class="form-control" required value="{{ old('cantidad') }}">
+            </div>
         </div>
     </div>
 

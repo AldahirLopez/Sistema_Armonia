@@ -102,6 +102,12 @@ Route::group(['middleware' => ['auth']], function () {
     // Ruta para generar el expediente
     Route::post('/generar-expediente', [ExpedienteController::class, 'generarExpediente'])->name('expediente.generar');
 
+    // Ruta para guardar dictamenes informaticos
+    Route::post('/expediente/dictamenes/informatico', [ExpedienteController::class, 'guardarDictamenesInformatico'])->name('expediente.dictamenes.informatico');
+
+    Route::post('/expediente/dictamenes/medicion', [ExpedienteController::class, 'guardarDictamenesMedicion'])->name('expediente.dictamenes.medicion');
+
+
     //Update User Details
     Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
     Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
