@@ -22,8 +22,8 @@
 
                             <!-- Municipio -->
                             <div class="mb-3">
-                                <label for="municipio_id_estacion" class="form-label">Municipio</label>
-                                <select name="municipio_id_estacion" id="municipio_id_estacion" class="form-select" required>
+                                <label for="municipio_estacion" class="form-label">Municipio</label>
+                                <select name="municipio_estacion" id="municipio_estacion" class="form-select" required>
                                     <option value="">Seleccionar municipio</option>
                                     @foreach($municipios as $municipio)
                                     <option value="{{ $municipio->description }}">{{ $municipio->description }}</option>
@@ -39,8 +39,8 @@
 
                             <!-- Número Exterior -->
                             <div class="mb-3">
-                                <label for="numero_ext_estacion" class="form-label">Número Exterior</label>
-                                <input type="text" name="numero_ext_estacion" id="numero_ext_estacion" class="form-control" placeholder="Número Exterior" required>
+                                <label for="numero_exterior_estacion" class="form-label">Número Exterior</label>
+                                <input type="text" name="numero_exterior_estacion" id="numero_exterior_estacion" class="form-control" placeholder="Número Exterior" required>
                             </div>
                         </div>
 
@@ -48,8 +48,8 @@
                         <div class="col-md-6">
                             <!-- Número Interior -->
                             <div class="mb-3">
-                                <label for="numero_int_estacion" class="form-label">Número Interior</label>
-                                <input type="text" name="numero_int_estacion" id="numero_int_estacion" class="form-control" placeholder="Número Interior">
+                                <label for="numero_interior_estacion" class="form-label">Número Interior</label>
+                                <input type="text" name="numero_interior_estacion" id="numero_interior_estacion" class="form-control" placeholder="Número Interior">
                             </div>
 
                             <!-- Colonia -->

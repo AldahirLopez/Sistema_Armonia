@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Selección de estado y municipios para la creación
     const estadoSelect = document.getElementById('entidad_federativa_fiscal');
-    const municipioSelect = document.getElementById('municipio_id_fiscal');
+    const municipioSelect = document.getElementById('municipio_fiscal');
 
     if (estadoSelect && municipioSelect) {
         estadoSelect.addEventListener('change', function () {

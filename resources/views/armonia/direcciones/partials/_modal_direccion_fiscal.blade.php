@@ -26,8 +26,8 @@
 
                             <!-- Municipio -->
                             <div class="mb-3">
-                                <label for="municipio_id_fiscal" class="form-label">Municipio</label>
-                                <select name="municipio_id_fiscal" id="municipio_id_fiscal" class="form-select" required>
+                                <label for="municipio_fiscal" class="form-label">Municipio</label>
+                                <select name="municipio_fiscal" id="municipio_fiscal" class="form-select" required>
                                     <option value="">Seleccionar municipio</option>
                                     <!-- Los municipios se cargarán dinámicamente según el estado seleccionado -->
                                 </select>
@@ -41,8 +41,8 @@
 
                             <!-- Número Exterior -->
                             <div class="mb-3">
-                                <label for="numero_ext_fiscal" class="form-label">Número Exterior</label>
-                                <input type="text" name="numero_ext_fiscal" id="numero_ext_fiscal" class="form-control" placeholder="Número Exterior" required>
+                                <label for="numero_exterior_fiscal" class="form-label">Número Exterior</label>
+                                <input type="text" name="numero_exterior_fiscal" id="numero_exterior_fiscal" class="form-control" placeholder="Número Exterior" required>
                             </div>
                         </div>
 
@@ -50,8 +50,8 @@
                         <div class="col-md-6">
                             <!-- Número Interior -->
                             <div class="mb-3">
-                                <label for="numero_int_fiscal" class="form-label">Número Interior</label>
-                                <input type="text" name="numero_int_fiscal" id="numero_int_fiscal" class="form-control" placeholder="Número Interior">
+                                <label for="numero_interior_fiscal" class="form-label">Número Interior</label>
+                                <input type="text" name="numero_interior_fiscal" id="numero_interior_fiscal" class="form-control" placeholder="Número Interior">
                             </div>
 
                             <!-- Colonia -->
