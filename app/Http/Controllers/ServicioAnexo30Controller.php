@@ -79,7 +79,7 @@ class ServicioAnexo30Controller extends Controller
         $customFolderPath = "Servicios/Anexo_30/{$anio}/{$servicio->id_usuario}/{$servicio->nomenclatura}";
 
         // Verificar si el usuario es administrador
-        if ($usuario->hasRole('Verificador')) {
+        if ($usuario->hasRole('Super Usuario')) {
  
             // Verificar si la carpeta existe y eliminarla
             if (Storage::disk('public')->exists($customFolderPath)) {
