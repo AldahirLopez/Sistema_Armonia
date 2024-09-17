@@ -27,9 +27,9 @@ class ServicioAnexo30Controller extends Controller
             $estaciones = $this->getEstacionesSinServicio($usuario, $isAdminOrAuditor);
 
             $servicios = ServicioAnexo::when($usuarioSeleccionado, function ($query, $usuarioSeleccionado) {
-                return $query->where('usuario_id', $usuarioSeleccionado);
+                return $query->where('id_usuario', $usuarioSeleccionado);
             }, function ($query) use ($usuario, $isAdminOrAuditor) {
-                return $isAdminOrAuditor ? $query : $query->where('usuario_id', $usuario->id);
+                return $isAdminOrAuditor ? $query : $query->where('id_usuario', $usuario->id);
             })->paginate(10);
 
             return view('armonia.servicios.anexo_30.index', compact('servicios', 'usuarios', 'estaciones'));

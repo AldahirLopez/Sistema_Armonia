@@ -10,6 +10,7 @@ use App\Models\ProveedorInformatico;
 use App\Models\ServicioAnexo;
 use App\Models\Estacion;
 use App\Models\User;
+use App\Models\Verificador;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -227,14 +228,40 @@ class ExpedienteController extends Controller
         // Obtener los estados
         $estados = Estados::all();
 
+        // Inicializar variables de verificadores y verificador
+        $verificadores = [];
+        $verificador = null;
+        $usuarios = [];
+
+        // Si el usuario es administrador
+        if (auth()->user()->hasRole('Administrador')) {
+            $verificadores = Verificador::all();
+
+            // Si no hay verificadores, obtener los usuarios
+            if ($verificadores->isEmpty()) {
+                $usuarios = User::all(); // Obtener todos los usuarios para asignar un RFC
+            }
+        } else {
+            // Si no es administrador, busca el verificador del usuario logueado
+            $verificador = Verificador::where('usuario_id', auth()->user()->id)->first();
+
+            // Si no está registrado como verificador, el verificador será null
+            if (!$verificador) {
+                $verificador = null;
+            }
+        }
+
         // Ruta para los archivos
         $anio = now()->year;
         $folderPath = "Servicios/Anexo_30/{$anio}/{$servicioAnexo->id_usuario}/{$servicioAnexo->nomenclatura}/expediente";
         $existingFiles = $this->getExistingFiles($folderPath);
 
         // Pasar datos a la vista
-        return compact('servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal');
+        return compact('servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios');
     }
+
+
+
 
 
     // Validar los datos del formulario
@@ -469,7 +496,7 @@ class ExpedienteController extends Controller
         $servicio = ServicioAnexo::updateOrCreate(
             ['id' => $validatedData['id_servicio']],
             ['date_recepcion_at' => $validatedData['fecha_recepcion'], 'date_inspeccion_at' => $validatedData['fecha_inspeccion']]
-        ); 
+        );
 
         Expediente_Servicio_Anexo_30::updateOrCreate(
             ['servicio_anexo_id' => $servicio->id],
@@ -551,40 +578,75 @@ class ExpedienteController extends Controller
             $estacion = $this->getEstacionData($data['idestacion']);
             $servicio = ServicioAnexo::findOrFail($data['id_servicio']);
 
-            // Obtener la fecha de inspección formateada
+            // Verificar el rol del usuario y manejar el RFC del Verificador
+            if (auth()->user()->hasRole('Administrador')) {
+                // Administrador: selecciona un usuario y su RFC
+                if ($request->has('RfcPersonal') && !empty($request->input('RfcPersonal'))) {
+                    // Si selecciona un RFC de la lista de verificadores o lo proporciona manualmente
+                    $verificador = Verificador::where('rfc', $data['RfcPersonal'])->first();
+
+                    // Si no existe el verificador, creamos uno nuevo
+                    if (!$verificador) {
+                        $usuarioSeleccionado = User::findOrFail($request->input('usuario_id_verificador'));
+                        $verificador = Verificador::create([
+                            'usuario_id' => $usuarioSeleccionado->id,
+                            'rfc' => $data['RfcPersonal'],
+                            'nombre_verificador' => $usuarioSeleccionado->name,
+                        ]);
+                    }
+                } else {
+                    // Si no selecciona un RFC, devolver un error
+                    return back()->withErrors(['RfcPersonal' => 'Debe proporcionar un RFC válido para el verificador.']);
+                }
+            } else {
+                // Si no es administrador, comprobar si ya tiene un verificador asociado
+                $verificador = Verificador::where('usuario_id', auth()->user()->id)->first();
+
+                // Si no existe un verificador, se crea uno con el RFC proporcionado
+                if (!$verificador) {
+                    if ($request->has('RfcPersonal') && !empty($request->input('RfcPersonal'))) {
+                        $verificador = Verificador::create([
+                            'usuario_id' => auth()->user()->id,
+                            'rfc' => $data['RfcPersonal'],
+                            'nombre_verificador' => auth()->user()->name,
+                        ]);
+                    } else {
+                        // Si no se proporciona un RFC, devolver un error
+                        return back()->withErrors(['RfcPersonal' => 'Debe proporcionar un RFC válido para el verificador.']);
+                    }
+                }
+            }
+
+
+            // Obtener la fecha de inspección y recepción formateadas
             $fechaInspeccion = Carbon::parse($servicio->date_inspeccion_at)->format('Y-m-d');
+            $fechaRecepcion = Carbon::parse($servicio->date_recepcion_at)->format('Y-m-d');
 
-            // Obtener la ruta de la carpeta de destino utilizando función auxiliar
-            $subFolderPath = $this->defineFolderPath($data);
-
-            // Crear la carpeta de destino si no existe, utilizando la función auxiliar
-            $this->createFolderIfNotExists($subFolderPath);
-
-            // Formatear número de nomenclatura y crear número de folio
+            // Generar el número de folio y procesar el certificado
             $numeroFolioCertificado = $this->generateFolioNumber($data['nomenclatura']);
-
-            // Determinar si es persona física o moral
             $fisica = ($data['RfcRepresentanteLegal'] === $estacion->rfc);
 
-            // Procesar la plantilla de Word utilizando función auxiliar
-            $this->processCertificadoTemplate($data, $estacion, $fechaInspeccion, $numeroFolioCertificado, $fisica, $subFolderPath);
+            // Procesar la plantilla del certificado con el verificador
+            $this->processCertificadoTemplate($data, $estacion, $verificador, $fechaInspeccion, $fechaRecepcion, $numeroFolioCertificado, $fisica, $this->defineFolderPath($data));
 
-            // Generar el archivo JSON del certificado utilizando función auxiliar
-            $this->generateCertificadoJson($data, $estacion, $fechaInspeccion, $numeroFolioCertificado, $subFolderPath);
-
-            // Guardar los detalles del certificado en la base de datos
-            $this->saveCertificadoToDatabase($data, $subFolderPath);
+            // Generar archivo JSON y guardar en la base de datos
+            $this->generateCertificadoJson($data, $estacion, $fechaInspeccion, $numeroFolioCertificado, $this->defineFolderPath($data));
+            $this->saveCertificadoToDatabase($data, $this->defineFolderPath($data));
 
             return redirect()->route('expediente.index', ['id' => $data['id_servicio']])
                 ->with('success', 'Certificado guardado correctamente.');
         } catch (\Exception $e) {
+            // Manejo del error
             \Log::error("Error al generar el certificado: " . $e->getMessage());
             return response()->json(['error' => 'Ocurrió un error al generar el certificado.'], 500);
         }
     }
 
+
+
+
     // Función auxiliar para procesar la plantilla de certificado
-    private function processCertificadoTemplate($data, $estacion, $fechaInspeccion, $numeroFolioCertificado, $fisica, $subFolderPath)
+    private function processCertificadoTemplate($data, $estacion, $verificador, $fechaInspeccion, $fechaRecepcion, $numeroFolioCertificado, $fisica, $subFolderPath)
     {
         $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Certificado/CERTIFICADO.docx"));
 
@@ -595,6 +657,7 @@ class ExpedienteController extends Controller
 
         // Reemplazar datos específicos
         $templateProcessor->setValue('${fecha_inspeccion}', $fechaInspeccion);
+        $templateProcessor->setValue('${fecha_recepcion}', $fechaRecepcion);
         $templateProcessor->setValue('${razon_social}', strtoupper($estacion->razon_social));
         $templateProcessor->setValue('${numeroFolioCertificado}', $numeroFolioCertificado);
         $templateProcessor->setValue('${F}', $fisica ? 'X' : ' ');
@@ -613,9 +676,9 @@ class ExpedienteController extends Controller
         $templateProcessor->setValue('${municipio}', $direccionEstacion->municipio ?? 'N/A');
         $templateProcessor->setValue('${entidad_federativa}', $direccionEstacion->entidad_federativa ?? 'N/A');
 
-        // Colocar cada letra del RFC en su recuadro correspondiente
-        for ($i = 0; $i < strlen($estacion->rfc); $i++) {
-            $char = strtoupper($estacion->rfc[$i]);
+        // Colocar cada letra del RFC de la estación en su recuadro correspondiente (máximo 13 caracteres)
+        for ($i = 0; $i < 13; $i++) {
+            $char = isset($estacion->rfc[$i]) ? strtoupper($estacion->rfc[$i]) : ' ';
 
             // Si el carácter es '0', reemplazar por 'X'
             if ($char === '0') {
@@ -625,10 +688,37 @@ class ExpedienteController extends Controller
             $templateProcessor->setValue('${c' . ($i + 1) . '}', $char);
         }
 
+        // Buscar el proveedor de sistemas informáticos relacionado con el servicio anexo
+        $proveedor = ProveedorInformatico::where('servicio_anexo_id', $data['id_servicio'])->first();
+
+        // Colocar cada letra del RFC del proveedor en su recuadro correspondiente (máximo 13 caracteres)
+        if ($proveedor && $proveedor->rfc) {
+            for ($i = 0; $i < 13; $i++) {
+                $char = isset($proveedor->rfc[$i]) ? strtoupper($proveedor->rfc[$i]) : ' ';
+
+                // Si el carácter es '0', reemplazar por 'X'
+                if ($char === '0') {
+                    $char = ' 0';
+                }
+
+                $templateProcessor->setValue('${p' . ($i + 1) . '}', $char);
+            }
+        } else {
+            // Si no hay proveedor o no tiene RFC, llenar con espacios en blanco
+            for ($i = 0; $i < 13; $i++) {
+                $templateProcessor->setValue('${p' . ($i + 1) . '}', ' ');
+            }
+        }
+
+        // Reemplazar el nombre del proveedor informático
+        $templateProcessor->setValue('${proveedor_informatico}', $proveedor->nombre ?? 'N/A');
+
         // Guardar el archivo procesado
         $fileName = "CE-{$estacion->rfc}_{$numeroFolioCertificado}.docx";
         $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
     }
+
+
 
 
     // Función auxiliar para generar el archivo JSON del certificado

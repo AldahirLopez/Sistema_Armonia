@@ -25,14 +25,62 @@
                         @enderror
                     </div>
 
-                    <!-- RFC del Personal -->
+                    <!-- RFC del Verificador (Dependerá del rol) -->
+                    @if(auth()->user()->hasRole('Administrador'))
+                    @if($verificadores->isEmpty())
+                    <!-- Si no hay verificadores, mostrar la lista de usuarios y un campo para asignar el RFC -->
                     <div class="form-group mt-3">
-                        <label for="RfcPersonal">RFC del Personal:</label>
+                        <label for="usuario_id">Seleccionar Usuario:</label>
+                        <select class="form-select" id="usuario_id_verificador" name="usuario_id_verificador" required>
+                            <option value="">Seleccione un Usuario</option>
+                            @foreach($usuarios as $usuario)
+                            <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="RfcPersonal">RFC para asignar al Verificador:</label>
                         <input type="text" class="form-control" id="RfcPersonal" name="RfcPersonal" required>
                         @error('RfcPersonal')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    @else
+                    <!-- Si hay verificadores disponibles, mostrar el select con ellos -->
+                    <div class="form-group mt-3">
+                        <label for="RfcPersonal">RFC del Verificador (Personal):</label>
+                        <select class="form-select" id="RfcPersonal" name="RfcPersonal" required>
+                            <option value="">Seleccione un Verificador</option>
+                            @foreach($verificadores as $verificador)
+                            <option value="{{ $verificador->rfc }}"
+                                @if(isset($verificador) && $verificador->usuario_id == $servicioAnexo->id_usuario) selected @endif>
+                                {{ $verificador->usuario->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    @endif
+                    @else
+                    @if($verificador)
+                    <!-- Si el usuario no es administrador y tiene un RFC registrado -->
+                    <div class="form-group mt-3">
+                        <label for="RfcPersonal">RFC del Verificador (Personal):</label>
+                        <input type="text" class="form-control" id="RfcPersonal" name="RfcPersonal" value="{{ $verificador->rfc }}" readonly>
+                    </div>
+                    @else
+                    <!-- Si el usuario no tiene RFC registrado, mostrar el campo de entrada para asignarlo -->
+                    <div class="form-group mt-3">
+                        <label for="RfcPersonal">RFC del Verificador (Personal):</label>
+                        <input type="text" class="form-control" id="RfcPersonal" name="RfcPersonal" required>
+                        @error('RfcPersonal')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    @endif
+                    @endif
+
+
 
                     <!-- Nota sobre la modificación de la dirección -->
                     <p class="text-danger mb-3">* Si necesita modificar la dirección, por favor vaya a la sección de Estaciones de Servicio.</p>
