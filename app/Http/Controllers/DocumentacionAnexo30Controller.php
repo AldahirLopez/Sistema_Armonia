@@ -247,4 +247,6 @@ class DocumentacionAnexo30Controller extends Controller
             return redirect()->back()->with('error', 'Error al generar el PDF: ' . $e->getMessage());
         }
     }
+
+    
 }

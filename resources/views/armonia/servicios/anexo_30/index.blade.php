@@ -30,8 +30,8 @@
                     <i class="bx bx-plus-circle"></i> Generar Nuevo Servicio
                 </button>
                 @else
-                <a href="#" class="btn btn-primary">
-                    <i class="bx bx-building-house"></i> Registre su primera estación
+                <a href="{{ route('estaciones.usuario') }}" class="btn btn-primary">
+                    <i class="bx bx-building-house"></i> Registre nuevas estaciones
                 </a>
                 @endif
             </div>

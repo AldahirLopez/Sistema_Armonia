@@ -48,24 +48,23 @@
                 'type' => 'medicion'
                 ])
             </div>
-            <!-- 
+
             @if(auth()->check() && auth()->user()->hasRole('Administrador'))
-            Certificado Section 
             <div class="col-md-4 mb-4">
                 @include('armonia.servicios.anexo_30.expediente.componentes.certificadoCard')
             </div>
             @endif
-        </div> -->
+        </div>
 
-            <!-- Generated Files Table -->
-            <div class="row mt-4">
-                <div class="col-lg-12">
-                    @include('armonia.servicios.anexo_30.expediente.componentes.generatedFilesTable', [
-                    'existingFiles' => $existingFiles
-                    ])
-                </div>
+        <!-- Generated Files Table -->
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                @include('armonia.servicios.anexo_30.expediente.componentes.generatedFilesTable', [
+                'existingFiles' => $existingFiles
+                ])
             </div>
         </div>
+    </div>
 </section>
 
 <!-- Modales -->
@@ -87,6 +86,16 @@
 'servicioAnexo' => $servicioAnexo,
 'estacion' => $estacion
 ])
+
+@include('armonia.servicios.anexo_30.expediente.partials.generarCertificadoForm', [
+'title' => 'Certificado JSON',
+'servicioAnexo' => $servicioAnexo,
+'estacion' => $estacion,
+'direccionFiscal' => $direccionFiscal, // Asegúrate de pasar estas variables si son necesarias
+'direccionEstacion' => $direccionEstacion,
+'estados' => $estados
+])
+
 
 @endsection
 

@@ -17,6 +17,8 @@ class ServicioAnexo extends Model
     protected $fillable = [
         'nomenclatura',
         'pending_apro_servicio',
+        'date_recepcion_at',
+        'date_inspeccion_at',
         'pending_deletion_servicio',
         'id_usuario',
         // Añade aquí cualquier otro campo que deba ser asignado de manera masiva

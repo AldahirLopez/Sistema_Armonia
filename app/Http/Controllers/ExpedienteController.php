@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Certificado_Anexo30;
 use App\Models\Direccion;
 use App\Models\Estados\Estados;
 use App\Models\Expediente_Servicio_Anexo_30;
@@ -52,7 +53,7 @@ class ExpedienteController extends Controller
             return redirect()->route('expediente.index', ['id' => $validatedData['id_servicio']])
                 ->with('success', 'Expediente generado y guardado correctamente.');
         } catch (\Exception $e) {
-            \Log::error("Error al generar el expediente: " . $e->getMessage());
+            //  \Log::error("Error al generar el expediente: " . $e->getMessage());
             return response()->json(['error' => 'Ocurrió un error al generar el expediente.'], 500);
         }
     }
@@ -106,7 +107,7 @@ class ExpedienteController extends Controller
             return redirect()->route('expediente.index', ['id' => $data['id_servicio']])
                 ->with('success', 'Dictamen Informático guardado correctamente.');
         } catch (\Exception $e) {
-            \Log::error("Error al generar documentos: " . $e->getMessage());
+            //  \Log::error("Error al generar documentos: " . $e->getMessage());
             return response()->json(['error' => 'Ocurrió un error al procesar la solicitud.'], 500);
         }
     }
@@ -200,7 +201,7 @@ class ExpedienteController extends Controller
             return redirect()->route('expediente.index', ['id' => $data['id_servicio']])
                 ->with('success', 'Dictamen de Medición guardado correctamente.');
         } catch (\Exception $e) {
-            \Log::error("Error al generar documentos: " . $e->getMessage());
+            //\Log::error("Error al generar documentos: " . $e->getMessage());
             return response()->json(['error' => 'Ocurrió un error al procesar la solicitud.'], 500);
         }
     }
@@ -213,22 +214,28 @@ class ExpedienteController extends Controller
     private function getServiceData($id)
     {
         $servicioAnexo = ServicioAnexo::findOrFail($id);
-        $estaciones = $servicioAnexo->estaciones()->get();
+        $estacion = $servicioAnexo->estaciones()->first();
 
-        if ($estaciones->isEmpty()) {
+        if (!$estacion) {
             throw new \Exception('No se encontraron estaciones relacionadas.');
         }
 
-        $estacion = $estaciones->first();
+        // Obtener las direcciones usando las relaciones
+        $direccionFiscal = $estacion->domicilioFiscal;  // Relación definida en el modelo
+        $direccionEstacion = $estacion->domicilioServicio;  // Relación definida en el modelo
+
+        // Obtener los estados
         $estados = Estados::all();
 
+        // Ruta para los archivos
         $anio = now()->year;
         $folderPath = "Servicios/Anexo_30/{$anio}/{$servicioAnexo->id_usuario}/{$servicioAnexo->nomenclatura}/expediente";
-
         $existingFiles = $this->getExistingFiles($folderPath);
 
-        return compact('servicioAnexo', 'estacion', 'estados', 'existingFiles');
+        // Pasar datos a la vista
+        return compact('servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal');
     }
+
 
     // Validar los datos del formulario
     private function validateExpedienteRequest($request)
@@ -462,7 +469,7 @@ class ExpedienteController extends Controller
         $servicio = ServicioAnexo::updateOrCreate(
             ['id' => $validatedData['id_servicio']],
             ['date_recepcion_at' => $validatedData['fecha_recepcion'], 'date_inspeccion_at' => $validatedData['fecha_inspeccion']]
-        );
+        ); 
 
         Expediente_Servicio_Anexo_30::updateOrCreate(
             ['servicio_anexo_id' => $servicio->id],
@@ -522,5 +529,157 @@ class ExpedienteController extends Controller
             'detalleOpinion4' => 'required',
             'recomendaciones4' => 'required',
         ];
+    }
+
+    public function guardarCertificado(Request $request)
+    {
+        try {
+            // Validar los datos del formulario
+            $rules = [
+                'nomenclatura' => 'required',
+                'idestacion' => 'required',
+                'id_servicio' => 'required',
+                'id_usuario' => 'required',
+                'RfcRepresentanteLegal' => 'required',
+                'RfcPersonal' => 'required',
+            ];
+
+            // Validar los datos
+            $data = $request->validate($rules);
+
+            // Obtener la estación y servicio utilizando funciones auxiliares
+            $estacion = $this->getEstacionData($data['idestacion']);
+            $servicio = ServicioAnexo::findOrFail($data['id_servicio']);
+
+            // Obtener la fecha de inspección formateada
+            $fechaInspeccion = Carbon::parse($servicio->date_inspeccion_at)->format('Y-m-d');
+
+            // Obtener la ruta de la carpeta de destino utilizando función auxiliar
+            $subFolderPath = $this->defineFolderPath($data);
+
+            // Crear la carpeta de destino si no existe, utilizando la función auxiliar
+            $this->createFolderIfNotExists($subFolderPath);
+
+            // Formatear número de nomenclatura y crear número de folio
+            $numeroFolioCertificado = $this->generateFolioNumber($data['nomenclatura']);
+
+            // Determinar si es persona física o moral
+            $fisica = ($data['RfcRepresentanteLegal'] === $estacion->rfc);
+
+            // Procesar la plantilla de Word utilizando función auxiliar
+            $this->processCertificadoTemplate($data, $estacion, $fechaInspeccion, $numeroFolioCertificado, $fisica, $subFolderPath);
+
+            // Generar el archivo JSON del certificado utilizando función auxiliar
+            $this->generateCertificadoJson($data, $estacion, $fechaInspeccion, $numeroFolioCertificado, $subFolderPath);
+
+            // Guardar los detalles del certificado en la base de datos
+            $this->saveCertificadoToDatabase($data, $subFolderPath);
+
+            return redirect()->route('expediente.index', ['id' => $data['id_servicio']])
+                ->with('success', 'Certificado guardado correctamente.');
+        } catch (\Exception $e) {
+            \Log::error("Error al generar el certificado: " . $e->getMessage());
+            return response()->json(['error' => 'Ocurrió un error al generar el certificado.'], 500);
+        }
+    }
+
+    // Función auxiliar para procesar la plantilla de certificado
+    private function processCertificadoTemplate($data, $estacion, $fechaInspeccion, $numeroFolioCertificado, $fisica, $subFolderPath)
+    {
+        $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Certificado/CERTIFICADO.docx"));
+
+        // Reemplazar marcadores en la plantilla
+        foreach ($data as $key => $value) {
+            $templateProcessor->setValue($key, $value);
+        }
+
+        // Reemplazar datos específicos
+        $templateProcessor->setValue('${fecha_inspeccion}', $fechaInspeccion);
+        $templateProcessor->setValue('${razon_social}', strtoupper($estacion->razon_social));
+        $templateProcessor->setValue('${numeroFolioCertificado}', $numeroFolioCertificado);
+        $templateProcessor->setValue('${F}', $fisica ? 'X' : ' ');
+        $templateProcessor->setValue('${M}', $fisica ? ' ' : 'X');
+
+        // Obtener la dirección desglosada
+        $direccionEstacion = $estacion->domicilioServicio; // Relación definida en el modelo
+
+        // Reemplazar los campos de la dirección en la plantilla
+        $templateProcessor->setValue('${calle}', $direccionEstacion->calle ?? 'N/A');
+        $templateProcessor->setValue('${numero}', $direccionEstacion->numero_exterior ?? 'N/A');
+        $templateProcessor->setValue('${numero_interior}', $direccionEstacion->numero_interior ?? 'N/A');
+        $templateProcessor->setValue('${colonia}', $direccionEstacion->colonia ?? 'N/A');
+        $templateProcessor->setValue('${codigo_postal}', $direccionEstacion->codigo_postal ?? 'N/A');
+        $templateProcessor->setValue('${localidad}', $direccionEstacion->localidad ?? 'N/A');
+        $templateProcessor->setValue('${municipio}', $direccionEstacion->municipio ?? 'N/A');
+        $templateProcessor->setValue('${entidad_federativa}', $direccionEstacion->entidad_federativa ?? 'N/A');
+
+        // Colocar cada letra del RFC en su recuadro correspondiente
+        for ($i = 0; $i < strlen($estacion->rfc); $i++) {
+            $char = strtoupper($estacion->rfc[$i]);
+
+            // Si el carácter es '0', reemplazar por 'X'
+            if ($char === '0') {
+                $char = ' 0';
+            }
+
+            $templateProcessor->setValue('${c' . ($i + 1) . '}', $char);
+        }
+
+        // Guardar el archivo procesado
+        $fileName = "CE-{$estacion->rfc}_{$numeroFolioCertificado}.docx";
+        $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
+    }
+
+
+    // Función auxiliar para generar el archivo JSON del certificado
+    private function generateCertificadoJson($data, $estacion, $fechaInspeccion, $numeroFolioCertificado, $subFolderPath)
+    {
+        $jsonData = [
+            'RfcContribuyente' => $estacion->rfc,
+            'RfcRepresentanteLegal' => strtoupper($data['RfcRepresentanteLegal']),
+            'RfcProveedorCertificado' => "ACA160422EA7",
+            'RfcRepresentanteLegalProveedor' => "LOBJ711123NS5",
+            'InformacionVerificacion' => [
+                'FechaEmisionCertificado' => $fechaInspeccion,
+                'NumeroFolioCertificado' => $numeroFolioCertificado,
+                'ResultadoCertificado' => "ACREDITADO",
+                'RfcPersonal' => strtoupper($data['RfcPersonal'])
+            ]
+        ];
+
+        $jsonFileName = "CE-{$estacion->rfc}_{$numeroFolioCertificado}.json";
+        Storage::disk('public')->put("{$subFolderPath}/{$jsonFileName}", json_encode($jsonData, JSON_PRETTY_PRINT));
+    }
+
+    // Función auxiliar para crear la carpeta de destino si no existe
+    private function createFolderIfNotExists($folderPath)
+    {
+        if (!Storage::disk('public')->exists($folderPath)) {
+            Storage::disk('public')->makeDirectory($folderPath);
+        }
+    }
+
+    // Función auxiliar para generar el número de folio
+    private function generateFolioNumber($nomenclatura)
+    {
+        $parts = explode('-', $nomenclatura);
+        $numeroNomenclatura = isset($parts[2]) ? $parts[2] : '0';
+        $formattedNumeroNomenclatura = str_pad($numeroNomenclatura, 5, '0', STR_PAD_LEFT);
+        $anoActual = date('Y');
+        $numeroFolio = "ACA160422EA7";
+        return "{$numeroFolio}{$formattedNumeroNomenclatura}{$anoActual}";
+    }
+
+    // Función auxiliar para guardar los detalles del certificado en la base de datos
+    private function saveCertificadoToDatabase($data, $subFolderPath)
+    {
+        Certificado_Anexo30::updateOrCreate(
+            ['servicio_anexo_id' => $data['id_servicio']],
+            [
+                'rutadoc' => $subFolderPath,
+                'usuario_id' => $data['id_usuario'],
+                'servicio_anexo_id' => $data['id_servicio'],
+            ]
+        );
     }
 }

@@ -48,7 +48,7 @@
             <!-- Fecha de Recepción de Solicitud -->
             <div class="form-group">
                 <label for="fecha_recepcion">Fecha de Recepción de Solicitud</label>
-                <input type="date" name="fecha_recepcion" id="fecha_recepcion" class="form-control" required value="{{ old('fecha_recepcion') }}">
+                <input type="date" name="fecha_recepcion" id="fecha_recepcion" class="form-control" required value="{{ \Carbon\Carbon::parse($servicioAnexo->date_recepcion_at)->format('Y-m-d') }}">
                 @error('fecha_recepcion')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -90,7 +90,7 @@
             <!-- Fecha Programada de Inspección -->
             <div class="form-group">
                 <label for="fecha_inspeccion">Fecha Programada de Inspección</label>
-                <input type="date" name="fecha_inspeccion" id="fecha_inspeccion" class="form-control" required value="{{ old('fecha_inspeccion') }}">
+                <input type="date" name="fecha_inspeccion" id="fecha_inspeccion" class="form-control" required value="{{ \Carbon\Carbon::parse($servicioAnexo->date_inspeccion_at)->format('Y-m-d') }}">
                 @error('fecha_inspeccion')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
