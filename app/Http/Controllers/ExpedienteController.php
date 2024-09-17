@@ -656,6 +656,7 @@ class ExpedienteController extends Controller
         }
 
         // Reemplazar datos específicos
+        $templateProcessor->setValue('${nombre_verificador}', $verificador->usuario->name);
         $templateProcessor->setValue('${fecha_inspeccion}', $fechaInspeccion);
         $templateProcessor->setValue('${fecha_recepcion}', $fechaRecepcion);
         $templateProcessor->setValue('${razon_social}', strtoupper($estacion->razon_social));
@@ -686,6 +687,18 @@ class ExpedienteController extends Controller
             }
 
             $templateProcessor->setValue('${c' . ($i + 1) . '}', $char);
+        }
+
+        // Colocar cada letra del RFC de la estación en su recuadro correspondiente (máximo 13 caracteres)
+        for ($i = 0; $i < 13; $i++) {
+            $char = isset($verificador->rfc[$i]) ? strtoupper($verificador->rfc[$i]) : ' ';
+
+            // Si el carácter es '0', reemplazar por 'X'
+            if ($char === '0') {
+                $char = ' 0';
+            }
+
+            $templateProcessor->setValue('${v' . ($i + 1) . '}', $char);
         }
 
         // Buscar el proveedor de sistemas informáticos relacionado con el servicio anexo
