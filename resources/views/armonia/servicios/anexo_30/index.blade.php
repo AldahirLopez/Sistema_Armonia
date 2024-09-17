@@ -51,10 +51,18 @@
             <div class="card-body d-flex flex-column justify-content-between">
                 <!-- Estado del servicio -->
                 <p class="text-muted">
-                    @if($servicio->pending_apro_servicio)
+                    @if($servicio->pending_apro_servicio && $servicio->pending_deletion_servicio==false )
                     <span class="badge bg-success">Aprobado</span>
                     @else
+                    @if($servicio->pending_deletion_servicio)
+                    <span class="badge bg-warning text-dark"></span>
+                    @else
                     <span class="badge bg-warning text-dark">Pendiente de aprobación</span>
+                    @endif
+                    @endif
+
+                    @if($servicio->pending_deletion_servicio)
+                    <span class="badge bg-danger">Eliminación pendiente de aprobación</span>
                     @endif
                 </p>
 
@@ -71,16 +79,20 @@
                 </p>
 
                 <div class="d-flex justify-content-between align-items-center mt-auto">
+                    @if($servicio->pending_deletion_servicio)
+                    <!-- Si el servicio tiene pendiente la eliminación, desactivar botones -->
+                    <span class="text-muted">Eliminación pendiente de aprobación</span>
+                    @else
                     @if($servicio->pending_apro_servicio)
                     <!-- Botones de acción con íconos y estilo más sutil -->
                     <a href="{{ route('armonia.servicios.anexo_30.documentos.menu', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm">
                         <i class="bx bx-folder-open"></i> Documentación
                     </a>
 
-                    <!-- Botones de acción con íconos y estilo más sutil -->
                     <a href="{{ route('expediente.index', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm">
                         <i class="bx bx-folder-open"></i> Expediente
                     </a>
+
                     <form action="{{ route('anexo.destroy', $servicio->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
@@ -92,6 +104,7 @@
                     <!-- Si el servicio no está aprobado, solo muestra el mensaje -->
                     <span class="text-muted">Pendiente de aprobación</span>
                     @endif
+                    @endif
                 </div>
             </div>
         </div>
@@ -102,6 +115,7 @@
     </div>
     @endforelse
 </div>
+
 
 <!-- Paginación -->
 <div class="d-flex justify-content-center mt-4">

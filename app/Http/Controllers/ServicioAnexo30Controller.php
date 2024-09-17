@@ -76,11 +76,11 @@ class ServicioAnexo30Controller extends Controller
 
         // Ruta personalizada para la carpeta del servicio
         $anio = now()->year;
-        $customFolderPath = "Servicios/Anexo_30/{$anio}/{$usuario->id}/{$servicio->nomenclatura}";
+        $customFolderPath = "Servicios/Anexo_30/{$anio}/{$servicio->id_usuario}/{$servicio->nomenclatura}";
 
         // Verificar si el usuario es administrador
-        if ($usuario->hasRole('Administrador')) {
-
+        if ($usuario->hasRole('Verificador')) {
+ 
             // Verificar si la carpeta existe y eliminarla
             if (Storage::disk('public')->exists($customFolderPath)) {
                 Storage::disk('public')->deleteDirectory($customFolderPath);
