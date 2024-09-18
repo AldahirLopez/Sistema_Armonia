@@ -13,11 +13,13 @@ class CreateDispensariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('dispensarios', function (Blueprint $table) {
+        Schema::connection('segunda_db')->create('dispensarios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('isla_id'); // Relación con la tabla islas
-            $table->string('numero_dispensario'); // Número de dispensario
-            $table->string('numero_serie')->nullable(); // Número de dispensario
+            $table->string('marca'); // Número de dispensario
+            $table->string('modelo');// Número de dispensario
+            $table->string('numero_serie'); // Número de dispensario
+            $table->string('numero_aprobacion')->nullable(); // Número de dispensario
             $table->timestamps();
 
             // Foreign key constraint
