@@ -101,7 +101,7 @@ class EstacionController extends Controller
             'telefono' => 'nullable|string|max:255',
             'correo' => 'nullable|email|max:255',
             'repre' => 'required|string|max:255',
-            'estado' => 'required|string|max:255',
+            'estado' => 'required',
         ]);
     }
 
@@ -141,6 +141,21 @@ class EstacionController extends Controller
     private function updateEstacion(array $data, $id)
     {
         $estacion = Estacion::findOrFail($id);
-        $estacion->update($data);
+
+        // Actualiza el campo estado_republica manualmente
+        $estacion->estado_republica = $data['estado'];
+
+        // Actualiza los demás campos
+        $estacion->update([
+            'tipo_estacion' => $data['tipo_estacion'],
+            'num_estacion' => $data['numestacion'],
+            'razon_social' => $data['razonsocial'],
+            'rfc' => $data['rfc'],
+            'telefono' => $data['telefono'],
+            'correo_electronico' => $data['correo'],
+            'nombre_representante_legal' => $data['repre'],
+        ]);
+
+        $estacion->save(); // Asegúrate de guardar los cambios
     }
 }

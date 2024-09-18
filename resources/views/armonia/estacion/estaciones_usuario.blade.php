@@ -35,6 +35,7 @@
                                 <th>Estado</th>
                                 <th>Acciones</th>
                                 <th>Direcciones</th>
+                                <th>Estructura</th>
                             </tr>
                         </thead>
                         <tbody id="tablaEstaciones">
@@ -64,7 +65,13 @@
                                 <td>
                                     <!-- Botón de Direcciones -->
                                     <a href="{{ route('estacion.direcciones', ['id' => $estacion->id]) }}" class="btn btn-secondary">
-                                        Direcciones
+                                        <i class="far fa-map"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <!-- Botón de Direcciones -->
+                                    <a href="{{ route('equipo.seleccion', ['id' => $estacion->id]) }}" class="btn btn-secondary">
+                                      <i class="mdi mdi-office-building-cog"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -135,7 +142,7 @@
                                 <label for="estado">Estado</label>
                                 <select name="estado" class="form-select" id="estado" required>
                                     @foreach($estados as $estado)
-                                    <option value="{{ $estado->description }}" {{ $estacion->estado_republica == $estado->description ? 'selected' : '' }}>
+                                    <option value="{{$estado->description}}" {{ $estacion->estado_republica == $estado->description ? 'selected' : '' }}>
                                         {{ $estado->description }}
                                     </option>
                                     @endforeach

@@ -8,6 +8,7 @@ use App\Notifications\ServicioCreadoNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Storage;
 
 class NotificacionController extends Controller
 {
@@ -26,10 +27,9 @@ class NotificacionController extends Controller
         if ($administradores->isEmpty()) {
             return redirect()->back()->with('error', 'No hay administradores disponibles para enviar la notificación.');
         }
-
+ 
         // Enviar notificación
         Notification::send($administradores, new ServicioCreadoNotification($servicio));
-        return redirect()->back()->with('success', 'Notificación enviada a los administradores.');
     }
 
     // Marcar notificación como leída
@@ -85,7 +85,7 @@ class NotificacionController extends Controller
     }
 
     // Eliminación del servicio y la notificación por administrador
-    public function EliminarServicioAnexo30($id, $notificationId)
+    public function CancelarServicioAnexo30($id, $notificationId)
     {
         $servicio = $this->buscarServicio($id);
 
@@ -96,6 +96,36 @@ class NotificacionController extends Controller
         }
 
         return redirect()->route('notificaciones.listar')->with('error', 'Servicio no encontrado.');
+    }
+
+    public function EliminarServicioAnexo30($id, $notificationId)
+    {
+        $servicio = ServicioAnexo::findOrFail($id);
+        $usuario = Auth::user();
+
+        // Ruta personalizada para la carpeta del servicio
+        $anio = now()->year;
+        $customFolderPath = "Servicios/Anexo_30/{$anio}/{$servicio->id_usuario}/{$servicio->nomenclatura}";
+
+        // Verificar si el usuario es administrador
+        if ($usuario->hasRole('Administrador')) {
+
+            // Verificar si la carpeta existe y eliminarla
+            if (Storage::disk('public')->exists($customFolderPath)) {
+                Storage::disk('public')->deleteDirectory($customFolderPath);
+            } else {
+                return redirect()->route('notificaciones.listar')->with('error', 'La carpeta no existe o ya fue eliminada.');
+            }
+
+            // Eliminar el servicio de la base de datos
+            $servicio->delete();
+
+            // Eliminar la notificación relacionada
+            \DB::table('notifications')->where('id', $notificationId)->delete();
+
+            return redirect()->route('notificaciones.listar')->with('info', 'El servicio y su notificación han sido eliminados exitosamente.');
+        }
+
     }
 
     // Métodos auxiliares

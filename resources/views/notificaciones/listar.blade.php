@@ -41,20 +41,32 @@
                                 <td>{{ $data['usuario'] ?? 'Desconocido' }}</td>
                                 <td>{{ $notificacion->created_at->format('d/m/Y H:i:s') }}</td>
                                 <td>
+                                    <!-- Verificación si es para eliminación o aprobación -->
+                                    @if($data['pending_deletion_servicio'])
+                                    <!-- Formulario para eliminar el servicio -->
+                                    <form action="{{ route('eliminar.servicio.anexo', ['id' => $data['servicio_id'], 'notificationId' => $notificacion->id]) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i> <!-- Icono de eliminar -->
+                                        </button>
+                                    </form>
+                                    @elseif($data['pending_apro_servicio'] == false)
                                     <!-- Formulario para aprobar el servicio -->
                                     <form action="{{ route('aprobar.servicio.anexo', ['id' => $data['servicio_id'], 'notificationId' => $notificacion->id]) }}" method="POST" style="display: inline;">
                                         @csrf
                                         <button type="submit" class="btn btn-success">
-                                            <i class="fas fa-check"></i> <!-- Icono de aprobar -->
+                                            <i class="fas fa-check"></i><!-- Icono de aprobar -->
                                         </button>
                                     </form>
+                                    @endif
+
 
                                     <!-- Formulario para eliminar el servicio y la notificación -->
-                                    <form action="{{ route('eliminar.servicio.anexo', ['id' => $data['servicio_id'], 'notificationId' => $notificacion->id]) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('cancelar.servicio.anexo', ['id' => $data['servicio_id'], 'notificationId' => $notificacion->id]) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash-alt"></i> <!-- Icono de eliminar -->
+                                        <button type="submit" class="btn btn-info">
+                                             Cancelar <!-- Icono de eliminar -->
                                         </button>
                                     </form>
                                 </td>

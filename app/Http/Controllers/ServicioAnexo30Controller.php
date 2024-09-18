@@ -40,16 +40,36 @@ class ServicioAnexo30Controller extends Controller
 
     public function store(Request $request)
     {
+        // Validar que se haya seleccionado una estación
+        $request->validate([
+            'estacion' => 'required',
+        ]);
+
+        // Obtener el ID de la estación seleccionada
         $estacionId = $request->input('estacion');
-        $usuario = Auth::user();
-        $nomenclatura = $this->generarNomenclatura($usuario);
+
+        // Obtener el usuario logueado
+        $usuarioActual = Auth::user();
+        $usuarioSeleccionado = $usuarioActual; // Por defecto, es el usuario autenticado
+
+        // Si el usuario es administrador, usar el usuario seleccionado en el formulario
+        if ($usuarioActual->hasRole('Administrador')) {
+            $request->validate([
+                'usuario_select' => 'required',  // Validar que se haya seleccionado un usuario
+            ]);
+            // Obtener el objeto de usuario basado en el ID seleccionado
+            $usuarioSeleccionado = User::findOrFail($request->input('usuario_select'));
+        }
+
+        // Generar la nomenclatura del servicio basado en el objeto del usuario seleccionado
+        $nomenclatura = $this->generarNomenclatura($usuarioSeleccionado);
 
         // Crear el nuevo servicio anexo
         $servicio = ServicioAnexo::create([
             'nomenclatura' => $nomenclatura,
             'pending_apro_servicio' => false,
             'pending_deletion_servicio' => false,
-            'id_usuario' => $usuario->id,
+            'id_usuario' => $usuarioSeleccionado->id,  // Asignar el usuario correcto según el rol
         ]);
 
         // Crear la relación con la estación
@@ -59,7 +79,7 @@ class ServicioAnexo30Controller extends Controller
         ]);
 
         // Crear la carpeta para el servicio
-        $this->createServiceDirectory($usuario->id, $nomenclatura);
+        $this->createServiceDirectory($usuarioSeleccionado->id, $nomenclatura);
 
         // Enviar notificación a los administradores
         app('App\Http\Controllers\NotificacionController')->notificarNuevoServicio($servicio);
@@ -67,7 +87,6 @@ class ServicioAnexo30Controller extends Controller
         // Redirigir con mensaje de éxito
         return redirect()->route('anexo.index')->with('success', 'Servicio creado exitosamente y notificación enviada al administrador.');
     }
-
 
     public function destroy(string $id)
     {
@@ -80,7 +99,7 @@ class ServicioAnexo30Controller extends Controller
 
         // Verificar si el usuario es administrador
         if ($usuario->hasRole('Super Usuario')) {
- 
+
             // Verificar si la carpeta existe y eliminarla
             if (Storage::disk('public')->exists($customFolderPath)) {
                 Storage::disk('public')->deleteDirectory($customFolderPath);
@@ -101,6 +120,8 @@ class ServicioAnexo30Controller extends Controller
         ]);
 
         // Aquí puedes añadir el código de notificación al administrador
+        // Enviar notificación a los administradores
+        app('App\Http\Controllers\NotificacionController')->notificarNuevoServicio($servicio);
 
         return redirect()->route('anexo.index')->with('info', 'La solicitud de eliminación está pendiente de aprobación.');
     }

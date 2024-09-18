@@ -445,8 +445,6 @@ class ExpedienteController extends Controller
         }
     }
 
-
-
     // Método para guardar o actualizar los datos del proveedor informático
     private function saveProveedorInformatico($data, $idServicio)
     {
@@ -642,9 +640,6 @@ class ExpedienteController extends Controller
         }
     }
 
-
-
-
     // Función auxiliar para procesar la plantilla de certificado
     private function processCertificadoTemplate($data, $estacion, $verificador, $fechaInspeccion, $fechaRecepcion, $numeroFolioCertificado, $fisica, $subFolderPath)
     {
@@ -730,9 +725,6 @@ class ExpedienteController extends Controller
         $fileName = "CE-{$estacion->rfc}_{$numeroFolioCertificado}.docx";
         $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
     }
-
-
-
 
     // Función auxiliar para generar el archivo JSON del certificado
     private function generateCertificadoJson($data, $estacion, $fechaInspeccion, $numeroFolioCertificado, $subFolderPath)

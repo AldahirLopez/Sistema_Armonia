@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\DocumentacionAnexo30Controller;
+use App\Http\Controllers\EquipoEstacionController;
 use App\Http\Controllers\EstacionController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\NotificacionController;
@@ -63,9 +64,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/anexo/aprobar/{id}/{notificationId}', [NotificacionController::class, 'AprobarServicioAnexo30'])->name('aprobar.servicio.anexo');
 
+    Route::post('/anexo/eliminar/{id}/{notificationId}', [NotificacionController::class, 'EliminarServicioAnexo30'])->name('eliminar.servicio.anexo');
+
     Route::get('/notificaciones', [NotificacionController::class, 'listarNotificacionesAnexo30'])->name('notificaciones.listar');
 
-    Route::delete('/eliminar-servicio-anexo/{id}/{notificationId}', [NotificacionController::class, 'EliminarServicioAnexo30'])->name('eliminar.servicio.anexo');
+    Route::delete('/cancelar-servicio-anexo/{id}/{notificationId}', [NotificacionController::class, 'CancelarServicioAnexo30'])->name('cancelar.servicio.anexo');
 
     // Menú de Documentación Anexo 30
     Route::get('/servicios/anexo_30/documentos/menu', [DocumentacionAnexo30Controller::class, 'menu'])->name('armonia.servicios.anexo_30.documentos.menu');
@@ -109,6 +112,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/expediente/guardar-certificado', [ExpedienteController::class, 'guardarCertificado'])->name('guardar.certificado');
 
+    //Equipos de la estacion 
+    Route::get('seleccion_estructura/{id}', [EquipoEstacionController::class, 'seleccion'])->name('equipo.seleccion');
 
     //Update User Details
     Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');

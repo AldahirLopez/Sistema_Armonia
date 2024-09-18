@@ -23,6 +23,21 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <!-- Solo mostrar el selector de usuario si es administrador -->
+                        @if (Auth::user()->hasRole('Administrador'))
+                        <h5 class="modal-title" style="padding-top: 10px;">Seleccione un usuario para este servicio</h5>
+                        <div class="row">
+                            <div class="form-group" style="padding-top: 10px;">
+                                <select name="usuario_select" class="form-select" id="usuario_select" required>
+                                    <option value="">Selecciona un usuario</option>
+                                    @foreach ($usuarios as $usuario)
+                                    <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center" style="padding-top: 10px;">
                         <button type="submit" class="btn btn-success  btn-generar">Generar</button>
