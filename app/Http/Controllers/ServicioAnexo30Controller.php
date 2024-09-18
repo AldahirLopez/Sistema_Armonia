@@ -15,6 +15,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ServicioAnexo30Controller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:gestionar-anexo30-ver|gestionar-anexo30-crear|gestionar-anexo30-editar|gestionar-anexo30-eliminar', ['only' => ['index']]);
+        $this->middleware('permission:gestionar-anexo30-crear', ['only' => ['create', 'store']]);
+        $this->middleware('permission:gestionar-anexo30-editar', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:gestionar-anexo30-eliminar', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         $usuarios = $this->getUsuariosConRol('Verificador Anexo 30');
