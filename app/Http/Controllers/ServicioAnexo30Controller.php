@@ -97,7 +97,7 @@ class ServicioAnexo30Controller extends Controller
         $anio = now()->year;
         $customFolderPath = "Servicios/Anexo_30/{$anio}/{$servicio->id_usuario}/{$servicio->nomenclatura}";
 
-        // Verificar si el usuario es administrador
+        /* Verificar si el usuario es administrador
         if ($usuario->hasRole('Super Usuario')) {
 
             // Verificar si la carpeta existe y eliminarla
@@ -111,7 +111,7 @@ class ServicioAnexo30Controller extends Controller
             $servicio->delete();
 
             return redirect()->route('anexo.index')->with('warning', 'El servicio y su carpeta han sido eliminados exitosamente.');
-        }
+        }*/
 
         // Si no es administrador, marcar el servicio como pendiente de eliminación
         $servicio->update([
