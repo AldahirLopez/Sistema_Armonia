@@ -85,13 +85,13 @@
 
         .tabla-propuesta {
             width: 100%;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .tabla-propuesta th,
         .tabla-propuesta td {
             border: 1px solid #999;
-            padding: 8px;
+            padding: 4px;
             text-align: center;
         }
 
@@ -131,6 +131,10 @@
             text-align: center;
         }
 
+        .page-break {
+            page-break-before: always;
+        }
+
         /* Estilos específicos para impresión */
         @media print {
             .alcance {
@@ -145,12 +149,17 @@
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
+
+            .page-break {
+                page-break-before: always;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <!-- Encabezado -->
         <div class="header">
             <div class="img-logo">
                 <img src="{{ public_path('build/images/logoarmonia.png') }}">
@@ -176,7 +185,7 @@
 
         <!-- Tablas de Requisitos -->
         <h2 style="text-align: center; font-weight: bold; text-decoration: underline; font-size: 16px; margin-top: 30px;">
-            Requisitos Generales Anexo 30 y 31</h2>
+            Requisitos Anexo 30 y 31 Generales</h2>
         <table class="tabla-propuesta">
             <thead>
                 <tr>
@@ -195,7 +204,7 @@
         </table>
 
         <h2 style="text-align: center; font-weight: bold; text-decoration: underline; font-size: 16px; margin-top: 30px;">
-            Requisitos de Sistemas de Medición</h2>
+            Requisitos Anexo 30 y 31 Sistemas de Medición</h2>
         <table class="tabla-propuesta">
             <thead>
                 <tr>
@@ -214,7 +223,7 @@
         </table>
 
         <h2 style="text-align: center; font-weight: bold; text-decoration: underline; font-size: 16px; margin-top: 30px;">
-            Requisitos de Sistemas Informáticos</h2>
+            Requisitos Anexo 30 y 31 Sistemas Informáticos</h2>
         <table class="tabla-propuesta">
             <thead>
                 <tr>
@@ -232,8 +241,31 @@
             </tbody>
         </table>
 
+        <!-- Aquí es donde comienza una nueva página -->
+        <div class="page-break"></div>
+
+        <!-- Encabezado en la nueva página -->
+        <div class="header">
+            <div class="img-logo">
+                <img src="{{ public_path('build/images/logoarmonia.png') }}">
+            </div>
+            <div class="header-text">
+                <h1>ARMONÍA Y CONTRASTE AMBIENTAL, S.A. DE C.V. </h1>
+                <p class="highlight"><strong>Unidad de Inspección</strong></p>
+                <p style="text-align: right;"><strong>Materia:</strong> Controles Volumétricos de Hidrocarburos y Petrolíferos</p>
+                <p>con base en los Anexos 30 y 31 de la Miscelánea Fiscal</p>
+                <p>Publicada el 27 de diciembre de 2021 - actualizada el 9 de marzo de 2022</p>
+                <p>Publicada el 27 de diciembre de 2022 y actualizada el 12 de enero de 2023</p>
+            </div>
+        </div>
+
+        <div class="content">
+            <p><strong>Acreditación No.</strong> UICV-011</p>
+        </div>
+        <div class="line"></div>
+
         <h2 style="text-align: center; font-weight: bold; text-decoration: underline; font-size: 16px; margin-top: 30px;">
-            Requisitos para Inspección en Sitio</h2>
+            Requisitos Operación y Mantenimiento Inspección en Sitio</h2>
         <table class="tabla-propuesta">
             <thead>
                 <tr>
@@ -251,11 +283,25 @@
             </tbody>
         </table>
 
-        <!-- Pie de página -->
-        <div class="alcance" style="margin-top: 240px;">
-            <p>ARMONÍA Y CONTRASTE AMBIENTAL S.A. DE C.V. - AC4160422EA7 - arcaom2016@gmail.com Tel. 951 1321956</p>
-            <p>Riberas del Río Atoyac No. 3025, Col. Jardines de la primavera, San Jacinto Amilpas, Oax. C.P. 68285</p>
-        </div>
+        <h2 style="text-align: center; font-weight: bold; text-decoration: underline; font-size: 16px; margin-top: 30px;">
+            Requisitos Operación y Mantenimiento Documentos Expedidos por Terceros</h2>
+        <table class="tabla-propuesta">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($allDocuments['terceros'] as $doc)
+                <tr>
+                    <td class="concepto">{{ $doc['descripcion'] }}</td>
+                    <td>{{ $doc['tipo'] }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
     </div>
 </body>
 

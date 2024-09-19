@@ -78,14 +78,14 @@ class DocumentacionAnexo30Controller extends Controller
     {
         $documents = [
             'generales' => [
-                ['descripcion' => 'Cedula de Identificación Fiscal de la Empresa (CIF, ALTA SAT)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
-                ['descripcion' => 'Cedula de Identificación Fiscal del Representante Legal (CIF, ALTA SAT)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
+                ['descripcion' => 'Cédula de Identificación Fiscal de la Empresa (CIF, ALTA SAT)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
+                ['descripcion' => 'Cédula de Identificación Fiscal del Representante Legal (CIF, ALTA SAT)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
                 ['descripcion' => 'INE del representante legal', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
-                ['descripcion' => 'Permiso de la Cre', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 4],
+                ['descripcion' => 'Permiso de la CRE', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 4],
             ],
             'informatica' => [
-                ['descripcion' => 'Inventario de Activos tecnológicos relacionados con el control Volumétrico', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
-                ['descripcion' => 'Manual de Usuario de control volumétrico, de preferencia si incluye apartado de cumplimiento anexos 30 y 31 RMF', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
+                ['descripcion' => 'Inventario de activos tecnológicos relacionados con el control volumétrico', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
+                ['descripcion' => 'Manual de usuario de control volumétrico, de preferencia si incluye apartado de cumplimiento anexos 30 y 31 RMF', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
                 ['descripcion' => 'Información técnica de la base de datos utilizada en el control volumétrico', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
                 ['descripcion' => 'Documentación técnica del programa informático utilizado como control volumétrico', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 4],
                 ['descripcion' => 'Evidencia de realizar pruebas de seguridad anual y evidencia del seguimiento a los hallazgos encontrados durante las pruebas', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 5],
@@ -93,45 +93,78 @@ class DocumentacionAnexo30Controller extends Controller
                 ['descripcion' => 'Procedimientos de restricción, control de asignación y uso de privilegios de acceso al programa informático', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 7],
                 ['descripcion' => 'Evidencia de depuración y revisión de usuarios cada 6 meses en el programa informático para el control volumétrico', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 8],
                 ['descripcion' => 'Procedimiento de control de cambios', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 9],
-                ['descripcion' => 'Contrato de Arrendamiento o pólizas de contratación del programa informático para el control volumétrico', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 10],
+                ['descripcion' => 'Contrato de arrendamiento o pólizas de contratación del programa informático para el control volumétrico', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 10],
                 ['descripcion' => 'Políticas y procedimientos para la generación de respaldos de la información', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 11],
                 ['descripcion' => 'Organigrama, estructura y mapa de la red informática que interactúa con los sistemas de medición y los programas informáticos de control volumétrico', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 12],
                 ['descripcion' => 'Políticas y procedimientos para la gestión de incidentes de seguridad relacionados con el programa informático para llevar controles volumétricos', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 13],
-                ['descripcion' => 'Acuerdos de confidencialidad firmado con el personal de desarrollo e implementación del programa informático', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 14],
-                ['descripcion' => 'Pólizas y contratos de Control volumétrico', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 15],
-                // Agrega más documentos según sea necesario
+                ['descripcion' => 'Acuerdos de confidencialidad firmados con el personal de desarrollo e implementación del programa informático', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 14],
+                ['descripcion' => 'Pólizas y contratos de control volumétrico', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 15],
             ],
             'medicion' => [
                 ['descripcion' => 'Dictámenes de calibración de dispensarios (primero y segundo semestre del año a inspeccionar)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
-                ['descripcion' => 'Orden de Servicio de la última actualización de dispensarios', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
+                ['descripcion' => 'Orden de servicio de la última actualización de dispensarios', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
                 ['descripcion' => 'Aprobación de modelo prototipo (dispensarios)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
                 ['descripcion' => 'DGN de certificado de producto de software de dispensarios', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 4],
                 ['descripcion' => 'DGN de resolución favorable de actualización de dispensarios (si aplica)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 5],
                 ['descripcion' => 'Modelo, marca y capacidad de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 6],
-                ['descripcion' => 'Plano Arquitectónico de la Estación de servicio', 'codigo' => '', 'tipo' => 'Documental', 'id' => 7],
-                ['descripcion' => 'Plano Mecánico de la Estación de servicio', 'codigo' => '', 'tipo' => 'Documental', 'id' => 8],
-                ['descripcion' => 'Fichas técnicas y/o manuales de equipos de medición (sondas, dispensarios y consola de Telemedicion)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 9],
+                ['descripcion' => 'Plano arquitectónico de la estación de servicio', 'codigo' => '', 'tipo' => 'Documental', 'id' => 7],
+                ['descripcion' => 'Plano mecánico de la estación de servicio', 'codigo' => '', 'tipo' => 'Documental', 'id' => 8],
+                ['descripcion' => 'Fichas técnicas y/o manuales de equipos de medición (sondas, dispensarios y consola de telemedición)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 9],
                 ['descripcion' => 'Informes de calibración de sondas de medición en magnitudes: nivel y temperatura', 'codigo' => '', 'tipo' => 'Documental', 'id' => 10],
                 ['descripcion' => 'Verificar que la consola cuente con contraseña', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 11],
                 ['descripcion' => 'Certificado de calibración de tanques', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 12],
-                ['descripcion' => 'Tablas de cubicación de tanques ', 'codigo' => '', 'tipo' => 'Fotos', 'id' => 13],
-                ['descripcion' => 'Sistema de Gestión de Medición (SGM) digital: Manual, procedimientos y formatos', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 14],
+                ['descripcion' => 'Tablas de cubicación de tanques', 'codigo' => '', 'tipo' => 'Fotos', 'id' => 13],
+                ['descripcion' => 'Sistema de gestión de medición (SGM) digital: manual, procedimientos y formatos', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 14],
                 ['descripcion' => 'Constancia de capacitación al personal involucrado en las actividades del SGM', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 15],
-                ['descripcion' => 'Certificados de calibración vigentes de equipos de medición manual para la correcta verificación de los equipos automáticos(Cinta petrolera con plomada, Termómetro electrónico portátil, Jarra patrón)', 'codigo' => '', 'tipo' => 'Fotos', 'id' => 16],
+                ['descripcion' => 'Certificados de calibración vigentes de equipos de medición manual para la correcta verificación de los equipos automáticos (Cinta petrolera con plomada, Termómetro electrónico portátil, Jarra patrón)', 'codigo' => '', 'tipo' => 'Fotos', 'id' => 16],
                 ['descripcion' => 'Reportes de laboratorio de la calidad del petrolífero correspondientes al primero y segundo semestre del año', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 17],
-                // Agrega más documentos según sea necesario
             ],
             'inspeccion' => [
                 ['descripcion' => 'Una tirilla de inventario de la consola de monitoreo de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
                 ['descripcion' => 'Impresión de la configuración de la consola de monitoreo de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
-                ['descripcion' => 'La factura de una compra con su soporte (Remisión, Carta porte, Tira de Inicio y Fin de Incremento)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
-                ['descripcion' => 'La factura de una venta ', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 4],
-                // Agrega más documentos según sea necesario
+                ['descripcion' => 'La factura de una compra con su soporte (remisión, carta porte, tira de inicio y fin de incremento)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
+                ['descripcion' => 'La factura de una venta', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 4],
+                ['descripcion' => 'Bitácora de recepción y descarga de producto', 'codigo' => '', 'tipo' => 'Documental', 'id' => 5],
+                ['descripcion' => 'Bitácora de limpiezas programadas', 'codigo' => '', 'tipo' => 'Documental', 'id' => 6],
+                ['descripcion' => 'Bitácora de desviaciones en el balance de producto', 'codigo' => '', 'tipo' => 'Documental', 'id' => 7],
+                ['descripcion' => 'Bitácora de incidentes e inspecciones de operación', 'codigo' => '', 'tipo' => 'Documental', 'id' => 8],
+                ['descripcion' => 'Bitácora de mantenimiento', 'codigo' => '', 'tipo' => 'Documental', 'id' => 9],
+                ['descripcion' => 'Procedimiento de preparación y respuesta a emergencias', 'codigo' => '', 'tipo' => 'Documental', 'id' => 10],
+                ['descripcion' => 'Procedimiento de investigación de accidentes e incidentes', 'codigo' => '', 'tipo' => 'Documental', 'id' => 11],
+                ['descripcion' => 'Procedimiento de etiquetado, bloqueo y candadeo de líneas eléctricas', 'codigo' => '', 'tipo' => 'Documental', 'id' => 12],
+                ['descripcion' => 'Procedimiento de etiquetado, bloqueo y candadeo de líneas de producto', 'codigo' => '', 'tipo' => 'Documental', 'id' => 13],
+                ['descripcion' => 'Procedimiento para trabajos peligrosos con fuentes que generan ignición', 'codigo' => '', 'tipo' => 'Documental', 'id' => 14],
+                ['descripcion' => 'Procedimiento para trabajos en alturas', 'codigo' => '', 'tipo' => 'Documental', 'id' => 15],
+                ['descripcion' => 'Procedimiento para trabajos en áreas confinadas', 'codigo' => '', 'tipo' => 'Documental', 'id' => 16],
+                ['descripcion' => 'Procedimiento de despacho al público', 'codigo' => '', 'tipo' => 'Documental', 'id' => 17],
+                ['descripcion' => 'Procedimiento de recepción y descarga de productos', 'codigo' => '', 'tipo' => 'Documental', 'id' => 18],
+                ['descripcion' => 'Análisis de riesgo', 'codigo' => '', 'tipo' => 'Documental', 'id' => 19],
+                ['descripcion' => 'Pruebas de hermeticidad', 'codigo' => '', 'tipo' => 'Documental', 'id' => 20],
+                ['descripcion' => 'Factura de mantenimiento de extintores', 'codigo' => '', 'tipo' => 'Documental', 'id' => 21],
+                ['descripcion' => 'Medición de resistencia a tierras', 'codigo' => '', 'tipo' => 'Documental', 'id' => 22],
+                ['descripcion' => 'Dictamen eléctrico', 'codigo' => '', 'tipo' => 'Documental', 'id' => 23],
+                ['descripcion' => 'Limpieza ecológica', 'codigo' => '', 'tipo' => 'Documental', 'id' => 24],
+                ['descripcion' => 'Permiso de la CRE', 'codigo' => '', 'tipo' => 'Documental', 'id' => 25],
+                ['descripcion' => 'Tirillas de sensores e inventarios', 'codigo' => '', 'tipo' => 'Documental', 'id' => 26],
+                ['descripcion' => 'Identificaciones', 'codigo' => '', 'tipo' => 'Documental', 'id' => 27],
+            ],
+            'terceros' => [
+                ['descripcion' => 'Análisis de riesgo del sector hidrocarburos', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
+                ['descripcion' => 'Pruebas de hermeticidad', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
+                ['descripcion' => 'Carta responsiva y/o factura del mantenimiento de extintores', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
+                ['descripcion' => 'Dictamen de instalaciones eléctricas', 'codigo' => '', 'tipo' => 'Documental', 'id' => 4],
+                ['descripcion' => 'Estudio de tierras físicas', 'codigo' => '', 'tipo' => 'Documental', 'id' => 5],
+                ['descripcion' => 'Certificado de limpieza ecológica', 'codigo' => '', 'tipo' => 'Documental', 'id' => 6],
+                ['descripcion' => 'Permiso de la CRE', 'codigo' => '', 'tipo' => 'Documental', 'id' => 7],
+                ['descripcion' => 'Tirilla del reporte de inventarios', 'codigo' => '', 'tipo' => 'Documental', 'id' => 8],
+                ['descripcion' => 'Tirilla de las pruebas de sensores', 'codigo' => '', 'tipo' => 'Documental', 'id' => 9],
+                ['descripcion' => 'Identificación oficial de la persona que atendió la inspección y testigos', 'codigo' => '', 'tipo' => 'Documental', 'id' => 10],
             ],
         ];
 
         return $documents[$categoria] ?? [];
     }
+
 
     // Método para almacenar documentos
     public function store(Request $request)
@@ -228,23 +261,21 @@ class DocumentacionAnexo30Controller extends Controller
     {
         try {
             // Obtener todas las categorías y sus documentos
-            $categorias = ['generales', 'informatica', 'medicion', 'inspeccion'];
+            $categorias = ['generales', 'informatica', 'medicion', 'inspeccion', 'terceros'];
             $allDocuments = [];
-    
+
             // Obtener los documentos de cada categoría
             foreach ($categorias as $categoria) {
                 $allDocuments[$categoria] = $this->getRequiredDocuments($categoria);
             }
-    
+
             // Generar el PDF usando la plantilla que guardaste
             $pdf = Pdf::loadView('armonia.servicios.anexo_30.documentos.componentes.requisitos_pdf', compact('allDocuments'));
-    
+
             // Descargar el PDF con todos los requisitos
             return $pdf->download('lista_completa_requisitos_anexo_30_31.pdf');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error al generar el PDF: ' . $e->getMessage());
         }
     }
-
-    
 }

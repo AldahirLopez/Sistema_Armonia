@@ -17,6 +17,41 @@
                     </a>
                 </li>
 
+                <!-- Usuarios -->
+                <li>
+                    <a href="{{ route('usuarios.index') }}" class="waves-effect">
+                        <i class="mdi mdi-account-multiple"></i>
+                        <span data-key="t-usuarios">@lang('translation.Usuarios')</span>
+                    </a>
+                </li>
+
+                <!-- Roles -->
+                <li>
+                    <a href="{{ route('roles.index') }}" class="waves-effect">
+                        <i class="mdi mdi-shield-account"></i>
+                        <span data-key="t-roles">@lang('translation.Roles')</span>
+                    </a>
+                </li>
+
+                <!-- Estaciones -->
+                <li>
+                    <a href="{{ route('estaciones.index') }}" class="waves-effect">
+                        <i class="bx bx-gas-pump"></i>
+                        <span data-key="t-estaciones">@lang('translation.Estaciones')</span>
+                    </a>
+                </li>
+
+                <!-- Estaciones -->
+                <li>
+                    <a href="{{ route('servicios.index') }}" class="waves-effect">
+                        <i class="bx bx-cog"></i>
+                        <span data-key="t-estaciones">@lang('translation.Servicios')</span>
+                    </a>
+                </li>
+
+
+
+
                 <!-- Authentication -->
                 <li>
                     <a href="javascript:void(0);" class="has-arrow">
@@ -66,38 +101,6 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
-
-                <!-- Usuarios -->
-                <li>
-                    <a href="{{ route('usuarios.index') }}" class="waves-effect">
-                        <i class="mdi mdi-account-multiple"></i>
-                        <span data-key="t-usuarios">@lang('translation.Usuarios')</span>
-                    </a>
-                </li>
-
-                <!-- Roles -->
-                <li>
-                    <a href="{{ route('roles.index') }}" class="waves-effect">
-                        <i class="mdi mdi-shield-account"></i>
-                        <span data-key="t-roles">@lang('translation.Roles')</span>
-                    </a>
-                </li>
-
-                <!-- Estaciones -->
-                <li>
-                    <a href="{{ route('estaciones.index') }}" class="waves-effect">
-                        <i class="bx bx-gas-pump"></i>
-                        <span data-key="t-estaciones">@lang('translation.Estaciones')</span>
-                    </a>
-                </li>
-
-                <!-- Estaciones -->
-                <li>
-                    <a href="{{ route('servicios.index') }}" class="waves-effect">
-                        <i class="bx bx-cog"></i>
-                        <span data-key="t-estaciones">@lang('translation.Servicios')</span>
-                    </a>
                 </li>
 
             </ul>
