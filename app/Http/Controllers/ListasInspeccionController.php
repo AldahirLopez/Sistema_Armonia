@@ -22,7 +22,12 @@ class ListasInspeccionController extends Controller
     {
         switch ($type) {
             case 'estacion':
-                return view('armonia.servicios.anexo_30.listas.estacion');
+                // Retorna varias secciones juntas para estaciones
+                return view('armonia.servicios.anexo_30.listas.listas_informaticos.index')
+                    ->with('seccion01', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion01')->render())
+                    ->with('seccion02', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion02')->render())
+                    ->with('seccion03', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion03')->render())
+                    ->with('seccion04', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion04')->render());
             case 'transporte':
                 return view('armonia.servicios.anexo_30.listas.transporte');
             case 'almacenamiento':
