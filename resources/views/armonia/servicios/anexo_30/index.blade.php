@@ -87,6 +87,10 @@
                         <i class="bx bx-folder-open"></i> Expediente
                     </a>
 
+                    <a href="{{ route('listas.seleccion', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm">
+                        <i class="bx bx-folder-open"></i> Listas de Inspeccion
+                    </a>
+
                     <form action="{{ route('anexo.destroy', $servicio->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')

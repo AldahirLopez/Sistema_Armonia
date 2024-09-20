@@ -5,6 +5,7 @@ use App\Http\Controllers\DocumentacionAnexo30Controller;
 use App\Http\Controllers\EquipoEstacionController;
 use App\Http\Controllers\EstacionController;
 use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\ListasInspeccionController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ServicioAnexo30Controller;
@@ -114,6 +115,14 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Equipos de la estacion 
     Route::get('seleccion_estructura/{id}', [EquipoEstacionController::class, 'seleccion'])->name('equipo.seleccion');
+
+
+    // Ruta para seleccionar listas
+    Route::get('seleccion_listas/{id}', [ListasInspeccionController::class, 'seleccion'])->name('listas.seleccion');
+
+    // Ruta para cargar el formulario dinámico
+    Route::get('/form/{type}', [ListasInspeccionController::class, 'loadForm']);
+
 
     //Update User Details
     Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
