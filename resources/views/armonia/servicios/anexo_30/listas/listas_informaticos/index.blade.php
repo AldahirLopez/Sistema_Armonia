@@ -1,17 +1,4 @@
-@extends('layouts.master')
-
-@section('title')
-@lang('Estaciones de Servicio')
-@endsection
-
-@section('content')
-@component('components.breadcrumb')
-@slot('li_1') Seleccion @endslot
-@slot('title') Estaciones de Servicio @endslot
-@endcomponent
-
-<h4>Formulario para Estación</h4>
-
+<h4 style="padding-top: 40px;">Formulario para Estación</h4>
 <!-- Formulario principal que envuelve todas las secciones -->
 <form action="#" method="POST">
     @csrf
@@ -41,5 +28,3 @@
         <button type="submit" class="btn btn-success">Finalizar</button>
     </div>
 </form>
-
-@endsection
