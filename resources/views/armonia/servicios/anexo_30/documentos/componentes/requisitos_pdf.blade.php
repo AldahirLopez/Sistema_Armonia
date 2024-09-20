@@ -22,7 +22,7 @@
 
         .header img {
             float: left;
-            width: 230px;
+            width: 150px;
             margin-right: 20px;
         }
 
@@ -252,15 +252,13 @@
             <div class="header-text">
                 <h1>ARMONÍA Y CONTRASTE AMBIENTAL, S.A. DE C.V. </h1>
                 <p class="highlight"><strong>Unidad de Inspección</strong></p>
-                <p style="text-align: right;"><strong>Materia:</strong> Controles Volumétricos de Hidrocarburos y Petrolíferos</p>
-                <p>con base en los Anexos 30 y 31 de la Miscelánea Fiscal</p>
-                <p>Publicada el 27 de diciembre de 2021 - actualizada el 9 de marzo de 2022</p>
-                <p>Publicada el 27 de diciembre de 2022 y actualizada el 12 de enero de 2023</p>
+                <p style="text-align: right;"><strong>Materia:</strong>Estaciones de Servicio</p>
             </div>
         </div>
 
         <div class="content">
-            <p><strong>Acreditación No.</strong> UICV-011</p>
+            <p><strong>Acreditación No.</strong> ES-003</p>
+            <p><strong>Aprobación No.</strong> UN05-087/20</p>
         </div>
         <div class="line"></div>
 

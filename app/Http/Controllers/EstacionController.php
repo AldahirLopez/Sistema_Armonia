@@ -19,22 +19,43 @@ class EstacionController extends Controller
         return view('armonia.estacion.seleccion');
     }
 
-    // Obtener estaciones del usuario autenticado
-    public function estacion_usuario()
+    // Obtener estaciones del usuario autenticado y aplicar filtro por estado
+    public function estacion_usuario(Request $request)
     {
         $usuario = Auth::user();
         $estados = Estados::where('id_country', 42)->get();
+
+        // Obtener el filtro de estado desde la solicitud
+        $estadoSeleccionado = $request->input('estado');
+
+        // Obtener estaciones del usuario
         $estaciones = $this->getEstacionesUsuario($usuario);
 
-        return view('armonia.estacion.estaciones_usuario', compact('usuario', 'estados', 'estaciones'));
+        // Si hay un estado seleccionado, filtrar las estaciones por estado
+        if (!empty($estadoSeleccionado)) {
+            $estaciones = $estaciones->where('estado_republica', $estadoSeleccionado);
+        }
+
+        return view('armonia.estacion.estaciones_usuario', compact('usuario', 'estados', 'estaciones', 'estadoSeleccionado'));
     }
 
-    // Mostrar todas las estaciones
-    public function estacion_generales()
+    // Mostrar todas las estaciones con filtro de estado
+    public function estacion_generales(Request $request)
     {
-        $estaciones = Estacion::all();
-        return view('armonia.estacion.estaciones_generales', compact('estaciones'));
+        // Obtener el estado seleccionado desde la solicitud
+        $estadoSeleccionado = $request->input('estado');
+
+        // Si hay un estado seleccionado, filtrar por estado, sino obtener todas
+        $estaciones = Estacion::when($estadoSeleccionado, function ($query, $estadoSeleccionado) {
+            return $query->where('estado_republica', $estadoSeleccionado);
+        })->get();
+
+        // Obtener todos los estados para el filtro (suponiendo que tienes un modelo de Estados)
+        $estados = Estados::all();
+
+        return view('armonia.estacion.estaciones_generales', compact('estaciones', 'estados', 'estadoSeleccionado'));
     }
+
 
     // Guardar estación
     public function store(Request $request)
