@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\DocumentacionAnexo30Controller;
 use App\Http\Controllers\EquipoEstacionController;
@@ -122,6 +123,14 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Ruta para cargar el formulario dinámico
     Route::get('/form/{type}', [ListasInspeccionController::class, 'loadForm']);
+
+
+    // Calendario
+    Route::get('/calendario', [CalendarioController::class, 'index'])->name('calendario.index');
+    Route::get('calendario/eventos', [CalendarioController::class, 'fetchEvents']);
+    Route::post('events', [CalendarioController::class, 'store']);
+    Route::put('events/{id}', [CalendarioController::class, 'update']);
+    Route::delete('events/{id}', [CalendarioController::class, 'destroy']);
 
 
     //Update User Details

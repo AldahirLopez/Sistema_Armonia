@@ -49,6 +49,13 @@
                     </a>
                 </li>
 
+                <!-- Calendario -->
+                <li>
+                    <a href="{{ route('calendario.index') }}" class="waves-effect">
+                        <i class="bx bx-calendar-event"></i>
+                        <span data-key="t-estaciones">@lang('translation.Calendar')</span>
+                    </a>
+                </li>
 
 
 
