@@ -27,7 +27,19 @@ class ListasInspeccionController extends Controller
                     ->with('seccion01', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion01')->render())
                     ->with('seccion02', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion02')->render())
                     ->with('seccion03', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion03')->render())
-                    ->with('seccion04', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion04')->render());
+                    ->with('seccion04', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion04')->render())
+                    ->with('seccion05', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion05')->render())
+                    ->with('seccion06', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion06')->render())
+                    ->with('seccion07', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion07')->render())
+                    ->with('seccion08', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion08')->render())
+                    ->with('seccion09', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion09')->render())
+                    ->with('seccion10', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion10')->render())
+                    ->with('seccion11', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion11')->render())
+                    ->with('seccion12', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion12')->render())
+                    ->with('seccion13', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion13')->render())
+                    ->with('seccion14', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion14')->render())
+                    ->with('seccion15', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion15')->render())
+                    ->with('seccion16', view('armonia.servicios.anexo_30.listas.listas_informaticos.seccion16')->render());
             case 'transporte':
                 return view('armonia.servicios.anexo_30.listas.transporte');
             case 'almacenamiento':

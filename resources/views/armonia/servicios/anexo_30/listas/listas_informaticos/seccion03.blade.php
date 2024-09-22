@@ -22,19 +22,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="respaldo" value="si"> Sí
+                                    <input type="radio" name="autodiagnostico_alarma" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="respaldo" value="no"> No
+                                    <input type="radio" name="rautodiagnostico_alarma value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="respaldo" value="no_aplica"> No Aplica
+                                    <input type="radio" name="autodiagnostico_alarma" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_respaldo" class="form-control">
+                                <input type="text" name="observaciones_autodiagnostico_alarma" class="form-control">
                             </td>
                         </tr>
 
@@ -49,19 +49,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="si"> Sí
+                                    <input type="radio" name="informatico_diagnostico_estado_funcionalidad" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no"> No
+                                    <input type="radio" name="informatico_diagnostico_estado_funcionalidad" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no_aplica"> No Aplica
+                                    <input type="radio" name="informatico_diagnostico_estado_funcionalidad" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_entorno_visual" class="form-control">
+                                <input type="text" name="observaciones_informatico_diagnostico_estado_funcionalidad" class="form-control">
                             </td>
                         </tr>
                         <!-- Continúa con el resto de requisitos -->

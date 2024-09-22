@@ -17,19 +17,19 @@
                                 a) Los registros deben generarse de manera automática, para todos los eventos clasificados que se listan en el inciso g) de la presente fracción. Adicionalmente, los usuarios deben tener la posibilidad de registrar eventos no clasificados, pero que requieren su registro. </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="respaldo" value="si"> Sí
+                                    <input type="radio" name="bitacoras_configuracion_operacion" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="respaldo" value="no"> No
+                                    <input type="radio" name="bitacoras_configuracion_operacion" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="respaldo" value="no_aplica"> No Aplica
+                                    <input type="radio" name="bitacoras_configuracion_operacion" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_respaldo" class="form-control">
+                                <input type="text" name="observaciones_bitacoras_configuracion_operacion" class="form-control">
                             </td>
                         </tr>
 
@@ -39,19 +39,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="si"> Sí
+                                    <input type="radio" name="bitacortas_almacenar_registros" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no"> No
+                                    <input type="radio" name="bitacortas_almacenar_registros" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no_aplica"> No Aplica
+                                    <input type="radio" name="bitacortas_almacenar_registros" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_entorno_visual" class="form-control">
+                                <input type="text" name="observaciones_bitacortas_almacenar_registros" class="form-control">
                             </td>
                         </tr>
 
@@ -60,19 +60,19 @@
                                 c) Todos los usuarios deben tener acceso a la bitácora para su visualización. Los perfiles de administrador, supervisor y operador, además, deben tener acceso para el registro de eventos. </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="si"> Sí
+                                    <input type="radio" name="bitacora_visible" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no"> No
+                                    <input type="radio" name="bitacora_visible" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no_aplica"> No Aplica
+                                    <input type="radio" name="bitacora_visible" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_entorno_visual" class="form-control">
+                                <input type="text" name="observaciones_bitacora_visible" class="form-control">
                             </td>
                         </tr>
 
@@ -81,19 +81,19 @@
                                 d) Todos los registros de la bitácora deben estar protegidos para evitar su modificación o eliminación.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="si"> Sí
+                                    <input type="radio" name="bitacoras_protegidas_modificacion" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no"> No
+                                    <input type="radio" name="bitacoras_protegidas_modificacion" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no_aplica"> No Aplica
+                                    <input type="radio" name="bitacoras_protegidas_modificacion" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_entorno_visual" class="form-control">
+                                <input type="text" name="observaciones_bitacoras_protegidas_modificacion" class="form-control">
                             </td>
                         </tr>
 
@@ -102,19 +102,19 @@
                                 e) Cualquier intento de modificación o eliminación de un registro de la bitácora debe registrarse de forma automática en la misma bitácora y generar una alarma.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="si"> Sí
+                                    <input type="radio" name="bitacoras_alarma_modificacion_eliminacion" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no"> No
+                                    <input type="radio" name="bitacoras_alarma_modificacion_eliminacion" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no_aplica"> No Aplica
+                                    <input type="radio" name="bitacoras_alarma_modificacion_eliminacion" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_entorno_visual" class="form-control">
+                                <input type="text" name="observaciones_bitacoras_alarma_modificacion_eliminacion" class="form-control">
                             </td>
                         </tr>
 
@@ -131,19 +131,19 @@
                                 </ol>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="si"> Sí
+                                    <input type="radio" name="datos_bitacoras" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no"> No
+                                    <input type="radio" name="datos_bitacoras" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no_aplica"> No Aplica
+                                    <input type="radio" name="datos_bitacoras" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_entorno_visual" class="form-control">
+                                <input type="text" name="observaciones_datos_bitacoras" class="form-control">
                             </td>
                         </tr>
                         <!-- Continúa con el resto de requisitos -->
