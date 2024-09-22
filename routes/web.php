@@ -127,10 +127,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Calendario
     Route::get('/calendario', [CalendarioController::class, 'index'])->name('calendario.index');
-    Route::get('calendario/eventos', [CalendarioController::class, 'fetchEvents']);
-    Route::post('events', [CalendarioController::class, 'store']);
-    Route::put('events/{id}', [CalendarioController::class, 'update']);
-    Route::delete('events/{id}', [CalendarioController::class, 'destroy']);
+    Route::get('/calendario/eventos', [CalendarioController::class, 'fetchEvents']); // Obtener los eventos para el calendario
+    Route::post('/events', [CalendarioController::class, 'store']); // Guardar un nuevo evento
+    Route::put('/events/{id}', [CalendarioController::class, 'update']); // Actualizar un evento existente
+    Route::delete('/events/{id}', [CalendarioController::class, 'destroy']); // Eliminar un evento existente
 
 
     //Update User Details

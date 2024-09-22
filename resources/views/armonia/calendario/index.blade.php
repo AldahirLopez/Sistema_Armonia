@@ -16,36 +16,24 @@
             <div class="col-xl-3 col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-grid">
-                            <button class="btn font-16 btn-primary" id="btn-new-event">
-                                <i class="mdi mdi-plus-circle-outline"></i> Crear Nuevo Evento
-                            </button>
-                        </div>
-
                         <div id="external-events" class="mt-2">
                             <br>
-                            <p class="text-muted">Arrastra y suelta tu evento o haz clic en el calendario</p>
+                            <p class="text-muted">Haz clic en el calendario para crear un evento</p>
                             <!-- Eventos externos -->
                             <div class="external-event fc-event text-success bg-success-subtle" data-class="bg-success">
-                                <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Planificación de Evento Nuevo
+                                <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Inicio de Ruta
                             </div>
                             <div class="external-event fc-event text-info bg-info-subtle" data-class="bg-info">
-                                <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Reunión
+                                <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Reunión Virtual
                             </div>
                             <div class="external-event fc-event text-warning bg-warning-subtle" data-class="bg-warning">
                                 <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Generando Informes
                             </div>
                             <div class="external-event fc-event text-danger bg-danger-subtle" data-class="bg-danger">
-                                <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Crear Nuevo Tema
+                                <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Evaluacion de vigilancia
                             </div>
                             <div class="external-event fc-event text-dark bg-dark-subtle" data-class="bg-dark">
-                                <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Reunión de Equipo
-                            </div>
-                        </div>
-
-                        <div class="row justify-content-center mt-5">
-                            <div class="col-lg-12 col-sm-6">
-                                <img src="{{ asset('build/images/undraw-calendar.svg') }}" alt="" class="img-fluid d-block">
+                                <i class="mdi mdi-checkbox-blank-circle font-size-11 me-2"></i>Otro
                             </div>
                         </div>
                     </div>
@@ -124,8 +112,6 @@
 
 @endsection
 
-
-
 <!-- FullCalendar JS -->
 <script src="{{ asset('build/libs/fullcalendar/index.global.min.js') }}"></script>
 
@@ -152,25 +138,23 @@
                 var eventId = info.event.id;
                 var title = info.event.title;
                 var category = info.event.classNames[0];
-
-                // Obtener la fecha y hora del evento ya guardado
                 var start = new Date(info.event.start);
 
-                // Aquí ajustamos la hora para que sea 14:45 al editar
-                start.setHours(14, 45, 0);
+                // Si existe la fecha de fin, se toma en cuenta la duración
+                var end = info.event.end ? new Date(info.event.end) : null;
+                var duration = end ? Math.ceil((end - start) / (1000 * 60 * 60 * 24)) : 1;
 
+                // Formatear la fecha para el campo datetime-local
                 var formattedDate = formatDateTimeLocal(start);
 
-                var duration = info.event.extendedProps.duration_days || 1;
-
-                // Rellenar el formulario en el modal con la fecha y hora del evento
+                // Rellenar los campos del modal
                 $('#eventid').val(eventId);
                 $('#event-title').val(title);
                 $('#event-category').val(category);
                 $('#event-start').val(formattedDate);
                 $('#event-duration').val(duration);
 
-                // Mostrar/ocultar botones
+                // Ajustes de botones
                 $('#btn-save-event').addClass('d-none');
                 $('#edit-event-btn').removeClass('d-none');
 
@@ -183,20 +167,16 @@
                 $('#event-title').val('');
                 $('#event-category').val('');
 
-                // Obtener la fecha seleccionada
-                var selectedDate = new Date(info.start);
+                // Obtener la fecha seleccionada sin modificar la hora
+                var selectedDate = new Date(info.start); // Mantener la fecha y hora seleccionada por el usuario
 
-                // Establecer una hora fija, por ejemplo 14:45
-                selectedDate.setHours(14, 45, 0); // Establece 14:45 como hora fija
-
-                // Formatear la fecha y hora para el input datetime-local
-                var formattedDate = formatDateTimeLocal(selectedDate);
+                var formattedDate = formatDateTimeLocal(selectedDate); // Formatear la fecha y hora
 
                 // Rellenar el campo de fecha y hora con la fecha seleccionada
                 $('#event-start').val(formattedDate);
-                $('#event-duration').val(1); // Duración predeterminada de 1 día
+                $('#event-duration').val(1);
 
-                // Mostrar/ocultar botones
+                // Ajustes de botones
                 $('#btn-save-event').removeClass('d-none');
                 $('#edit-event-btn').addClass('d-none');
 
@@ -207,19 +187,27 @@
 
         calendar.render();
 
-        // Guardar evento (crear o actualizar)
         $('#form-event').on('submit', function(e) {
             e.preventDefault();
 
             var eventId = $('#eventid').val();
             var title = $('#event-title').val();
             var category = $('#event-category').val();
-            var start_time = new Date($('#event-start').val());
+            var start_time_full = new Date($('#event-start').val());
             var duration_days = parseInt($('#event-duration').val());
 
-            // Aquí ajustamos la fecha de fin sumando la cantidad de días menos 1
-            var end_time = new Date(start_time);
-            end_time.setDate(start_time.getDate() + (duration_days - 1)); // No desplaza la fecha de inicio
+            if (isNaN(duration_days) || duration_days < 1) {
+                alert("Duración inválida. Debe ser al menos 1 día.");
+                return;
+            }
+
+            var start_date = start_time_full.toISOString().split('T')[0]; // Solo la fecha (YYYY-MM-DD)
+            var start_time = start_time_full.toTimeString().split(' ')[0]; // Solo la hora (HH:MM:SS)
+
+            var end_time_full = new Date(start_time_full);
+            end_time_full.setDate(start_time_full.getDate() + (duration_days - 1));
+
+            var end_date = end_time_full.toISOString().split('T')[0]; // Solo la fecha de fin
 
             var url = '/events';
             var method = 'POST';
@@ -229,29 +217,40 @@
                 method = 'PUT';
             }
 
+            console.log("Datos enviados:", {
+                title: title,
+                category: category,
+                start_date: start_date,
+                start_time: start_time, // Hora actual
+                end_date: end_date,
+                duration_days: duration_days
+            });
+
             $.ajax({
                 url: url,
                 type: method,
                 data: {
                     title: title,
                     category: category,
-                    start_time: start_time.toISOString(),
-                    end_time: end_time.toISOString(),
+                    start_date: start_date, // Fecha de inicio (YYYY-MM-DD)
+                    start_time: start_time, // Hora de inicio (HH:MM:SS)
+                    end_date: end_date, // Fecha de fin (YYYY-MM-DD)
                     duration_days: duration_days,
                     _token: $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
+                    console.log("Evento guardado con éxito:", response);
                     $('#event-modal').modal('hide');
-                    calendar.refetchEvents(); // Recargar los eventos para mostrarlos en el calendario
+                    calendar.refetchEvents(); // Recargar los eventos
                     alert(response.message);
                 },
-                error: function(xhr) {
-                    alert('Error al guardar el evento');
+                error: function(xhr, status, error) {
+                    console.log("Error en la respuesta AJAX:", xhr.responseText);
+                    alert('Error al guardar el evento.');
                 }
             });
         });
 
-        // Manejar la eliminación de eventos
         $('#btn-delete-event').on('click', function() {
             var eventId = $('#eventid').val();
 
@@ -264,6 +263,7 @@
                             _token: $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function(response) {
+                            console.log("Evento eliminado con éxito:", response);
                             $('#event-modal').modal('hide');
                             calendar.refetchEvents();
                             alert(response.message);
@@ -276,18 +276,18 @@
             }
         });
 
-        // Función para formatear la fecha y hora en formato adecuado para el input datetime-local
         function formatDateTimeLocal(date) {
             var year = date.getFullYear();
             var month = ('0' + (date.getMonth() + 1)).slice(-2);
             var day = ('0' + date.getDate()).slice(-2);
-            var hours = ('0' + date.getHours()).slice(-2);
+            var hours = ('0' + date.getHours()).slice(-2); // Mantiene la hora correcta
             var minutes = ('0' + date.getMinutes()).slice(-2);
 
             return `${year}-${month}-${day}T${hours}:${minutes}`;
         }
     });
 </script>
+
 
 <!-- Meta CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">

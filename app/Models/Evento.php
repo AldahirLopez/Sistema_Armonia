@@ -8,19 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Evento extends Model
 {
     use HasFactory;
+
     // Especificar la conexión a la base de datos secundaria
     protected $connection = 'segunda_db';
-    protected $fillable = ['title', 'category', 'start_time', 'duration_days', 'user_id'];
 
-    protected $dates = ['start_time'];
-    // Asegúrate de que 'start_time' se convierta en un objeto de Carbon automáticamente
-    protected $casts = [
-        'start_time' => 'datetime',
+    protected $table = 'eventos';
+
+    // Definir los campos que se pueden llenar masivamente
+    protected $fillable = [
+        'title',
+        'category',
+        'start_date',
+        'start_time',
+        'end_date',
+        'duration_days',
+        'user_id',
     ];
 
-    // Relación con el modelo User
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // Indicar que los campos de fecha deben ser instancias de Carbon
+    protected $dates = ['start_date', 'start_time', 'end_date'];
 }
