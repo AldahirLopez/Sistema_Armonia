@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class CalendarioController extends Controller
 {
@@ -38,6 +39,8 @@ class CalendarioController extends Controller
                 'start' => $start_time->toIso8601String(),
                 'end' => $end_time->toIso8601String(),
                 'className' => $event->category,
+                'duration_days' => $event->duration_days // Enviamos la duración al cliente
+
             ];
         });
 
@@ -59,9 +62,9 @@ class CalendarioController extends Controller
             'duration_days' => 'required|integer|min:1',
         ]);
 
-        // Calcular la fecha de término
+        // Calcular la fecha de término (sin restar días)
         $start_date = \Carbon\Carbon::parse($request->start_date . ' ' . $request->start_time);
-        $end_date = $start_date->copy()->addDays($request->duration_days - 1);
+        $end_date = $start_date->copy()->addDays((int)$request->duration_days); // No restamos días
 
         // Guardar el evento
         Evento::create([
@@ -93,9 +96,9 @@ class CalendarioController extends Controller
             'duration_days' => 'required|integer|min:1',
         ]);
 
-        // Calcular la nueva fecha de fin
+        // Calcular la nueva fecha de fin (sin restar días)
         $start_date = \Carbon\Carbon::parse($request->start_date . ' ' . $request->start_time);
-        $end_date = $start_date->copy()->addDays($request->duration_days - 1);
+        $end_date = $start_date->copy()->addDays((int)$request->duration_days); // No restamos días
 
         // Actualizar los datos del evento
         $event->update([
@@ -106,6 +109,7 @@ class CalendarioController extends Controller
             'end_date' => $end_date->toDateString(),
             'duration_days' => $request->duration_days,
         ]);
+
 
         return response()->json(['message' => 'Evento actualizado con éxito'], 200);
     }
@@ -119,5 +123,13 @@ class CalendarioController extends Controller
         $event->delete();
 
         return response()->json(['message' => 'Evento eliminado con éxito'], 200);
+    }
+
+    public function eventosDelMes()
+    {
+        $currentMonth = Carbon::now()->month;
+        $eventos = Evento::whereMonth('start_date', $currentMonth)->orderBy('start_date', 'asc')->get();
+
+        return view('index', compact('eventos')); // Asegúrate de que 'index' sea la vista principal.
     }
 }

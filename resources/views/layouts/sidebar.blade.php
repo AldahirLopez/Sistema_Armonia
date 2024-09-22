@@ -11,7 +11,7 @@
 
                 <!-- Dashboard -->
                 <li>
-                    <a href="index">
+                    <a href="{{ url('/') }}">
                         <i data-feather="home"></i>
                         <span data-key="t-dashboard">@lang('translation.Dashboard')</span>
                     </a>

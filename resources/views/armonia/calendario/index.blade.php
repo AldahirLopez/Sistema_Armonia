@@ -72,12 +72,12 @@
                                 <label for="event-category" class="form-label">Categoría</label>
                                 <select class="form-control" id="event-category" name="category" required>
                                     <option value="" selected>--Selecciona--</option>
-                                    <option value="bg-danger">Peligro</option>
-                                    <option value="bg-success">Éxito</option>
-                                    <option value="bg-primary">Primario</option>
-                                    <option value="bg-info">Información</option>
-                                    <option value="bg-dark">Oscuro</option>
-                                    <option value="bg-warning">Advertencia</option>
+                                    <option value="bg-danger">Evaluación de Vigilancia</option>
+                                    <option value="bg-success">Inicio de Ruta</option>
+                                    <option value="bg-primary">Revisión de Estación</option>
+                                    <option value="bg-info">Reunión Virtual</option>
+                                    <option value="bg-warning">Generando Informes</option>
+                                    <option value="bg-dark">Otro</option>
                                 </select>
                                 <div class="invalid-feedback">Por favor, selecciona una categoría válida para el evento.</div>
                             </div>
@@ -142,7 +142,9 @@
 
                 // Si existe la fecha de fin, se toma en cuenta la duración
                 var end = info.event.end ? new Date(info.event.end) : null;
-                var duration = end ? Math.ceil((end - start) / (1000 * 60 * 60 * 24)) : 1;
+                // Si existe la variable de duración, úsala; de lo contrario, calcula la duración
+                var duration = info.event.extendedProps.duration_days ? info.event.extendedProps.duration_days : 1;
+
 
                 // Formatear la fecha para el campo datetime-local
                 var formattedDate = formatDateTimeLocal(start);
@@ -152,7 +154,7 @@
                 $('#event-title').val(title);
                 $('#event-category').val(category);
                 $('#event-start').val(formattedDate);
-                $('#event-duration').val(duration);
+                $('#event-duration').val(duration); // Mostrar la duración calculada
 
                 // Ajustes de botones
                 $('#btn-save-event').addClass('d-none');

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evento;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
@@ -35,7 +37,12 @@ class HomeController extends Controller
     }
     public function root()
     {
-        return view('index');
+        // Obtiene los eventos del mes actual
+        $currentMonth = Carbon::now()->month;
+        $eventos = Evento::whereMonth('start_date', $currentMonth)->get();
+        // Puedes modificar la consulta según tus necesidades
+
+        return view('index', compact('eventos'));
     }
 
     public function lang($locale)

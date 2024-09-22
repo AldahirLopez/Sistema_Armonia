@@ -131,6 +131,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/events', [CalendarioController::class, 'store']); // Guardar un nuevo evento
     Route::put('/events/{id}', [CalendarioController::class, 'update']); // Actualizar un evento existente
     Route::delete('/events/{id}', [CalendarioController::class, 'destroy']); // Eliminar un evento existente
+    Route::get('/', [CalendarioController::class, 'eventosDelMes'])->name('root');
 
 
     //Update User Details
