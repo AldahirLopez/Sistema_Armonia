@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\Listas_inspeccion;
+
 class ListasInspeccionController extends Controller
 {
     public function seleccion($id)
@@ -18,6 +20,30 @@ class ListasInspeccionController extends Controller
         return view("armonia.servicios.anexo_30.listas.seleccion", compact('id_servicio'));
     }
 
+    public  function store(Request $request){
+
+        $data=[
+            'lista'=>[
+                'seccion1'=>[
+                    'respaldo'=>$request->input('respaldo'),
+                    'observaciones_respaldo'=>$request->input('observaciones_respaldo'),
+                    'entorno_visual'=>$request->input('entorno_visual'),
+                    'observaciones_entorno_visual'=>$request->input('observaciones_entorno_visual') ?? '',
+                    'control_acceso'=>$request->input('control_acceso'),
+                    'observaciones_control_acceso'=>$request->input('observaciones_control_acceso') ?? ''
+                ],         
+            ],
+        ];
+        return Listas_inspeccion::create($data);
+    }
+
+
+    public function edit(Request $request, $id ){
+           $lista_inspeccion=Listas_inspeccion::findOrFail($id);
+           $lista=$lista_inspeccion->lista;
+            return view ('armonia.servicios.anexo_30.listas.edit',compact('lista'));
+    }
+    
     public function loadForm($type)
     {
         switch ($type) {

@@ -1,6 +1,6 @@
 <h4 style="padding-top: 40px;">Formulario para Estación</h4>
 <!-- Formulario principal que envuelve todas las secciones -->
-<form action="#" method="POST">
+<form action="{{route('lista_inspeccion.store')}}" method="POST">
     @csrf
 
     <!-- Cargar Sección 1 -->

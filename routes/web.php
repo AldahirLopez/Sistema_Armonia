@@ -124,6 +124,12 @@ Route::group(['middleware' => ['auth']], function () {
     // Ruta para cargar el formulario dinámico
     Route::get('/form/{type}', [ListasInspeccionController::class, 'loadForm']);
 
+    //Ruta para guardar la lista de inspeccion 
+    Route::post('/lista_inspeccion', [ListasInspeccionController::class, 'store'])->name('lista_inspeccion.store');
+
+    //Rutas para editar y actualizar la lista
+    Route::get('/lista_inspeccion/{id}', [ListasInspeccionController::class, 'edit'])->name('lista_inspeccion.edit');
+
 
     // Calendario
     Route::get('/calendario', [CalendarioController::class, 'index'])->name('calendario.index');
