@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evento;
+use App\Models\ServicioAnexo;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -40,9 +41,15 @@ class HomeController extends Controller
         // Obtiene los eventos del mes actual
         $currentMonth = Carbon::now()->month;
         $eventos = Evento::whereMonth('start_date', $currentMonth)->get();
-        // Puedes modificar la consulta según tus necesidades
 
-        return view('index', compact('eventos'));
+        // Obtiene los servicios creados por cada inspector (usuario)
+        $serviciosPorInspector = ServicioAnexo::with('usuario')
+            ->select('id_usuario', \DB::raw('count(*) as total_servicios'))
+            ->groupBy('id_usuario')
+            ->get();
+
+        // Pasa los datos de eventos y servicios a la vista
+        return view('index', compact('eventos', 'serviciosPorInspector'));
     }
 
     public function lang($locale)
