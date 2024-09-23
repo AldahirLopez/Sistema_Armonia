@@ -24,8 +24,8 @@ class ServicioCreadoNotification extends Notification
     // Define los canales por los cuales se enviará la notificación
     public function via($notifiable)
     {
-        return ['database'];
-        //return ['mail', 'database'];
+        //return ['database'];
+        return ['mail', 'database'];
     }
 
     // Define el contenido del correo
@@ -34,7 +34,7 @@ class ServicioCreadoNotification extends Notification
         // Determina el estado del servicio y genera el asunto y vista correspondientes
         if ($this->servicio->pending_deletion_servicio) {
             $subject = 'Servicio Pendiente de Eliminación';
-            $view = 'emails.servicio_pendiente_eliminacion'; // Vista personalizada para eliminación pendiente
+            $view = 'emails.servicio_eliminado'; // Vista personalizada para eliminación pendiente
         } else {
             $subject = 'Nuevo Servicio Anexo 30 Creado';
             $view = 'emails.servicio_creado'; // Vista para la creación de servicio

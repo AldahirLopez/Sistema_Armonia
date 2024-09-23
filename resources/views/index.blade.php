@@ -14,7 +14,7 @@
     <!-- Sección de eventos -->
     <div class="col-lg-6 mb-4">
         <div class="card shadow-sm border-0 h-100" style="min-height: 350px;">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-light">
                 <h5 class="card-title mb-0">Eventos del Mes</h5>
             </div>
             <div class="card-body p-3" style="max-height: 350px; overflow-y: auto;">

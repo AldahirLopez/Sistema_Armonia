@@ -9,7 +9,7 @@
 
 <body>
     <h1>¡Hola!</h1>
-    <p>Se ha creado un nuevo servicio con la nomenclatura: <strong>{{ $servicio->nomenclatura }}</strong></p>
+    <p>Se ha eliminado un nuevo servicio con la nomenclatura: <strong>{{ $servicio->nomenclatura }}</strong></p>
     <p>Este servicio fue creado por: <strong>{{ $servicio->usuario->name }}</strong></p>
     <p>Este servicio está pendiente de aprobación.</p>
     <a href="{{ url('/notificaciones') }}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; display: inline-block;">
