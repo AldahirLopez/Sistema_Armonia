@@ -112,7 +112,7 @@ class DireccionController extends Controller
         $campos = [
             'fiscal' => [
                 'entre_calles_fiscal' => 'nullable|max:255',
-                'calle_fiscal' => 'requirnullableed|max:255',
+                'calle_fiscal' => 'nullable|max:255',
                 'numero_exterior_fiscal' => 'nullable|max:10',
                 'numero_interior_fiscal' => 'nullable|max:10',
                 'colonia_fiscal' => 'nullable|max:255',
