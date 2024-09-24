@@ -40,7 +40,7 @@
                             <!-- Número Exterior -->
                             <div class="mb-3">
                                 <label for="numero_exterior_estacion" class="form-label">Número Exterior</label>
-                                <input type="text" name="numero_exterior_estacion" id="numero_exterior_estacion" class="form-control" placeholder="Número Exterior" required>
+                                <input type="text" name="numero_exterior_estacion" id="numero_exterior_estacion" class="form-control" placeholder="Número Exterior">
                             </div>
                         </div>
 
@@ -67,13 +67,13 @@
                             <!-- Entre Calles -->
                             <div class="mb-3">
                                 <label for="entre_calles_estacion" class="form-label">Entre Calles</label>
-                                <input type="text" name="entre_calles_estacion" id="entre_calles_estacion" class="form-control" placeholder="Entre Calles" required>
+                                <input type="text" name="entre_calles_estacion" id="entre_calles_estacion" class="form-control" placeholder="Entre Calles">
                             </div>
 
                             <!-- Localidad -->
                             <div class="mb-3">
                                 <label for="localidad_estacion" class="form-label">Localidad</label>
-                                <input type="text" name="localidad_estacion" id="localidad_estacion" class="form-control" placeholder="Localidad" required>
+                                <input type="text" name="localidad_estacion" id="localidad_estacion" class="form-control" placeholder="Localidad">
                             </div>
                         </div>
                     </div>
