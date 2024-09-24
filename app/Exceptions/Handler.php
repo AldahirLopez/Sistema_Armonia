@@ -41,12 +41,12 @@ class Handler extends ExceptionHandler
         // Verificar si es un error HTTP 500
         if ($exception instanceof HttpException && $exception->getStatusCode() == 500) {
             // Mostrar la vista personalizada de error 500
-            return response()->view('errors.500', [], 500);
+            return response()->view('pages-500', [], 500);
         }
 
         // Otros errores como 404, 403, etc. pueden ser manejados aquí
         if ($exception instanceof HttpException && $exception->getStatusCode() == 404) {
-            return response()->view('errors.404', [], 404);
+            return response()->view('pages-404', [], 404);
         }
 
         // Para otros errores, continuar con el comportamiento por defecto
