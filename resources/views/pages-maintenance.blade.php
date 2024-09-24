@@ -1,12 +1,12 @@
 @extends('layouts.master-without-nav')
 
 @section('title')
-    @lang('translation.Maintenance')
+@lang('translation.Mantenimiento')
 @endsection
 
 @section('body')
 
-    <body>
+<body>
     @endsection
 
     @section('content')
@@ -19,7 +19,7 @@
                         <div class="text-center">
                             <div class="mb-5">
                                 <a href="index  ">
-                                    <img src="build/images/logo-sm.svg" alt="" height="30" class="me-1"><span class="logo-txt text-dark font-size-22">Minia</span>
+                                    <img src="build/images/logoarmonia.png" alt="" height="30" class="me-1"><span class="logo-txt text-dark font-size-22">Armonia y Contraste Ambiental S.A. DE C.V.</span>
                                 </a>
                             </div>
 
@@ -27,8 +27,8 @@
                                 <i class="mdi mdi-cog spin-right display-3"></i>
                                 <i class="mdi mdi-cog spin-left display-4 cog-icon"></i>
                             </div>
-                            <h3 class="mt-4">Site is Under Maintenance</h3>
-                            <p>Please check back in sometime.</p>
+                            <h3 class="mt-4">El sitio está en mantenimiento</h3>
+                            <p>Por favor, vuelve a intentarlo más tarde.</p>
 
                             <div class="mt-4">
                                 <div class="row">
@@ -41,9 +41,8 @@
                                                     </span>
                                                 </div>
 
-                                                <h5 class="font-size-15 text-uppercase mt-4">Why is the Site Down?</h5>
-                                                <p class="text-muted mb-0">There are many variations of passages of
-                                                    Lorem Ipsum available, but the majority have suffered alteration.</p>
+                                                <h5 class="font-size-15 text-uppercase mt-4">¿Por qué está caído el sitio?</h5>
+                                                <p class="text-muted mb-0">Mantenimiento preventivo o actualizacion de algunos apartados</p>
                                             </div>
                                         </div>
                                     </div>
@@ -56,9 +55,8 @@
                                                     </span>
                                                 </div>
                                                 <h5 class="font-size-15 text-uppercase mt-4">
-                                                    What is the Downtime?</h5>
-                                                <p class="text-muted mb-0">Contrary to popular belief, Lorem Ipsum is not
-                                                    simply random text. It has roots in a piece of classical.</p>
+                                                    ¿Cuánto durará la interrupción?</h5>
+                                                <p class="text-muted mb-0">La interrupción se solucionara lo mas pronto posible</p>
                                             </div>
                                         </div>
                                     </div>
@@ -71,11 +69,8 @@
                                                     </span>
                                                 </div>
                                                 <h5 class="font-size-15 text-uppercase mt-4">
-                                                    Do you need Support?</h5>
-                                                <p class="text-muted mb-0">If you are going to use a passage of Lorem
-                                                    Ipsum, you need to be sure there isn't anything embar.. <a
-                                                            href="mailto:no-reply@domain.com"
-                                                            class="text-decoration-underline">no-reply@domain.com</a></p>
+                                                    ¿Necesitas soporte?</h5>
+                                                <p class="text-muted mb-0">Si necesitas soporte, comunicate via correo explicando tu situacion para poder apoyarte <a href="mailto:no-reply@domain.com" class="text-decoration-underline">no-reply@domain.com</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -91,6 +86,6 @@
             <!-- end container -->
         </div>
     </div>
-        <!-- end  -->
+    <!-- end  -->
 
     @endsection

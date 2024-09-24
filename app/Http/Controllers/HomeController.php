@@ -31,11 +31,16 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        // Verifica si la vista solicitada existe
         if (view()->exists($request->path())) {
+            // Si la vista existe, la devuelve
             return view($request->path());
         }
-        return abort(404);
+
+        // Si la vista no existe, devuelve una vista 404 personalizada
+        return response()->view('pages-404', [], 404);
     }
+
     public function root()
     {
         // Obtiene los eventos del mes actual
