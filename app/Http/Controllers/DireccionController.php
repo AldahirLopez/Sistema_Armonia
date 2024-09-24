@@ -111,9 +111,9 @@ class DireccionController extends Controller
     {
         $campos = [
             'fiscal' => [
-                'entre_calles_fiscal' => 'required|max:255',
+                'entre_calles_fiscal' => 'nullable|max:255',
                 'calle_fiscal' => 'required|max:255',
-                'numero_exterior_fiscal' => 'required|max:10',
+                'numero_exterior_fiscal' => 'nullable|max:10',
                 'numero_interior_fiscal' => 'nullable|max:10',
                 'colonia_fiscal' => 'required|max:255',
                 'codigo_postal_fiscal' => 'required',
@@ -122,14 +122,14 @@ class DireccionController extends Controller
                 'entidad_federativa_fiscal' => 'required',
             ], 
             'estacion' => [
-                'entre_calles_estacion' => 'required|max:255',
+                'entre_calles_estacion' => 'nullable|max:255',
                 'calle_estacion' => 'required|max:255',
-                'numero_exterior_estacion' => 'required|max:10',
+                'numero_exterior_estacion' => 'nullable|max:10',
                 'numero_interior_estacion' => 'nullable|max:10',
                 'colonia_estacion' => 'required|max:255',
                 'codigo_postal_estacion' => 'required',
                 'municipio_estacion' => 'required',
-                'localidad_estacion' => 'required|max:255',
+                'localidad_estacion' => 'nullable|max:255',
                 'entidad_federativa_estacion' => 'required',
             ],
         ];
