@@ -1,4 +1,4 @@
-<h4 style="padding-top: 40px;">Formulario para Estación</h4>
+<h4 style="padding-top: 40px;">Formulario para Transporte</h4>
 <!-- Formulario principal que envuelve todas las secciones -->
 <form action="{{route('lista_inspeccion.store')}}" method="POST">
     @csrf

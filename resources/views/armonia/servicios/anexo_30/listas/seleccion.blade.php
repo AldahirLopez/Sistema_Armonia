@@ -50,4 +50,17 @@
         }
     });
 </script>
+<script>
+    function mostrarPagina(numeroPagina) {
+        //console.log('Mostrando página:', numeroPagina); // Añadir este log para depurar
+        // Ocultar todas las páginas
+        const paginas = document.querySelectorAll('.pagina');
+        paginas.forEach(pagina => {
+            pagina.style.display = 'none';
+        });
+
+        // Mostrar la página seleccionada
+        document.getElementById('pagina-' + numeroPagina).style.display = 'block';
+    }
+</script>
 @endsection
