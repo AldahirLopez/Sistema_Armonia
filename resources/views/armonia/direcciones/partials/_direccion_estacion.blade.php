@@ -17,15 +17,15 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{ $direccionEstacion->entidad_federativa }}</td>
-            <td>{{ $direccionEstacion->municipio }}</td>
-            <td>{{ $direccionEstacion->calle }}</td>
-            <td>{{ $direccionEstacion->entre_calles }}</td>
-            <td>{{ $direccionEstacion->numero_exterior }}</td>
-            <td>{{ $direccionEstacion->numero_interior }}</td>
-            <td>{{ $direccionEstacion->colonia }}</td>
-            <td>{{ $direccionEstacion->codigo_postal }}</td>
-            <td>{{ $direccionEstacion->localidad }}</td>
+            <td>{{ $direccionEstacion->entidad_federativa ?: 'S/D' }}</td>
+            <td>{{ $direccionEstacion->municipio ?: 'S/D' }}</td>
+            <td>{{ $direccionEstacion->calle ?: 'S/D' }}</td>
+            <td>{{ $direccionEstacion->entre_calles ?: 'S/D' }}</td>
+            <td>{{ $direccionEstacion->numero_exterior ?: 'S/D' }}</td>
+            <td>{{ $direccionEstacion->numero_interior ?: 'S/D' }}</td>
+            <td>{{ $direccionEstacion->colonia ?: 'S/D' }}</td>
+            <td>{{ $direccionEstacion->codigo_postal ?: 'S/D' }}</td>
+            <td>{{ $direccionEstacion->localidad ?: 'S/D' }}</td>
             <td>
 
                 <!-- Botón de eliminar -->

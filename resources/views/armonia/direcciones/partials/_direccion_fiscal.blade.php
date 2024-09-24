@@ -17,15 +17,15 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{ $direccionFiscal->entidad_federativa }}</td>
-            <td>{{ $direccionFiscal->municipio }}</td>
-            <td>{{ $direccionFiscal->calle }}</td>
-            <td>{{ $direccionFiscal->entre_calles }}</td>
-            <td>{{ $direccionFiscal->numero_exterior }}</td>
-            <td>{{ $direccionFiscal->numero_interior }}</td>
-            <td>{{ $direccionFiscal->colonia }}</td>
-            <td>{{ $direccionFiscal->codigo_postal }}</td>
-            <td>{{ $direccionFiscal->localidad }}</td>
+            <td>{{ $direccionFiscal->entidad_federativa ?: 'S/D' }}</td>
+            <td>{{ $direccionFiscal->municipio ?: 'S/D' }}</td>
+            <td>{{ $direccionFiscal->calle ?: 'S/D' }}</td>
+            <td>{{ $direccionFiscal->entre_calles ?: 'S/D' }}</td>
+            <td>{{ $direccionFiscal->numero_exterior ?: 'S/D' }}</td>
+            <td>{{ $direccionFiscal->numero_interior ?: 'S/D' }}</td>
+            <td>{{ $direccionFiscal->colonia ?: 'S/D' }}</td>
+            <td>{{ $direccionFiscal->codigo_postal ?: 'S/D' }}</td>
+            <td>{{ $direccionFiscal->localidad ?: 'S/D' }}</td>
             <td>
                 <!-- Botón de eliminar -->
                 <form action="{{ route('direcciones.destroy', $direccionFiscal->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta dirección?');">
