@@ -69,13 +69,13 @@
                             <!-- Entre Calles -->
                             <div class="mb-3">
                                 <label for="entre_calles_fiscal" class="form-label">Entre Calles</label>
-                                <input type="text" name="entre_calles_fiscal" id="entre_calles_fiscal" class="form-control" placeholder="Entre Calles" required>
+                                <input type="text" name="entre_calles_fiscal" id="entre_calles_fiscal" class="form-control" placeholder="Entre Calles">
                             </div>
 
                             <!-- Localidad -->
                             <div class="mb-3">
                                 <label for="localidad_fiscal" class="form-label">Localidad</label>
-                                <input type="text" name="localidad_fiscal" id="localidad_fiscal" class="form-control" placeholder="Localidad" required>
+                                <input type="text" name="localidad_fiscal" id="localidad_fiscal" class="form-control" placeholder="Localidad">
                             </div>
                         </div>
                     </div>
