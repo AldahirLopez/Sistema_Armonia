@@ -24,8 +24,8 @@ class ServicioCreadoNotification extends Notification
     // Define los canales por los cuales se enviará la notificación
     public function via($notifiable)
     {
-        //return ['database'];
-        return ['mail', 'database'];
+        return ['database'];
+        //return ['mail', 'database'];
     }
 
     // Define el contenido del correo
