@@ -84,7 +84,7 @@
                         <i class="bx bx-folder-open"></i> Documentación
                     </a>
 
-                    <a href="{{ route('expediente.index', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm">
+                    <a href="{{ route('expediente_servicio_005.index', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm">
                         <i class="bx bx-folder-open"></i> Expediente
                     </a>
 

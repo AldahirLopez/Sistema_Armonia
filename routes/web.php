@@ -14,6 +14,7 @@ use App\Http\Controllers\ServicioAnexo30Controller;
 use App\Http\Controllers\Servicio005Controller;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ExpendienteServicio005Controller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -140,6 +141,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/expediente/dictamenes/medicion', [ExpedienteController::class, 'guardarDictamenesMedicion'])->name('expediente.dictamenes.medicion');
 
     Route::post('/expediente/guardar-certificado', [ExpedienteController::class, 'guardarCertificado'])->name('guardar.certificado');
+
+
+    ///Expediente de Servicio 005
+    Route::get('expediente/servicio_005/{id}', [ExpendienteServicio005Controller::class, 'index'])->name('expediente_servicio_005.index');
+    // Ruta para generar el expediente servicio 005
+    Route::post('/servicio_005/generar-expediente', [ExpendienteServicio005Controller::class, 'generarExpediente'])->name('expediente_servicio_005.generar');
+
+
 
     //Equipos de la estacion 
     Route::get('seleccion_estructura/{id}', [EquipoEstacionController::class, 'seleccion'])->name('equipo.seleccion');
