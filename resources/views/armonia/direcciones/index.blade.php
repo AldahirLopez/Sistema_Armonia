@@ -7,7 +7,7 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Direcciones @endslot
-@slot('title') Direciones: {{ $estacion->razon_social }} @endslot
+@slot('title') {{ $estacion->razon_social }} @endslot
 @endcomponent
 
 @include('partials.alertas') <!-- Incluyendo las alertas -->
