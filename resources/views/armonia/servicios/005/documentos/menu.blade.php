@@ -23,14 +23,12 @@
     @php 
     $documentaciones = [
     ['title' => 'Documentación General', 'action' => route('documentacion_servicio_005.general', ['id' => $servicio->id])],
-    ['title' => 'Documentación Informática', 'action' => route('documentacion_servicio_005.informatica', ['id' => $servicio->id])],
-    ['title' => 'Documentación de Medición', 'action' => route('documentacion_servicio_005.medicion', ['id' => $servicio->id])],
-    ['title' => 'Documentación Inspección', 'action' => route('documentacion_servicio_005.inspeccion', ['id' => $servicio->id])],
+    ['title' => 'Documentos Expedidos por Terceros', 'action' => route('documentacion_servicio_005.terceros', ['id' => $servicio->id])],
     ];
     @endphp
 
     @foreach($documentaciones as $doc)
-    @include('armonia.servicios.anexo_30.documentos.componentes.documento-card', [
+    @include('armonia.servicios.005.documentos.componentes.documento-card', [
     'title' => $doc['title'],
     'action' => $doc['action'],
     'servicio' => $servicio

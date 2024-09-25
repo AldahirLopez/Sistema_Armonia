@@ -1,17 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-@lang('Documentación del Servicio - Anexo 30')
+@lang('Documentación del Servicio - 005')
 @endsection
 
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Servicios @endslot
-@slot('title') Documentación de Inspección en Sitio del Servicio {{ $servicio->nomenclatura }} @endslot
+@slot('title') Documentos Expedidos por Terceros del Servicio {{ $servicio->nomenclatura }} @endslot
 @endcomponent
-
 @include('partials.alertas') <!-- Incluyendo las alertas -->
-
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -42,7 +40,7 @@
                             $docUrl = '';
                             $documentId = null;
 
-                            // Comparar el nombre del documento almacenado con el nombre esperado
+                            // Verificar si existe un documento en la base de datos que coincida con la categoría y nombre
                             foreach ($documentos as $documento) {
                             if ($documento->nombre === $doc['descripcion']) {
                             $docExists = true;
@@ -64,7 +62,7 @@
 
                                     <!-- Botón de eliminar solo si el documento existe -->
                                     @if($docExists)
-                                    <form action="{{ route('documentacion_servicio_005.inspeccion.delete', $documentId) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('documentacion_servicio_005.terceros.delete', $documentId) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres borrar este documento?');">
@@ -75,7 +73,7 @@
                                 </td>
                                 <td>
                                     @if($docExists)
-                                    <a href="{{ Storage::url($docUrl) }}" class="btn btn-info btn-sm" download>
+                                    <a href="{{ $docUrl }}" class="btn btn-info btn-sm" download>
                                         <i class="bx bx-download"></i>
                                     </a>
                                     @else
@@ -97,14 +95,14 @@
                                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('documentacion_servicio_005.inspeccion.store') }}" method="POST" enctype="multipart/form-data">
+                                            <form action="{{ route('documentacion_servicio_005.terceros.store') }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="rutadoc_estacion" class="form-label">Seleccionar Archivo</label>
                                                     <input type="file" name="rutadoc_estacion" class="form-control" required>
                                                 </div>
                                                 <input type="hidden" name="servicio_id" value="{{ $servicio->id }}">
-                                                <input type="hidden" name="categoria" value="inspeccion">
+                                                <input type="hidden" name="categoria" value="terceros">
                                                 <input type="hidden" name="nombre" value="{{ $doc['descripcion'] }}">
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

@@ -115,23 +115,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/servicio_005/general/store', [DocumentacionServicio005Controller::class, 'store'])->name('documentacion_servicio_005.general.store');
         Route::delete('/servicio_005/general/{id}', [DocumentacionServicio005Controller::class, 'destroy'])->name('documentacion_servicio_005.general.delete');
        
-        //Documentacion Informatica servicio 005
-        Route::get('/servicio_005/informatica', [DocumentacionServicio005Controller::class, 'documentosInformaticos'])->name('documentacion_servicio_005.informatica');
-        Route::post('/servicio_005/informatica/store', [DocumentacionServicio005Controller::class, 'store'])->name('documentacion_servicio_005.informatica.store');
-        Route::delete('/servicio_005/informatica/{id}', [DocumentacionServicio005Controller::class, 'destroy'])->name('documentacion_servicio_005.informatica.delete');
 
-         // Documentacion de Medición servicio 005
-         Route::get('/servicio_005/medicion', [DocumentacionServicio005Controller::class, 'documentosMedicion'])->name('documentacion_servicio_005.medicion');
-         Route::post('/servicio_005/medicion/store', [DocumentacionServicio005Controller::class, 'store'])->name('documentacion_servicio_005.medicion.store');
-         Route::delete('/servicio_005/medicion/{id}', [DocumentacionServicio005Controller::class, 'destroy'])->name('documentacion_servicio_005.medicion.delete');
-
-        // Documentación Inspección servicio 005
-        Route::get('/servicio_005/inspeccion', [DocumentacionServicio005Controller::class, 'documentosInspeccion'])->name('documentacion_servicio_005.inspeccion');
-        Route::post('/servicio_005/inspeccion/store', [DocumentacionServicio005Controller::class, 'store'])->name('documentacion_servicio_005.inspeccion.store');
-        Route::delete('/servicio_005/inspeccion/{id}', [DocumentacionServicio005Controller::class, 'destroy'])->name('documentacion_servicio_005.inspeccion.delete');
-
-
-
+         //Documentacion Terceros servicio 005
+         Route::get('/servicio_005/terceros', [DocumentacionServicio005Controller::class, 'documentosExpedidosTerceros'])->name('documentacion_servicio_005.terceros');
+         Route::post('/servicio_005/terceros/store', [DocumentacionServicio005Controller::class, 'store'])->name('documentacion_servicio_005.terceros.store');
+         Route::delete('/servicio_005/terceros/{id}', [DocumentacionServicio005Controller::class, 'destroy'])->name('documentacion_servicio_005.terceros.delete');
+    
     
     });
 

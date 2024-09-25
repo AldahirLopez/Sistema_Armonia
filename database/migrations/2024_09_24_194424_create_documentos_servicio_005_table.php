@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');  // Nombre del documento
             $table->string('ruta');    // Ruta de almacenamiento del archivo
             $table->foreignId('servicio_id'); // Relaciona con la tabla de servicios
-            $table->enum('categoria', ['generales', 'medicion', 'informatica', 'inspeccion']); // Categoría de documento
+            $table->enum('categoria', ['generales', 'terceros']); // Categoría de documento
             $table->foreignId('usuario_id'); // Usuario que subió el documento
             $table->timestamps(); // Timestamps para control
         });
