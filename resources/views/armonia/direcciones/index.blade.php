@@ -7,7 +7,7 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Selección @endslot
-@slot('title') Estaciones de Servicio @endslot
+@slot('title') Direcion {{ $estacion->num_estacion }} - {{ $estacion->razon_social }} @endslot
 @endcomponent
 
 @include('partials.alertas') <!-- Incluyendo las alertas -->
