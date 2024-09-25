@@ -53,6 +53,7 @@
                                 <th>Número de estación</th>
                                 <th>Razón Social</th>
                                 <th>Estado</th>
+                                <th>Municipio</th>
                                 <th>Acciones</th>
                                 <th>Direcciones</th>
                                 <th>Estructura</th>
@@ -65,6 +66,8 @@
                                 <td>{{ $estacion->num_estacion }}</td>
                                 <td>{{ $estacion->razon_social }}</td>
                                 <td>{{ $estacion->estado_republica }}</td>
+                                <td>{{ optional($estacion->domicilioServicio)->municipio ?? 'No disponible' }}</td>
+
                                 <td>
                                     <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarEstacionModal-{{ $estacion->id }}">
                                         <i class="bx bx-pencil"></i>

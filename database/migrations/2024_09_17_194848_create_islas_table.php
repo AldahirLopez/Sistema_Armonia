@@ -10,7 +10,7 @@ class CreateIslasTable extends Migration
     {
         Schema::connection('segunda_db')->create('islas', function (Blueprint $table) {
             $table->id(); // Identificador de la isla
-            $table->string('numero_isla'); // Número o nombre identificador de la isla
+            $table->string('cantidad'); // Número o nombre identificador de la isla
             $table->foreignId('estacion_id'); // Relación con estaciones
             $table->timestamps(); // Campos para created_at y updated_at
             // Foreign key con la tabla de usuarios
