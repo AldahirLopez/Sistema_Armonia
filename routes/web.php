@@ -3,6 +3,7 @@
 use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\DocumentacionAnexo30Controller;
+use App\Http\Controllers\DocumentacionServicio005Controller;
 use App\Http\Controllers\EquipoEstacionController;
 use App\Http\Controllers\EstacionController;
 use App\Http\Controllers\ExpedienteController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\ListasInspeccionController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ServicioAnexo30Controller;
+use App\Http\Controllers\Servicio005Controller;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +63,9 @@ Route::group(['middleware' => ['auth']], function () {
     //Servicio Anexo 30
     Route::resource('anexo', ServicioAnexo30Controller::class);
 
+    //Servicio 005
+    Route::resource('servicio_005',  Servicio005Controller::class);
+   
     //Notificaciones 
     Route::get('notificaciones/{id}', [NotificacionController::class, 'mostrarNotificacion'])->name('notificaciones.mostrar');
 
@@ -76,6 +81,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/servicios/anexo_30/documentos/menu', [DocumentacionAnexo30Controller::class, 'menu'])->name('armonia.servicios.anexo_30.documentos.menu');
 
     Route::get('/documentacion/generarPDF', [DocumentacionAnexo30Controller::class, 'generarPDF'])->name('documentacion.generarPDF');
+
+    // Menú de Documentación servicio 005
+    Route::get('/servicios/005/documentos/menu', [DocumentacionServicio005Controller::class, 'menu'])->name('armonia.servicios.005.documentos.menu');
+    Route::get('/servicios/005/documentacion/generarPDF', [DocumentacionServicio005Controller::class, 'generarPDF'])->name('documentacion_servicio_005.generarPDF');
 
     // Rutas para categorías de documentación
     Route::prefix('documentacion')->group(function () {
@@ -98,7 +107,25 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/inspeccion', [DocumentacionAnexo30Controller::class, 'documentosInspeccion'])->name('documentacion.inspeccion');
         Route::post('/inspeccion/store', [DocumentacionAnexo30Controller::class, 'store'])->name('documentacion.inspeccion.store');
         Route::delete('/inspeccion/{id}', [DocumentacionAnexo30Controller::class, 'destroy'])->name('documentacion.inspeccion.delete');
+
+
+
+        //Documentacion General servicio 005
+        Route::get('/servicio_005/general', [DocumentacionServicio005Controller::class, 'documentosGenerales'])->name('documentacion_servicio_005.general');
+        Route::post('/servicio_005/general/store', [DocumentacionServicio005Controller::class, 'store'])->name('documentacion_servicio_005.general.store');
+        Route::delete('/servicio_005/general/{id}', [DocumentacionServicio005Controller::class, 'destroy'])->name('documentacion_servicio_005.general.delete');
+       
+
+         //Documentacion Terceros servicio 005
+         Route::get('/servicio_005/terceros', [DocumentacionServicio005Controller::class, 'documentosExpedidosTerceros'])->name('documentacion_servicio_005.terceros');
+         Route::post('/servicio_005/terceros/store', [DocumentacionServicio005Controller::class, 'store'])->name('documentacion_servicio_005.terceros.store');
+         Route::delete('/servicio_005/terceros/{id}', [DocumentacionServicio005Controller::class, 'destroy'])->name('documentacion_servicio_005.terceros.delete');
+    
+    
     });
+
+    
+
 
 
     //Expediente de Servicios Anexos 
