@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('title') @lang('translation.Calendar') @endsection
+@section('title')
+@lang('Calendario')
+@endsection
 
 @section('content')
-
 @component('components.breadcrumb')
-@slot('li_1') Apps @endslot
-@slot('title') Calendar @endslot
-@endcomponent
+@slot('li_1') Calendario @endslot
+@slot('title') Evento @endslot
 
 <div class="row">
     <div class="col-12">
