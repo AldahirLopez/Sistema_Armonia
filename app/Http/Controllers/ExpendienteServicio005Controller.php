@@ -81,7 +81,7 @@ class ExpendienteServicio005Controller extends Controller
             $this->processTemplate($data, $subFolderPath, 'REPORTE FOTOGRAFICO.docx');
          
             // Guardar los datos de expediente
-            $this->saveExpedienteData($data, $validatedData, $estacion);
+            $this->saveReporteFotograficoData($data, $validatedData, $estacion);
 
             return redirect()->route('expediente_servicio_005.index', ['id' => $validatedData['id_servicio']])
                 ->with('success', 'Expediente generado y guardado correctamente.');
@@ -165,14 +165,8 @@ class ExpendienteServicio005Controller extends Controller
                 'razonsocial' => $estacion->razon_social,
                 'id_usuario' => $validatedData['id_usuario'],
                 'nomenclatura'=>$validatedData['nomenclatura'],
-                'cre' => $validatedData['num_cre'] ?? $estacion->num_cre,
                 'domicilio_estacion' => $this->formatAddress($direccionServicio),
-                'constancia' => $validatedData['num_constancia'] ?? $estacion->num_constancia,
-                'contacto' => $validatedData['contacto'] ?? $estacion->contacto,
-                'fecha_recepcion' => Carbon::parse($validatedData['fecha_recepcion'])->format('d-m-Y'),
-                'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
-                'nom_repre' => $validatedData['nombre_representante_legal'] ?? $estacion->nombre_representante_legal,
-                'fecha_inspeccion_modificada' => Carbon::parse($validatedData['fecha_inspeccion'])->addYear()->format('d-m-Y'),
+                'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),           
             ]);
         }
 
@@ -185,6 +179,17 @@ class ExpendienteServicio005Controller extends Controller
         }
 
         return "Calle: {$direccion->calle}, Número Exterior: {$direccion->numero_exterior}, Colonia: {$direccion->colonia}, Localidad: {$direccion->localidad}, Municipio: {$direccion->municipio}, Entidad Federativa: {$direccion->entidad_federativa}";
+    }
+
+
+    private function saveReporteFotograficoData($data, $validatedData, $estacion){
+       
+
+        Expediente_Servicio_005::updateOrCreate(
+            ['servicio_005_id' => $validatedData['id_servicio']],
+            ['rutadoc_estacion' => $this->defineFolderPath($validatedData), 'usuario_id' => $validatedData['id_usuario']]
+        );
+
     }
 
      // Guardar los datos en la base de datos
@@ -292,7 +297,7 @@ class ExpendienteServicio005Controller extends Controller
             'id_servicio' => 'required',
             'id_usuario' => 'required|exists:users,id',
             'numestacion' => 'required|string',
-            //'tipo_estacion' => 'required|string',
+            'tipo_estacion' => 'required|string',
             'num_estacion' => 'required|string',
             'razon_social' => 'required|string',
             'rfc' => 'required|string',
@@ -318,9 +323,8 @@ class ExpendienteServicio005Controller extends Controller
             'nomenclatura' => 'required|string',
             'id_usuario' => 'required|exists:users,id',
             'domicilio_servicio_id' => 'nullable|integer',
-            'fecha_recepcion' => 'required|date',
             'fecha_inspeccion' => 'required|date',
-            'num_cre' => 'nullable|string',
+            'imagenes' => 'required|array|min:4',
             'imagenes.*'=>' |image|mimes:jpeg,png,jpg,gif',
         ]);
     }
