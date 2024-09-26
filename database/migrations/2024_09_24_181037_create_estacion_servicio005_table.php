@@ -23,7 +23,7 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->foreign('id_servicio_005')
-                ->references('id')->on('datos_armonia.servicio_005')
+                ->references('id')->on('datos_armonia.servicio005')
                 ->onDelete('cascade');
         });
     }

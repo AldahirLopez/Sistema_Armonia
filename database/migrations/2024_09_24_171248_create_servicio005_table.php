@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('segunda_db')->create('servicio_005', function (Blueprint $table) {
+        Schema::connection('segunda_db')->create('servicio005', function (Blueprint $table) {
             $table->id(); // ID autoincremental
             $table->string('nomenclatura')->unique()->nullable(); // Nomenclatura única, inicialmente null
             $table->boolean('pending_apro_servicio')->nullable();// Aprobacion de la estacion
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('servicio_005');
+        Schema::dropIfExists('servicio005');
     }
 };

@@ -13,7 +13,7 @@ class Expediente_Servicio_005 extends Model
     protected $connection = 'segunda_db';
 
     // Especificar la tabla asociada al modelo
-    protected $table = 'expediente_servicio_005';
+    protected $table = 'expediente_servicio005';
 
     protected $fillable = [
         'servicio_005_id',  // Agrega aquí los otros campos fillable si es necesario

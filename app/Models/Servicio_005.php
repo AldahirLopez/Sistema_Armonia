@@ -10,7 +10,7 @@ class Servicio_005 extends Model
     use HasFactory;
 
     protected $connection = 'segunda_db';
-    protected $table = 'servicio_005';
+    protected $table = 'servicio005';
 
 
     // Agrega 'nomenclatura' al arreglo fillable para permitir la asignación masiva
