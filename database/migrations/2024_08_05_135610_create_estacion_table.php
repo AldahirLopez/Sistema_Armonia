@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::connection('segunda_db')->create('estacion', function (Blueprint $table) {
             $table->id(); // Esto crea una columna 'id' con tipo 'unsignedBigInteger'
+            $table->string('tipo_estacion');
             $table->string('num_estacion');
             $table->string('razon_social');
             $table->string('rfc');
