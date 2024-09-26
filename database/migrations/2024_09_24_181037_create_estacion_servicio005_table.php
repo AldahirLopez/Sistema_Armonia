@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('segunda_db')->create('estacion_servicio005', function (Blueprint $table) {
+        Schema::connection('segunda_db')->create('estacion_servicio_nom_005', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_estacion');
             $table->unsignedBigInteger('id_servicio_005');
@@ -23,7 +23,7 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->foreign('id_servicio_005')
-                ->references('id')->on('datos_armonia.servicio005')
+                ->references('id')->on('datos_armonia.servicio_nom_005')
                 ->onDelete('cascade');
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('estacion_servicio005');
+        Schema::dropIfExists('estacion_servicio_nom_005');
     }
 };

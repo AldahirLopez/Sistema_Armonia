@@ -13,7 +13,7 @@ class Estacion_Servicio_005 extends Model
     protected $connection = 'segunda_db';
 
     // Especificar la tabla asociada al modelo
-    protected $table = 'estacion_servicio005';
+    protected $table = 'estacion_servicio_nom_005';
 
     // Agrega 'id_servicio_005' y otros campos al arreglo fillable para permitir la asignación masiva
     protected $fillable = [
@@ -24,6 +24,6 @@ class Estacion_Servicio_005 extends Model
 
     public function servicio005()
     {
-        return $this->belongsTo(servicio_005::class, 'id_servicio_005', 'id');
+        return $this->belongsTo(Servicio_005::class, 'id_servicio_005', 'id');
     }
 }

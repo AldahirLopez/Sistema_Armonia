@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Documentos extends Model
 {
     protected $connection = 'segunda_db';  // Conexión a la segunda base de datos
-    protected $table = 'documentos_anexos';  // Nombre de la tabla
+    protected $table = 'documentos_servicio_anexo_30';  // Nombre de la tabla
 
     // Permitir la asignación masiva en los siguientes campos
     protected $fillable = [

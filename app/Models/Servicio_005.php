@@ -10,7 +10,7 @@ class Servicio_005 extends Model
     use HasFactory;
 
     protected $connection = 'segunda_db';
-    protected $table = 'servicio005';
+    protected $table = 'servicio_nom_005';
 
 
     // Agrega 'nomenclatura' al arreglo fillable para permitir la asignación masiva
@@ -33,6 +33,6 @@ class Servicio_005 extends Model
     // Relación de muchos a muchos con Estacion
     public function estaciones()
     {
-        return $this->belongsToMany(Estacion::class, 'estacion_servicio005', 'id_servicio_005', 'id_estacion');
+        return $this->belongsToMany(Estacion::class, 'estacion_servicio_nom_005', 'id_servicio_005', 'id_estacion');
     }
 }

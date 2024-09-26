@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('segunda_db')->create('estacion_servicio', function (Blueprint $table) {
+        Schema::connection('segunda_db')->create('estacion_servicio_anexo_30', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_estacion');
             $table->unsignedBigInteger('id_servicio_anexo');

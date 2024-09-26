@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::connection('segunda_db')->create('certificado_anexo_30', function (Blueprint $table) {
+        Schema::connection('segunda_db')->create('certificado_servicio_anexo_30', function (Blueprint $table) {
             $table->id();
             $table->string('rutadoc');
             $table->unsignedBigInteger('usuario_id');

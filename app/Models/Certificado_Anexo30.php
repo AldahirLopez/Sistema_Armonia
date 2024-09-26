@@ -10,7 +10,7 @@ class Certificado_Anexo30 extends Model
     use HasFactory;
 
     protected $connection = 'segunda_db';
-    protected $table = 'certificado_anexo_30';
+    protected $table = 'certificado_servicio_anexo_30';
 
     // Define los atributos que se pueden asignar en masa
     protected $fillable = [

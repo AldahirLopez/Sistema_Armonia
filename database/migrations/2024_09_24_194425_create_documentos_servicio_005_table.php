@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('segunda_db')->create('documentos_servicio_005', function (Blueprint $table) {
+        Schema::connection('segunda_db')->create('documentos_servicio_nom_005', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');  // Nombre del documento
             $table->string('ruta');    // Ruta de almacenamiento del archivo

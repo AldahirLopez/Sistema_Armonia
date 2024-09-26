@@ -13,7 +13,7 @@ class Estacion_Servicio extends Model
     protected $connection = 'segunda_db';
 
     // Especificar la tabla asociada al modelo
-    protected $table = 'estacion_servicio';
+    protected $table = 'estacion_servicio_anexo_30';
 
     // Agrega 'id_servicio_anexo' y otros campos al arreglo fillable para permitir la asignación masiva
     protected $fillable = [
