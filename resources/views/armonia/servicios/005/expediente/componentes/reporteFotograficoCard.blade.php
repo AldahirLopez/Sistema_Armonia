@@ -5,6 +5,6 @@
             <li class="list-group-item">REPORTE FOTOGRAFICO</li>
             
         </ol>
-        <a href="#" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#reporteFotografico">Generar</a>
+        <a href="#" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#generarReporteFotografico">Generar</a>
     </div>
 </div>

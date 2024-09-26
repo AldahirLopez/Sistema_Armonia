@@ -148,7 +148,8 @@ Route::group(['middleware' => ['auth']], function () {
     // Ruta para generar el expediente servicio 005
     Route::post('/servicio_005/generar-expediente', [ExpendienteServicio005Controller::class, 'generarExpediente'])->name('expediente_servicio_005.generar');
 
-
+    //Ruta para generar el reporte fotografico del servicio 005
+    Route::post('/servicio_005/generar_reporte_fotografico', [ExpendienteServicio005Controller::class, 'generarReporteFotografico'])->name('reporte_fotografico_servicio_005.generar');
 
     //Equipos de la estacion 
     Route::get('seleccion_estructura/{id}', [EquipoEstacionController::class, 'seleccion'])->name('equipo.seleccion');

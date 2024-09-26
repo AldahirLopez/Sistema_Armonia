@@ -26,8 +26,6 @@ class ExpendienteServicio005Controller extends Controller
 
     public function generarExpediente(Request $request)
     {
- 
-
         try {
           
             // Validar los datos del formulario
@@ -60,6 +58,36 @@ class ExpendienteServicio005Controller extends Controller
                 return response()->json(['error' => 'Ocurrió un error al generar el expediente.'], 500);
             }
     }
+
+
+    public function generarReporteFotografico(Request $request)
+    {
+
+    
+            // Validar los datos del formulario
+            $validatedData = $this->validateReporteFotografico($request);
+          
+            // Obtener datos relacionados desde la base de datos
+            $estacion = $this->getEstacionData($validatedData['idestacion']);
+            $usuario = $this->getUsuarioData($validatedData['id_usuario']);
+            $direccionServicio = $this->getDireccion($validatedData['domicilio_servicio_id']);
+          
+            // Preparar los datos a usar en las plantillas
+            $data = $this->prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio);
+           
+            // Definir la carpeta de destino y procesar las plantillas
+            $subFolderPath = $this->defineFolderPath($validatedData);
+         
+            $this->processTemplate($data, $subFolderPath, 'REPORTE FOTOGRAFICO.docx');
+         
+            // Guardar los datos de expediente
+            $this->saveExpedienteData($data, $validatedData, $estacion);
+
+            return redirect()->route('expediente_servicio_005.index', ['id' => $validatedData['id_servicio']])
+                ->with('success', 'Expediente generado y guardado correctamente.');
+            
+    }
+
 
      // Método para definir la carpeta de destino
      private function defineFolderPath($validatedData)
@@ -98,6 +126,56 @@ class ExpendienteServicio005Controller extends Controller
              'cantidad' => $validatedData['cantidad'],
          ]);
      }
+        // Método para preparar los datos que se usarán en las plantillas del reporte fotografico
+        private function prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio)
+        {
+            $anio = now()->year;
+            $carpetaImages="Servicios/005/{$anio}/{$validatedData['id_usuario']}/{$validatedData['nomenclatura']}/expediente/imagenes_reporte_fotografico";
+            //Creamos la carpteta donde iran las imagenes del reporte fotografico
+            if (!Storage::disk('public')->exists($carpetaImages)) {
+                Storage::disk('public')->makeDirectory($carpetaImages);
+            }
+
+            //Obtener las imagenes
+             $imageNumber = 1;
+           
+             $imagePaths=[];
+             foreach ( $validatedData['imagenes'] as $image) {
+                 // Generar el nombre de la imagen
+                 $imageName = 'img_' . $imageNumber . '.' . $image->extension();
+                 
+             
+                 // Mover la imagen a la carpeta de destino, reemplazando si existe
+                 $image->storeAs($carpetaImages, $imageName, 'public');
+                
+                 // Obtener la ruta completa de la imagen
+                 $imagePath = Storage::disk('public')->path("$carpetaImages/$imageName") ?? null;
+                  // Almacenar la ruta de la imagen en el array
+                  $imagePaths[] = [
+                     'name' => 'img_' . $imageNumber ,
+                     'path' => $imagePath,
+                 ];
+                 $imageNumber++;
+                  
+             }
+             
+            return array_merge($validatedData, [
+                'imagePaths'=>$imagePaths,
+                'numestacion' => $estacion->num_estacion,
+                'razonsocial' => $estacion->razon_social,
+                'id_usuario' => $validatedData['id_usuario'],
+                'nomenclatura'=>$validatedData['nomenclatura'],
+                'cre' => $validatedData['num_cre'] ?? $estacion->num_cre,
+                'domicilio_estacion' => $this->formatAddress($direccionServicio),
+                'constancia' => $validatedData['num_constancia'] ?? $estacion->num_constancia,
+                'contacto' => $validatedData['contacto'] ?? $estacion->contacto,
+                'fecha_recepcion' => Carbon::parse($validatedData['fecha_recepcion'])->format('d-m-Y'),
+                'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
+                'nom_repre' => $validatedData['nombre_representante_legal'] ?? $estacion->nombre_representante_legal,
+                'fecha_inspeccion_modificada' => Carbon::parse($validatedData['fecha_inspeccion'])->addYear()->format('d-m-Y'),
+            ]);
+        }
+
 
      // Método para formatear las direcciones
     private function formatAddress($direccion)
@@ -135,19 +213,56 @@ class ExpendienteServicio005Controller extends Controller
     // Método para procesar la plantilla
     private function processTemplate($data, $subFolderPath, $templateName)
     {
-       
         $templateProcessor = new TemplateProcessor(storage_path("app/templates/servicio_005/Expediente/{$templateName}"));
-      
-        foreach ($data as $key => $value) {
-            if (is_array($value)) {
-                $value = implode(", ", $value); // Convertir arrays a texto si es necesario
+        // Si el template es "REPORTE FOTOGRAFICO.docx", manejamos las imágenes
+        if ($templateName == "REPORTE FOTOGRAFICO.docx") {
+            if (isset($data['imagePaths']) && is_array($data['imagePaths'])) {
+                foreach ($data['imagePaths'] as $image) {
+                    if (isset($image['name']) && isset($image['path'])) {
+                        // Agregamos la imagen al documento
+                        $templateProcessor->setImageValue($image['name'], [
+                            'path' => $image['path'],
+                            'width' => 310,
+                            'height' => 285,
+                            'ratio' => false
+                        ]);
+                    }
+                }
             }
-          
+        }
+        
+        // Reemplazamos los valores en el template
+        foreach ($data as $key => $value) {
+            // Ignoramos claves especiales que no deben ser procesadas como texto
+            if ($key == 'imagePaths' || $key == 'imagenes') {
+                continue; // Saltar estas claves
+            }
+            // Si el valor es un array, verificamos cómo manejarlo
+            if (is_array($value)) {
+                // Verificamos si es un array simple (no asociativo)
+                if ($this->isAssociativeArray($value)) {
+                    continue;
+                } else {
+                    // Si es un array numérico, lo convertimos a una cadena
+                    $value = implode(", ", $value);
+                }
+            }
+
+            // Reemplazamos el valor en el template
             $templateProcessor->setValue($key, (string) $value);
         }
 
+        // Guardamos el archivo con un nombre único basado en la nomenclatura
         $fileName = pathinfo($templateName, PATHINFO_FILENAME) . "_{$data['nomenclatura']}.docx";
         $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
+    }
+
+
+
+    // Función auxiliar para verificar si un array es asociativo
+    private function isAssociativeArray(array $array)
+    {
+        return array_keys($array) !== range(0, count($array) - 1);
     }
 
     // Método para obtener los datos del usuario
@@ -193,6 +308,20 @@ class ExpendienteServicio005Controller extends Controller
             'domicilio_servicio_id' => 'nullable|integer',
             'fecha_inspeccion' => 'required|date',
             'cantidad' => 'required|numeric',
+        ]);
+    }
+
+    private function validateReporteFotografico($request){
+        return $request->validate([
+            'idestacion' => 'required',
+            'id_servicio' => 'required',
+            'nomenclatura' => 'required|string',
+            'id_usuario' => 'required|exists:users,id',
+            'domicilio_servicio_id' => 'nullable|integer',
+            'fecha_recepcion' => 'required|date',
+            'fecha_inspeccion' => 'required|date',
+            'num_cre' => 'nullable|string',
+            'imagenes.*'=>'required|image|mimes:jpeg,png,jpg,gif',
         ]);
     }
 

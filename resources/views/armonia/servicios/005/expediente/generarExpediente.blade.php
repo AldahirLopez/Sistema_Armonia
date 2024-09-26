@@ -62,14 +62,11 @@
 'estados' => $estados
 ])
 
-@include('armonia.servicios.anexo_30.expediente.partials.generarDictamenInformaticosForm', [
-'title' => 'Dictámenes Informáticos',
-'type' => 'informatico',
-'servicioAnexo' => $servicio,
-'estacion' => $estacion
+@include('armonia.servicios.005.expediente.componentes.generarReporteFotografico', [
+'servicio_005' => $servicio,
+'estacion' => $estacion,
+'estados' => $estados
 ])
-
-
 
 @endsection
 
