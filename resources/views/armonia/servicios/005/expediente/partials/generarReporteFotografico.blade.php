@@ -1,7 +1,7 @@
 <form id="generateExpedienteForm" action="{{ route('reporte_fotografico_servicio_005.generar') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <!-- Campos ocultos -->
-    <p>REPORTE FOTOGRAFICO</p>
+
     <input type="hidden" name="nomenclatura" value="{{ $servicio_005->nomenclatura }}">
     <input type="hidden" name="idestacion" value="{{ $estacion->id }}">
     <input type="hidden" name="id_servicio" value="{{ $servicio_005->id }}">
