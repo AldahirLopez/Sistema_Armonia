@@ -119,33 +119,6 @@ class DocumentacionAnexo30Controller extends Controller
                 ['descripcion' => 'Certificados de calibración vigentes de equipos de medición manual para la correcta verificación de los equipos automáticos (Cinta petrolera con plomada, Termómetro electrónico portátil, Jarra patrón)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 16],
                 ['descripcion' => 'Reportes de laboratorio de la calidad del petrolífero correspondientes al primero y segundo semestre del año', 'codigo' => '', 'tipo' => 'Documental', 'id' => 17],
             ],
-            'inspeccion' => [
-                ['descripcion' => 'Bitacora Recepcion Y Descarga De Producto', 'codigo' => '', 'tipo' => 'Revision', 'id' => 1],
-                ['descripcion' => 'Bitacora De Limpiezas Programadas', 'codigo' => '', 'tipo' => 'Revision', 'id' => 2],
-                ['descripcion' => 'Bitacora De Desviaciones En El Balance Prod.', 'codigo' => '', 'tipo' => 'Revision', 'id' => 3],
-                ['descripcion' => 'Bitacora Incidentes E Inspeciones De Operación', 'codigo' => '', 'tipo' => 'Revision', 'id' => 4],
-                ['descripcion' => 'Bitacora De Mantenimiento', 'codigo' => '', 'tipo' => 'Revision', 'id' => 5],
-                ['descripcion' => 'Procedimiento Preparacion Y Respuesta Emergencia', 'codigo' => '', 'tipo' => 'Revision', 'id' => 6],
-                ['descripcion' => 'Procedimiento Investigacion De Accidente E Incidentes', 'codigo' => '', 'tipo' => 'Revision', 'id' => 7],
-                ['descripcion' => 'Procedimiento Etiquetado, Bloqueo Y Candadeo De Lineas Electricas', 'codigo' => '', 'tipo' => 'Revision', 'id' => 8],
-                ['descripcion' => 'Procedimiento Etiquetado, Bloqueo Y Candadeo De Lineas De Producto', 'codigo' => '', 'tipo' => 'Revision', 'id' => 9],
-                ['descripcion' => 'Procedimiento Para Trabajos Peligrosos Con Fuentes Que Generan Ignicion', 'codigo' => '', 'tipo' => 'Revision', 'id' => 10],
-                ['descripcion' => 'Procedimiento Trabajos En Alturas', 'codigo' => '', 'tipo' => 'Revision', 'id' => 11],
-                ['descripcion' => 'Procedimiento Trabajos En Areas Confinadas', 'codigo' => '', 'tipo' => 'Revision', 'id' => 12],
-                ['descripcion' => 'Procedimiento Despacho Al Publico', 'codigo' => '', 'tipo' => 'Revision', 'id' => 13],
-                ['descripcion' => 'Procedimiento Recepcion Y Descarga De Productos', 'codigo' => '', 'tipo' => 'Revision', 'id' => 14],],
-            'terceros' => [
-                ['descripcion' => 'Análisis de riesgo del sector hidrocarburos', 'codigo' => '', 'tipo' => 'Documental y Copia', 'id' => 1],
-                ['descripcion' => 'Pruebas de hermeticidad', 'codigo' => '', 'tipo' => 'Documental y Copia', 'id' => 2],
-                ['descripcion' => 'Carta responsiva y/o factura del mantenimiento de extintores', 'codigo' => '', 'tipo' => 'Documental y Copia', 'id' => 3],
-                ['descripcion' => 'Dictamen de instalaciones eléctricas', 'codigo' => '', 'tipo' => 'Documental y Copia', 'id' => 4],
-                ['descripcion' => 'Estudio de tierras físicas', 'codigo' => '', 'tipo' => 'Documental y Copia', 'id' => 5],
-                ['descripcion' => 'Certificado de limpieza ecológica', 'codigo' => '', 'tipo' => 'Documental y Copia', 'id' => 6],
-                ['descripcion' => 'Permiso de la CRE', 'codigo' => '', 'tipo' => 'Documental y Copia', 'id' => 7],
-                ['descripcion' => 'Tirilla del reporte de inventarios', 'codigo' => '', 'tipo' => 'Documental y Copia', 'id' => 8],
-                ['descripcion' => 'Tirilla de las pruebas de sensores', 'codigo' => '', 'tipo' => 'Documental y Copia', 'id' => 9],
-                ['descripcion' => 'Identificación oficial de la persona que atendió la inspección y testigos', 'codigo' => '', 'tipo' => 'Documental y Copia', 'id' => 10],
-            ],
         ];
         return $documents[$categoria] ?? [];
     }
@@ -246,7 +219,7 @@ class DocumentacionAnexo30Controller extends Controller
     {
         try {
             // Obtener todas las categorías y sus documentos
-            $categorias = ['generales', 'informatica', 'medicion', 'inspeccion', 'terceros'];
+            $categorias = ['generales', 'informatica', 'medicion'];
             $allDocuments = [];
 
             // Obtener los documentos de cada categoría

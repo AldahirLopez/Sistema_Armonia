@@ -240,66 +240,6 @@
                 @endforeach
             </tbody>
         </table>
-
-        <!-- Aquí es donde comienza una nueva página -->
-        <div class="page-break"></div>
-
-        <!-- Encabezado en la nueva página -->
-        <div class="header">
-            <div class="img-logo">
-                <img src="{{ public_path('build/images/logoarmonia.png') }}">
-            </div>
-            <div class="header-text">
-                <h1>ARMONÍA Y CONTRASTE AMBIENTAL, S.A. DE C.V. </h1>
-                <p class="highlight"><strong>Unidad de Inspección</strong></p>
-                <p style="text-align: right;"><strong>Materia:</strong>Estaciones de Servicio</p>
-            </div>
-        </div>
-
-        <div class="content">
-            <p><strong>Acreditación No.</strong> ES-003</p>
-            <p><strong>Aprobación No.</strong> UN05-087/20</p>
-        </div>
-        <div class="line"></div>
-
-        <h2 style="text-align: center; font-weight: bold; text-decoration: underline; font-size: 16px; margin-top: 30px;">
-            Requisitos Operación y Mantenimiento Inspección en Sitio</h2>
-        <table class="tabla-propuesta">
-            <thead>
-                <tr>
-                    <th>Descripción</th>
-                    <th>Tipo</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($allDocuments['inspeccion'] as $doc)
-                <tr>
-                    <td class="concepto">{{ $doc['descripcion'] }}</td>
-                    <td>{{ $doc['tipo'] }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <h2 style="text-align: center; font-weight: bold; text-decoration: underline; font-size: 16px; margin-top: 30px;">
-            Requisitos Operación y Mantenimiento Documentos Expedidos por Terceros</h2>
-        <table class="tabla-propuesta">
-            <thead>
-                <tr>
-                    <th>Descripción</th>
-                    <th>Tipo</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($allDocuments['terceros'] as $doc)
-                <tr>
-                    <td class="concepto">{{ $doc['descripcion'] }}</td>
-                    <td>{{ $doc['tipo'] }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-
     </div>
 </body>
 
