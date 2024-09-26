@@ -27,10 +27,22 @@ class NotificacionController extends Controller
         if ($administradores->isEmpty()) {
             return redirect()->back()->with('error', 'No hay administradores disponibles para enviar la notificación.');
         }
- 
+
         // Enviar notificación
         Notification::send($administradores, new ServicioCreadoNotification($servicio));
     }
+
+    /* public function notificarCambioNomenclatura(ServicioAnexo $servicio)
+    {
+        $administradores = User::role('Administrador')->get();
+
+        if ($administradores->isEmpty()) {
+            return redirect()->back()->with('error', 'No hay administradores disponibles para enviar la notificación.');
+        }
+ 
+        // Enviar notificación
+        Notification::send($administradores, new ServicioCreadoNotification($servicio));
+    }*/
 
     // Marcar notificación como leída
     public function marcarLeida($id)
@@ -125,7 +137,6 @@ class NotificacionController extends Controller
 
             return redirect()->route('notificaciones.listar')->with('info', 'El servicio y su notificación han sido eliminados exitosamente.');
         }
-
     }
 
     // Métodos auxiliares

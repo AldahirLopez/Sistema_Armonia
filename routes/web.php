@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Servicio 005
     Route::resource('servicio_005',  Servicio005Controller::class);
-   
+
     //Notificaciones 
     Route::get('notificaciones/{id}', [NotificacionController::class, 'mostrarNotificacion'])->name('notificaciones.mostrar');
 
@@ -115,17 +115,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/servicio_005/general', [DocumentacionServicio005Controller::class, 'documentosGenerales'])->name('documentacion_servicio_005.general');
         Route::post('/servicio_005/general/store', [DocumentacionServicio005Controller::class, 'store'])->name('documentacion_servicio_005.general.store');
         Route::delete('/servicio_005/general/{id}', [DocumentacionServicio005Controller::class, 'destroy'])->name('documentacion_servicio_005.general.delete');
-       
 
-         //Documentacion Terceros servicio 005
-         Route::get('/servicio_005/terceros', [DocumentacionServicio005Controller::class, 'documentosExpedidosTerceros'])->name('documentacion_servicio_005.terceros');
-         Route::post('/servicio_005/terceros/store', [DocumentacionServicio005Controller::class, 'store'])->name('documentacion_servicio_005.terceros.store');
-         Route::delete('/servicio_005/terceros/{id}', [DocumentacionServicio005Controller::class, 'destroy'])->name('documentacion_servicio_005.terceros.delete');
-    
-    
+
+        //Documentacion Terceros servicio 005
+        Route::get('/servicio_005/terceros', [DocumentacionServicio005Controller::class, 'documentosExpedidosTerceros'])->name('documentacion_servicio_005.terceros');
+        Route::post('/servicio_005/terceros/store', [DocumentacionServicio005Controller::class, 'store'])->name('documentacion_servicio_005.terceros.store');
+        Route::delete('/servicio_005/terceros/{id}', [DocumentacionServicio005Controller::class, 'destroy'])->name('documentacion_servicio_005.terceros.delete');
     });
 
-    
+
 
 
 
@@ -141,6 +139,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/expediente/dictamenes/medicion', [ExpedienteController::class, 'guardarDictamenesMedicion'])->name('expediente.dictamenes.medicion');
 
     Route::post('/expediente/guardar-certificado', [ExpedienteController::class, 'guardarCertificado'])->name('guardar.certificado');
+
+    Route::post('/servicio-anexo/{id}/actualizar-nomenclatura', [ServicioAnexo30Controller::class, 'actualizarNomenclatura'])->name('servicio-anexo.actualizar-nomenclatura');
+
 
 
     ///Expediente de Servicio 005

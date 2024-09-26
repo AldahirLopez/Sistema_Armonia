@@ -149,7 +149,7 @@ class ServicioAnexo30Controller extends Controller
         })
             ->whereDoesntHave('estacionServicio')
             ->get();
-    } 
+    }
 
     private function createServiceDirectory($userId, $nomenclatura)
     {
@@ -207,5 +207,49 @@ class ServicioAnexo30Controller extends Controller
         })->implode('');
 
         return $iniciales;
+    }
+
+    public function actualizarNomenclatura(Request $request, $servicioId)
+    {
+        // Validar que se proporcione una nueva nomenclatura
+        $request->validate([
+            'nueva_nomenclatura' => 'required|string',
+        ]);
+
+        // Recuperar el servicio que se va a actualizar
+        $servicio = ServicioAnexo::findOrFail($servicioId);
+
+        // Obtener la nomenclatura y la ruta de la carpeta antigua
+        $nomenclaturaAntigua = $servicio->nomenclatura;
+        $anio = now()->year;
+        $usuarioId = $servicio->id_usuario;
+        $rutaCarpetaAntigua = "Servicios/Anexo_30/{$anio}/{$usuarioId}/{$nomenclaturaAntigua}";
+
+        // Verificar si la nueva nomenclatura ya existe
+        $nuevaNomenclatura = $request->input('nueva_nomenclatura');
+        if (ServicioAnexo::where('nomenclatura', $nuevaNomenclatura)->exists()) {
+            return redirect()->back()->with('error', 'La nomenclatura ya existe. Por favor elija una diferente.');
+        }
+
+        // Actualizar la nomenclatura del servicio
+        $servicio->update([
+            'nomenclatura' => $nuevaNomenclatura,
+        ]);
+
+        // Definir la nueva ruta de la carpeta
+        $rutaCarpetaNueva = "Servicios/Anexo_30/{$anio}/{$usuarioId}/{$nuevaNomenclatura}";
+
+        // Eliminar la carpeta con la nomenclatura antigua si existe
+        if (Storage::disk('public')->exists($rutaCarpetaAntigua)) {
+            Storage::disk('public')->deleteDirectory($rutaCarpetaAntigua);
+        }
+
+        // Crear la nueva carpeta con la nueva nomenclatura
+        $this->createServiceDirectory($usuarioId, $nuevaNomenclatura);
+
+        // Notificar a los administradores sobre el cambio de nomenclatura
+        //app('App\Http\Controllers\NotificacionController')->notificarCambioNomenclatura($servicio);
+
+        return redirect()->route('anexo.index')->with('success', 'Nomenclatura actualizada y carpetas reorganizadas exitosamente.');
     }
 }

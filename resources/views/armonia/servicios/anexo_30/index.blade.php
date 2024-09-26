@@ -40,7 +40,17 @@
     <div class="col-lg-4 col-md-6 mb-4 d-flex">
         <div class="card border-light shadow-sm h-100 w-100">
             <div class="card-header bg-transparent border-0 pb-0">
-                <h5 class="card-title font-weight-bold text-dark text-truncate">{{ $servicio->nomenclatura }}</h5>
+                <h5 class="card-title font-weight-bold text-dark text-truncate">
+                    {{ $servicio->nomenclatura }}
+
+                    <!-- Mostrar botón de editar solo si el usuario tiene el rol de 'Administrador' -->
+                    @if(auth()->user()->hasRole('Administrador'))
+                    <button type="button" class="btn btn-outline-primary btn-sm ms-2 d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#actualizarNomenclaturaModal-{{ $servicio->id }}" style="border-radius: 20px;">
+                        <i class="bx bx-edit me-1" style="font-size: 1.2rem;"></i> <!-- Icono de editar con tamaño mayor -->
+                        <span>Editar</span>
+                    </button>
+                    @endif
+                </h5>
             </div>
             <div class="card-body d-flex flex-column justify-content-between">
                 <!-- Estado del servicio -->
@@ -122,5 +132,32 @@
 
 <!-- Modal para generar servicio -->
 @include('armonia.servicios.anexo_30.modals.generarServicio', ['estaciones' => $estaciones])
+@foreach($servicios as $servicio)
+<!-- Modal para actualizar la nomenclatura -->
+<div class="modal fade" id="actualizarNomenclaturaModal-{{ $servicio->id }}" tabindex="-1" aria-labelledby="actualizarNomenclaturaLabel-{{ $servicio->id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="actualizarNomenclaturaLabel-{{ $servicio->id }}">Actualizar Nomenclatura</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('servicio-anexo.actualizar-nomenclatura', $servicio->id) }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="nuevaNomenclatura-{{ $servicio->id }}" class="form-label">Nueva Nomenclatura</label>
+                        <input type="text" class="form-control" id="nuevaNomenclatura-{{ $servicio->id }}" name="nueva_nomenclatura" placeholder="Ingrese la nueva nomenclatura" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+
 
 @endsection
