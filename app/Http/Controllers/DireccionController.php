@@ -113,8 +113,8 @@ class DireccionController extends Controller
             'fiscal' => [
                 'entre_calles_fiscal' => 'nullable|max:255',
                 'calle_fiscal' => 'nullable|max:255',
-                'numero_exterior_fiscal' => 'nullable|max:10',
-                'numero_interior_fiscal' => 'nullable|max:10',
+                'numero_exterior_fiscal' => 'nullable|max:255',
+                'numero_interior_fiscal' => 'nullable|max:255',
                 'colonia_fiscal' => 'nullable|max:255',
                 'codigo_postal_fiscal' => 'nullable',
                 'municipio_fiscal' => 'required',
@@ -124,8 +124,8 @@ class DireccionController extends Controller
             'estacion' => [
                 'entre_calles_estacion' => 'nullable|max:255',
                 'calle_estacion' => 'nullable|max:255',
-                'numero_exterior_estacion' => 'nullable|max:10',
-                'numero_interior_estacion' => 'nullable|max:10',
+                'numero_exterior_estacion' => 'nullable|max:255',
+                'numero_interior_estacion' => 'nullable|max:255',
                 'colonia_estacion' => 'nullable|max:255',
                 'codigo_postal_estacion' => 'nullable',
                 'municipio_estacion' => 'required',
