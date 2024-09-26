@@ -10,6 +10,7 @@ use App\Models\Estacion;
 use App\Models\Servicio_005;
 use App\Models\Estacion_Servicio_005;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 class Servicio005Controller extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class Servicio005Controller extends Controller
      */
     public function index(Request $request)
     {
-        $usuarios = $this->getUsuariosConRol('Verificador Anexo 30');
+        $usuarios = $this->getUsuariosConRol('Verificador NOM-005');
         $usuario = Auth::user();
 
         if ($usuario) {
@@ -127,7 +128,7 @@ class Servicio005Controller extends Controller
         $rol = Role::on('mysql')->where('name', $roleName)->first();
         return $rol ? User::on('mysql')->whereIn('id', $rol->users()->pluck('id'))->get() : collect();
     }
-
+ 
     private function getEstacionesSinServicio($usuario, $isAdminOrAuditor)
     {
         return Estacion::when(!$isAdminOrAuditor, function ($query) use ($usuario) {

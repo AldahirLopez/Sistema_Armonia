@@ -149,7 +149,7 @@ class ServicioAnexo30Controller extends Controller
         })
             ->whereDoesntHave('estacionServicio')
             ->get();
-    }
+    } 
 
     private function createServiceDirectory($userId, $nomenclatura)
     {
