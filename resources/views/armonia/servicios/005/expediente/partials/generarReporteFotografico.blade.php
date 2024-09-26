@@ -110,7 +110,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="imagenes">Subir Imágenes</label>
-                <input type="file" name="imagenes[]" class="form-control" id="imagenes" accept="image/*" multiple>
+                <input type="file" name="imagenes[]" class="form-control" id="imagenes" accept="image/*" multiple required>
                 @error('imagenes')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

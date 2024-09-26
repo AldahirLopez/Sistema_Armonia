@@ -158,7 +158,7 @@ class ExpendienteServicio005Controller extends Controller
                  $imageNumber++;
                   
              }
-             
+
             return array_merge($validatedData, [
                 'imagePaths'=>$imagePaths,
                 'numestacion' => $estacion->num_estacion,
@@ -321,7 +321,7 @@ class ExpendienteServicio005Controller extends Controller
             'fecha_recepcion' => 'required|date',
             'fecha_inspeccion' => 'required|date',
             'num_cre' => 'nullable|string',
-            'imagenes.*'=>'required|image|mimes:jpeg,png,jpg,gif',
+            'imagenes.*'=>' |image|mimes:jpeg,png,jpg,gif',
         ]);
     }
 
