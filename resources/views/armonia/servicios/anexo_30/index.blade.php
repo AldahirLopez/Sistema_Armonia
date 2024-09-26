@@ -52,6 +52,7 @@
                     @endif
                 </h5>
             </div>
+
             <div class="card-body d-flex flex-column justify-content-between">
                 <!-- Estado del servicio -->
                 <p class="text-muted">

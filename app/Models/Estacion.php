@@ -64,4 +64,16 @@ class Estacion extends Model
     {
         return $this->hasMany(Estacion_Servicio::class, 'id_estacion', 'id');
     }
+
+    // Definir la relación con los tanques
+    public function tanques()
+    {
+        return $this->hasMany(Tanque::class, 'estacion_id');
+    }
+
+    // Definir la relación con los dispensarios
+    public function dispensarios()
+    {
+        return $this->hasMany(Dispensario::class, 'estacion_id');
+    }
 }

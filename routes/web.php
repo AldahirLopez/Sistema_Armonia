@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\DireccionController;
+use App\Http\Controllers\DispensarioController;
 use App\Http\Controllers\DocumentacionAnexo30Controller;
 use App\Http\Controllers\DocumentacionServicio005Controller;
 use App\Http\Controllers\EquipoEstacionController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Servicio005Controller;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ExpendienteServicio005Controller;
+use App\Http\Controllers\TanqueController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -152,8 +154,7 @@ Route::group(['middleware' => ['auth']], function () {
     //Ruta para generar el reporte fotografico del servicio 005
     Route::post('/servicio_005/generar_reporte_fotografico', [ExpendienteServicio005Controller::class, 'generarReporteFotografico'])->name('reporte_fotografico_servicio_005.generar');
 
-    //Equipos de la estacion 
-    Route::get('seleccion_estructura/{id}', [EquipoEstacionController::class, 'seleccion'])->name('equipo.seleccion');
+
 
 
     // Ruta para seleccionar listas
@@ -176,6 +177,23 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/events/{id}', [CalendarioController::class, 'update']); // Actualizar un evento existente
     Route::delete('/events/{id}', [CalendarioController::class, 'destroy']); // Eliminar un evento existente
     Route::get('/', [CalendarioController::class, 'eventosDelMes'])->name('root');
+
+
+    //Equipos de la estacion 
+    Route::get('seleccion_estructura/{id}', [EquipoEstacionController::class, 'seleccion'])->name('equipo.seleccion');
+    // Rutas para tanques
+    Route::prefix('estaciones/{estacion_id}/tanques')->group(function () {
+        Route::post('/store', [TanqueController::class, 'store'])->name('tanques.store');
+        Route::put('/{id}', [TanqueController::class, 'update'])->name('tanques.update');
+        Route::delete('/{id}', [TanqueController::class, 'destroy'])->name('tanques.destroy');
+    });
+
+    // Rutas para dispensarios
+    Route::prefix('estaciones/{estacion_id}/dispensarios')->group(function () {
+        Route::post('/store', [DispensarioController::class, 'store'])->name('dispensarios.store');
+        Route::put('/{id}', [DispensarioController::class, 'update'])->name('dispensarios.update');
+        Route::delete('/{id}', [DispensarioController::class, 'destroy'])->name('dispensarios.destroy');
+    });
 
 
     //Update User Details
