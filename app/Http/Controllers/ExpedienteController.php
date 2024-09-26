@@ -54,7 +54,7 @@ class ExpedienteController extends Controller
             return redirect()->route('expediente.index', ['id' => $validatedData['id_servicio']])
                 ->with('success', 'Expediente generado y guardado correctamente.');
         } catch (\Exception $e) {
-            //  \Log::error("Error al generar el expediente: " . $e->getMessage());
+            \Log::error("Error al generar el expediente: " . $e->getMessage());
             return response()->json(['error' => 'Ocurrió un error al generar el expediente.'], 500);
         }
     }

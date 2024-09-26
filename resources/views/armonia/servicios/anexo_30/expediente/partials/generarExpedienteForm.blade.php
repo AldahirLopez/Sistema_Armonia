@@ -4,7 +4,7 @@
     <input type="hidden" name="nomenclatura" value="{{ $servicioAnexo->nomenclatura }}">
     <input type="hidden" name="idestacion" value="{{ $estacion->id }}">
     <input type="hidden" name="id_servicio" value="{{ $servicioAnexo->id }}">
-    <input type="hidden" name="id_usuario" value="{{ $estacion->usuario->id }}">
+    <input type="hidden" name="id_usuario" value="{{ $servicioAnexo->id_usuario }}">
     <input type="hidden" name="numestacion" value="{{ $estacion->num_estacion }}">
 
     <div class="row">

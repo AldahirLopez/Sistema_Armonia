@@ -13,7 +13,7 @@
                     <input type="hidden" id="nom_repre" name="nom_repre" value="{{ strtoupper($estacion->nombre_representante_legal) }}">
                     <input type="hidden" id="idestacion" name="idestacion" value="{{ strtoupper($estacion->id) }}">
                     <input type="hidden" id="id_servicio" name="id_servicio" value="{{ $servicioAnexo->id }}">
-                    <input type="hidden" name="id_usuario" value="{{ $estacion->usuario->id }}">
+                    <input type="hidden" name="id_usuario" value="{{ $servicioAnexo->id_usuario  }}">
                     <input type="hidden" name="fecha_actual" value="{{ date('d/m/Y') }}">
                     <input type="hidden" id="numestacion" name="numestacion" value="{{ $estacion->num_estacion }}">
 

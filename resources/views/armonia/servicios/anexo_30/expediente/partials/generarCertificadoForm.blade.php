@@ -14,7 +14,7 @@
                     <input type="hidden" id="nomenclatura" name="nomenclatura" value="{{ strtoupper($servicioAnexo->nomenclatura) }}">
                     <input type="hidden" id="idestacion" name="idestacion" value="{{ strtoupper($estacion->id) }}">
                     <input type="hidden" id="id_servicio" name="id_servicio" value="{{ $servicioAnexo->id }}">
-                    <input type="hidden" name="id_usuario" value="{{ $estacion->usuario->id }}">
+                    <input type="hidden" name="id_usuario" value="{{ $servicioAnexo->id_usuario }}">
 
                     <!-- RFC del Representante Legal -->
                     <div class="form-group mt-3">
