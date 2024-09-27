@@ -55,13 +55,13 @@
                             <!-- Colonia -->
                             <div class="mb-3">
                                 <label for="colonia_estacion" class="form-label">Colonia</label>
-                                <input type="text" name="colonia_estacion" id="colonia_estacion" class="form-control" placeholder="Colonia" required>
+                                <input type="text" name="colonia_estacion" id="colonia_estacion" class="form-control" placeholder="Colonia">
                             </div>
 
                             <!-- Código Postal -->
                             <div class="mb-3">
                                 <label for="codigo_postal_estacion" class="form-label">Código Postal</label>
-                                <input type="text" name="codigo_postal_estacion" id="codigo_postal_estacion" class="form-control" placeholder="Código Postal" required>
+                                <input type="text" name="codigo_postal_estacion" id="codigo_postal_estacion" class="form-control" placeholder="Código Postal">
                             </div>
 
                             <!-- Entre Calles -->

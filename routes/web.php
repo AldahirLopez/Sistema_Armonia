@@ -16,6 +16,7 @@ use App\Http\Controllers\Servicio005Controller;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ExpendienteServicio005Controller;
+use App\Http\Controllers\SondaController;
 use App\Http\Controllers\TanqueController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -161,8 +162,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('seleccion_listas/{id}', [ListasInspeccionController::class, 'seleccion'])->name('listas.seleccion');
 
     // Ruta para cargar el formulario dinámico
-   // Route::get('/form/{type}', [ListasInspeccionController::class, 'loadForm']);
-   Route::get('/form/{type}/{id_servicio}', [ListasInspeccionController::class, 'loadForm']);
+    // Route::get('/form/{type}', [ListasInspeccionController::class, 'loadForm']);
+    Route::get('/form/{type}/{id_servicio}', [ListasInspeccionController::class, 'loadForm']);
 
 
     //Ruta para guardar la lista de inspeccion 
@@ -196,7 +197,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/{id}', [DispensarioController::class, 'update'])->name('dispensarios.update');
         Route::delete('/{id}', [DispensarioController::class, 'destroy'])->name('dispensarios.destroy');
     });
-
+    // Rutas para sondas
+    Route::prefix('estaciones/{estacion_id}/sondas')->group(function () {
+        Route::post('/store', [SondaController::class, 'store'])->name('sondas.store');
+        Route::put('/{id}', [SondaController::class, 'update'])->name('sondas.update');
+        Route::delete('/{id}', [SondaController::class, 'destroy'])->name('sondas.destroy');
+    });
 
     //Update User Details
     Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');

@@ -42,7 +42,7 @@
                             <!-- Número Exterior -->
                             <div class="mb-3">
                                 <label for="numero_exterior_fiscal" class="form-label">Número Exterior</label>
-                                <input type="text" name="numero_exterior_fiscal" id="numero_exterior_fiscal" class="form-control" placeholder="Número Exterior" required>
+                                <input type="text" name="numero_exterior_fiscal" id="numero_exterior_fiscal" class="form-control" placeholder="Número Exterior">
                             </div>
                         </div>
 
@@ -57,13 +57,13 @@
                             <!-- Colonia -->
                             <div class="mb-3">
                                 <label for="colonia_fiscal" class="form-label">Colonia</label>
-                                <input type="text" name="colonia_fiscal" id="colonia_fiscal" class="form-control" placeholder="Colonia" required>
+                                <input type="text" name="colonia_fiscal" id="colonia_fiscal" class="form-control" placeholder="Colonia">
                             </div>
 
                             <!-- Código Postal -->
                             <div class="mb-3">
                                 <label for="codigo_postal_fiscal" class="form-label">Código Postal</label>
-                                <input type="text" name="codigo_postal_fiscal" id="codigo_postal_fiscal" class="form-control" placeholder="Código Postal" required>
+                                <input type="text" name="codigo_postal_fiscal" id="codigo_postal_fiscal" class="form-control" placeholder="Código Postal">
                             </div>
 
                             <!-- Entre Calles -->

@@ -76,4 +76,9 @@ class Estacion extends Model
     {
         return $this->hasMany(Dispensario::class, 'estacion_id');
     }
+
+    public function sondas()
+    {
+        return $this->hasMany(Sondas::class, 'estacion_id');
+    }
 }

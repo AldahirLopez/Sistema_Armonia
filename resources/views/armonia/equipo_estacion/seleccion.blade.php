@@ -129,6 +129,62 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <!-- Tabla de Sondas -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Sondas</h5>
+                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregarSondas">
+                        <i class="bx bx-plus"></i> Agregar Sonda
+                    </button>
+                </div>
+                <div class="card-body">
+                    @if($sondas->isNotEmpty())
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Folio</th>
+                                <th>Número de Serie</th>
+                                <th>Producto</th>
+                                <th>Marca</th>
+                                @if(auth()->user()->hasRole('Administrador'))
+                                <th>Acciones</th>
+                                @endif
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($sondas as $sonda)
+                            <tr>
+                                <td>{{ $sonda->folio }}</td>
+                                <td>{{ $sonda->numero_serie }}</td>
+                                <td>{{ $sonda->producto }}</td>
+                                <td>{{ $sonda->marca }}</td>
+                                @if(auth()->user()->hasRole('Administrador'))
+                                <td class="text-center">
+                                    <!-- Botón de Eliminar para Sondas -->
+                                    <form action="{{ route('sondas.destroy', ['estacion_id' => $estacion->id, 'id' => $sonda->id]) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta sonda?');">
+                                            <i class="bx bx-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                                @endif
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @else
+                    <p class="text-center text-muted">No hay sondas registradas.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Modales -->
@@ -209,4 +265,42 @@
         </div>
     </div>
 </div>
+
+<!-- Modal para agregar sondas -->
+<div class="modal fade" id="modalAgregarSondas" tabindex="-1" aria-labelledby="modalAgregarSondasLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAgregarSondasLabel">Agregar Sonda</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('sondas.store', $estacion->id) }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="folio" class="form-label">Folio</label>
+                        <input type="text" class="form-control" id="folio" name="folio" placeholder="Ingrese el folio" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numeroSerie" class="form-label">Número de Serie</label>
+                        <input type="text" class="form-control" id="numeroSerie" name="numero_serie" placeholder="Ingrese el número de serie">
+                    </div>
+                    <div class="mb-3">
+                        <label for="producto" class="form-label">Producto</label>
+                        <input type="text" class="form-control" id="producto" name="producto" placeholder="Ingrese el producto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="marca" class="form-label">Marca</label>
+                        <input type="text" class="form-control" id="marca" name="marca" placeholder="Ingrese la marca" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection

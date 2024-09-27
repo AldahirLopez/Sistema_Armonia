@@ -20,9 +20,10 @@ class EquipoEstacionController extends Controller
         // Obtener los tanques y dispensarios asociados con la estación
         $tanques = $estacion->tanques;
         $dispensarios = $estacion->dispensarios;
+        $sondas = $estacion->sondas;
 
         // Pasar los datos a la vista
-        return view('armonia.equipo_estacion.seleccion', compact('estacion', 'tanques', 'dispensarios'));
+        return view('armonia.equipo_estacion.seleccion', compact('estacion', 'tanques', 'dispensarios', 'sondas'));
     }
 }
  
