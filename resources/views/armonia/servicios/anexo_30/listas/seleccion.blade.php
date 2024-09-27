@@ -18,6 +18,14 @@
     </div>
     <h3 class="page__heading">Lista de Inspección</h3>
 
+    @foreach ($listas_inspeccion as $lista)
+        <a href="{{route('lista_inspeccion.edit',['id'=>$lista->id])}}">Lista con id:{{$lista->id}}</a>
+        
+    @endforeach
+
+
+
+
     <form action="">
         <select id="tipo" name="tipo" class="form-select">
             <option selected disabled>Selecciona el tipo</option>
@@ -27,14 +35,17 @@
         </select>
     </form>
 </div>
+<input type="hidden" id="id_servicio" value="{{ $id_servicio }}">
+
 <div id="form-container"></div>
 
 <script>
     document.getElementById('tipo').addEventListener('change', function() {
         var selectedValue = this.value;
-        if (selectedValue) {
+        var idServicio = document.getElementById('id_servicio').value; // Get the id_servicio value
+        if (selectedValue && idServicio) {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/form/' + selectedValue, true);
+            xhr.open('GET', '/form/' + selectedValue + '/' + idServicio, true); // Pass both type and id_servicio
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     document.getElementById('form-container').innerHTML = xhr.responseText;
@@ -50,6 +61,7 @@
         }
     });
 </script>
+
 <script>
     function mostrarPagina(numeroPagina) {
         //console.log('Mostrando página:', numeroPagina); // Añadir este log para depurar

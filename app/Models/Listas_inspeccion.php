@@ -14,7 +14,8 @@ class Listas_inspeccion extends Model
     protected $table = 'listas_inspeccion';
 
     protected $fillable = [
-        'lista'
+        'lista',
+        'id_servicio'
     ];
 
     protected $casts = [

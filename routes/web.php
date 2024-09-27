@@ -161,7 +161,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('seleccion_listas/{id}', [ListasInspeccionController::class, 'seleccion'])->name('listas.seleccion');
 
     // Ruta para cargar el formulario dinámico
-    Route::get('/form/{type}', [ListasInspeccionController::class, 'loadForm']);
+   // Route::get('/form/{type}', [ListasInspeccionController::class, 'loadForm']);
+   Route::get('/form/{type}/{id_servicio}', [ListasInspeccionController::class, 'loadForm']);
+
 
     //Ruta para guardar la lista de inspeccion 
     Route::post('/lista_inspeccion', [ListasInspeccionController::class, 'store'])->name('lista_inspeccion.store');
