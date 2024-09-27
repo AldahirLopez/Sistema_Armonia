@@ -44,10 +44,10 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <input class="form-control" name="detalleOpinion{{ $loop->index + 1 }}" placeholder="Detalle de la opinión" required>
+                                    <input class="form-control" name="detalleOpinion{{ $loop->index + 1 }}" placeholder="Detalle de la opinión">
                                 </td>
                                 <td>
-                                    <input class="form-control" name="recomendaciones{{ $loop->index + 1 }}" placeholder="Recomendaciones" required>
+                                    <input class="form-control" name="recomendaciones{{ $loop->index + 1 }}" placeholder="Recomendaciones">
                                 </td>
                             </tr>
                             @endforeach
@@ -68,19 +68,18 @@
 
                     <!-- Información adicional del proveedor -->
                     <div class="row">
-                        @foreach([['proveedor', 'Proveedor de Sistemas Informáticos'],
-                        ['rfc_proveedor', 'RFC del Proveedor'],
-                        ['software', 'Nombre del Software'],
-                        ['version', 'Versión del Software']] as [$name, $label])
+                        @foreach([['proveedor', 'Proveedor de Sistemas Informáticos', $proveedorinfo->nombre ?? ''],
+                        ['rfc_proveedor', 'RFC del Proveedor', $proveedorinfo->rfc ?? ''],
+                        ['software', 'Nombre del Software', $proveedorinfo->nombre_software ?? ''],
+                        ['version', 'Versión del Software', $proveedorinfo->version ?? '']] as [$name, $label, $value])
                         <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label for="{{ $name }}" class="form-label">{{ $label }}</label>
-                                <input type="text" name="{{ $name }}" id="{{ $name }}" class="form-control" placeholder="Ingrese {{ strtolower($label) }}" required>
+                                <input type="text" name="{{ $name }}" id="{{ $name }}" class="form-control" placeholder="Ingrese {{ strtolower($label) }}" value="{{ $value }}" required>
                             </div>
                         </div>
                         @endforeach
                     </div>
-
                     <div class="text-center mt-3">
                         <button type="submit" class="btn btn-primary">Generar</button>
                     </div>

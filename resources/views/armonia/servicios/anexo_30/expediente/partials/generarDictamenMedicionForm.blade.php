@@ -43,10 +43,10 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <input class="form-control" name="detalleOpinion{{ $loop->index + 1 }}" placeholder="Detalle de la opinión" required>
+                                    <input class="form-control" name="detalleOpinion{{ $loop->index + 1 }}" placeholder="Detalle de la opinión">
                                 </td>
                                 <td>
-                                    <input class="form-control" name="recomendaciones{{ $loop->index + 1 }}" placeholder="Recomendaciones" required>
+                                    <input class="form-control" name="recomendaciones{{ $loop->index + 1 }}" placeholder="Recomendaciones">
                                 </td>
                             </tr>
                             @endforeach

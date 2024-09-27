@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Certificado_Anexo30;
 use App\Models\Direccion;
+use App\Models\Dispensario;
 use App\Models\Estados\Estados;
 use App\Models\Expediente_Servicio_Anexo_30;
 use App\Models\ProveedorInformatico;
 use App\Models\ServicioAnexo;
 use App\Models\Estacion;
+use App\Models\Sondas;
+use App\Models\Tanque;
 use App\Models\User;
 use App\Models\Verificador;
 use Illuminate\Http\Request;
@@ -75,7 +78,19 @@ class ExpedienteController extends Controller
             // Definir las reglas de validación
             $rules = $this->getDictamenesRules();
             $data = $request->validate($rules);
-
+            // Reemplazar campos vacíos con un guion
+            $data = $this->reemplazarVacioPorGuion($data, [
+                'detalleOpinion1',
+                'recomendaciones1',
+                'detalleOpinion2',
+                'recomendaciones2',
+                'detalleOpinion3',
+                'recomendaciones3',
+                'detalleOpinion4',
+                'recomendaciones4',
+                'detalleOpinion5',
+                'recomendaciones5'
+            ]);
             // Obtener y formatear fechas desde el servicio
             $fechaInspeccion = Carbon::parse($servicio->date_inspeccion_at)->format('d-m-Y');
             $fechaRecepcion = Carbon::parse($servicio->date_recepcion_at)->format('d-m-Y');
@@ -166,7 +181,19 @@ class ExpedienteController extends Controller
             // Validar los datos del formulario
             $rules = $this->getDictamenesMedicionRules();
             $data = $request->validate($rules);
-
+            // Reemplazar campos vacíos con un guion
+            $data = $this->reemplazarVacioPorGuion($data, [
+                'detalleOpinion1',
+                'recomendaciones1',
+                'detalleOpinion2',
+                'recomendaciones2',
+                'detalleOpinion3',
+                'recomendaciones3',
+                'detalleOpinion4',
+                'recomendaciones4',
+                'detalleOpinion5',
+                'recomendaciones5'
+            ]);
             // Obtener y formatear fechas desde el servicio
             $fechaInspeccion = Carbon::parse($servicio->date_inspeccion_at)->format('d-m-Y');
             $fechaRecepcion = Carbon::parse($servicio->date_recepcion_at)->format('d-m-Y');
@@ -181,6 +208,7 @@ class ExpedienteController extends Controller
                 'fecha_recepcion' => $fechaRecepcion,
                 'fecha_inspeccion_modificada' => $fechaInspeccionAumentada,
                 'nom_verificador' => $usuario->name,
+                'id_estacion' => $estacion->id,
                 'razonsocial' => $estacion->razon_social,
                 'direccion_estacion' => $this->formatAddress($direccionEstacion),
                 'telefono' => $estacion->telefono,
@@ -216,6 +244,7 @@ class ExpedienteController extends Controller
     {
         $servicioAnexo = ServicioAnexo::findOrFail($id);
         $estacion = $servicioAnexo->estaciones()->first();
+        $proveedorinfo = ProveedorInformatico::where('servicio_anexo_id', $id)->first();
 
         if (!$estacion) {
             throw new \Exception('No se encontraron estaciones relacionadas.');
@@ -257,7 +286,7 @@ class ExpedienteController extends Controller
         $existingFiles = $this->getExistingFiles($folderPath);
 
         // Pasar datos a la vista
-        return compact('servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios');
+        return compact('servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios', 'proveedorinfo');
     }
 
 
@@ -345,9 +374,30 @@ class ExpedienteController extends Controller
             return 'N/A';
         }
 
-        return "Calle: {$direccion->calle}, Número Exterior: {$direccion->numero_exterior}, Colonia: {$direccion->colonia}, Localidad: {$direccion->localidad}, Municipio: {$direccion->municipio}, Entidad Federativa: {$direccion->entidad_federativa}";
-    }
+        $components = [];
 
+        if (!empty($direccion->calle)) {
+            $components[] = "{$direccion->calle}";
+        }
+        if (!empty($direccion->numero_exterior)) {
+            $components[] = "# {$direccion->numero_exterior}";
+        }
+        if (!empty($direccion->colonia)) {
+            $components[] = "C. {$direccion->colonia}";
+        }
+        if (!empty($direccion->localidad)) {
+            $components[] = "{$direccion->localidad}";
+        }
+        if (!empty($direccion->municipio)) {
+            $components[] = "{$direccion->municipio}";
+        }
+        if (!empty($direccion->entidad_federativa)) {
+            $components[] = "{$direccion->entidad_federativa}";
+        }
+
+        // Unir los componentes que no son nulos con una coma
+        return !empty($components) ? implode(', ', $components) : 'N/A';
+    }
     // Método para calcular IVA y totales
     private function calculateIva($cantidad)
     {
@@ -432,17 +482,69 @@ class ExpedienteController extends Controller
             Storage::disk('public')->makeDirectory($subFolderPath);
         }
 
-        // Reemplazar marcadores en las plantillas
+        // Obtener los datos de los equipos de medición (tanques, sondas, dispensarios)
+        $equipos = $this->getEquiposMedicionData($data['id_estacion']);
+
         foreach ($templatePaths as $templatePath) {
             $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Dictamenes/{$templatePath}"));
 
+            // Realizar reemplazos estáticos de datos
             foreach ($data as $key => $value) {
                 $templateProcessor->setValue($key, $value);
             }
 
+            // Agregar filas dinámicamente a la tabla
+            $templateProcessor->cloneRow('EQUIPO', count($equipos));
+            foreach ($equipos as $index => $equipo) {
+                $templateProcessor->setValue('EQUIPO#' . ($index + 1), $equipo['EQUIPO']);
+                $templateProcessor->setValue('IDENTIFICACION#' . ($index + 1), $equipo['IDENTIFICACION']);
+                $templateProcessor->setValue('NORMA#' . ($index + 1), $equipo['NORMA']);
+            }
+
+            // Guardar el documento modificado
             $fileName = pathinfo($templatePath, PATHINFO_FILENAME) . "_{$data['nomenclatura']}.docx";
             $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
         }
+    }
+
+    // Método para obtener los datos de los equipos de medición
+    private function getEquiposMedicionData($estacion_id)
+    {
+        // Obtener tanques, sondas y dispensarios de la estación
+        $tanques = Tanque::where('estacion_id', $estacion_id)->get();
+        $sondas = Sondas::where('estacion_id', $estacion_id)->get();
+        $dispensarios = Dispensario::where('estacion_id', $estacion_id)->get();
+
+        $equipos = [];
+
+        // Agregar tanques a la lista de equipos
+        foreach ($tanques as $tanque) {
+            $equipos[] = [
+                'EQUIPO' => 'Tanque ' . $tanque->producto,
+                'IDENTIFICACION' => $tanque->folio,
+                'NORMA' => 'ANEXOS 30 Y 31 DE LA RESOLUCIÓN MISCELÁNEA FISCAL PARA 2023',
+            ];
+        }
+
+        // Agregar sondas a la lista de equipos
+        foreach ($sondas as $sonda) {
+            $equipos[] = [
+                'EQUIPO' => 'Sonda Flexible de Tanque',
+                'IDENTIFICACION' => $sonda->numero_serie,
+                'NORMA' => 'ANEXOS 30 Y 31 DE LA RESOLUCIÓN MISCELÁNEA FISCAL PARA 2023',
+            ];
+        }
+
+        // Agregar dispensarios a la lista de equipos
+        foreach ($dispensarios as $dispensario) {
+            $equipos[] = [
+                'EQUIPO' => 'Controlador del Surtidor de Combustible',
+                'IDENTIFICACION' => $dispensario->numero_serie,
+                'NORMA' => 'ANEXOS 30 Y 31 DE LA RESOLUCIÓN MISCELÁNEA FISCAL PARA 2023',
+            ];
+        }
+
+        return $equipos;
     }
 
     // Método para guardar o actualizar los datos del proveedor informático
@@ -502,6 +604,18 @@ class ExpedienteController extends Controller
         );
     }
 
+    //Remplzar por guion campos vacios
+    private function reemplazarVacioPorGuion($data, $campos)
+    {
+        foreach ($campos as $campo) {
+            // Reemplazar por guion solo si el campo está estrictamente vacío o nulo
+            if (!array_key_exists($campo, $data) || trim($data[$campo]) === '') {
+                $data[$campo] = '-';
+            }
+        }
+        return $data;
+    }
+
     // Reglas para validar los datos del dictamen informático
     private function getDictamenesRules()
     {
@@ -520,16 +634,16 @@ class ExpedienteController extends Controller
             'opcion4' => 'required',
             'opcion5' => 'required',
             'opcion6' => 'required',
-            'detalleOpinion1' => 'required',
-            'recomendaciones1' => 'required',
-            'detalleOpinion2' => 'required',
-            'recomendaciones2' => 'required',
-            'detalleOpinion3' => 'required',
-            'recomendaciones3' => 'required',
-            'detalleOpinion4' => 'required',
-            'recomendaciones4' => 'required',
-            'detalleOpinion5' => 'required',
-            'recomendaciones5' => 'required',
+            'detalleOpinion1' => 'nullable|string',
+            'recomendaciones1' => 'nullable|string',
+            'detalleOpinion2' => 'nullable|string',
+            'recomendaciones2' => 'nullable|string',
+            'detalleOpinion3' => 'nullable|string',
+            'recomendaciones3' => 'nullable|string',
+            'detalleOpinion4' => 'nullable|string',
+            'recomendaciones4' => 'nullable|string',
+            'detalleOpinion5' => 'nullable|string',
+            'recomendaciones5' => 'nullable|string',
         ];
     }
 
@@ -545,16 +659,17 @@ class ExpedienteController extends Controller
             'opcion3' => 'required',
             'opcion4' => 'required',
             'opcion6' => 'required',
-            'detalleOpinion1' => 'required',
-            'recomendaciones1' => 'required',
-            'detalleOpinion2' => 'required',
-            'recomendaciones2' => 'required',
-            'detalleOpinion3' => 'required',
-            'recomendaciones3' => 'required',
-            'detalleOpinion4' => 'required',
-            'recomendaciones4' => 'required',
+            'detalleOpinion1' => 'nullable|string',
+            'recomendaciones1' => 'nullable|string',
+            'detalleOpinion2' => 'nullable|string',
+            'recomendaciones2' => 'nullable|string',
+            'detalleOpinion3' => 'nullable|string',
+            'recomendaciones3' => 'nullable|string',
+            'detalleOpinion4' => 'nullable|string',
+            'recomendaciones4' => 'nullable|string',
         ];
     }
+
 
     public function guardarCertificado(Request $request)
     {
