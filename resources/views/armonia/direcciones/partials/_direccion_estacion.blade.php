@@ -1,5 +1,5 @@
 @if ($direccionEstacion)
-<h4 class="mt-4">Dirección de Estación</h4>
+<h4 class="mt-4">Dirección de la Estación</h4>
 <table class="table mb-0">
     <thead class="table-light">
         <tr>

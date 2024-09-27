@@ -25,3 +25,4 @@ class EquipoEstacionController extends Controller
         return view('armonia.equipo_estacion.seleccion', compact('estacion', 'tanques', 'dispensarios'));
     }
 }
+ 

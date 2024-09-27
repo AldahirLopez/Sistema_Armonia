@@ -20,62 +20,46 @@
     <h3 class="page__heading mb-0">Registrar Estructura de la Gasolinera {{ $estacion->razon_social }}</h3>
 </div>
 
-<!-- Sección para añadir Dispensarios y Tanques -->
-<div class="row mb-4">
-    <div class="col-lg-12 d-flex justify-content-center">
-        <button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#modalAgregarDispensario">
-            <i class="bx bx-plus"></i> Agregar Dispensario
-        </button>
-        <button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#modalAgregarTanques">
-            <i class="bx bx-plus"></i> Agregar Tanques
-        </button>
-    </div>
-</div>
-
 <!-- Mostrar tablas de Dispensarios y Tanques -->
 <div class="row">
-    <!-- Tabla de Dispensarios -->
     <!-- Tabla de Dispensarios -->
     <div class="col-lg-6 mb-4">
         <div class="card shadow-sm">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="card-title mb-0">Dispensarios</h5>
+                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregarDispensario">
+                    <i class="bx bx-plus"></i> Agregar Dispensario
+                </button>
             </div>
-            <div class="card-body">
+            <div class="card-body p-3">
                 @if($dispensarios->isNotEmpty())
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table table-bordered table-striped">
+                    <thead class="table-light">
                         <tr>
-                            <th>#</th>
                             <th>Número de Isla</th>
                             <th>Marca</th>
                             <th>Modelo</th>
                             <th>Número de Serie</th>
                             @if(auth()->user()->hasRole('Administrador'))
-                            <th>Acciones</th> <!-- Nueva columna para los botones de acción -->
+                            <th class="text-center">Acciones</th>
                             @endif
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($dispensarios as $dispensario)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $dispensario->num_isla }}</td>
                             <td>{{ $dispensario->marca }}</td>
                             <td>{{ $dispensario->modelo }}</td>
                             <td>{{ $dispensario->numero_serie }}</td>
                             @if(auth()->user()->hasRole('Administrador'))
-                            <td>
-                                <!-- Botón de Editar -->
-                                <a href="{{ route('dispensarios.edit', $dispensario->id) }}" class="btn btn-sm btn-warning">
-                                    <i class="bx bx-edit"></i> Editar
-                                </a>
-                                <!-- Botón de Eliminar -->
-                                <form action="{{ route('dispensarios.destroy', $dispensario->id) }}" method="POST" style="display:inline;">
+                            <td class="text-center">
+                                <!-- Botón de Eliminar para Dispensarios -->
+                                <form action="{{ route('dispensarios.destroy', ['estacion_id' => $estacion->id, 'id' => $dispensario->id]) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este dispensario?');">
-                                        <i class="bx bx-trash"></i> Eliminar
+                                        <i class="bx bx-trash"></i>
                                     </button>
                                 </form>
                             </td>
@@ -91,47 +75,46 @@
         </div>
     </div>
 
-
-    <!-- Tabla de Tanques -->
     <!-- Tabla de Tanques -->
     <div class="col-lg-6 mb-4">
         <div class="card shadow-sm">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="card-title mb-0">Tanques</h5>
+                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregarTanques">
+                    <i class="bx bx-plus"></i> Agregar Tanques
+                </button>
             </div>
-            <div class="card-body">
+            <div class="card-body p-3">
                 @if($tanques->isNotEmpty())
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table table-bordered table-striped">
+                    <thead class="table-light">
                         <tr>
-                            <th>#</th>
                             <th>Folio</th>
+                            <th>Serie</th>
+                            <th>Marca</th>
                             <th>Producto</th>
                             <th>Capacidad (L)</th>
                             @if(auth()->user()->hasRole('Administrador'))
-                            <th>Acciones</th> <!-- Nueva columna para los botones de acción -->
+                            <th class="text-center">Acciones</th>
                             @endif
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($tanques as $tanque)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $tanque->folio }}</td>
+                            <td>{{ $tanque->numero_serie }}</td>
+                            <td>{{ $tanque->marca }}</td>
                             <td>{{ $tanque->producto }}</td>
                             <td>{{ $tanque->capacidad }}</td>
                             @if(auth()->user()->hasRole('Administrador'))
-                            <td>
-                                <!-- Botón de Editar -->
-                                <a href="{{ route('tanques.edit', $tanque->id) }}" class="btn btn-sm btn-warning">
-                                    <i class="bx bx-edit"></i> Editar
-                                </a>
-                                <!-- Botón de Eliminar -->
-                                <form action="{{ route('tanques.destroy', $tanque->id) }}" method="POST" style="display:inline;">
+                            <td class="text-center">
+                                <!-- Botón de Eliminar para Tanques -->
+                                <form action="{{ route('tanques.destroy', ['estacion_id' => $estacion->id, 'id' => $tanque->id]) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este tanque?');">
-                                        <i class="bx bx-trash"></i> Eliminar
+                                        <i class="bx bx-trash"></i>
                                     </button>
                                 </form>
                             </td>
@@ -146,7 +129,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <!-- Modales -->
