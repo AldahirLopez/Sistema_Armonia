@@ -70,16 +70,18 @@ Route::group(['middleware' => ['auth']], function () {
     //Servicio 005
     Route::resource('servicio_005',  Servicio005Controller::class);
 
-    //Notificaciones 
+    // Notificaciones 
     Route::get('notificaciones/{id}', [NotificacionController::class, 'mostrarNotificacion'])->name('notificaciones.mostrar');
 
-    Route::post('/anexo/aprobar/{id}/{notificationId}', [NotificacionController::class, 'AprobarServicioAnexo30'])->name('aprobar.servicio.anexo');
-
-    Route::post('/anexo/eliminar/{id}/{notificationId}', [NotificacionController::class, 'EliminarServicioAnexo30'])->name('eliminar.servicio.anexo');
-
-    Route::get('/notificaciones', [NotificacionController::class, 'listarNotificacionesAnexo30'])->name('notificaciones.listar');
-
-    Route::delete('/cancelar-servicio-anexo/{id}/{notificationId}', [NotificacionController::class, 'CancelarServicioAnexo30'])->name('cancelar.servicio.anexo');
+    // Aprobar y eliminar servicios utilizando la nomenclatura
+     // Listar todas las notificaciones
+     // Cancelar servicio utilizando la nomenclatura
+    Route::post('/aprobar-servicio/{nomenclatura}/{notificationId}', [NotificacionController::class, 'AprobarServicio'])->name('aprobar.servicio');
+    Route::post('/eliminar-servicio/{nomenclatura}/{notificationId}', [NotificacionController::class, 'EliminarServicio'])->name('eliminar.servicio');
+   
+    Route::get('/notificaciones', [NotificacionController::class, 'listarNotificaciones'])->name('notificaciones.listar');
+    
+    Route::delete('/cancelar-servicio/{nomenclatura}/{notificationId}', [NotificacionController::class, 'CancelarServicio'])->name('cancelar.servicio');
 
     // Menú de Documentación Anexo 30
     Route::get('/servicios/anexo_30/documentos/menu', [DocumentacionAnexo30Controller::class, 'menu'])->name('armonia.servicios.anexo_30.documentos.menu');

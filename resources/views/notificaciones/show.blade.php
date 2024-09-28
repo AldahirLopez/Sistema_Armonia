@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('title')
-@lang('Notificación de Servicio Pendiente - Anexo 30')
+@lang('Notificación de Servicio Pendiente')
 @endsection
 
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Notificaciones @endslot
-@slot('title') Servicio Pendiente - Anexo 30 @endslot
+@slot('title') Servicio Pendiente @endslot
 @endcomponent
 
 <div class="row">
@@ -29,8 +29,8 @@
 
                 <!-- Acciones según el tipo de servicio -->
                 <form action="{{ $data['pending_deletion_servicio'] 
-                    ? route('eliminar.servicio.anexo', ['id' => $data['servicio_id'], 'notificationId' => $notification->id])
-                    : route('aprobar.servicio.anexo', ['id' => $data['servicio_id'], 'notificationId' => $notification->id]) }}"
+                    ? route('eliminar.servicio', ['nomenclatura' => $data['nomenclatura'], 'notificationId' => $notification->id])
+                    : route('aprobar.servicio', ['nomenclatura' => $data['nomenclatura'], 'notificationId' => $notification->id]) }}"
                     method="POST">
                     @csrf
                     <!-- Botón depende del tipo de notificación -->

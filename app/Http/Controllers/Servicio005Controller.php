@@ -11,6 +11,7 @@ use App\Models\Servicio_005;
 use App\Models\Estacion_Servicio_005;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+
 class Servicio005Controller extends Controller
 {
     /**
@@ -39,14 +40,14 @@ class Servicio005Controller extends Controller
         return redirect()->route('servicio_005.index')->with('error', 'No se ha autenticado el usuario.');
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-         // Validar que se haya seleccionado una estación
-         $request->validate([
+        // Validar que se haya seleccionado una estación
+        $request->validate([
             'estacion' => 'required',
         ]);
 
@@ -79,21 +80,21 @@ class Servicio005Controller extends Controller
 
         // Crear la relación con la estación
         Estacion_Servicio_005::create([
-           'id_servicio_005' => $servicio->id,
-           'id_estacion' => $estacionId,
+            'id_servicio_005' => $servicio->id,
+            'id_estacion' => $estacionId,
         ]);
 
         // Crear la carpeta para el servicio
         $this->createServiceDirectory($usuarioSeleccionado->id, $nomenclatura);
 
         // Enviar notificación a los administradores
-      //  app('App\Http\Controllers\NotificacionController')->notificarNuevoServicio($servicio);
+        app('App\Http\Controllers\NotificacionController')->notificarNuevoServicio($servicio);
 
         // Redirigir con mensaje de éxito
         return redirect()->route('servicio_005.index')->with('success', 'Servicio creado exitosamente y notificación enviada al administrador.');
     }
 
- 
+
 
     /**
      * Remove the specified resource from storage.
@@ -107,7 +108,7 @@ class Servicio005Controller extends Controller
         $anio = now()->year;
         $customFolderPath = "Servicios/005/{$anio}/{$servicio->id_usuario}/{$servicio->nomenclatura}";
 
-    
+
 
         // Si no es administrador, marcar el servicio como pendiente de eliminación
         $servicio->update([
@@ -117,7 +118,7 @@ class Servicio005Controller extends Controller
 
         // Aquí puedes añadir el código de notificación al administrador
         // Enviar notificación a los administradores
-        //app('App\Http\Controllers\NotificacionController')->notificarNuevoServicio($servicio);
+        app('App\Http\Controllers\NotificacionController')->notificarNuevoServicio($servicio);
 
         return redirect()->route('servicio_005.index')->with('info', 'La solicitud de eliminación está pendiente de aprobación.');
     }
@@ -128,14 +129,14 @@ class Servicio005Controller extends Controller
         $rol = Role::on('mysql')->where('name', $roleName)->first();
         return $rol ? User::on('mysql')->whereIn('id', $rol->users()->pluck('id'))->get() : collect();
     }
- 
+
     private function getEstacionesSinServicio($usuario, $isAdminOrAuditor)
     {
         return Estacion::when(!$isAdminOrAuditor, function ($query) use ($usuario) {
             return $query->where('usuario_id', $usuario->id)
                 ->orWhereIn('id', Usuario_Estacion::where('usuario_id', $usuario->id)->pluck('estacion_id'));
         })
-            ->whereDoesntHave('estacionServicio')
+            ->whereDoesntHave('estacionServicio005')
             ->get();
     }
 
@@ -147,7 +148,7 @@ class Servicio005Controller extends Controller
         $numero = 1;
 
         do {
-            $nomenclatura = "A-$iniciales-$numero-$anio";
+            $nomenclatura = "OM-$iniciales-$numero-$anio";
             $existe = Servicio_005::where('nomenclatura', $nomenclatura)->exists();
             $numero++;
         } while ($existe);

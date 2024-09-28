@@ -69,6 +69,7 @@
                         @foreach($pendientes as $notificacion)
                         @php
                         $data = $notificacion->data; // Acceder al campo 'data' que contiene la información de la notificación
+                        $titulo = isset($data['tipo_servicio']) ? 'Servicio ' . $data['tipo_servicio'] : 'Servicio';
                         @endphp
                         <a href="{{ route('notificaciones.mostrar', $notificacion->id) }}" class="text-reset notification-item">
                             <div class="d-flex">
@@ -78,7 +79,7 @@
                                     </span>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <h6 class="mb-1">Servicio Anexo 30</h6> <!-- Mostrar la nomenclatura del servicio -->
+                                    <h6 class="mb-1">{{ $titulo }}</h6> <!-- Mostrar el título dinámico del servicio -->
                                     <div class="font-size-13 text-muted">
                                         <p class="mb-1">{{ $data['mensaje'] }}</p> <!-- Mostrar el mensaje de la notificación -->
                                         <p class="mb-1">Creado por: {{ $data['usuario'] }}</p> <!-- Mostrar el nombre del usuario -->
@@ -98,6 +99,7 @@
                         </div>
                         @endif
                     </div>
+
 
                     <div class="p-2 border-top d-grid">
                         <a class="btn btn-sm btn-link font-size-14 text-center" href="{{ route('notificaciones.listar') }}">

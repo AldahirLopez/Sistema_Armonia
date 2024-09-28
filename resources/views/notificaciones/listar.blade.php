@@ -10,6 +10,7 @@
 @slot('title') Todas las Notificaciones @endslot
 @endcomponent
 @include('partials.alertas') <!-- Incluyendo las alertas -->
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -33,10 +34,11 @@
                             @forelse($notificaciones as $notificacion)
                             @php
                             $data = $notificacion->data;
+                            $tipoServicio = $data['tipo_servicio'] ?? 'Desconocido'; // Obtener el tipo de servicio
                             @endphp
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $data['nomenclatura'] }}</td>
+                                <td>{{ $data['nomenclatura'] }} ({{ $tipoServicio }})</td>
                                 <td>{{ $data['mensaje'] }}</td>
                                 <td>{{ $data['usuario'] ?? 'Desconocido' }}</td>
                                 <td>{{ $notificacion->created_at->format('d/m/Y H:i:s') }}</td>
@@ -44,7 +46,7 @@
                                     <!-- Verificación si es para eliminación o aprobación -->
                                     @if($data['pending_deletion_servicio'])
                                     <!-- Formulario para eliminar el servicio -->
-                                    <form action="{{ route('eliminar.servicio.anexo', ['id' => $data['servicio_id'], 'notificationId' => $notificacion->id]) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('eliminar.servicio', ['nomenclatura' => $data['nomenclatura'], 'notificationId' => $notificacion->id]) }}" method="POST" style="display: inline;">
                                         @csrf
                                         <button type="submit" class="btn btn-danger">
                                             <i class="fas fa-trash"></i> <!-- Icono de eliminar -->
@@ -52,7 +54,7 @@
                                     </form>
                                     @elseif($data['pending_apro_servicio'] == false)
                                     <!-- Formulario para aprobar el servicio -->
-                                    <form action="{{ route('aprobar.servicio.anexo', ['id' => $data['servicio_id'], 'notificationId' => $notificacion->id]) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('aprobar.servicio', ['nomenclatura' => $data['nomenclatura'], 'notificationId' => $notificacion->id]) }}" method="POST" style="display: inline;">
                                         @csrf
                                         <button type="submit" class="btn btn-success">
                                             <i class="fas fa-check"></i><!-- Icono de aprobar -->
@@ -60,13 +62,12 @@
                                     </form>
                                     @endif
 
-
-                                    <!-- Formulario para eliminar el servicio y la notificación -->
-                                    <form action="{{ route('cancelar.servicio.anexo', ['id' => $data['servicio_id'], 'notificationId' => $notificacion->id]) }}" method="POST" style="display: inline;">
+                                    <!-- Formulario para cancelar el servicio y la notificación -->
+                                    <form action="{{ route('cancelar.servicio', ['nomenclatura' => $data['nomenclatura'], 'notificationId' => $notificacion->id]) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-info">
-                                             Cancelar <!-- Icono de eliminar -->
+                                            Cancelar
                                         </button>
                                     </form>
                                 </td>
@@ -83,5 +84,4 @@
         </div>
     </div>
 </div>
-
 @endsection
