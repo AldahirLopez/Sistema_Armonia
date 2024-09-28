@@ -280,17 +280,30 @@ class ExpedienteController extends Controller
             }
         }
 
+        // Obtener las fechas ocupadas de inspección y recepción de otros servicios con su nomenclatura
+        $fechasOcupadas = ServicioAnexo::where('id_usuario', $servicioAnexo->id_usuario)
+            ->where('id', '!=', $id) // Excluir el servicio actual
+            ->get(['date_recepcion_at', 'date_inspeccion_at', 'nomenclatura'])
+            ->flatMap(function ($servicio) {
+                return [
+                    ['fecha' => $servicio->date_recepcion_at, 'nomenclatura' => $servicio->nomenclatura],
+                    ['fecha' => $servicio->date_inspeccion_at, 'nomenclatura' => $servicio->nomenclatura],
+                ];
+            })
+            ->filter(function ($item) {
+                return !empty($item['fecha']);
+            })
+            ->values()
+            ->toArray();
+
         // Ruta para los archivos
         $anio = now()->year;
         $folderPath = "Servicios/Anexo_30/{$anio}/{$servicioAnexo->id_usuario}/{$servicioAnexo->nomenclatura}/expediente";
         $existingFiles = $this->getExistingFiles($folderPath);
 
         // Pasar datos a la vista
-        return compact('servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios', 'proveedorinfo');
+        return compact('servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios', 'proveedorinfo', 'fechasOcupadas');
     }
-
-
-
 
 
     // Validar los datos del formulario
@@ -320,6 +333,7 @@ class ExpedienteController extends Controller
             'cantidad' => 'required|numeric',
         ]);
     }
+
 
     // Método para obtener los datos de la estación
     private function getEstacionData($idestacion)
