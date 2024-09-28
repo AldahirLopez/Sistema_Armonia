@@ -106,63 +106,8 @@
     <!-- Botón para enviar el formulario -->
     <button type="submit" class="btn btn-primary mt-3">Generar</button>
 </form>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Insert CSS directly into the document to style weekends and occupied days
-        const style = document.createElement('style');
-        style.textContent = `
-        /* Make weekends opaque */
-        .weekend {
-            opacity: 0.5;
-        }
-        /* Make occupied dates red */
-        .occupied-day {
-            background-color: red !important;
-            color: white;
-        }
-    `;
-        document.head.appendChild(style);
+<!-- Pasar las fechas ocupadas al script -->
+<script id="fechasOcupadas" type="application/json">@json($fechasOcupadas)</script>
 
-        // Get occupied dates from the backend and format them to 'YYYY-MM-DD'
-        const fechasOcupadas = @json($fechasOcupadas).map(f => {
-            return {
-                fecha: f.fecha.split(' ')[0], // Remove the time component
-                nomenclatura: f.nomenclatura
-            };
-        });
-
-        // Log to verify the formatted fechasOcupadas
-       // console.log('Fechas Ocupadas (formatted):', fechasOcupadas);
-
-        // Initialize Flatpickr on both date fields
-        flatpickr("#fecha_recepcion, #fecha_inspeccion", {
-            dateFormat: "Y-m-d",
-            disable: [
-                function(date) {
-                    // Disable weekends
-                    return (date.getDay() === 0 || date.getDay() === 6);
-                },
-                // Disable occupied dates
-                ...fechasOcupadas.map(f => f.fecha)
-            ],
-            // Customize styling for non-selectable days
-            onDayCreate: function(dObj, dStr, fp, dayElem) {
-                const dateStr = dayElem.dateObj.toISOString().split('T')[0]; // Convert date to 'YYYY-MM-DD'
-
-                // Make weekends opaque
-                if (dayElem.dateObj.getDay() === 0 || dayElem.dateObj.getDay() === 6) {
-                    dayElem.classList.add('weekend');
-                }
-
-                // Check and style occupied dates
-                const fechaOcupada = fechasOcupadas.find(f => f.fecha === dateStr);
-                //console.log('Checking date:', dateStr, ' - Found:', fechaOcupada); // Debug each date check
-                if (fechaOcupada) {
-                    dayElem.classList.add('occupied-day');
-                }
-            },
-            // Set default date to the current date
-            defaultDate: new Date().toISOString().split('T')[0]
-        });
-    });
-</script>
+<!-- Incluir el script externo -->
+<script src="{{ URL::asset('build/js/form-expediente.js') }}"></script>
