@@ -55,13 +55,11 @@
                 
                     <div class="d-flex justify-content-end align-items-center mt-auto">                        
                        
-                        <form action="" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger btn-sm">
-                                <i class="bx bx-trash"></i> Eliminar
-                            </button>
-                        </form>  
+                            <form action="{{ route('lista_inspeccion.destroy',['id'=>$listas_inspeccion->id]) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar la lista?');"> <i class="bx bx-trash"></i></button>
+                            </form> 
                         
                         <!-- Mostrar botón de editar solo si el usuario tiene el rol de 'Administrador' -->
                         @if(auth()->user()->hasRole('Administrador'))

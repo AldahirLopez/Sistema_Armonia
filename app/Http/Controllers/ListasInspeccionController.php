@@ -736,4 +736,14 @@ class ListasInspeccionController extends Controller
                 abort(404); // Maneja el error si el tipo no es válido
         }
     }
+
+
+    public function destroy($id){
+        $lista_inspeccion=Listas_inspeccion::findOrFail($id);
+        $id_servicio =$lista_inspeccion->id_servicio;
+        $lista_inspeccion->delete();
+        
+        return redirect()->route('listas.seleccion', ['id' => $id_servicio]);
+
+    }
 }

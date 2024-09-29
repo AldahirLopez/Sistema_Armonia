@@ -174,6 +174,9 @@ Route::group(['middleware' => ['auth']], function () {
     //Rutas para editar y actualizar la lista
     Route::get('/lista_inspeccion/{id}', [ListasInspeccionController::class, 'edit'])->name('lista_inspeccion.edit');
 
+    //Ruta para eliminar la lista de inspeccion
+
+    Route::delete('/lista_inspeccion/{id}', [ListasInspeccionController::class, 'destroy'])->name('lista_inspeccion.destroy');
 
     // Calendario
     Route::get('/calendario', [CalendarioController::class, 'index'])->name('calendario.index');
