@@ -1,31 +1,87 @@
 @extends('layouts.master')
 
 @section('title')
-@lang('Estaciones de Servicio')
+@lang('Lista de inspeccion')
 @endsection
 
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Seleccion @endslot
-@slot('title') Estaciones de Servicio @endslot
+@slot('title') Listas de inspeccion anexo 30 @endslot
 @endcomponent
 
-<div class="section-header">
-    <div class="section-header" style="margin: 5px 5px 15px 5px;">
-        <a href="{{ route('anexo.index', ['id' => $id_servicio]) }}" class="btn btn-danger">
-            <i class="bi bi-arrow-return-left"></i> Volver
-        </a>
+<div class="row mb-4">
+    <div class="col-lg-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body d-flex justify-content-between">
+            <a href="{{ route('anexo.index', ['id' => $id_servicio]) }}" class="btn btn-danger">
+                <i class="bi bi-arrow-return-left"></i> Volver
+            </a>
+                
+            </div>
+        </div>
     </div>
-    <h3 class="page__heading">Lista de Inspección</h3>
+</div>
 
-    @foreach ($listas_inspeccion as $lista)
-        <a href="{{route('lista_inspeccion.edit',['id'=>$lista->id])}}">Lista con id:{{$lista->id}}</a>
-        
-    @endforeach
+    @if ($listas_inspeccion)
+
+    <div class="row">
+     
+        <div class="col-lg-4 col-md-6 mb-4 d-flex">
+            <div class="card border-light shadow-sm h-100 w-100">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <h5 class="card-title font-weight-bold text-dark text-truncate">
+                        Lista de inspeccion del servicio {{ $listas_inspeccion->servicio_anexo->nomenclatura}}
+                        
+                    </h5>
+                </div>
+
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <!-- Estado de la lista de inspeccion -->
+                    <p class="text-muted">                  
+                        <span class="badge bg-success">Generada</span> 
+                    </p>
+
+                    <!-- Mostrar las estaciones relacionadas con el servicio -->
+                    <p class="card-text text-muted mb-3">
+                        Tipo de lista:
+                        @if($listas_inspeccion->servicio_anexo)
+                            {{$listas_inspeccion->lista['tipo']}}
+                        @else
+                        Desconocido
+                        @endif
+                    </p>
+
+                
+                    <div class="d-flex justify-content-end align-items-center mt-auto">                        
+                       
+                        <form action="" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                <i class="bx bx-trash"></i> Eliminar
+                            </button>
+                        </form>  
+                        
+                        <!-- Mostrar botón de editar solo si el usuario tiene el rol de 'Administrador' -->
+                        @if(auth()->user()->hasRole('Administrador'))
+                        <a href="{{route('lista_inspeccion.edit',['id'=>$listas_inspeccion->id])}}" class="btn btn-outline-primary btn-sm ms-2 d-inline-flex align-items-center">
+                            <i class="bx bx-edit me-1" style="font-size: 1.2rem;"></i> <!-- Icono de editar con tamaño mayor -->
+                            <span>Editar</span>
+                        </a>                        
+                        @endif
 
 
+                    </div>
 
+                    
+                </div>
+            </div>
+        </div>  
+    </div>
 
+    
+    @else
     <form action="">
         <select id="tipo" name="tipo" class="form-select">
             <option selected disabled>Selecciona el tipo</option>
@@ -34,6 +90,9 @@
             <option value="almacenamiento">Almacenamiento</option>
         </select>
     </form>
+    @endif
+
+    
 </div>
 <input type="hidden" id="id_servicio" value="{{ $id_servicio }}">
 

@@ -3,6 +3,7 @@
 <form action="{{route('lista_inspeccion.store')}}" method="POST">
     @csrf
     <input type="hidden" id="id_servicio" value="{{ $id_servicio }}" name="id_servicio">
+    <input type="hidden" id="tipo_lista" value="{{ $tipo }}" name="tipo_lista">
     <!-- Página 1 -->
     <div class="pagina" id="pagina-1">
         <div id="seccion01">

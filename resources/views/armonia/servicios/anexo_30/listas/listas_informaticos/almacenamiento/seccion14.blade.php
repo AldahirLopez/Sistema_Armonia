@@ -157,19 +157,19 @@
                             g) Registro de actividad de los usuarios
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad" value="si"> Sí
+                                    <input type="radio" name="sesiones_expiradas_inactividad_registro" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad" value="no"> No
+                                    <input type="radio" name="sesiones_expiradas_inactividad_registro" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad" value="no_aplica"> No Aplica
+                                    <input type="radio" name="sesiones_expiradas_inactividad_registro" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sesiones_expiradas_inactividad" class="form-control">
+                                <input type="text" name="observaciones_sesiones_expiradas_inactividad_registro" class="form-control">
                             </td>
                         </tr>
 
@@ -220,19 +220,19 @@
                             j) Registro de consulta de las bitácoras
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad" value="si"> Sí
+                                    <input type="radio" name="sesiones_expiradas_inactividad_consulta" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad" value="no"> No
+                                    <input type="radio" name="sesiones_expiradas_inactividad_consulta" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad" value="no_aplica"> No Aplica
+                                    <input type="radio" name="sesiones_expiradas_inactividad_consulta" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sesiones_expiradas_inactividad" class="form-control">
+                                <input type="text" name="observaciones_sesiones_expiradas_inactividad_consulta" class="form-control">
                             </td>
                         </tr>
 

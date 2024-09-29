@@ -51,19 +51,19 @@
                                 Ducto de descarga del autotanque de clave TQS-ATQ-1234 de distribución de gas licuado de petróleo.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_ductos" value="si"> Sí
+                                    <input type="radio" name="localización_ductos" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_identificacion_ductos" value="no"> No
+                                    <input type="radio" name="localización_ductos" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_ductos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="localización_ductos" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_identificacion_ductos" class="form-control">
+                                <input type="text" name="observaciones_localización_ductos" class="form-control">
                             </td>
                         </tr>
 
