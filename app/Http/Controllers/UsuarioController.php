@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request; 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
@@ -23,10 +23,11 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        $roles = Role::pluck('name', 'name')->all();
+        $roles = Role::pluck('name', 'id')->all(); // Cambiar 'name' por 'id'
         $usuarios = User::paginate(5);
-        return view('usuarios.index', compact('usuarios','roles'));
+        return view('usuarios.index', compact('usuarios', 'roles'));
     }
+
 
     public function create()
     {
@@ -55,11 +56,12 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $roles = Role::pluck('name', 'name')->all();
-        $userRoles = $user->roles->pluck('name')->all();
+        $roles = Role::pluck('name', 'id')->all(); // Obtén los roles con sus IDs
+        $userRoles = $user->roles->pluck('id')->all(); // Obtén los IDs de los roles asignados al usuario
 
         return view('usuarios.editar', compact('user', 'roles', 'userRoles'));
     }
+
 
     public function update(Request $request, $id)
     {
@@ -80,8 +82,8 @@ class UsuarioController extends Controller
         $user = User::findOrFail($id);
         $user->update($input);
 
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
-        $user->assignRole($request->input('roles'));
+        // Usar syncRoles en lugar de eliminar y asignar roles manualmente
+        $user->syncRoles($request->input('roles'));
 
         return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente');
     }

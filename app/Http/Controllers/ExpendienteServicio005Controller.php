@@ -13,6 +13,8 @@ use App\Models\User;
 use App\Models\Estacion;
 use App\Models\Expediente_Servicio_005;
 use App\Models\Direccion;
+use App\Models\ServicioAnexo;
+
 class ExpendienteServicio005Controller extends Controller
 {
     public function index($id)
@@ -27,151 +29,149 @@ class ExpendienteServicio005Controller extends Controller
     public function generarExpediente(Request $request)
     {
         try {
-          
+
             // Validar los datos del formulario
             $validatedData = $this->validateExpedienteRequest($request);
-          
+
             // Obtener datos relacionados desde la base de datos
             $estacion = $this->getEstacionData($validatedData['idestacion']);
             $usuario = $this->getUsuarioData($validatedData['id_usuario']);
             $direccionFiscal = $this->getDireccion($validatedData['domicilio_fiscal_id']);
             $direccionServicio = $this->getDireccion($validatedData['domicilio_servicio_id']);
-          
+
             // Preparar los datos a usar en las plantillas
             $data = $this->prepareExpedienteData($validatedData, $estacion, $direccionFiscal, $direccionServicio);
-           
+
             // Definir la carpeta de destino y procesar las plantillas
             $subFolderPath = $this->defineFolderPath($validatedData);
-         
+
             $this->processTemplate($data, $subFolderPath, 'DETEC.docx');
             $this->processTemplate($data, $subFolderPath, 'CONTRATO.docx');
             $this->processTemplate($data, $subFolderPath, 'ORDEN DE TRABAJO.docx');
 
-         
+
             // Guardar los datos de expediente
             $this->saveExpedienteData($data, $validatedData, $estacion);
 
             return redirect()->route('expediente_servicio_005.index', ['id' => $validatedData['id_servicio']])
                 ->with('success', 'Expediente generado y guardado correctamente.');
-            } catch (\Exception $e) {
-                \Log::error("Error al generar el expediente: " . $e->getMessage());
-                return response()->json(['error' => 'Ocurrió un error al generar el expediente.'], 500);
-            }
+        } catch (\Exception $e) {
+            \Log::error("Error al generar el expediente: " . $e->getMessage());
+            return response()->json(['error' => 'Ocurrió un error al generar el expediente.'], 500);
+        }
     }
 
 
     public function generarReporteFotografico(Request $request)
     {
 
-    
-            // Validar los datos del formulario
-            $validatedData = $this->validateReporteFotografico($request);
-          
-            // Obtener datos relacionados desde la base de datos
-            $estacion = $this->getEstacionData($validatedData['idestacion']);
-            $usuario = $this->getUsuarioData($validatedData['id_usuario']);
-            $direccionServicio = $this->getDireccion($validatedData['domicilio_servicio_id']);
-          
-            // Preparar los datos a usar en las plantillas
-            $data = $this->prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio);
-           
-            // Definir la carpeta de destino y procesar las plantillas
-            $subFolderPath = $this->defineFolderPath($validatedData);
-         
-            $this->processTemplate($data, $subFolderPath, 'REPORTE FOTOGRAFICO.docx');
-         
-            // Guardar los datos de expediente
-            $this->saveReporteFotograficoData($data, $validatedData, $estacion);
 
-            return redirect()->route('expediente_servicio_005.index', ['id' => $validatedData['id_servicio']])
-                ->with('success', 'Expediente generado y guardado correctamente.');
-            
+        // Validar los datos del formulario
+        $validatedData = $this->validateReporteFotografico($request);
+
+        // Obtener datos relacionados desde la base de datos
+        $estacion = $this->getEstacionData($validatedData['idestacion']);
+        $usuario = $this->getUsuarioData($validatedData['id_usuario']);
+        $direccionServicio = $this->getDireccion($validatedData['domicilio_servicio_id']);
+
+        // Preparar los datos a usar en las plantillas
+        $data = $this->prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio);
+
+        // Definir la carpeta de destino y procesar las plantillas
+        $subFolderPath = $this->defineFolderPath($validatedData);
+
+        $this->processTemplate($data, $subFolderPath, 'REPORTE FOTOGRAFICO.docx');
+
+        // Guardar los datos de expediente
+        $this->saveReporteFotograficoData($data, $validatedData, $estacion);
+
+        return redirect()->route('expediente_servicio_005.index', ['id' => $validatedData['id_servicio']])
+            ->with('success', 'Expediente generado y guardado correctamente.');
     }
 
 
-     // Método para definir la carpeta de destino
-     private function defineFolderPath($validatedData)
-     {
-         $anio = now()->year;
-         return "Servicios/005/{$anio}/{$validatedData['id_usuario']}/{$validatedData['nomenclatura']}/expediente";
-     }
+    // Método para definir la carpeta de destino
+    private function defineFolderPath($validatedData)
+    {
+        $anio = now()->year;
+        return "Servicios/005/{$anio}/{$validatedData['id_usuario']}/{$validatedData['nomenclatura']}/expediente";
+    }
 
-     // Método para preparar los datos que se usarán en las plantillas
-     private function prepareExpedienteData($validatedData, $estacion, $direccionFiscal, $direccionServicio)
-     {
+    // Método para preparar los datos que se usarán en las plantillas
+    private function prepareExpedienteData($validatedData, $estacion, $direccionFiscal, $direccionServicio)
+    {
         $totalData = $this->calculateTotal($validatedData['cantidad']); // Obtener total, mitad, y restante
-         return array_merge($validatedData, [
+        return array_merge($validatedData, [
 
-             'numestacion' => $estacion->num_estacion,
-             'razonsocial' => $estacion->razon_social,
-             'id_usuario' => $validatedData['id_usuario'],
-             'nomenclatura'=>$validatedData['nomenclatura'],
-             'rfc' => $estacion->rfc,
-             'fecha_actual' => now()->format('d/m/Y'),
-             'domicilio_fiscal' => $this->formatAddress($direccionFiscal),
-             'domicilio_estacion' => $this->formatAddress($direccionServicio),
-             'cre' => $validatedData['num_cre'] ?? $estacion->num_cre,
-             'constancia' => $validatedData['num_constancia'] ?? $estacion->num_constancia,
-             'contacto' => $validatedData['contacto'] ?? $estacion->contacto,
-             'nom_repre' => $validatedData['nombre_representante_legal'] ?? $estacion->nombre_representante_legal,
-             'telefono' => $estacion->telefono,
-             'correo' => $estacion->correo_electronico,
-             'iva' => $this->calculateIva($validatedData['cantidad']),
-             'total' => $totalData['total'],
-             'total_mitad' => $totalData['total_mitad'],
-             'total_restante' => $totalData['total_restante'],
-             'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
-             'fecha_recepcion' => Carbon::parse($validatedData['fecha_recepcion'])->format('d-m-Y'),
-             'fecha_inspeccion_modificada' => Carbon::parse($validatedData['fecha_inspeccion'])->addYear()->format('d-m-Y'),
-             'cantidad' => $validatedData['cantidad'],
-         ]);
-     }
-        // Método para preparar los datos que se usarán en las plantillas del reporte fotografico
-        private function prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio)
-        {
-            $anio = now()->year;
-            $carpetaImages="Servicios/005/{$anio}/{$validatedData['id_usuario']}/{$validatedData['nomenclatura']}/expediente/imagenes_reporte_fotografico";
-            //Creamos la carpteta donde iran las imagenes del reporte fotografico
-            if (!Storage::disk('public')->exists($carpetaImages)) {
-                Storage::disk('public')->makeDirectory($carpetaImages);
-            }
-
-            //Obtener las imagenes
-             $imageNumber = 1;
-           
-             $imagePaths=[];
-             foreach ( $validatedData['imagenes'] as $image) {
-                 // Generar el nombre de la imagen
-                 $imageName = 'img_' . $imageNumber . '.' . $image->extension();
-                 
-             
-                 // Mover la imagen a la carpeta de destino, reemplazando si existe
-                 $image->storeAs($carpetaImages, $imageName, 'public');
-                
-                 // Obtener la ruta completa de la imagen
-                 $imagePath = Storage::disk('public')->path("$carpetaImages/$imageName") ?? null;
-                  // Almacenar la ruta de la imagen en el array
-                  $imagePaths[] = [
-                     'name' => 'img_' . $imageNumber ,
-                     'path' => $imagePath,
-                 ];
-                 $imageNumber++;
-                  
-             }
-
-            return array_merge($validatedData, [
-                'imagePaths'=>$imagePaths,
-                'numestacion' => $estacion->num_estacion,
-                'razonsocial' => $estacion->razon_social,
-                'id_usuario' => $validatedData['id_usuario'],
-                'nomenclatura'=>$validatedData['nomenclatura'],
-                'domicilio_estacion' => $this->formatAddress($direccionServicio),
-                'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),           
-            ]);
+            'numestacion' => $estacion->num_estacion,
+            'razonsocial' => $estacion->razon_social,
+            'id_usuario' => $validatedData['id_usuario'],
+            'nomenclatura' => $validatedData['nomenclatura'],
+            'rfc' => $estacion->rfc,
+            'fecha_actual' => now()->format('d/m/Y'),
+            'domicilio_fiscal' => $this->formatAddress($direccionFiscal),
+            'domicilio_estacion' => $this->formatAddress($direccionServicio),
+            'cre' => $validatedData['num_cre'] ?? $estacion->num_cre,
+            'constancia' => $validatedData['num_constancia'] ?? $estacion->num_constancia,
+            'contacto' => $validatedData['contacto'] ?? $estacion->contacto,
+            'nom_repre' => $validatedData['nombre_representante_legal'] ?? $estacion->nombre_representante_legal,
+            'telefono' => $estacion->telefono,
+            'correo' => $estacion->correo_electronico,
+            'iva' => $this->calculateIva($validatedData['cantidad']),
+            'total' => $totalData['total'],
+            'total_mitad' => $totalData['total_mitad'],
+            'total_restante' => $totalData['total_restante'],
+            'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
+            'fecha_recepcion' => Carbon::parse($validatedData['fecha_recepcion'])->format('d-m-Y'),
+            'fecha_inspeccion_modificada' => Carbon::parse($validatedData['fecha_inspeccion'])->addYear()->format('d-m-Y'),
+            'cantidad' => $validatedData['cantidad'],
+        ]);
+    }
+    // Método para preparar los datos que se usarán en las plantillas del reporte fotografico
+    private function prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio)
+    {
+        $anio = now()->year;
+        $carpetaImages = "Servicios/005/{$anio}/{$validatedData['id_usuario']}/{$validatedData['nomenclatura']}/expediente/imagenes_reporte_fotografico";
+        //Creamos la carpteta donde iran las imagenes del reporte fotografico
+        if (!Storage::disk('public')->exists($carpetaImages)) {
+            Storage::disk('public')->makeDirectory($carpetaImages);
         }
 
+        //Obtener las imagenes
+        $imageNumber = 1;
 
-     // Método para formatear las direcciones
+        $imagePaths = [];
+        foreach ($validatedData['imagenes'] as $image) {
+            // Generar el nombre de la imagen
+            $imageName = 'img_' . $imageNumber . '.' . $image->extension();
+
+
+            // Mover la imagen a la carpeta de destino, reemplazando si existe
+            $image->storeAs($carpetaImages, $imageName, 'public');
+
+            // Obtener la ruta completa de la imagen
+            $imagePath = Storage::disk('public')->path("$carpetaImages/$imageName") ?? null;
+            // Almacenar la ruta de la imagen en el array
+            $imagePaths[] = [
+                'name' => 'img_' . $imageNumber,
+                'path' => $imagePath,
+            ];
+            $imageNumber++;
+        }
+
+        return array_merge($validatedData, [
+            'imagePaths' => $imagePaths,
+            'numestacion' => $estacion->num_estacion,
+            'razonsocial' => $estacion->razon_social,
+            'id_usuario' => $validatedData['id_usuario'],
+            'nomenclatura' => $validatedData['nomenclatura'],
+            'domicilio_estacion' => $this->formatAddress($direccionServicio),
+            'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
+        ]);
+    }
+
+
+    // Método para formatear las direcciones
     private function formatAddress($direccion)
     {
         if (!$direccion) {
@@ -182,38 +182,38 @@ class ExpendienteServicio005Controller extends Controller
     }
 
 
-    private function saveReporteFotograficoData($data, $validatedData, $estacion){
-       
+    private function saveReporteFotograficoData($data, $validatedData, $estacion)
+    {
+
 
         Expediente_Servicio_005::updateOrCreate(
             ['servicio_005_id' => $validatedData['id_servicio']],
             ['rutadoc_estacion' => $this->defineFolderPath($validatedData), 'usuario_id' => $validatedData['id_usuario']]
         );
-
     }
 
-     // Guardar los datos en la base de datos
-     private function saveExpedienteData($data, $validatedData, $estacion)
-     {
-         // Guardar datos de la estación
-         $estacion->update([
-             'num_cre' => $data['cre'],
-             'num_constancia' => $data['constancia'],
-             'contacto' => $data['contacto'],
-             'nombre_representante_legal' => $data['nom_repre'],
-         ]);
- 
-         // Guardar servicio y expediente
-         $servicio = Servicio_005::updateOrCreate(
-             ['id' => $validatedData['id_servicio']],
-             ['date_recepcion_at' => $validatedData['fecha_recepcion'], 'date_inspeccion_at' => $validatedData['fecha_inspeccion']]
-         );
- 
-         Expediente_Servicio_005::updateOrCreate(
-             ['servicio_005_id' => $servicio->id],
-             ['rutadoc_estacion' => $this->defineFolderPath($validatedData), 'usuario_id' => $validatedData['id_usuario']]
-         );
-     }
+    // Guardar los datos en la base de datos
+    private function saveExpedienteData($data, $validatedData, $estacion)
+    {
+        // Guardar datos de la estación
+        $estacion->update([
+            'num_cre' => $data['cre'],
+            'num_constancia' => $data['constancia'],
+            'contacto' => $data['contacto'],
+            'nombre_representante_legal' => $data['nom_repre'],
+        ]);
+
+        // Guardar servicio y expediente
+        $servicio = Servicio_005::updateOrCreate(
+            ['id' => $validatedData['id_servicio']],
+            ['date_recepcion_at' => $validatedData['fecha_recepcion'], 'date_inspeccion_at' => $validatedData['fecha_inspeccion']]
+        );
+
+        Expediente_Servicio_005::updateOrCreate(
+            ['servicio_005_id' => $servicio->id],
+            ['rutadoc_estacion' => $this->defineFolderPath($validatedData), 'usuario_id' => $validatedData['id_usuario']]
+        );
+    }
 
     // Método para procesar la plantilla
     private function processTemplate($data, $subFolderPath, $templateName)
@@ -235,7 +235,7 @@ class ExpendienteServicio005Controller extends Controller
                 }
             }
         }
-        
+
         // Reemplazamos los valores en el template
         foreach ($data as $key => $value) {
             // Ignoramos claves especiales que no deben ser procesadas como texto
@@ -276,13 +276,13 @@ class ExpendienteServicio005Controller extends Controller
         return User::on('mysql')->findOrFail($idUsuario);
     }
 
-     // Método para obtener los datos de la estación
-     private function getEstacionData($idestacion)
-     {
-         return Estacion::findOrFail($idestacion);
-     }
+    // Método para obtener los datos de la estación
+    private function getEstacionData($idestacion)
+    {
+        return Estacion::findOrFail($idestacion);
+    }
 
-     // Método para obtener los datos de la dirección
+    // Método para obtener los datos de la dirección
     private function getDireccion($idDireccion)
     {
         return Direccion::find($idDireccion);
@@ -316,7 +316,8 @@ class ExpendienteServicio005Controller extends Controller
         ]);
     }
 
-    private function validateReporteFotografico($request){
+    private function validateReporteFotografico($request)
+    {
         return $request->validate([
             'idestacion' => 'required',
             'id_servicio' => 'required',
@@ -325,7 +326,7 @@ class ExpendienteServicio005Controller extends Controller
             'domicilio_servicio_id' => 'nullable|integer',
             'fecha_inspeccion' => 'required|date',
             'imagenes' => 'required|array|min:4',
-            'imagenes.*'=>' |image|mimes:jpeg,png,jpg,gif',
+            'imagenes.*' => ' |image|mimes:jpeg,png,jpg,gif',
         ]);
     }
 
@@ -339,8 +340,8 @@ class ExpendienteServicio005Controller extends Controller
         }
 
         // Obtener las direcciones usando las relaciones
-        $direccionFiscal = $estacion->domicilioFiscal;  // Relación definida en el modelo
-        $direccionEstacion = $estacion->domicilioServicio;  // Relación definida en el modelo
+        $direccionFiscal = $estacion->domicilioFiscal;
+        $direccionEstacion = $estacion->domicilioServicio;
 
         // Obtener los estados
         $estados = Estados::all();
@@ -350,23 +351,48 @@ class ExpendienteServicio005Controller extends Controller
         $verificador = null;
         $usuarios = [];
 
-        // Si el usuario es administrador
         if (auth()->user()->hasRole('Administrador')) {
             $verificadores = Verificador::all();
-
-            // Si no hay verificadores, obtener los usuarios
             if ($verificadores->isEmpty()) {
-                $usuarios = User::all(); // Obtener todos los usuarios para asignar un RFC
+                $usuarios = User::all();
             }
         } else {
-            // Si no es administrador, busca el verificador del usuario logueado
             $verificador = Verificador::where('usuario_id', auth()->user()->id)->first();
-
-            // Si no está registrado como verificador, el verificador será null
             if (!$verificador) {
                 $verificador = null;
             }
         }
+
+        // Obtener las fechas ocupadas de inspección y recepción de servicios Anexo 30 del mismo usuario
+        $fechasOcupadasAnexo30 = ServicioAnexo::where('id_usuario', $servicio->id_usuario)
+            ->get(['date_recepcion_at', 'date_inspeccion_at', 'nomenclatura'])
+            ->flatMap(function ($servicio) {
+                return [
+                    ['fecha' => $servicio->date_recepcion_at, 'nomenclatura' => $servicio->nomenclatura],
+                    ['fecha' => $servicio->date_inspeccion_at, 'nomenclatura' => $servicio->nomenclatura],
+                ];
+            })
+            ->filter(function ($item) {
+                return !empty($item['fecha']);
+            })
+            ->values()
+            ->toArray();
+
+        // Obtener las fechas ocupadas de inspección y recepción de otros servicios 005 del mismo usuario
+        $fechasOcupadas005 = Servicio_005::where('id_usuario', $servicio->id_usuario)
+            ->where('id', '!=', $id) // Excluir el servicio 005 actual
+            ->get(['date_recepcion_at', 'date_inspeccion_at', 'nomenclatura'])
+            ->flatMap(function ($servicio) {
+                return [
+                    ['fecha' => $servicio->date_recepcion_at, 'nomenclatura' => $servicio->nomenclatura],
+                    ['fecha' => $servicio->date_inspeccion_at, 'nomenclatura' => $servicio->nomenclatura],
+                ];
+            })
+            ->filter(function ($item) {
+                return !empty($item['fecha']);
+            })
+            ->values()
+            ->toArray();
 
         // Ruta para los archivos
         $anio = now()->year;
@@ -374,8 +400,10 @@ class ExpendienteServicio005Controller extends Controller
         $existingFiles = $this->getExistingFiles($folderPath);
 
         // Pasar datos a la vista
-        return compact('servicio', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios');
+        return compact('servicio', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios', 'fechasOcupadasAnexo30', 'fechasOcupadas005');
     }
+
+
 
     // Método para obtener archivos existentes en la carpeta
     private function getExistingFiles($folderPath)
@@ -413,5 +441,4 @@ class ExpendienteServicio005Controller extends Controller
             'total_restante' => number_format($total - ($total * 0.50), 2, '.', ','),
         ];
     }
-
 }

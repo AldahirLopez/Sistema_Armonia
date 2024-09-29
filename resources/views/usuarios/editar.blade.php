@@ -38,17 +38,20 @@
                                 <input type="password" name="confirm-password" class="form-control" id="confirm-password">
                             </div>
                         </div>
-
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <label for="roles">Roles</label>
-                                <select name="roles" class="form-control" id="roles" style="appearance: auto;">
+                                <div>
                                     @foreach($roles as $roleId => $roleName)
-                                    <option value="{{ $roleId }}" {{ old('roles', $userRoles) == $roleId ? 'selected' : '' }}>
-                                        {{ $roleName }}
-                                    </option>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $roleName }}" id="role-{{ $roleId }}"
+                                            {{ in_array($roleId, old('roles', $userRoles)) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="role-{{ $roleId }}">
+                                            {{ $roleName }}
+                                        </label>
+                                    </div>
                                     @endforeach
-                                </select>
+                                </div>
                             </div>
                         </div>
 

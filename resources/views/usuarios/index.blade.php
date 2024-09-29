@@ -35,10 +35,12 @@
                                 <td>{{$usuario->name}}</td>
                                 <td>{{$usuario->email}}</td>
                                 <td>
-                                    @if(!empty($usuario->getRoleNames()))
+                                    @if($usuario->getRoleNames()->isNotEmpty())
                                     @foreach($usuario->getRoleNames() as $rolname)
-                                    {{$rolname}}
+                                    <div class="badge bg-success mb-3">{{ $rolname }}</div>
                                     @endforeach
+                                    @else
+                                    <span class="text-muted">Sin rol asignado</span>
                                     @endif
                                 </td>
                                 <td>
@@ -75,7 +77,7 @@
 <div class="modal fade" id="nuevoUsuarioModal" tabindex="-1" aria-labelledby="nuevoUsuarioModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-success-subtle" >
+            <div class="modal-header bg-success-subtle">
                 <h5 class="modal-title" id="nuevoUsuarioModalLabel">Alta de usuarios</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

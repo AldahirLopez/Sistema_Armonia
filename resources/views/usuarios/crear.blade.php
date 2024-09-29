@@ -36,7 +36,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <label for="confirm-password">Confirm-Password</label>
+                <label for="confirm-password">Confirmar Password</label>
                 <input type="password" name="confirm-password" class="form-control">
             </div>
         </div>
@@ -44,13 +44,20 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <label for="roles">Roles</label>
-                <select name="roles[]" class="form-control" style="appearance: auto;">
+                <div>
                     @foreach($roles as $role)
-                    <option value="{{ $role }}">{{ $role }}</option>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $role }}" id="role-{{ $role }}"
+                            {{ in_array($role, old('roles', $userRoles ?? [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="role-{{ $role }}">
+                            {{ $role }}
+                        </label>
+                    </div>
                     @endforeach
-                </select>
+                </div>
             </div>
         </div>
+
 
     </div>
     <div class="mt-3">

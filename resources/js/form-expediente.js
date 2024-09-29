@@ -1,54 +1,94 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Insert CSS directly into the document to style weekends and occupied days
+    // Insertar CSS directamente en el documento para estilizar los fines de semana y las fechas ocupadas
     const style = document.createElement('style');
     style.textContent = `
-        /* Make weekends opaque */
+        /* Fines de semana */
         .weekend {
             opacity: 0.5;
         }
-        /* Make occupied dates red */
-        .occupied-day {
+        /* Fechas ocupadas para Anexo 30 */
+        .occupied-day-anexo30 {
             background-color: red !important;
             color: white;
+        }
+        /* Fechas ocupadas para 005 */
+        .occupied-day-005 {
+            background-color: yellow !important;
+            color: black;
+        }
+        /* Tooltip estilo */
+        .flatpickr-day[data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 2px;
+            border-radius: 4px;
+            font-size: 10px;
+            top: -50px;
+            white-space: nowrap;
+            z-index: 1000;
+            display: none;
+        }
+        .flatpickr-day:hover[data-tooltip]::after {
+            display: block;
         }
     `;
     document.head.appendChild(style);
 
-    // Get occupied dates from the script tag in the HTML and format them to 'YYYY-MM-DD'
-    const fechasOcupadas = JSON.parse(document.getElementById('fechasOcupadas').textContent).map(f => {
+    // Obtener las fechas ocupadas de Anexo 30 y 005
+    const fechasOcupadasAnexo30 = JSON.parse(document.getElementById('fechasOcupadasAnexo30').textContent).map(f => {
         return {
-            fecha: f.fecha.split(' ')[0], // Remove the time component
-            nomenclatura: f.nomenclatura
+            fecha: f.fecha.split(' ')[0], // Eliminar la parte de tiempo
+            nomenclatura: f.nomenclatura,
+            tipo: 'anexo30'
         };
     });
 
-    // Initialize Flatpickr on both date fields
+    const fechasOcupadas005 = JSON.parse(document.getElementById('fechasOcupadas005').textContent).map(f => {
+        return {
+            fecha: f.fecha.split(' ')[0], // Eliminar la parte de tiempo
+            nomenclatura: f.nomenclatura,
+            tipo: '005'
+        };
+    });
+
+    // Combinar las fechas ocupadas de Anexo 30 y 005
+    const fechasOcupadas = [...fechasOcupadasAnexo30, ...fechasOcupadas005];
+
+    // Inicializar Flatpickr en ambos campos de fecha
     flatpickr("#fecha_recepcion, #fecha_inspeccion", {
         dateFormat: "Y-m-d",
         disable: [
             function (date) {
-                // Disable weekends
+                // Deshabilitar los fines de semana
                 return (date.getDay() === 0 || date.getDay() === 6);
             },
-            // Disable occupied dates
+            // Deshabilitar las fechas ocupadas
             ...fechasOcupadas.map(f => f.fecha)
         ],
-        // Customize styling for non-selectable days
+        // Personalizar estilos para los días no seleccionables
         onDayCreate: function (dObj, dStr, fp, dayElem) {
-            const dateStr = dayElem.dateObj.toISOString().split('T')[0]; // Convert date to 'YYYY-MM-DD'
+            const dateStr = dayElem.dateObj.toISOString().split('T')[0]; // Convertir fecha a 'YYYY-MM-DD'
 
-            // Make weekends opaque
+            // Marcar los fines de semana como opacos
             if (dayElem.dateObj.getDay() === 0 || dayElem.dateObj.getDay() === 6) {
                 dayElem.classList.add('weekend');
             }
 
-            // Check and style occupied dates
+            // Verificar y aplicar estilos a las fechas ocupadas
             const fechaOcupada = fechasOcupadas.find(f => f.fecha === dateStr);
             if (fechaOcupada) {
-                dayElem.classList.add('occupied-day');
+                if (fechaOcupada.tipo === 'anexo30') {
+                    dayElem.classList.add('occupied-day-anexo30');
+                    dayElem.setAttribute('data-tooltip', `Anexo 30: ${fechaOcupada.nomenclatura}`);
+                } else if (fechaOcupada.tipo === '005') {
+                    dayElem.classList.add('occupied-day-005');
+                    dayElem.setAttribute('data-tooltip', `005: ${fechaOcupada.nomenclatura}`);
+                }
             }
         },
-        // Set default date to the current date
+        // Establecer la fecha predeterminada a la fecha actual
         defaultDate: new Date().toISOString().split('T')[0]
     });
 });

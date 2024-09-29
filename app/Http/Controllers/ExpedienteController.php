@@ -10,6 +10,7 @@ use App\Models\Expediente_Servicio_Anexo_30;
 use App\Models\ProveedorInformatico;
 use App\Models\ServicioAnexo;
 use App\Models\Estacion;
+use App\Models\Servicio_005;
 use App\Models\Sondas;
 use App\Models\Tanque;
 use App\Models\User;
@@ -251,8 +252,8 @@ class ExpedienteController extends Controller
         }
 
         // Obtener las direcciones usando las relaciones
-        $direccionFiscal = $estacion->domicilioFiscal;  // Relación definida en el modelo
-        $direccionEstacion = $estacion->domicilioServicio;  // Relación definida en el modelo
+        $direccionFiscal = $estacion->domicilioFiscal;
+        $direccionEstacion = $estacion->domicilioServicio;
 
         // Obtener los estados
         $estados = Estados::all();
@@ -262,27 +263,36 @@ class ExpedienteController extends Controller
         $verificador = null;
         $usuarios = [];
 
-        // Si el usuario es administrador
         if (auth()->user()->hasRole('Administrador')) {
             $verificadores = Verificador::all();
-
-            // Si no hay verificadores, obtener los usuarios
             if ($verificadores->isEmpty()) {
-                $usuarios = User::all(); // Obtener todos los usuarios para asignar un RFC
+                $usuarios = User::all();
             }
         } else {
-            // Si no es administrador, busca el verificador del usuario logueado
             $verificador = Verificador::where('usuario_id', auth()->user()->id)->first();
-
-            // Si no está registrado como verificador, el verificador será null
             if (!$verificador) {
                 $verificador = null;
             }
         }
 
-        // Obtener las fechas ocupadas de inspección y recepción de otros servicios con su nomenclatura
-        $fechasOcupadas = ServicioAnexo::where('id_usuario', $servicioAnexo->id_usuario)
+        // Obtener las fechas ocupadas de inspección y recepción de servicios Anexo 30 del mismo usuario
+        $fechasOcupadasAnexo30 = ServicioAnexo::where('id_usuario', $servicioAnexo->id_usuario)
             ->where('id', '!=', $id) // Excluir el servicio actual
+            ->get(['date_recepcion_at', 'date_inspeccion_at', 'nomenclatura'])
+            ->flatMap(function ($servicio) {
+                return [
+                    ['fecha' => $servicio->date_recepcion_at, 'nomenclatura' => $servicio->nomenclatura],
+                    ['fecha' => $servicio->date_inspeccion_at, 'nomenclatura' => $servicio->nomenclatura],
+                ];
+            })
+            ->filter(function ($item) {
+                return !empty($item['fecha']);
+            })
+            ->values()
+            ->toArray();
+
+        // Obtener las fechas ocupadas de inspección y recepción de los servicios 005 del mismo usuario
+        $fechasOcupadas005 = Servicio_005::where('id_usuario', $servicioAnexo->id_usuario)
             ->get(['date_recepcion_at', 'date_inspeccion_at', 'nomenclatura'])
             ->flatMap(function ($servicio) {
                 return [
@@ -302,8 +312,9 @@ class ExpedienteController extends Controller
         $existingFiles = $this->getExistingFiles($folderPath);
 
         // Pasar datos a la vista
-        return compact('servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios', 'proveedorinfo', 'fechasOcupadas');
+        return compact('servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios', 'proveedorinfo', 'fechasOcupadasAnexo30', 'fechasOcupadas005');
     }
+
 
 
     // Validar los datos del formulario

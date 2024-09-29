@@ -107,7 +107,8 @@
     <button type="submit" class="btn btn-primary mt-3">Generar</button>
 </form>
 <!-- Pasar las fechas ocupadas al script -->
-<script id="fechasOcupadas" type="application/json">@json($fechasOcupadas)</script>
+<script id="fechasOcupadasAnexo30" type="application/json">@json($fechasOcupadasAnexo30)</script>
+<script id="fechasOcupadas005" type="application/json">@json($fechasOcupadas005)</script>
 
 <!-- Incluir el script externo -->
 <script src="{{ URL::asset('build/js/form-expediente.js') }}"></script>
