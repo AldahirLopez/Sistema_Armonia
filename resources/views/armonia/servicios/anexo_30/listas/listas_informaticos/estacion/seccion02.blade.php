@@ -112,19 +112,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="si"> Sí
+                                    <input type="radio" name="admin_ingreso_users" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no"> No
+                                    <input type="radio" name="admin_ingreso_users" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no_aplica"> No Aplica
+                                    <input type="radio" name="admin_ingreso_users" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_supervisor" class="form-control">
+                                <input type="text" name="observaciones_admin_ingreso_users" class="form-control">
                             </td>
                         </tr>
                         <!---- hasta aca compuesto --->
@@ -134,19 +134,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="si"> Sí
+                                    <input type="radio" name="admin_registro_user" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no"> No
+                                    <input type="radio" name="admin_registro_user" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no_aplica"> No Aplica
+                                    <input type="radio" name="admin_registro_user" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_supervisor" class="form-control">
+                                <input type="text" name="observaciones_admin_registro_user" class="form-control">
                             </td>
                         </tr>
                         <tr>
@@ -155,19 +155,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="si"> Sí
+                                    <input type="radio" name="informatico_nueva_password" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no"> No
+                                    <input type="radio" name="informatico_nueva_password" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no_aplica"> No Aplica
+                                    <input type="radio" name="informatico_nueva_password" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_supervisor" class="form-control">
+                                <input type="text" name="observaciones_informatico_nueva_password" class="form-control">
                             </td>
                         </tr>
 
@@ -177,19 +177,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="si"> Sí
+                                    <input type="radio" name="pantalla_usuario_correcta" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no"> No
+                                    <input type="radio" name="pantalla_usuario_correcta" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no_aplica"> No Aplica
+                                    <input type="radio" name="pantalla_usuario_correcta" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_supervisor" class="form-control">
+                                <input type="text" name="observaciones_pantalla_usuario_correcta" class="form-control">
                             </td>
                         </tr>
 
@@ -200,19 +200,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="si"> Sí
+                                    <input type="radio" name="permisos_perfil" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no"> No
+                                    <input type="radio" name="permisos_perfil" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no_aplica"> No Aplica
+                                    <input type="radio" name="permisos_perfil" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_supervisor" class="form-control">
+                                <input type="text" name="observaciones_permisos_perfil" class="form-control">
                             </td>
                         </tr>
 
@@ -223,19 +223,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="si"> Sí
+                                    <input type="radio" name="acciones_users_automatico" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no"> No
+                                    <input type="radio" name="acciones_users_automatico" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no_aplica"> No Aplica
+                                    <input type="radio" name="acciones_users_automatico" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_supervisor" class="form-control">
+                                <input type="text" name="observaciones_acciones_users_automatico" class="form-control">
                             </td>
                         </tr>
 
@@ -245,19 +245,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="si"> Sí
+                                    <input type="radio" name="enlaces_comunicacion_trasnferencia" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no"> No
+                                    <input type="radio" name="enlaces_comunicacion_trasnferencia" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no_aplica"> No Aplica
+                                    <input type="radio" name="enlaces_comunicacion_trasnferencia" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_supervisor" class="form-control">
+                                <input type="text" name="observaciones_enlaces_comunicacion_trasnferencia" class="form-control">
                             </td>
                         </tr>
 

@@ -25,7 +25,7 @@
                                     <input type="radio" name="autodiagnostico_alarma" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="rautodiagnostico_alarma value="no"> No
+                                    <input type="radio" name="autodiagnostico_alarma" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">

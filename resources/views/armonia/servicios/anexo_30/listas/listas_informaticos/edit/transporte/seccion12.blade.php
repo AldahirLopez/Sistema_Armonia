@@ -885,7 +885,7 @@
                                 e) Manuales de usuarios
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="ç" value="si"> Sí
+                                    <input type="radio" name="requerimientos_seguridad_manuales_usuario" value="si"> Sí
                                 </label>
                                 <label>
                                     <input type="radio" name="requerimientos_seguridad_manuales_usuario" value="no"> No
@@ -918,7 +918,7 @@
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="requerimientos_seguridad_roles_usuario" class="form-control">
+                                <input type="text" name="observaciones_requerimientos_seguridad_roles_usuario" class="form-control">
                             </td>
                         </tr>
 

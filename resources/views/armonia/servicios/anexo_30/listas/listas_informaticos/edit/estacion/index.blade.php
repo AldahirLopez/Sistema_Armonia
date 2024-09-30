@@ -19,7 +19,7 @@
 <!-- Formulario principal que envuelve todas las secciones -->
 <form action="{{route('lista_inspeccion.store')}}" method="POST">
     @csrf
-    
+    <input type="hidden" id="id_servicio" value="{{ $id_servicio }}" name="id_servicio">
     <!-- Página 1 -->
     <div class="pagina" id="pagina-1">
         <div id="seccion01">
@@ -122,39 +122,31 @@
   
     const lista = @json($lista);
     function fillForm(json) {
-        if (json.seccion1) {
-            const respaldoRadio = document.querySelector(`input[name="respaldo"][value="${json.seccion1.respaldo}"]`);
-            if (respaldoRadio) {
-                respaldoRadio.checked = true;  
-            }
-            const observacionesRespaldo = document.querySelector('input[name="observaciones_respaldo"]');
-            if (observacionesRespaldo) {
-                observacionesRespaldo.value = json.seccion1.observaciones_respaldo;
+    
+          // Iterar sobre cada sección en el JSON
+    for (const [sectionKey, sectionData] of Object.entries(json)) {
+        // Saltar la clave "tipo" ya que no es una sección del formulario
+        if (sectionKey === 'tipo') continue;
+
+        // Iterar sobre cada campo dentro de la sección
+        for (const [key, value] of Object.entries(sectionData)) {
+            // Seleccionar y marcar el radio button si existe y coincide con el valor
+            const radioButton = document.querySelector(`input[name="${key}"][value="${value}"]`);
+            if (radioButton && radioButton.type === 'radio') {
+                radioButton.checked = true;
+            }else{
+                // Seleccionar el campo de texto o textarea y asignar valor si existe
+                const inputField = document.querySelector(`input[name="${key}"], textarea[name="${key}"]`);
+                    if (inputField && (inputField.type === 'text')) {
+                            inputField.value = value; // Asigna el valor o vacío si es null
+                        }
             }
 
-
-            const entorno_visual = document.querySelector(`input[name="entorno_visual"][value="${json.seccion1.entorno_visual}"]`);
-            if (entorno_visual) {
-                entorno_visual.checked = true;  
-            }
-            const observaciones_entorno_visual = document.querySelector('input[name="observaciones_entorno_visual"]');
-            if (observaciones_entorno_visual) {
-                observaciones_entorno_visual.value = json.seccion1.observaciones_entorno_visual;
-            }
-
-
-            const control_acceso = document.querySelector(`input[name="control_acceso"][value="${json.seccion1.control_acceso}"]`);
-            if (control_acceso) {
-                control_acceso.checked = true;  
-            }
-            const observaciones_control_acceso = document.querySelector('input[name="observaciones_control_acceso"]');
-            if (observaciones_control_acceso) {
-                observaciones_control_acceso.value = json.seccion1.observaciones_control_acceso;
-            }
-  
+            
         }
     }
-
+        
+    }
     // Llama a la función para rellenar el formulario
     fillForm(lista);
 </script>

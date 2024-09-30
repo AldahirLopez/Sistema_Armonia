@@ -22,4 +22,9 @@ class Listas_inspeccion extends Model
         'lista' => 'json',
         
     ];
+
+    public function servicio_anexo()
+    {
+        return $this->belongsTo(ServicioAnexo::class, 'id_servicio');
+    }
 }
