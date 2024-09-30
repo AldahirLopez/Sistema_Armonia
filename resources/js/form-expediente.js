@@ -56,6 +56,23 @@ document.addEventListener('DOMContentLoaded', function () {
     // Combinar las fechas ocupadas de Anexo 30 y 005
     const fechasOcupadas = [...fechasOcupadasAnexo30, ...fechasOcupadas005];
 
+    // Función para obtener el siguiente día hábil
+    function obtenerSiguienteDiaHabil(fecha) {
+        let siguienteDia = new Date(fecha);
+        do {
+            siguienteDia.setDate(siguienteDia.getDate() + 1);
+            const dateStr = siguienteDia.toISOString().split('T')[0];
+
+            // Comprobar si es un fin de semana o una fecha ocupada
+            const esFinDeSemana = (siguienteDia.getDay() === 0 || siguienteDia.getDay() === 6);
+            const esFechaOcupada = fechasOcupadas.some(f => f.fecha === dateStr);
+
+            if (!esFinDeSemana && !esFechaOcupada) {
+                return dateStr; // Retorna la fecha si es un día hábil
+            }
+        } while (true);
+    }
+
     // Inicializar Flatpickr en ambos campos de fecha
     flatpickr("#fecha_recepcion, #fecha_inspeccion", {
         dateFormat: "Y-m-d",
@@ -88,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         },
-        // Establecer la fecha predeterminada a la fecha actual
-        defaultDate: new Date().toISOString().split('T')[0]
+        // Establecer la fecha predeterminada al siguiente día hábil
+        defaultDate: obtenerSiguienteDiaHabil(new Date())
     });
 });

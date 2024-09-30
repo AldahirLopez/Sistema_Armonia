@@ -16,6 +16,7 @@ use App\Http\Controllers\Servicio005Controller;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ExpendienteServicio005Controller;
+use App\Http\Controllers\RutasController;
 use App\Http\Controllers\SondaController;
 use App\Http\Controllers\TanqueController;
 use Illuminate\Support\Facades\Route;
@@ -74,13 +75,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('notificaciones/{id}', [NotificacionController::class, 'mostrarNotificacion'])->name('notificaciones.mostrar');
 
     // Aprobar y eliminar servicios utilizando la nomenclatura
-     // Listar todas las notificaciones
-     // Cancelar servicio utilizando la nomenclatura
+    // Listar todas las notificaciones
+    // Cancelar servicio utilizando la nomenclatura
     Route::post('/aprobar-servicio/{nomenclatura}/{notificationId}', [NotificacionController::class, 'AprobarServicio'])->name('aprobar.servicio');
     Route::post('/eliminar-servicio/{nomenclatura}/{notificationId}', [NotificacionController::class, 'EliminarServicio'])->name('eliminar.servicio');
-   
+
     Route::get('/notificaciones', [NotificacionController::class, 'listarNotificaciones'])->name('notificaciones.listar');
-    
+
     Route::delete('/cancelar-servicio/{nomenclatura}/{notificationId}', [NotificacionController::class, 'CancelarServicio'])->name('cancelar.servicio');
 
     // Menú de Documentación Anexo 30
@@ -128,6 +129,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/servicio_005/terceros/{id}', [DocumentacionServicio005Controller::class, 'destroy'])->name('documentacion_servicio_005.terceros.delete');
     });
 
+    //Vista para la rutas 
+    Route::get('/rutas', action: [RutasController::class, 'index'])->name('rutas.index');
 
 
 
