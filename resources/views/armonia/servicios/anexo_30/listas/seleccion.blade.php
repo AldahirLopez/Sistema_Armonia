@@ -14,7 +14,8 @@
     <div class="col-lg-12">
         <div class="card border-0 shadow-sm">
             <div class="card-body d-flex justify-content-between">
-            <a href="{{ route('anexo.index', ['id' => $id_servicio]) }}" class="btn btn-danger">
+            <a href="{{ route('armonia.servicios.anexo_30.listas_inspeccion.menu', ['id' => $id_servicio]) }}" class="btn btn-danger">
+                
                 <i class="bi bi-arrow-return-left"></i> Volver
             </a>
                 

@@ -14,6 +14,20 @@ use App\Models\Listas_inspeccion;
 
 class ListasInspeccionController extends Controller
 {
+
+
+    public function menu(Request $request)
+    {
+        // Capturar el id del request
+        $id = $request->input('id');
+        // Buscar el servicio por el ID
+        $servicio = ServicioAnexo::findOrFail($id);
+        // Pasar el servicio a la vista para que puedas acceder a la nomenclatura
+        return view('armonia.servicios.anexo_30.listas.menu', compact('servicio'));
+    }
+
+
+
     public function seleccion($id)
     {
         // Puedes obtener más información según tu lógica de negocio

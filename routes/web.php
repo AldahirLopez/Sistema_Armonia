@@ -161,7 +161,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/servicio_005/generar_reporte_fotografico', [ExpendienteServicio005Controller::class, 'generarReporteFotografico'])->name('reporte_fotografico_servicio_005.generar');
 
 
-
+    //Ruta para el menu de las listas de inspeccio Anexo 30
+    Route::get('/servicios/anexo_30/listas_inspeccion/menu', [ListasInspeccionController::class, 'menu'])->name('armonia.servicios.anexo_30.listas_inspeccion.menu');
 
     // Ruta para seleccionar listas
     Route::get('seleccion_listas/{id}', [ListasInspeccionController::class, 'seleccion'])->name('listas.seleccion');
