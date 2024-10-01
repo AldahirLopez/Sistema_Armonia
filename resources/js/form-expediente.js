@@ -109,3 +109,22 @@ document.addEventListener('DOMContentLoaded', function () {
         defaultDate: obtenerSiguienteDiaHabil(new Date())
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const cantidadInput = document.getElementById('cantidad');
+
+    // Formatear la entrada al agregar comas mientras el usuario escribe
+    cantidadInput.addEventListener('input', function (e) {
+        let value = cantidadInput.value.replace(/[^0-9.]/g, ''); // Eliminar cualquier carácter no numérico
+        value = parseFloat(value.replace(/,/g, '')).toFixed(2); // Formatear a 2 decimales
+        if (!isNaN(value)) {
+            cantidadInput.value = new Intl.NumberFormat('es-MX').format(value);
+        }
+    });
+
+    // Remover comas y símbolo de pesos antes de enviar el formulario
+    cantidadInput.closest('form').addEventListener('submit', function () {
+        let value = cantidadInput.value.replace(/[^0-9.]/g, ''); // Eliminar cualquier carácter no numérico
+        cantidadInput.value = value; // Enviar el valor limpio sin comas ni símbolo
+    });
+});

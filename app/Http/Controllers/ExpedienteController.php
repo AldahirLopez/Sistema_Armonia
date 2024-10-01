@@ -43,7 +43,7 @@ class ExpedienteController extends Controller
             $direccionServicio = $this->getDireccion($validatedData['domicilio_servicio_id']);
 
             // Preparar los datos a usar en las plantillas
-            $data = $this->prepareExpedienteData($validatedData, $estacion, $direccionFiscal, $direccionServicio);
+            $data = $this->prepareExpedienteData($validatedData, $estacion, $direccionFiscal, $direccionServicio, $usuario);
 
             // Definir la carpeta de destino y procesar las plantillas
             $subFolderPath = $this->defineFolderPath($validatedData);
@@ -274,7 +274,7 @@ class ExpedienteController extends Controller
                 $verificador = null;
             }
         }
-
+ 
         // Obtener las fechas ocupadas de inspección y recepción de servicios Anexo 30 del mismo usuario
         $fechasOcupadasAnexo30 = ServicioAnexo::where('id_usuario', $servicioAnexo->id_usuario)
             ->where('id', '!=', $id) // Excluir el servicio actual
@@ -324,7 +324,7 @@ class ExpedienteController extends Controller
             'nomenclatura' => 'required|string',
             'idestacion' => 'required',
             'id_servicio' => 'required',
-            'id_usuario' => 'required|exists:users,id',
+            'id_usuario' => 'required',
             'numestacion' => 'required|string',
             'tipo_estacion' => 'required|string',
             'num_estacion' => 'required|string',
@@ -365,13 +365,14 @@ class ExpedienteController extends Controller
     }
 
     // Método para preparar los datos que se usarán en las plantillas
-    private function prepareExpedienteData($validatedData, $estacion, $direccionFiscal, $direccionServicio)
+    private function prepareExpedienteData($validatedData, $estacion, $direccionFiscal, $direccionServicio, $usuario)
     {
         $totalData = $this->calculateTotal($validatedData['cantidad']); // Obtener total, mitad, y restante
 
         return array_merge($validatedData, [
             'numestacion' => $estacion->num_estacion,
             'razonsocial' => $estacion->razon_social,
+            'id_usuario' => $usuario->name,
             'rfc' => $estacion->rfc,
             'fecha_actual' => now()->format('d/m/Y'),
             'domicilio_fiscal' => $this->formatAddress($direccionFiscal),
@@ -620,7 +621,7 @@ class ExpedienteController extends Controller
         // Guardar servicio y expediente
         $servicio = ServicioAnexo::updateOrCreate(
             ['id' => $validatedData['id_servicio']],
-            ['date_recepcion_at' => $validatedData['fecha_recepcion'], 'date_inspeccion_at' => $validatedData['fecha_inspeccion']]
+            ['date_recepcion_at' => $validatedData['fecha_recepcion'], 'date_inspeccion_at' => $validatedData['fecha_inspeccion'], 'costo_total' => $validatedData['cantidad'] ]
         );
 
         Expediente_Servicio_Anexo_30::updateOrCreate(

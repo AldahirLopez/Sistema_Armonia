@@ -36,7 +36,7 @@
             </div>
 
             <div class="form-group">
-                <label for="num_cre">Num. de Permiso de la Comisión Reguladora de Energía (CRE)</label>
+                <label for="num_cre">Permiso de la Comisión Reguladora de Energía (CRE)</label>
                 <input type="text" name="num_cre" class="form-control" value="{{ $estacion->num_cre }}">
             </div>
 
@@ -87,6 +87,14 @@
                 <input type="text" name="domicilio_servicio_id" class="form-control" value="{{ $estacion->domicilio_servicio_id }}" readonly>
             </div>
 
+            <div class="form-group">
+                <label for="cantidad">Precio</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="text" id="cantidad" name="cantidad" class="form-control" required value="{{ number_format($servicioAnexo->costo_total) }}">
+                </div>
+            </div>
+
             <!-- Fecha Programada de Inspección -->
             <div class="form-group">
                 <label for="fecha_inspeccion">Fecha Programada de Inspección</label>
@@ -95,11 +103,6 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-
-            <div class="form-group">
-                <label for="cantidad">Cantidad</label>
-                <input type="number" name="cantidad" class="form-control" required value="{{ old('cantidad') }}">
-            </div>
         </div>
     </div>
 
@@ -107,8 +110,12 @@
     <button type="submit" class="btn btn-primary mt-3">Generar</button>
 </form>
 <!-- Pasar las fechas ocupadas al script -->
-<script id="fechasOcupadasAnexo30" type="application/json">@json($fechasOcupadasAnexo30)</script>
-<script id="fechasOcupadas005" type="application/json">@json($fechasOcupadas005)</script>
+<script id="fechasOcupadasAnexo30" type="application/json">
+    @json($fechasOcupadasAnexo30)
+</script>
+<script id="fechasOcupadas005" type="application/json">
+    @json($fechasOcupadas005)
+</script>
 
 <!-- Incluir el script externo -->
 <script src="{{ URL::asset('build/js/form-expediente.js') }}"></script>

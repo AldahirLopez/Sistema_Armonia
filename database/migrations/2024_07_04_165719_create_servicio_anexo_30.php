@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::connection('segunda_db')->create('servicio_anexo_30', function (Blueprint $table) {
             $table->id(); // ID autoincremental
             $table->string('nomenclatura')->unique()->nullable(); // Nomenclatura única, inicialmente null
+            $table->string('costo_total')->nullable();// vosto del servicio
             $table->boolean('pending_apro_servicio')->nullable();// Aprobacion de la estacion
             $table->boolean('pending_deletion_servicio')->nullable(); // Pendiente de Eliminacion
             $table->dateTime('date_eliminated_at')->nullable();// Fecha de eliminacion
