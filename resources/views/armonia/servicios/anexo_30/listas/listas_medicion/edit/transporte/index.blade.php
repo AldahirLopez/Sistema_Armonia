@@ -132,8 +132,7 @@
     for (const [sectionKey, sectionData] of Object.entries(json)) {
         // Saltar la clave "tipo" ya que no es una sección del formulario
         if (sectionKey === 'tipo') continue;
-        
-        if (sectionKey === 'tipo_general') continue;
+
         // Iterar sobre cada campo dentro de la sección
         for (const [key, value] of Object.entries(sectionData)) {
             // Seleccionar y marcar el radio button si existe y coincide con el valor

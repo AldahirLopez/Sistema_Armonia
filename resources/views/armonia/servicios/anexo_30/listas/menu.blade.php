@@ -23,12 +23,12 @@
     @php 
     $documentaciones = [
     ['title' => 'Programas informaticos', 'action' => route('listas.seleccion', ['id' => $servicio->id])],
-    ['title' => 'Sistemas de medicion', 'action' => route('documentacion.informatica', ['id' => $servicio->id])],
+    ['title' => 'Sistemas de medicion', 'action' => route('listas_medicion.seleccion', ['id' => $servicio->id])],
     ];
     @endphp
 
     @foreach($documentaciones as $doc)
-    @include('armonia.servicios.anexo_30.listas.listas_informaticos.componentes.documento-card', [
+    @include('armonia.servicios.anexo_30.listas.componentes.documento-card', [
     'title' => $doc['title'],
     'action' => $doc['action'],
     'servicio' => $servicio

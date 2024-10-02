@@ -9,6 +9,7 @@ use App\Http\Controllers\EquipoEstacionController;
 use App\Http\Controllers\EstacionController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\ListasInspeccionController;
+use App\Http\Controllers\ListasInspeccionMedicionController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ServicioAnexo30Controller;
@@ -160,28 +161,25 @@ Route::group(['middleware' => ['auth']], function () {
     //Ruta para generar el reporte fotografico del servicio 005
     Route::post('/servicio_005/generar_reporte_fotografico', [ExpendienteServicio005Controller::class, 'generarReporteFotografico'])->name('reporte_fotografico_servicio_005.generar');
 
-
-    //Ruta para el menu de las listas de inspeccio Anexo 30
+    //RUTAS PARA LISTAS DE INSPECCION PROGRAMAS INFORMATICOS
+    //Ruta para el menu de las listas de inspeccio Anexo 30 
     Route::get('/servicios/anexo_30/listas_inspeccion/menu', [ListasInspeccionController::class, 'menu'])->name('armonia.servicios.anexo_30.listas_inspeccion.menu');
-
     // Ruta para seleccionar listas
     Route::get('seleccion_listas/{id}', [ListasInspeccionController::class, 'seleccion'])->name('listas.seleccion');
-
     // Ruta para cargar el formulario dinámico
     // Route::get('/form/{type}', [ListasInspeccionController::class, 'loadForm']);
     Route::get('/form/{type}/{id_servicio}', [ListasInspeccionController::class, 'loadForm']);
-
-
     //Ruta para guardar la lista de inspeccion 
     Route::post('/lista_inspeccion', [ListasInspeccionController::class, 'store'])->name('lista_inspeccion.store');
-
     //Rutas para editar y actualizar la lista
     Route::get('/lista_inspeccion/{id}', [ListasInspeccionController::class, 'edit'])->name('lista_inspeccion.edit');
-
     //Ruta para eliminar la lista de inspeccion
-
     Route::delete('/lista_inspeccion/{id}', [ListasInspeccionController::class, 'destroy'])->name('lista_inspeccion.destroy');
 
+    //RUTAS PARA LISTAS DE INSPECCION SISTEMAS DE MEDICION 
+    //Ruta para el menu de las listas de inspeccio Anexo 30
+    Route::get('seleccion_listas/sistema_medicion/{id}', [ListasInspeccionMedicionController::class, 'seleccion'])->name('listas_medicion.seleccion');
+   
     // Calendario
     Route::get('/calendario', [CalendarioController::class, 'index'])->name('calendario.index');
     Route::get('/calendario/eventos', [CalendarioController::class, 'fetchEvents']); // Obtener los eventos para el calendario

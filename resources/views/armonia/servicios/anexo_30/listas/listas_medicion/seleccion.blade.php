@@ -7,7 +7,7 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Seleccion @endslot
-@slot('title') Listas de inspeccion anexo 30 @endslot
+@slot('title') Lista de inspección verificacion de los sistemas de medición @endslot
 @endcomponent
 
 <div class="row mb-4">

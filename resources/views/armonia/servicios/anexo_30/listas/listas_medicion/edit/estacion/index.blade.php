@@ -10,14 +10,12 @@
 @slot('title') Estaciones de Servicio @endslot
 @endcomponent
 
-
 <div class="section-header" style="margin: 5px 5px 15px 5px;">
         <a href="{{ route('listas.seleccion', ['id' => $id_servicio]) }}" class="btn btn-danger">
             <i class="bi bi-arrow-return-left"></i> Volver
         </a>
 </div>
-
-<h4 style="padding-top: 40px;">Formulario para Transporte</h4>
+<h4 style="padding-top: 40px;">Formulario para Estación</h4>
 <!-- Formulario principal que envuelve todas las secciones -->
 <form action="{{route('lista_inspeccion.store')}}" method="POST">
     @csrf
@@ -120,9 +118,6 @@
         <button type="submit" class="btn btn-success">Finalizar</button>
     </div>
 </form>
-
-
-
 <script>
   
     const lista = @json($lista);
@@ -132,8 +127,7 @@
     for (const [sectionKey, sectionData] of Object.entries(json)) {
         // Saltar la clave "tipo" ya que no es una sección del formulario
         if (sectionKey === 'tipo') continue;
-        
-        if (sectionKey === 'tipo_general') continue;
+
         // Iterar sobre cada campo dentro de la sección
         for (const [key, value] of Object.entries(sectionData)) {
             // Seleccionar y marcar el radio button si existe y coincide con el valor
@@ -170,5 +164,4 @@
         document.getElementById('pagina-' + numeroPagina).style.display = 'block';
     }
 </script>
-
 @endsection

@@ -1,6 +1,3 @@
-
-
-
 <table class="table table-bordered">
     <tbody>
         <tr>
@@ -88,50 +85,3 @@
         </tr>
     </tbody>
 </table>
-
-
-<script>
-  
-    const lista = @json($lista);
-    function fillForm(json) {
-        if (json.seccion1) {
-            const respaldoRadio = document.querySelector(`input[name="respaldo"][value="${json.seccion1.respaldo}"]`);
-            if (respaldoRadio) {
-                respaldoRadio.checked = true;  
-            }
-            const observacionesRespaldo = document.querySelector('input[name="observaciones_respaldo"]');
-            if (observacionesRespaldo) {
-                observacionesRespaldo.value = json.seccion1.observaciones_respaldo;
-            }
-
-
-            const entorno_visual = document.querySelector(`input[name="entorno_visual"][value="${json.seccion1.entorno_visual}"]`);
-            if (entorno_visual) {
-                entorno_visual.checked = true;  
-            }
-            const observaciones_entorno_visual = document.querySelector('input[name="observaciones_entorno_visual"]');
-            if (observaciones_entorno_visual) {
-                observaciones_entorno_visual.value = json.seccion1.observaciones_entorno_visual;
-            }
-
-
-            const control_acceso = document.querySelector(`input[name="control_acceso"][value="${json.seccion1.control_acceso}"]`);
-            if (control_acceso) {
-                control_acceso.checked = true;  
-            }
-            const observaciones_control_acceso = document.querySelector('input[name="observaciones_control_acceso"]');
-            if (observaciones_control_acceso) {
-                observaciones_control_acceso.value = json.seccion1.observaciones_control_acceso;
-            }
-
-
-
-
-
-  
-        }
-    }
-
-    // Llama a la función para rellenar el formulario
-    fillForm(lista);
-</script>
