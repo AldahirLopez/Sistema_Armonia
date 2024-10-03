@@ -9,7 +9,9 @@
 @slot('li_1') Servicios @endslot
 @slot('title') Documentación General del Servicio {{ $servicio->nomenclatura }} @endslot
 @endcomponent
+
 @include('partials.alertas') <!-- Incluyendo las alertas -->
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -21,6 +23,17 @@
                             <i class="bx bx-arrow-back"></i>
                         </button>
                     </form>
+                </div>
+
+                <!-- Información del Servicio -->
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Información del Servicio</h5>
+                        <p class="mb-1"><strong>Nomenclatura:</strong> {{ $servicio->nomenclatura }}</p>
+                        <p class="mb-1"><strong>Estación:</strong> {{ $servicio->estaciones->first()->razon_social ?? 'Desconocido' }}</p>
+                        <p class="mb-1"><strong>Estado:</strong> {{ $servicio->estaciones->first()->domicilioServicio->entidad_federativa ?? 'Estado desconocido' }}</p>
+                        <p class="mb-1"><strong>Municipio:</strong> {{ $servicio->estaciones->first()->domicilioServicio->municipio ?? 'Municipio desconocido' }}</p>
+                    </div>
                 </div>
 
                 <div class="table-responsive">

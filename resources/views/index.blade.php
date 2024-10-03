@@ -28,9 +28,7 @@
                             <div style="flex-grow: 1;">
                                 <h6 class="mb-1" style="font-size: 15px;">{{ $evento->title }}</h6>
                                 <small class="text-muted">
-                                    <strong>{{ \Carbon\Carbon::parse($evento->start_date)->format('d M') }} -
-                                        {{ \Carbon\Carbon::parse($evento->end_date)->format('d M') }}</strong> |
-                                    {{ $evento->duration_days }} día(s)
+                                    <strong>{{ \Carbon\Carbon::parse($evento->start_date)->format('d M') }}</strong>
                                 </small>
                             </div>
                             <div>
@@ -81,8 +79,8 @@
 @endsection
 
 @section('script')
-<!-- ApexCharts -->
 <script src="{{ asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
+<script src="{{ asset('build/js/home.js') }}"></script>
 
 @php
 $serviciosData = $serviciosPorInspector->pluck('total_servicios')->toArray();
@@ -95,6 +93,4 @@ $inspectoresData = $serviciosPorInspector->pluck('usuario.name')->toArray();
     var inspectoresData = @json($inspectoresData);
 </script>
 
-<!-- Incluir el archivo JS -->
-<script src="{{ asset('build/js/home.js') }}"></script>
 @endsection

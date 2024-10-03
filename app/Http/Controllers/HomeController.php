@@ -43,9 +43,12 @@ class HomeController extends Controller
 
     public function root()
     {
-        // Obtiene los eventos del mes actual
+        // Obtiene los eventos del mes actual y los ordena por fecha y hora de inicio
         $currentMonth = Carbon::now()->month;
-        $eventos = Evento::whereMonth('start_date', $currentMonth)->get();
+        $eventos = Evento::whereMonth('start_date', $currentMonth)
+            ->orderBy('start_date', 'asc') // Ordena por fecha de inicio ascendente
+            ->orderBy('start_time', 'asc') // Ordena por hora de inicio ascendente
+            ->get();
 
         // Obtiene los servicios creados por cada inspector (usuario)
         $serviciosPorInspector = ServicioAnexo::with('usuario')
@@ -56,6 +59,7 @@ class HomeController extends Controller
         // Pasa los datos de eventos y servicios a la vista
         return view('index', compact('eventos', 'serviciosPorInspector'));
     }
+
 
     public function lang($locale)
     {

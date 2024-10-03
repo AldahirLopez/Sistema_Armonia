@@ -31,7 +31,7 @@ class CalendarioController extends Controller
         // Formatear los eventos para que FullCalendar los entienda correctamente
         $formattedEvents = $events->map(function ($event) {
             $start_time = \Carbon\Carbon::parse($event->start_date . ' ' . $event->start_time);
-            $end_time = \Carbon\Carbon::parse($event->end_date)->addDay(); // Incluimos el día final
+            $end_time = \Carbon\Carbon::parse($event->end_date); // Incluimos el día final
 
             return [
                 'id' => $event->id,
@@ -127,9 +127,16 @@ class CalendarioController extends Controller
 
     public function eventosDelMes()
     {
-        $currentMonth = Carbon::now()->month;
-        $eventos = Evento::whereMonth('start_date', $currentMonth)->orderBy('start_date', 'asc')->get();
+        $mesActual = Carbon::now()->month; // Obtiene el mes actual
+        $anioActual = Carbon::now()->year; // Obtiene el año actual
 
-        return view('index', compact('eventos')); // Asegúrate de que 'index' sea la vista principal.
+        // Filtra los eventos del mes y año actual y los ordena correctamente
+        $eventos = Evento::whereYear('start_date', $anioActual)
+            ->whereMonth('start_date', $mesActual)
+            ->orderByRaw('STR_TO_DATE(start_date, "%Y-%m-%d") ASC') // Convierte a fecha y ordena
+            ->orderBy('start_time', 'asc') // Ordena por hora de inicio
+            ->get();
+
+        return view('index', compact('eventos')); // Asegúrate de que 'index' sea la vista correcta.
     }
 }

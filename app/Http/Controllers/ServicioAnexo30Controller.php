@@ -27,24 +27,29 @@ class ServicioAnexo30Controller extends Controller
     {
         $usuarios = $this->getUsuariosConRol('Verificador Anexo 30');
         $usuario = Auth::user();
-
+    
         if ($usuario) {
             $usuarioSeleccionado = $request->input('usuario_id');
             $isAdminOrAuditor = $usuario->hasAnyRole(['Administrador', 'Auditor']);
-
+    
             $estaciones = $this->getEstacionesSinServicio($usuario, $isAdminOrAuditor);
-
+    
             $servicios = ServicioAnexo::when($usuarioSeleccionado, function ($query, $usuarioSeleccionado) {
-                return $query->where('id_usuario', $usuarioSeleccionado);
-            }, function ($query) use ($usuario, $isAdminOrAuditor) {
-                return $isAdminOrAuditor ? $query : $query->where('id_usuario', $usuario->id);
-            })->paginate(10);
-
+                    return $query->where('id_usuario', $usuarioSeleccionado);
+                }, function ($query) use ($usuario, $isAdminOrAuditor) {
+                    return $isAdminOrAuditor ? $query : $query->where('id_usuario', $usuario->id);
+                })
+                ->orderByRaw("CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(nomenclatura, '-', -2), '-', 1) AS UNSIGNED) ASC") // Ordenar por la parte numérica
+                ->orderBy('nomenclatura', 'asc') // Ordenar alfabéticamente por la nomenclatura completa
+                ->paginate(12);
+    
             return view('armonia.servicios.anexo_30.index', compact('servicios', 'usuarios', 'estaciones'));
         }
-
+    
         return redirect()->route('anexo.index')->with('error', 'No se ha autenticado el usuario.');
     }
+    
+
 
     public function store(Request $request)
     {

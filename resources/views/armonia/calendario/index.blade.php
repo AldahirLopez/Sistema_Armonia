@@ -110,7 +110,7 @@
     </div>
 </div>
 
-@endsection
+@endsection 
 
 <!-- FullCalendar JS -->
 <script src="{{ asset('build/libs/fullcalendar/index.global.min.js') }}"></script>
@@ -127,6 +127,7 @@
             initialView: 'dayGridMonth',
             editable: true,
             selectable: true,
+            locale: 'es', // Set locale to Spanish
             events: '/calendario/eventos', // Ruta para obtener los eventos desde el controlador
             droppable: true, // Permite arrastrar eventos externos
             headerToolbar: {

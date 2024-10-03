@@ -19,8 +19,17 @@
     </form>
 </div>
 
+<!-- Mostrar detalles del servicio -->
+<div class="mb-4 p-3 border rounded bg-light">
+    <h5 class="mb-2">Información del Servicio</h5>
+    <p class="mb-1"><strong>Nomenclatura:</strong> {{ $servicio->nomenclatura }}</p>
+    <p class="mb-1"><strong>Estación:</strong> {{ $servicio->estaciones->first()->razon_social ?? 'Desconocido' }}</p>
+    <p class="mb-1"><strong>Estado:</strong> {{ $servicio->estaciones->first()->domicilioServicio->entidad_federativa ?? 'Estado desconocido' }}</p>
+    <p class="mb-1"><strong>Municipio:</strong> {{ $servicio->estaciones->first()->domicilioServicio->municipio ?? 'Municipio desconocido' }}</p>
+</div>
+
 <div class="row">
-    @php 
+    @php
     $documentaciones = [
     ['title' => 'Documentación General', 'action' => route('documentacion.general', ['id' => $servicio->id])],
     ['title' => 'Documentación Informática', 'action' => route('documentacion.informatica', ['id' => $servicio->id])],

@@ -22,6 +22,16 @@
                         </button>
                     </form>
                 </div>
+                <!-- Información del Servicio -->
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Información del Servicio</h5>
+                        <p class="mb-1"><strong>Nomenclatura:</strong> {{ $servicio->nomenclatura }}</p>
+                        <p class="mb-1"><strong>Estación:</strong> {{ $servicio->estaciones->first()->razon_social ?? 'Desconocido' }}</p>
+                        <p class="mb-1"><strong>Estado:</strong> {{ $servicio->estaciones->first()->domicilioServicio->entidad_federativa ?? 'Estado desconocido' }}</p>
+                        <p class="mb-1"><strong>Municipio:</strong> {{ $servicio->estaciones->first()->domicilioServicio->municipio ?? 'Municipio desconocido' }}</p>
+                    </div>
+                </div>
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover align-middle">

@@ -71,17 +71,15 @@
                     @endif
                 </p>
 
-                <!-- Mostrar las estaciones relacionadas con el servicio -->
+                <!-- Mostrar la estación relacionada con el servicio -->
                 <p class="card-text text-muted mb-3">
                     Servicio para la estación:
-                    @if($servicio->estaciones->isNotEmpty())
-                    @foreach($servicio->estaciones as $estacion)
-                    {{ $estacion->razon_social }}@if(!$loop->last), @endif
-                    @endforeach
-                    @else
-                    Desconocido
-                    @endif
+                    <strong>{{ $servicio->estaciones->first()->razon_social ?? 'Desconocido' }}</strong><br>
+                    Estado: {{ $servicio->estaciones->first()->domicilioServicio->entidad_federativa ?? 'Estado desconocido' }}<br>
+                    Municipio: {{ $servicio->estaciones->first()->domicilioServicio->municipio ?? 'Municipio desconocido' }}
                 </p>
+
+
 
                 <div class="d-flex justify-content-between align-items-center mt-auto">
                     @if($servicio->pending_deletion_servicio)
@@ -125,11 +123,9 @@
     </div>
     @endforelse
 </div>
-
-
 <!-- Paginación -->
 <div class="d-flex justify-content-center mt-4">
-    {{ $servicios->links() }} <!-- Paginación centrada -->
+    {{ $servicios->onEachSide(1)->links('pagination::bootstrap-4', ['class' => 'pagination-sm']) }}
 </div>
 
 <!-- Modal para generar servicio -->
