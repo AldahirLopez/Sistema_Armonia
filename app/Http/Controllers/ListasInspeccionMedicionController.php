@@ -24,7 +24,7 @@ class ListasInspeccionMedicionController extends Controller
         // Puedes obtener más información según tu lógica de negocio
         $id_servicio = $id;
         $listas_inspeccion = Listas_inspeccion::where('id_servicio', $id)
-            ->whereJsonContains('lista->tipo_general',$tipo_general_lista)
+            ->whereJsonContains('lista->tipo_general_lista',$tipo_general_lista)
             ->first();
         
         return view("armonia.servicios.anexo_30.listas.listas_medicion.seleccion", compact('id_servicio','listas_inspeccion'));
@@ -33,12 +33,41 @@ class ListasInspeccionMedicionController extends Controller
 
 
     public function store(Request $request){
+        
         $tipo_general_lista="Sistemas de medicion";
        
+        $data = $request->except('_token', 'id_servicio');
+        
+        $data['tipo_general_lista'] = $tipo_general_lista;
 
+        //Data final 
+        $data2 = [
+            'lista' => $data,
+            'id_servicio' => $request->input('id_servicio'),
+        ];
+
+
+        $lista_inspeccion = Listas_inspeccion::where('id_servicio', $request->input('id_servicio'))
+            ->whereJsonContains('lista->tipo_general_lista',$tipo_general_lista)
+            ->first();
+    
+        if (!$lista_inspeccion) {
+                Listas_inspeccion::create($data2);
+        } else {
+
+            $tipo_actual = $lista_inspeccion->lista['tipo_lista'];
+            $lista_actualizada = $data2['lista'];
+            // Si ya hay un tipo existente, lo mantenemos para no sobrescribirlo
+            $lista_actualizada['tipo_lista'] = $tipo_actual;                   
+            $lista_inspeccion->lista = $lista_actualizada;
+            $lista_inspeccion->save();
+        }
+
+                
+
+        return redirect()->route('listas_medicion.seleccion', ['id' => $request->input('id_servicio')]);    
     
     }
-
 
     
     public function loadForm($type,$id_servicio)

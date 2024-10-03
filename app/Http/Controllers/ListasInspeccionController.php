@@ -30,9 +30,15 @@ class ListasInspeccionController extends Controller
 
     public function seleccion($id)
     {
+        $tipo_general_lista = "Programas informaticos";
+
         // Puedes obtener más información según tu lógica de negocio
         $id_servicio = $id;
-        $listas_inspeccion = Listas_inspeccion::where('id_servicio',$id)->first();
+       
+        $listas_inspeccion = Listas_inspeccion::where('id_servicio', $id)
+            ->whereJsonContains('lista->tipo_general_lista',$tipo_general_lista)
+            ->first();
+
         return view("armonia.servicios.anexo_30.listas.listas_informaticos.seleccion", compact('id_servicio','listas_inspeccion'));
     }
 
@@ -52,8 +58,9 @@ class ListasInspeccionController extends Controller
         ];
 
 
-        $lista_inspeccion = Listas_inspeccion::where('id_servicio', $request->input('id_servicio'))->first();
-
+        $lista_inspeccion = Listas_inspeccion::where('id_servicio', $request->input('id_servicio'))
+            ->whereJsonContains('lista->tipo_general_lista',$tipo_general_lista)
+            ->first();
 
         if (!$lista_inspeccion) {
                 Listas_inspeccion::create($data2);
