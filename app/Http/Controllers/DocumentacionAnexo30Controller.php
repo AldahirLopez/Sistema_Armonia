@@ -150,7 +150,8 @@ class DocumentacionAnexo30Controller extends Controller
             // Buscar el servicio
             $servicio = ServicioAnexo::findOrFail($servicioId);
             $anio = date('Y');
-            $userId = Auth::id();
+            $userId = $servicio->id_usuario;
+            $userIdstore = Auth::id();
             $nomenclatura = str_replace([' ', '.'], '_', $servicio->nomenclatura);
 
             // Ruta personalizada para la carpeta "documentos"
@@ -188,7 +189,7 @@ class DocumentacionAnexo30Controller extends Controller
                     'ruta' => $rutaArchivo,
                     'servicio_id' => $servicioId,
                     'categoria' => $categoria,
-                    'usuario_id' => $userId,
+                    'usuario_id' => $userIdstore,
                 ]);
 
                 return redirect()->back()->with('success', 'Documento subido exitosamente.');

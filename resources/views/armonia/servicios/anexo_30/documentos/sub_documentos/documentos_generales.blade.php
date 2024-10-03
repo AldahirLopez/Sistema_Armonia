@@ -86,7 +86,7 @@
                                 </td>
                                 <td>
                                     @if($docExists)
-                                    <a href="{{ $docUrl }}" class="btn btn-info btn-sm" download>
+                                    <a href="{{ Storage::url($docUrl) }}" class="btn btn-info btn-sm" download>
                                         <i class="bx bx-download"></i>
                                     </a>
                                     @else
