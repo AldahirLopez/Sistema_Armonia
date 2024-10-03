@@ -12,73 +12,75 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        <tr class="table-success">
+                            <th scope="row" colspan="100%">
+                            NUMERAL 31.2; I; b) DEL ANEXO 31 DE LA RESOLUCIÓN MISCELÁNEA FISCAL PARA 2023:
+                                ANEXO 30 DE LA RESOLUCIÓN MISCELÁNEA FISCAL PARA 2023:
+
+                            </th>
+                        </tr>
+
+                        <tr class="table-success">
+                            <th scope="row" colspan="100%">
+                            Numeral 30.5. Equipos para llevar controles volumétricos (sistemas de medición).
+                            Los contribuyentes referidos en la regla 2.6.1.2., excepto los comercializadores que enajenen gas natural o Petrolíferos en los términos del artículo 19, fracción I del Reglamento de las actividades a que se refiere el Título Tercero de la Ley de Hidrocarburos, estarán a lo siguiente:
+                            </th>
+                        </tr>
+
+
+
                         <!-- PRIMER BLOQUE DE REQUISITOS -->
                         <tr>
                             <td class="align-middle">
-                                I. Los programas informáticos y cualquier información que se recopile o procese a través de éstos y esté relacionada con los controles volumétricos, deben encontrarse respaldados en medios magnéticos, ópticos, de estado sólido o de cualquier otra tecnología segura en una UCC.
+                            Deben tener sistemas de medición para generar la información de los           
+                            volúmenes de las operaciones y de las existencias de los Hidrocarburos o       
+                            Petrolíferos, que cumplan con lo establecido en el apartado 30.5.1. 
+
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="respaldo" value="si"> Sí
+                                    <input type="radio" name="sistemas_medicion_volumenes" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="respaldo" value="no"> No
+                                    <input type="radio" name="sistemas_medicion_volumenes" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="respaldo" value="no_aplica"> No Aplica
+                                    <input type="radio" name="sistemas_medicion_volumenes" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_respaldo" class="form-control">
+                                <input type="text" name="observaciones_sistemas_medicion_volumenes" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                II. El programa informático debe proporcionar un entorno visual sencillo para permitir su operación.
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="entorno_visual" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="entorno_visual" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="entorno_visual" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_entorno_visual" class="form-control">
-                            </td>
-                        </tr>
+                            II. La cantidad de sistemas de medición requeridos para la 
+                            cuantificación del volumen, dependerá de las instalaciones o proceso de   
+                            que se trate. 
 
-                        <tr>
-                            <td class="align-middle">
-                                III. El inicio de sesión debe tener implementado un control de acceso, que solicite usuario y contraseña, con el propósito de impedir el acceso a personas no autorizadas.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="control_acceso" value="si"> Sí
+                                    <input type="radio" name="cantidad_sistemas_medicion_requeridos" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="control_acceso" value="no"> No
+                                    <input type="radio" name="cantidad_sistemas_medicion_requeridos" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="control_acceso" value="no_aplica"> No Aplica
+                                    <input type="radio" name="cantidad_sistemas_medicion_requeridos" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_control_acceso" class="form-control">
+                                <input type="text" name="observaciones_cantidad_sistemas_medicion_requeridos" class="form-control">
                             </td>
                         </tr>
-                        <!-- Continúa con el resto de requisitos -->
+                                          
                     </tbody>
                 </table>
             </td>

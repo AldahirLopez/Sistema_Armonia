@@ -176,10 +176,16 @@ Route::group(['middleware' => ['auth']], function () {
     //Ruta para eliminar la lista de inspeccion
     Route::delete('/lista_inspeccion/{id}', [ListasInspeccionController::class, 'destroy'])->name('lista_inspeccion.destroy');
 
+
     //RUTAS PARA LISTAS DE INSPECCION SISTEMAS DE MEDICION 
     //Ruta para el menu de las listas de inspeccio Anexo 30
     Route::get('seleccion_listas/sistema_medicion/{id}', [ListasInspeccionMedicionController::class, 'seleccion'])->name('listas_medicion.seleccion');
-   
+    
+    // Route::get('/form/{type}', [ListasInspeccionController::class, 'loadForm']);
+    Route::get('/form/medicion/{type}/{id_servicio}', [ListasInspeccionMedicionController::class, 'loadForm']);
+
+
+
     // Calendario
     Route::get('/calendario', [CalendarioController::class, 'index'])->name('calendario.index');
     Route::get('/calendario/eventos', [CalendarioController::class, 'fetchEvents']); // Obtener los eventos para el calendario

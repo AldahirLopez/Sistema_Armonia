@@ -8,108 +8,84 @@
 
                         <tr class="table-info">
                             <th scope="row" colspan="100%">
-                                c) Pozos:
-
+                            b) Tener implementado un SGM, en cumplimiento de la NMX-CC-10012 IMNC "Sistemas de Gestión de las Mediciones -   
+                            Requisitos para los Procesos de Medición y los equipos de Medición", cuya declaratoria de vigencia por parte de la Secretaría
+                            de Economía fue publicada en el DOF el 27 de julio de 2004, o aquélla que la sustituya, para lograr la Confirmación
+                            metrológica y el control continuo de los procesos de medición, con la finalidad de que los resultados obtenidos sean 
+                            conformes a las Especificaciones metrológicas. El SGM debe interrelacionar los siguientes aspectos: 
                             </th>
                         </tr>
 
 
                         <!-- PRIMER BLOQUE DE REQUISITOS -->
+                       
                         <tr>
                             <td class="align-middle">
-                                1. Clave de identificación.
-                                Ejemplo:
-                                POZ-NOBLES0001DEL. Se emplea para identificar un pozo delimitador
-                                del área contractual NOBLES.
+                            1. Normatividad y procedimientos.
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_pozos" value="si"> Sí
+                                    <input type="radio" name="normatividad_procedimientos" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_identificacion_pozos" value="no"> No
+                                    <input type="radio" name="normatividad_procedimientos" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_pozos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="normatividad_procedimientos" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_identificacion_pozos" class="form-control">
+                                <input type="text" name="observaciones_normatividad_procedimientos" class="form-control">
                             </td>
                         </tr>
-
+                        
+                        
                         <tr>
                             <td class="align-middle">
-                                2. Descripción.
-                                Ejemplo:
-                                Pozo delimitador ubicado en el área contractual México 45, profundidad
-                                4,534 m.
+                            2. Sistemas de medición.
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="descripcion_pozos" value="si"> Sí
+                                    <input type="radio" name="SMG_sistemas_medicion" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="descripcion_pozos" value="no"> No
+                                    <input type="radio" name="SMG_sistemas_medicion" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="descripcion_pozos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="SMG_sistemas_medicion" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_descripcion_pozos" class="form-control">
+                                <input type="text" name="observaciones_SMG_sistemas_medicion" class="form-control">
                             </td>
-                        </tr>
-
+                        </tr>  
 
                         <tr>
                             <td class="align-middle">
-                                3. Sistemas de medición. Se deben registrar los sistemas de medición instalados en cada pozo asignándoles una clave y registrando su descripción o localización, vigencia de calibración e incertidumbre de medición.
+                            3. Responsabilidad y competencia del personal que opera los sistemas de medición.
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_pozos" value="si"> Sí
+                                    <input type="radio" name="responsabilidad_competencia_personal_sistemas_medicion" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sistema_medicion_pozos" value="no"> No
+                                    <input type="radio" name="responsabilidad_competencia_personal_sistemas_medicion" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_pozos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="responsabilidad_competencia_personal_sistemas_medicion" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sistema_medicion_pozos" class="form-control">
+                                <input type="text" name="observaciones_responsabilidad_competencia_personal_sistemas_medicion" class="form-control">
                             </td>
-                        </tr>
-
-
-                        <tr>
-                            <td class="align-middle">
-                                4. Recepciones y entregas
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="repecion_entregas_pozos" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="repecion_entregas_pozos" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="repecion_entregas_pozos" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_repecion_entregas_pozos" class="form-control">
-                            </td>
-                        </tr>
-
+                        </tr> 
+                        
                         <!-- Continúa con el resto de requisitos -->
                     </tbody>
                 </table>

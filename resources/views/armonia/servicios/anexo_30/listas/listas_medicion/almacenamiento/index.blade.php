@@ -97,6 +97,50 @@
             {!! $seccion16 !!}
         </div>
 
+        <div id="seccion17">
+            {!! $seccion17 !!}
+        </div>
+
+        <div id="seccion18">
+            {!! $seccion18 !!}
+        </div>
+
+        <div id="seccion19">
+            {!! $seccion19 !!}
+        </div>
+
+        <div id="seccion20">
+            {!! $seccion20 !!}
+        </div>
+
+        <div id="seccion21">
+            {!! $seccion21 !!}
+        </div>
+
+        <div id="seccion22">
+            {!! $seccion22 !!}
+        </div>
+
+        <div id="seccion23">
+            {!! $seccion23 !!}
+        </div>
+
+        <div id="seccion24">
+            {!! $seccion24 !!}
+        </div>
+
+        <div id="seccion25">
+            {!! $seccion25 !!}
+        </div>
+
+        <div id="seccion26">
+            {!! $seccion26 !!}
+        </div>
+
+        <div id="seccion27">
+            {!! $seccion27 !!}
+        </div>
+
         <!-- Botón para ir a la página anterior y finalizar -->
         <button type="button" class="btn btn-secondary" onclick="mostrarPagina(4)">Anterior</button>
         <button type="submit" class="btn btn-success">Finalizar</button>

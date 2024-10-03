@@ -7,63 +7,131 @@
                         <!-- TERCER BLOQUE DE REQUISITOS -->
                         <tr class="table-info">
                             <th scope="row" colspan="100%">
-                                VI. Debe incorporar una funcionalidad para realizar el diagnóstico del estado de los componentes de los equipos y programas informáticos para llevar controles volumétricos, con la finalidad de determinar que la operación de los mismos es la esperada, de conformidad con lo siguiente:
+                                b) Estaciones de proceso: 
                             </th>
                         </tr>
                         <!-- PRIMER BLOQUE DE REQUISITOS -->
                         <tr>
                             <td class="align-middle">
-                                a) El autodiagnóstico debe generar una alarma en caso de detectar que
-                                alguno de los dispositivos no opera adecuadamente. En caso de que los
-                                equipos de medición no cuenten con la funcionalidad para realizar el
-                                diagnóstico, se deberá registrar cualquier operación inadecuada de
-                                manera manual en la bitácora, de conformidad con la fracción VIII del
-                                apartado 30.6.1.1.
+                            En las estaciones de proceso de petróleo o gas natural y sus condensados, el sistema de medición se debe implementar en la etapa de almacenamiento para integrar los registros de las operaciones de producción (recepción), entrega y de control de existencias de los
+                            Hidrocarburos o Petrolíferos de que se trate.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="autodiagnostico_alarma" value="si"> Sí
+                                    <input type="radio" name="sistema_medicion_etapa_almacenamiento" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="autodiagnostico_alarma" value="no"> No
+                                    <input type="radio" name="sistema_medicion_etapa_almacenamiento" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="autodiagnostico_alarma" value="no_aplica"> No Aplica
+                                    <input type="radio" name="sistema_medicion_etapa_almacenamiento" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_autodiagnostico_alarma" class="form-control">
+                                <input type="text" name="observaciones_sistema_medicion_etapa_almacenamiento" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                b) El programa informático debe diagnosticar el estado y funcionalidad de:
-                                <ol>
-                                    <li>Sistemas de medición.</li>
-                                    <li>Canales de comunicación.</li>
-                                    <li>UCC.</li>
-                                </ol>
+                            Se deben instalar medidores dinámicos en los ductos de entrada y salida al (a los) medio(s) de almacenamiento y medidor(es) estático(s) en el (los) medio(s) de almacenamiento.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_diagnostico_estado_funcionalidad" value="si"> Sí
+                                    <input type="radio" name="instalar_medidores_dinamicos_ductos" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="informatico_diagnostico_estado_funcionalidad" value="no"> No
+                                    <input type="radio" name="instalar_medidores_dinamicos_ductos" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_diagnostico_estado_funcionalidad" value="no_aplica"> No Aplica
+                                    <input type="radio" name="instalar_medidores_dinamicos_ductos" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_informatico_diagnostico_estado_funcionalidad" class="form-control">
+                                <input type="text" name="observaciones_instalar_medidores_dinamicos_ductos" class="form-control">
                             </td>
                         </tr>
+
+
+                        <tr>
+                            <td class="align-middle">
+                            Se deben seleccionar los medidores conforme a los requisitos   
+                            metrológicos: características de los fluidos, intervalos de medición y 
+                            condiciones técnicas u operativas del proceso. 
+
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="medidores_fluidos_tecnicas" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="medidores_fluidos_tecnicas" value="no"> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="medidores_fluidos_tecnicas" value="no_aplica"> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones_medidores_fluidos_tecnicas" class="form-control">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="align-middle">
+                            Los medidores estáticos deben cumplir con la normatividad descrita en el 
+                            apartado 30.7., fracciones I y II, que les corresponda, así como VI
+
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="medidores_estaticos_normatividad" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="medidores_estaticos_normatividad" value="no"> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="medidores_estaticos_normatividad" value="no_aplica"> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones_medidores_estaticos_normatividad" class="form-control">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="align-middle">
+                            Los medidores dinámicos deben cumplir con la normatividad que les
+                            corresponda descrita en el apartado 30.7., fracciones I y VI, así como III para 
+                            el petróleo o, IV para el gas natural, señalados en este Anexo. 
+
+
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="medidores_dinamicos_normatividad_30" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="medidores_dinamicos_normatividad_30" value="no"> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="medidores_dinamicos_normatividad_30" value="no_aplica"> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones_medidores_dinamicos_normatividad_30" class="form-control">
+                            </td>
+                        </tr>
+
                         <!-- Continúa con el resto de requisitos -->
                     </tbody>
                 </table>

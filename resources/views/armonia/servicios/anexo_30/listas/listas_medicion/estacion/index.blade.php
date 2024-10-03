@@ -4,7 +4,6 @@
     @csrf
     <input type="hidden" id="id_servicio" value="{{ $id_servicio }}" name="id_servicio">
     <input type="hidden" id="tipo_lista" value="{{ $tipo }}" name="tipo_lista">
-   
     <!-- Página 1 -->
     <div class="pagina" id="pagina-1">
         <div id="seccion01">
@@ -96,6 +95,50 @@
 
         <div id="seccion16">
             {!! $seccion16 !!}
+        </div>
+
+        <div id="seccion17">
+            {!! $seccion17 !!}
+        </div>
+
+        <div id="seccion18">
+            {!! $seccion18 !!}
+        </div>
+
+        <div id="seccion19">
+            {!! $seccion19 !!}
+        </div>
+
+        <div id="seccion20">
+            {!! $seccion20 !!}
+        </div>
+
+        <div id="seccion21">
+            {!! $seccion21 !!}
+        </div>
+
+        <div id="seccion22">
+            {!! $seccion22 !!}
+        </div>
+
+        <div id="seccion23">
+            {!! $seccion23 !!}
+        </div>
+
+        <div id="seccion24">
+            {!! $seccion24 !!}
+        </div>
+
+        <div id="seccion25">
+            {!! $seccion25 !!}
+        </div>
+
+        <div id="seccion26">
+            {!! $seccion26 !!}
+        </div>
+
+        <div id="seccion27">
+            {!! $seccion27 !!}
         </div>
 
         <!-- Botón para ir a la página anterior y finalizar -->

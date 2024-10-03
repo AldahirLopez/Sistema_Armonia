@@ -8,10 +8,7 @@
                        
                         <tr class="table-info">
                             <th scope="row" colspan="100%">
-                            VIII. El programa informático debe contar con un proceso de control de cambios, que deberá incluir como mínimo:  
-
-
-                               
+                            3. Elemento terciario. Debe cumplir con las siguientes características:                       
                             </th>
                         </tr>
 
@@ -19,200 +16,113 @@
                         <!-- PRIMER BLOQUE DE REQUISITOS -->
                         <tr>
                             <td class="align-middle">
-                            a) Estimación de impacto de cambios
+                            i. Instalación, configuración y operación conforme a las especificaciones del fabricante y en cumplimiento a la normatividad listada en el apartado 30.7., fracción III, inciso e) y la regulación de la CNH o la CRE que le corresponda.
                           
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_impacto_cambios" value="si"> Sí
+                                    <input type="radio" name="elemento_terciario_instalacion_configuracion" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="informatico_impacto_cambios" value="no"> No
+                                    <input type="radio" name="elemento_terciario_instalacion_configuracion" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_impacto_cambios" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_terciario_instalacion_configuracion" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_informatico_impacto_cambios" class="form-control">
+                                <input type="text" name="observaciones_elemento_terciario_instalacion_configuracion" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            b) Pruebas
-
-
+                            ii. Configuración para la transferencia de información, comandos y estado del sistema de medición a la UCC y al programa informático para llevar controles volumétricos.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_pruebas" value="si"> Sí
+                                    <input type="radio" name="elemento_terciario_configuracion_transferencia" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="informatico_pruebas" value="no"> No
+                                    <input type="radio" name="elemento_terciario_configuracion_transferencia" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_pruebas" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_terciario_configuracion_transferencia" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_informatico_pruebas" class="form-control">
+                                <input type="text" name="observaciones_elemento_terciario_configuracion_transferencia" class="form-control">
                             </td>
                         </tr>
 
 
                         <tr>
                             <td class="align-middle">
-                            c) Autorización
+                            iii. Operación continua y sin perturbaciones durante el proceso de medición.
  
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_autorizacion" value="si"> Sí
+                                    <input type="radio" name="elemento_terciario_operacion_continua" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="informatico_autorizacion" value="no"> No
+                                    <input type="radio" name="elemento_terciario_operacion_continua" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_autorizacion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_terciario_operacion_continua" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_informatico_autorizacion" class="form-control">
+                                <input type="text" name="observaciones_elemento_terciario_operacion_continua" class="form-control">
                             </td>
                         </tr>
 
         
                         <tr>
                             <td class="align-middle">
-                            d) Liberación de cambios
+                            iv. Funciones de seguridad para garantizar la integridad de la información y algoritmos de cálculo.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_liberacion_cambios" value="si"> Sí
+                                    <input type="radio" name="elemento_terciario_funciones_seguridad" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="informatico_liberacion_cambios" value="no"> No
+                                    <input type="radio" name="elemento_terciario_funciones_seguridad" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_liberacion_cambios" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_terciario_funciones_seguridad" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_informatico_liberacion_cambios" class="form-control">
+                                <input type="text" name="observaciones_elemento_terciario_funciones_seguridad" class="form-control">
                             </td>
                         </tr>
 
 
                         <tr>
                             <td class="align-middle">
-                            e) Reversos de cambios
+                            v. Actualización de las variables de influencia, que se determinen mediante muestreo y análisis, en el algoritmo de cálculo del volumen del Hidrocarburo o Petrolífero de que se trate.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_reversos_cambios" value="si"> Sí
+                                    <input type="radio" name="elemento_terciario_actualizacion_variables" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="informatico_reversos_cambios" value="no"> No
+                                    <input type="radio" name="elemento_terciario_actualizacion_variables" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_reversos_cambios" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_terciario_actualizacion_variables" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_informatico_reversos_cambios" class="form-control">
+                                <input type="text" name="observaciones_elemento_terciario_actualizacion_variables" class="form-control">
                             </td>
                         </tr>
-
-                        <tr>
-                            <td class="align-middle">
-                            f) Versión del programa informático para llevar controles volumétricos
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="informatico_controles_volumetricos" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="informatico_controles_volumetricos" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="informatico_controles_volumetricos" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_informatico_controles_volumetricos" class="form-control">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="align-middle">
-                            IX. Los ambientes de desarrollo, pruebas y producción deben estar separados física o lógicamente unos de otros y todos deben tener su propia administración de accesos.
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="informaticos_ambientes_desarrollo" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="informaticos_ambientes_desarrollo" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="informaticos_ambientes_desarrollo" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_informaticos_ambientes_desarrollo" class="form-control">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="align-middle">
-                            X. Se debe contar con el registro documental que permita sustentar la titularidad del programa informático de control volumétrico.
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="informaticos_registro_documental" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="informaticos_registro_documental" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="informaticos_registro_documental" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_informaticos_registro_documental" class="form-control">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="align-middle">
-                            XI. Se debe contar con identificador único (hash con un algoritmo al menos SHA256 o firma digital) del programa informático de control volumétrico que permita sustentar su autenticidad e integridad. 
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="informaticos_identificador_unico" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="informaticos_identificador_unico" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="informaticos_identificador_unico" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_informaticos_identificador_unico" class="form-control">
-                            </td>
-                        </tr>
-                
                         <!-- Continúa con el resto de requisitos -->
                     </tbody>
                 </table>

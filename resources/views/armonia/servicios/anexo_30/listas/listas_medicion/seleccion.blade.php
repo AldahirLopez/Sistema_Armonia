@@ -103,7 +103,7 @@
         var idServicio = document.getElementById('id_servicio').value; // Get the id_servicio value
         if (selectedValue && idServicio) {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/form/' + selectedValue + '/' + idServicio, true); // Pass both type and id_servicio
+            xhr.open('GET', '/form/medicion/' + selectedValue + '/' + idServicio, true); // Pass both type and id_servicio
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     document.getElementById('form-container').innerHTML = xhr.responseText;
