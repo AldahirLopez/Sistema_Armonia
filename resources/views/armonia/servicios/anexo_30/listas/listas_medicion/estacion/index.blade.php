@@ -1,6 +1,6 @@
 <h4 style="padding-top: 40px;">Formulario para Estación</h4>
 <!-- Formulario principal que envuelve todas las secciones -->
-<form action="{{route('lista_inspeccion.store')}}" method="POST">
+<form action="{{route('lista_inspeccion_medicion.store')}}" method="POST">
     @csrf
     <input type="hidden" id="id_servicio" value="{{ $id_servicio }}" name="id_servicio">
     <input type="hidden" id="tipo_lista" value="{{ $tipo }}" name="tipo_lista">

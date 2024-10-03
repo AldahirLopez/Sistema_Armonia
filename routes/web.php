@@ -184,6 +184,9 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('/form/{type}', [ListasInspeccionController::class, 'loadForm']);
     Route::get('/form/medicion/{type}/{id_servicio}', [ListasInspeccionMedicionController::class, 'loadForm']);
 
+    //Ruta para guardar la lista de inspeccion 
+    Route::post('/lista_inspeccion/medicion', [ListasInspeccionMedicionController::class, 'store'])->name('lista_inspeccion_medicion.store');
+
 
 
     // Calendario

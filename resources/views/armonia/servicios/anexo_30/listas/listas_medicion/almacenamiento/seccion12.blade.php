@@ -20,19 +20,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="petrolíferos_temperatura_20" value="si"> Sí
+                                    <input type="radio" name="petroliferos_temperatura_20" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="petrolíferos_temperatura_20" value="no"> No
+                                    <input type="radio" name="petroliferos_temperatura_20" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="petrolíferos_temperatura_20" value="no_aplica"> No Aplica
+                                    <input type="radio" name="petroliferos_temperatura_20" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_petrolíferos_temperatura_20" class="form-control">
+                                <input type="text" name="observaciones_petroliferos_temperatura_20" class="form-control">
                             </td>
                         </tr>
 
@@ -42,19 +42,19 @@
                             ii. Presión absoluta 101.325 kPa (1 atmósfera). 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="petrolíferos_presion_absoluta_1" value="si"> Sí
+                                    <input type="radio" name="petroliferos_presion_absoluta_1" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="petrolíferos_presion_absoluta_1" value="no"> No
+                                    <input type="radio" name="petroliferos_presion_absoluta_1" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="petrolíferos_presion_absoluta_1" value="no_aplica"> No Aplica
+                                    <input type="radio" name="petroliferos_presion_absoluta_1" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_petrolíferos_presion_absoluta_1" class="form-control">
+                                <input type="text" name="observaciones_petroliferos_presion_absoluta_1" class="form-control">
                             </td>
                         </tr>
                         <!-- Continúa con el resto de requisitos -->

@@ -118,36 +118,30 @@
         <button type="submit" class="btn btn-success">Finalizar</button>
     </div>
 </form>
+
 <script>
-  
     const lista = @json($lista);
-    function fillForm(json) {
     
-          // Iterar sobre cada sección en el JSON
-    for (const [sectionKey, sectionData] of Object.entries(json)) {
-        // Saltar la clave "tipo" ya que no es una sección del formulario
-        if (sectionKey === 'tipo') continue;
-        
-        if (sectionKey === 'tipo_general') continue;
-        // Iterar sobre cada campo dentro de la sección
-        for (const [key, value] of Object.entries(sectionData)) {
+    function fillForm(json) {
+        // Iterar sobre cada clave y valor en el objeto JSON
+        for (const [key, value] of Object.entries(json)) {
+            // Saltar la clave "tipo" y "tipo_general" ya que no son campos del formulario
+            if (key === 'tipo' || key === 'tipo_general') continue;
+
             // Seleccionar y marcar el radio button si existe y coincide con el valor
             const radioButton = document.querySelector(`input[name="${key}"][value="${value}"]`);
             if (radioButton && radioButton.type === 'radio') {
                 radioButton.checked = true;
-            }else{
+            } else {
                 // Seleccionar el campo de texto o textarea y asignar valor si existe
                 const inputField = document.querySelector(`input[name="${key}"], textarea[name="${key}"]`);
-                    if (inputField && (inputField.type === 'text')) {
-                            inputField.value = value; // Asigna el valor o vacío si es null
-                        }
+                if (inputField && (inputField.type === 'text')) {
+                    inputField.value = value; // Asigna el valor o vacío si es null
+                }
             }
-
-            
         }
     }
-        
-    }
+
     // Llama a la función para rellenar el formulario
     fillForm(lista);
 </script>

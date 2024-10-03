@@ -31,6 +31,15 @@ class ListasInspeccionMedicionController extends Controller
     }
 
 
+
+    public function store(Request $request){
+        $tipo_general_lista="Sistemas de medicion";
+       
+
+    
+    }
+
+
     
     public function loadForm($type,$id_servicio)
     {

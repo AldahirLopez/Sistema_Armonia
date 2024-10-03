@@ -47,7 +47,7 @@
                     <p class="card-text text-muted mb-3">
                         Tipo de lista:
                         @if($listas_inspeccion->servicio_anexo)
-                            {{$listas_inspeccion->lista['tipo']}}
+                            {{$listas_inspeccion->lista['tipo_lista']}}
                         @else
                         Desconocido
                         @endif
