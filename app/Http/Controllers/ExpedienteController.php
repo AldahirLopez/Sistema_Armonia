@@ -453,15 +453,45 @@ class ExpedienteController extends Controller
     private function processTemplate($data, $subFolderPath, $templateName)
     {
         $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Expediente/{$templateName}"));
+        // Si el template es "REPORTE FOTOGRAFICO.docx", manejamos las imágenes
+        if ($templateName == "REPORTE FOTOGRAFICO.docx") {
+            if (isset($data['imagePaths']) && is_array($data['imagePaths'])) {
+                foreach ($data['imagePaths'] as $image) {
+                    if (isset($image['name']) && isset($image['path'])) {
+                        // Agregamos la imagen al documento
+                        $templateProcessor->setImageValue($image['name'], [
+                            'path' => $image['path'],
+                            'width' => 310,
+                            'height' => 285,
+                            'ratio' => false
+                        ]);
+                    }
+                }
+            }
+        }
 
+        // Reemplazamos los valores en el template
         foreach ($data as $key => $value) {
+            // Ignoramos claves especiales que no deben ser procesadas como texto
+            if ($key == 'imagePaths' || $key == 'imagenes') {
+                continue; // Saltar estas claves
+            }
+            // Si el valor es un array, verificamos cómo manejarlo
             if (is_array($value)) {
-                $value = implode(", ", $value); // Convertir arrays a texto si es necesario
+                // Verificamos si es un array simple (no asociativo)
+                if ($this->isAssociativeArray($value)) {
+                    continue;
+                } else {
+                    // Si es un array numérico, lo convertimos a una cadena
+                    $value = implode(", ", $value);
+                }
             }
 
+            // Reemplazamos el valor en el template
             $templateProcessor->setValue($key, (string) $value);
         }
 
+        // Guardamos el archivo con un nombre único basado en la nomenclatura
         $fileName = pathinfo($templateName, PATHINFO_FILENAME) . "_{$data['nomenclatura']}.docx";
         $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
     }
@@ -918,4 +948,101 @@ class ExpedienteController extends Controller
             ]
         );
     }
+
+
+    //REPORTE FOTOGRAFICO
+
+    public function generarReporteFotografico(Request $request)
+    {
+
+        // Validar los datos del formulario
+        $validatedData = $this->validateReporteFotografico($request);
+
+        // Obtener datos relacionados desde la base de datos
+        $estacion = $this->getEstacionData($validatedData['idestacion']);
+        $usuario = $this->getUsuarioData($validatedData['id_usuario']);
+        $direccionServicio = $this->getDireccion($validatedData['domicilio_servicio_id']);
+
+        // Preparar los datos a usar en las plantillas
+        $data = $this->prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio);
+
+        // Definir la carpeta de destino y procesar las plantillas
+        $subFolderPath = $this->defineFolderPath($validatedData);
+
+        $this->processTemplate($data, $subFolderPath, 'REPORTE FOTOGRAFICO.docx');
+
+        // Guardar los datos de expediente
+        $this->saveReporteFotograficoData($data, $validatedData, $estacion);
+
+        return redirect()->route('expediente.index', ['id' => $validatedData['id_servicio']])
+            ->with('success', 'Reporte fotografico guardado correctamente.');
+    }
+
+    private function validateReporteFotografico($request)
+    {
+        return $request->validate([
+            'idestacion' => 'required',
+            'id_servicio' => 'required',
+            'nomenclatura' => 'required|string',
+            'id_usuario' => 'required|exists:users,id',
+            'domicilio_servicio_id' => 'nullable|integer',
+            'fecha_inspeccion' => 'required|date',
+            'imagenes' => 'required|array|min:4',
+            'imagenes.*' => ' |image|mimes:jpeg,png,jpg,gif',
+        ]);
+    }
+
+    private function prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio)
+    {
+        $anio = now()->year;
+        $carpetaImages = "Servicios/Anexo_30/{$anio}/{$validatedData['id_usuario']}/{$validatedData['nomenclatura']}/expediente/imagenes_reporte_fotografico";
+        //Creamos la carpteta donde iran las imagenes del reporte fotografico
+        if (!Storage::disk('public')->exists($carpetaImages)) {
+            Storage::disk('public')->makeDirectory($carpetaImages);
+        }
+
+        //Obtener las imagenes
+        $imageNumber = 1;
+
+        $imagePaths = [];
+        foreach ($validatedData['imagenes'] as $image) {
+            // Generar el nombre de la imagen
+            $imageName = 'img_' . $imageNumber . '.' . $image->extension();
+
+
+            // Mover la imagen a la carpeta de destino, reemplazando si existe
+            $image->storeAs($carpetaImages, $imageName, 'public');
+
+            // Obtener la ruta completa de la imagen
+            $imagePath = Storage::disk('public')->path("$carpetaImages/$imageName") ?? null;
+            // Almacenar la ruta de la imagen en el array
+            $imagePaths[] = [
+                'name' => 'img_' . $imageNumber,
+                'path' => $imagePath,
+            ];
+            $imageNumber++;
+        }
+
+        return array_merge($validatedData, [
+            'imagePaths' => $imagePaths,
+            'numestacion' => $estacion->num_estacion,
+            'razonsocial' => $estacion->razon_social,
+            'id_usuario' => $validatedData['id_usuario'],
+            'nomenclatura' => $validatedData['nomenclatura'],
+            'domicilio_estacion' => $this->formatAddress($direccionServicio),
+            'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
+        ]);
+    }
+
+    private function saveReporteFotograficoData($data, $validatedData, $estacion)
+    {
+
+        Expediente_Servicio_Anexo_30::updateOrCreate(
+            ['servicio_anexo_id' => $validatedData['id_servicio']],
+            ['rutadoc_estacion' => $this->defineFolderPath($validatedData), 'usuario_id' => $validatedData['id_usuario']]
+        );
+    }
+
+
+
 }

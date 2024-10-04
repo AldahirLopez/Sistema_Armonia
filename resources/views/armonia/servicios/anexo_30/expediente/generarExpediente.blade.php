@@ -40,6 +40,12 @@
                 'title' => 'Dictámenes Informáticos',
                 'type' => 'informatico'
                 ])
+
+                @include('armonia.servicios.anexo_30.expediente.componentes.reporteFotograficoCard', [
+                'title' => 'REPORTE FOTOGRAFICO',
+                'type' => 'reporte'
+                ])
+           
             </div>
 
             <div class="col-md-4 mb-4">
@@ -47,13 +53,11 @@
                 'title' => 'Dictámenes de Medición',
                 'type' => 'medicion'
                 ])
+                @if(auth()->check() && auth()->user()->hasRole('Administrador'))
+                    @include('armonia.servicios.anexo_30.expediente.componentes.certificadoCard')
+                @endif
             </div>
-
-            @if(auth()->check() && auth()->user()->hasRole('Administrador'))
-            <div class="col-md-4 mb-4">
-                @include('armonia.servicios.anexo_30.expediente.componentes.certificadoCard')
-            </div>
-            @endif
+         
         </div>
 
         <!-- Generated Files Table -->
@@ -96,6 +100,12 @@
 'estados' => $estados
 ])
 
+
+@include('armonia.servicios.anexo_30.expediente.componentes.generarReporteFotografico', [
+'servicioAnexo' => $servicioAnexo,
+'estacion' => $estacion,
+'estados' => $estados
+])
 
 @endsection
 

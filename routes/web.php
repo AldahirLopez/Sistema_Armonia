@@ -151,6 +151,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/servicio-anexo/{id}/actualizar-nomenclatura', [ServicioAnexo30Controller::class, 'actualizarNomenclatura'])->name('servicio-anexo.actualizar-nomenclatura');
 
+    //Ruta para guardar el reporte fotografico
+    Route::post('/expediente-anexo/generar_reporte_fotografico', [ExpedienteController::class, 'generarReporteFotografico'])->name('reporte_fotografico_anexo_30.generar');
+
 
 
     ///Expediente de Servicio 005
