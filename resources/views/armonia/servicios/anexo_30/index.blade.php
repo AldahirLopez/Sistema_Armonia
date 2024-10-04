@@ -73,6 +73,7 @@
 
                 <!-- Mostrar la estación relacionada con el servicio -->
                 <p class="card-text text-muted mb-3">
+                    Tipo de Servicio: <strong>{{ $servicio->estaciones->first()->tipo_estacion ?? 'Desconocido' }}</strong><br>
                     Servicio para la estación:
                     <strong>{{ $servicio->estaciones->first()->razon_social ?? 'Desconocido' }}</strong><br>
                     Estado: {{ $servicio->estaciones->first()->domicilioServicio->entidad_federativa ?? 'Estado desconocido' }}<br>

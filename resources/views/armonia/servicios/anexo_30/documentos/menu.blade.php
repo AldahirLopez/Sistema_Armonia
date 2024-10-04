@@ -26,6 +26,11 @@
         <div class="row">
             <!-- Columna 1: Datos del Servicio -->
             <div class="col-md-6">
+            <div class="d-flex align-items-center mb-2">
+                    <i class="bx bx-building-house me-2"></i>
+                    <strong>Tipo de Servicio:</strong>
+                    <span class="ms-1 text-muted">{{ $servicio->estaciones->first()->tipo_estacion ?? 'Desconocido' }}</span>
+                </div>
                 <div class="d-flex align-items-center mb-2">
                     <i class="bx bx-id-card me-2"></i>
                     <strong>Nomenclatura:</strong>
@@ -36,6 +41,7 @@
                     <strong>Estación:</strong>
                     <span class="ms-1 text-muted">{{ $servicio->estaciones->first()->razon_social ?? 'Desconocido' }}</span>
                 </div>
+                
             </div>
 
             <!-- Columna 2: Dirección -->
