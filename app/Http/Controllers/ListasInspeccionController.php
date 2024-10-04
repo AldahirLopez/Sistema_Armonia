@@ -72,11 +72,12 @@ class ListasInspeccionController extends Controller
             $lista_actualizada['tipo_lista'] = $tipo_actual;                   
             $lista_inspeccion->lista = $lista_actualizada;
             $lista_inspeccion->save();
+            return redirect()->route('listas.seleccion', ['id' => $request->input('id_servicio')])->with('info', 'Lista actualizada exitosamente'); 
         }
 
                 
 
-        return redirect()->route('listas.seleccion', ['id' => $request->input('id_servicio')]);    
+        return redirect()->route('listas.seleccion', ['id' => $request->input('id_servicio')])->with('success', 'Lista creada exitosamente');    
     }
 
 
