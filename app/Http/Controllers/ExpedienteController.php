@@ -32,7 +32,7 @@ class ExpedienteController extends Controller
 
     public function generarExpediente(Request $request)
     {
-        try {
+        
             // Validar los datos del formulario
             $validatedData = $this->validateExpedienteRequest($request);
 
@@ -57,10 +57,7 @@ class ExpedienteController extends Controller
 
             return redirect()->route('expediente.index', ['id' => $validatedData['id_servicio']])
                 ->with('success', 'Expediente generado y guardado correctamente.');
-        } catch (\Exception $e) {
-            \Log::error("Error al generar el expediente: " . $e->getMessage());
-            return response()->json(['error' => 'Ocurrió un error al generar el expediente.'], 500);
-        }
+        
     }
 
     public function guardarDictamenesInformatico(Request $request)
