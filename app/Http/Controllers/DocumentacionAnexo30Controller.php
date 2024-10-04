@@ -17,11 +17,39 @@ class DocumentacionAnexo30Controller extends Controller
     {
         // Capturar el id del request
         $id = $request->input('id');
+
         // Buscar el servicio por el ID
         $servicio = ServicioAnexo::findOrFail($id);
-        // Pasar el servicio a la vista para que puedas acceder a la nomenclatura
-        return view('armonia.servicios.anexo_30.documentos.menu', compact('servicio'));
+
+        // Obtener todas las categorías
+        $categorias = ['generales', 'informatica', 'medicion', 'inspeccion'];
+
+        // Obtener los documentos de la base de datos relacionados con el servicio
+        $documentos = Documentos::where('servicio_id', $id)->get();
+
+        // Variable para almacenar si cada categoría está completa y contar los documentos subidos
+        $categoriasInfo = [];
+
+        foreach ($categorias as $categoria) {
+            // Obtener los documentos requeridos para la categoría
+            $requiredDocuments = $this->getRequiredDocuments($categoria);
+
+            // Verificar cuántos documentos se han subido de la categoría
+            $documentosSubidos = $documentos->where('categoria', $categoria);
+
+            // Calcular si la categoría está completa y cuántos documentos hay
+            $categoriasInfo[$categoria] = [
+                'isComplete' => $documentosSubidos->count() >= count($requiredDocuments),
+                'total' => count($requiredDocuments),
+                'subidos' => $documentosSubidos->count()
+            ];
+        }
+
+        // Pasar la información a la vista
+        return view('armonia.servicios.anexo_30.documentos.menu', compact('servicio', 'categoriasInfo'));
     }
+
+
 
     // Documentación General
     public function documentosGenerales(Request $request)
@@ -123,7 +151,7 @@ class DocumentacionAnexo30Controller extends Controller
                 ['descripcion' => 'Una tirilla de inventario de la consola de monitoreo de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
                 ['descripcion' => 'Impresión de la configuración de la consola de monitoreo de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
                 ['descripcion' => 'La factura de una compra con su soporte (Remisión, Carta porte, Tira de Inicio y Fin de Incremento)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
-                ['descripcion' => 'La factura de una venta ', 'codigo' => '', 'tipo' => 'Documental y Fotos', 'id' => 4],
+                ['descripcion' => 'La factura de una venta', 'codigo' => '', 'tipo' => 'Documental', 'id' => 4],
                 // Agrega más documentos según sea necesario
             ],
         ];
