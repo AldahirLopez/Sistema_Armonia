@@ -27,19 +27,29 @@ class ServicioAnexo30Controller extends Controller
     {
         // Obtener los usuarios con el rol 'Verificador Anexo 30'
         $usuarios = $this->getUsuariosConRol('Verificador Anexo 30');
-
         $usuario = Auth::user();
+
         if ($usuario) {
             $usuarioSeleccionado = $request->input('usuario_id');
+            $estadoServicio = $request->input('estado_servicio'); // Obtener el estado del servicio seleccionado
             $isAdminOrAuditor = $usuario->hasAnyRole(['Administrador', 'Auditor']);
-
             $estaciones = $this->getEstacionesSinServicio($usuario, $isAdminOrAuditor);
 
             $servicios = ServicioAnexo::when($usuarioSeleccionado, function ($query, $usuarioSeleccionado) {
                 return $query->where('id_usuario', $usuarioSeleccionado);
-            }, function ($query) use ($usuario, $isAdminOrAuditor) {
-                return $isAdminOrAuditor ? $query : $query->where('id_usuario', $usuario->id);
             })
+                ->when($estadoServicio, function ($query, $estadoServicio) {
+                    // Filtrar según el estado del servicio
+                    if ($estadoServicio == 'aprobado') {
+                        return $query->where('pending_apro_servicio', true)->where('pending_deletion_servicio', false);
+                    } elseif ($estadoServicio == 'eliminado') {
+                        return $query->where('pending_deletion_servicio', true);
+                    } elseif ($estadoServicio == 'pendiente') {
+                        return $query->where('pending_apro_servicio', false)->where('pending_deletion_servicio', false);
+                    }
+                }, function ($query) use ($usuario, $isAdminOrAuditor) {
+                    return $isAdminOrAuditor ? $query : $query->where('id_usuario', $usuario->id);
+                })
                 ->orderByRaw("CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(nomenclatura, '-', -2), '-', 1) AS UNSIGNED) ASC")
                 ->orderBy('nomenclatura', 'asc')
                 ->paginate(12);

@@ -13,12 +13,14 @@
 @include('partials.alertas') <!-- Including alerts -->
 
 <!-- Filtro por Usuario -->
+<!-- Filtro por Usuario y Estado de Servicio -->
 <div class="row mb-4">
     <div class="col-lg-12">
         <form method="GET" action="{{ route('anexo.index') }}" class="d-flex align-items-center justify-content-center">
             <div class="input-group">
-                <label for="usuario_id" class="input-group-text border-end-0">Filtrar por usuario:</label>
-                <select name="usuario_id" id="usuario_id" class="form-select border-start-0" style="max-width: 250px;">
+                <!-- Filtro por Usuario -->
+                <label for="usuario_id" class="input-group-text border-end-0">Usuario:</label>
+                <select name="usuario_id" id="usuario_id" class="form-select border-start-0" style="max-width: 200px;">
                     <option value="">Todos los usuarios</option>
                     @foreach($usuarios as $user)
                     <option value="{{ $user->id }}" {{ $usuarioSeleccionado == $user->id ? 'selected' : '' }}>
@@ -26,6 +28,17 @@
                     </option>
                     @endforeach
                 </select>
+
+                <!-- Filtro por Estado de Servicio -->
+                <label for="estado_servicio" class="input-group-text border-end-0 ms-2">Estado:</label>
+                <select name="estado_servicio" id="estado_servicio" class="form-select border-start-0" style="max-width: 200px;">
+                    <option value="">Todos los estados</option>
+                    <option value="aprobado" {{ request('estado_servicio') == 'aprobado' ? 'selected' : '' }}>Aprobados</option>
+                    <option value="eliminado" {{ request('estado_servicio') == 'eliminado' ? 'selected' : '' }}>Eliminados</option>
+                    <option value="pendiente" {{ request('estado_servicio') == 'pendiente' ? 'selected' : '' }}>Pendientes de Aprobación</option>
+                </select>
+
+                <!-- Botón Filtrar -->
                 <button class="btn btn-primary ms-2" type="submit">
                     <i class="bx bx-filter-alt"></i> Filtrar
                 </button>
@@ -33,6 +46,7 @@
         </form>
     </div>
 </div>
+
 
 
 <!-- Buttons for generating new service -->
