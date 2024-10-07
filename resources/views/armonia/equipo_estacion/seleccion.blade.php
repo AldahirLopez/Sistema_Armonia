@@ -40,6 +40,7 @@
                             <th>Marca</th>
                             <th>Modelo</th>
                             <th>Número de Serie</th>
+                            <th>Número de Aprobacion</th>
                             @if(auth()->user()->hasRole('Administrador'))
                             <th class="text-center">Acciones</th>
                             @endif
@@ -52,6 +53,7 @@
                             <td>{{ $dispensario->marca }}</td>
                             <td>{{ $dispensario->modelo }}</td>
                             <td>{{ $dispensario->numero_serie }}</td>
+                            <td>{{ $dispensario->numero_aprobacion }}</td>
                             @if(auth()->user()->hasRole('Administrador'))
                             <td class="text-center">
                                 <!-- Botón de Eliminar para Dispensarios -->
@@ -215,6 +217,10 @@
                         <label for="numeroSerie" class="form-label">Número de Serie</label>
                         <input type="text" class="form-control" id="numeroSerie" name="numero_serie" placeholder="Ingrese el número de serie">
                     </div>
+                    <div class="mb-3">
+                        <label for="numeroAprobacion" class="form-label">Número de Aprobacion</label>
+                        <input type="text" class="form-control" id="numeroAprobacion" name="numero_aprobacion" placeholder="Ingrese el número de Aprobacion DNG">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -253,8 +259,8 @@
                         <input type="number" class="form-control" id="capacidad" name="capacidad" placeholder="Ingrese la capacidad en litros" required min="1">
                     </div>
                     <div class="mb-3">
-                        <label for="numeroSerie" class="form-label">Número de Serie</label>
-                        <input type="text" class="form-control" id="numeroSerie" name="numero_serie" placeholder="Ingrese el número de serie">
+                        <label for="numeroSerie" class="form-label">Modelo</label>
+                        <input type="text" class="form-control" id="numeroSerie" name="numero_serie" placeholder="Ingrese el modelo">
                     </div>
                 </div>
                 <div class="modal-footer">

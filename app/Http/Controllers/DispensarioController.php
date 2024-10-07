@@ -56,12 +56,15 @@ class DispensarioController extends Controller
     }
 
     // Eliminar un dispensario
-    public function destroy($id)
+    public function destroy($estacion_id, $id)
     {
-        $dispensario = Dispensario::findOrFail($id);
-        $estacion_id = $dispensario->estacion_id;
+        // Buscar el dispensario que coincida con el estacion_id y el id
+        $dispensario = Dispensario::where('id', $id)->where('estacion_id', $estacion_id)->firstOrFail();
+
+        // Eliminar el dispensario
         $dispensario->delete();
 
+        // Redirigir a la vista de equipo con un mensaje de éxito
         return redirect()->route('equipo.seleccion', $estacion_id)->with('success', 'Dispensario eliminado correctamente.');
     }
 }

@@ -10,13 +10,36 @@
 @slot('title') Anexo 30 @endslot
 @endcomponent
 
-@include('partials.alertas') <!-- Incluyendo las alertas -->
+@include('partials.alertas') <!-- Including alerts -->
 
-<!-- Botón para volver y generar nuevo servicio -->
+<!-- Filtro por Usuario -->
+<div class="row mb-4">
+    <div class="col-lg-12">
+        <form method="GET" action="{{ route('anexo.index') }}" class="d-flex align-items-center justify-content-center">
+            <div class="input-group">
+                <label for="usuario_id" class="input-group-text border-end-0">Filtrar por usuario:</label>
+                <select name="usuario_id" id="usuario_id" class="form-select border-start-0" style="max-width: 250px;">
+                    <option value="">Todos los usuarios</option>
+                    @foreach($usuarios as $user)
+                    <option value="{{ $user->id }}" {{ $usuarioSeleccionado == $user->id ? 'selected' : '' }}>
+                        {{ $user->name }}
+                    </option>
+                    @endforeach
+                </select>
+                <button class="btn btn-primary ms-2" type="submit">
+                    <i class="bx bx-filter-alt"></i> Filtrar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Buttons for generating new service -->
 <div class="row mb-4">
     <div class="col-lg-12">
         <div class="card border-0 shadow-sm">
-            <div class="card-body d-flex justify-content-between">
+            <div class="card-body d-flex justify-content-between align-items-center">
                 <a href="{{ route('documentacion.generarPDF') }}" class="btn btn-primary">
                     <i class="bx bxs-file-pdf"></i> Generar Lista de Requisitos
                 </a>
@@ -34,7 +57,7 @@
     </div>
 </div>
 
-<!-- Mostrar servicios -->
+<!-- Display Services -->
 <div class="row">
     @forelse($servicios as $servicio)
     <div class="col-lg-4 col-md-6 mb-4 d-flex">
@@ -43,74 +66,58 @@
                 <h5 class="card-title font-weight-bold text-dark text-truncate">
                     {{ $servicio->nomenclatura }}
 
-                    <!-- Mostrar botón de editar solo si el usuario tiene el rol de 'Administrador' -->
+                    <!-- Edit Button (Only for Admins) -->
                     @if(auth()->user()->hasRole('Administrador'))
                     <button type="button" class="btn btn-outline-primary btn-sm ms-2 d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#actualizarNomenclaturaModal-{{ $servicio->id }}" style="border-radius: 20px;">
-                        <i class="bx bx-edit me-1" style="font-size: 1.2rem;"></i> <!-- Icono de editar con tamaño mayor -->
-                        <span>Editar</span>
+                        <i class="bx bx-edit me-1"></i> Editar
                     </button>
                     @endif
                 </h5>
             </div>
 
             <div class="card-body d-flex flex-column justify-content-between">
-                <!-- Estado del servicio -->
+                <!-- Service Status -->
                 <p class="text-muted">
-                    @if($servicio->pending_apro_servicio && $servicio->pending_deletion_servicio==false )
+                    @if($servicio->pending_apro_servicio && !$servicio->pending_deletion_servicio)
                     <span class="badge bg-success">Aprobado</span>
-                    @else
-                    @if($servicio->pending_deletion_servicio)
-                    <span class="badge bg-warning text-dark"></span>
+                    @elseif($servicio->pending_deletion_servicio)
+                    <span class="badge bg-danger">Eliminación pendiente de aprobación</span>
                     @else
                     <span class="badge bg-warning text-dark">Pendiente de aprobación</span>
                     @endif
-                    @endif
-
-                    @if($servicio->pending_deletion_servicio)
-                    <span class="badge bg-danger">Eliminación pendiente de aprobación</span>
-                    @endif
                 </p>
 
-                <!-- Mostrar la estación relacionada con el servicio -->
+                <!-- Service Details -->
                 <p class="card-text text-muted mb-3">
-                    Tipo de Servicio: <strong>{{ $servicio->estaciones->first()->tipo_estacion ?? 'Desconocido' }}</strong><br>
-                    Servicio para la estación:
-                    <strong>{{ $servicio->estaciones->first()->razon_social ?? 'Desconocido' }}</strong><br>
-                    Estado: {{ $servicio->estaciones->first()->domicilioServicio->entidad_federativa ?? 'Estado desconocido' }}<br>
-                    Municipio: {{ $servicio->estaciones->first()->domicilioServicio->municipio ?? 'Municipio desconocido' }}
+                    <strong>Tipo de Servicio:</strong> {{ $servicio->estaciones->first()->tipo_estacion ?? 'Desconocido' }}<br>
+                    <strong>Estación:</strong> {{ $servicio->estaciones->first()->razon_social ?? 'Desconocido' }}<br>
+                    <strong>Estado:</strong> {{ $servicio->estaciones->first()->domicilioServicio->entidad_federativa ?? 'Estado desconocido' }}<br>
+                    <strong>Municipio:</strong> {{ $servicio->estaciones->first()->domicilioServicio->municipio ?? 'Municipio desconocido' }}
                 </p>
 
-
-
+                <!-- Action Buttons -->
                 <div class="d-flex justify-content-between align-items-center mt-auto">
                     @if($servicio->pending_deletion_servicio)
-                    <!-- Si el servicio tiene pendiente la eliminación, desactivar botones -->
                     <span class="text-muted">Eliminación pendiente de aprobación</span>
                     @else
                     @if($servicio->pending_apro_servicio)
-                    <!-- Botones de acción con íconos y estilo más sutil -->
-                    <a href="{{ route('armonia.servicios.anexo_30.documentos.menu', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm">
+                    <a href="{{ route('armonia.servicios.anexo_30.documentos.menu', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm" title="Ver Documentación">
                         <i class="bx bx-folder-open"></i> Documentación
                     </a>
-
-                    <a href="{{ route('expediente.index', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm">
+                    <a href="{{ route('expediente.index', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm" title="Ver Expediente">
                         <i class="bx bx-folder-open"></i> Expediente
                     </a>
-
-
-                    <a href="{{ route('armonia.servicios.anexo_30.listas_inspeccion.menu', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm">
-                        <i class="bx bx-folder-open"></i> Listas de Inspeccion
+                    <a href="{{ route('armonia.servicios.anexo_30.listas_inspeccion.menu', ['id' => $servicio->id]) }}" class="btn btn-outline-primary btn-sm" title="Ver Listas de Inspección">
+                        <i class="bx bx-folder-open"></i> Listas de Inspección
                     </a>
-
                     <form action="{{ route('anexo.destroy', $servicio->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                        <button type="submit" class="btn btn-outline-danger btn-sm" title="Eliminar Servicio">
                             <i class="bx bx-trash"></i> Eliminar
                         </button>
                     </form>
                     @else
-                    <!-- Si el servicio no está aprobado, solo muestra el mensaje -->
                     <span class="text-muted">Pendiente de aprobación</span>
                     @endif
                     @endif
@@ -124,20 +131,22 @@
     </div>
     @endforelse
 </div>
-<!-- Paginación -->
+
+<!-- Pagination -->
 <div class="d-flex justify-content-center mt-4">
     {{ $servicios->onEachSide(1)->links('pagination::bootstrap-4', ['class' => 'pagination-sm']) }}
 </div>
 
 <!-- Modal para generar servicio -->
 @include('armonia.servicios.anexo_30.modals.generarServicio', ['estaciones' => $estaciones])
+
+<!-- Modals for Updating Nomenclature -->
 @foreach($servicios as $servicio)
-<!-- Modal para actualizar la nomenclatura -->
 <div class="modal fade" id="actualizarNomenclaturaModal-{{ $servicio->id }}" tabindex="-1" aria-labelledby="actualizarNomenclaturaLabel-{{ $servicio->id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="actualizarNomenclaturaLabel-{{ $servicio->id }}">Actualizar Nomenclatura</h5>
+                <h5 class="modal-title">Actualizar Nomenclatura</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('servicio-anexo.actualizar-nomenclatura', $servicio->id) }}" method="POST">
@@ -145,7 +154,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nuevaNomenclatura-{{ $servicio->id }}" class="form-label">Nueva Nomenclatura</label>
-                        <input type="text" class="form-control" id="nuevaNomenclatura-{{ $servicio->id }}" name="nueva_nomenclatura" placeholder="Ingrese la nueva nomenclatura" required>
+                        <input type="text" class="form-control" id="nuevaNomenclatura-{{ $servicio->id }}" name="nueva_nomenclatura" placeholder="Ingrese la nueva nomenclatura" value="{{ $servicio->nomenclatura }}" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -157,6 +166,4 @@
     </div>
 </div>
 @endforeach
-
-
 @endsection
