@@ -106,9 +106,39 @@
         </div>
     </div>
 
+    <!-- Leyenda de advertencia -->
+    <div id="warningMessage" class="alert alert-warning mt-3" style="display: none;">
+        Registre sus direcciones (fiscal y de servicio) primero.
+    </div>
+
     <!-- Botón para enviar el formulario -->
-    <button type="submit" class="btn btn-primary mt-3">Generar</button>
+    <button type="submit" id="generateButton" class="btn btn-primary mt-3">Generar</button>
 </form>
+
+<!-- Script para manejar la lógica de habilitar/deshabilitar el botón -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Obtener elementos de las direcciones
+        const fiscalId = "{{ $estacion->domicilio_fiscal_id }}";
+        const servicioId = "{{ $estacion->domicilio_servicio_id }}";
+
+        // Obtener elementos del formulario
+        const generateButton = document.getElementById('generateButton');
+        const warningMessage = document.getElementById('warningMessage');
+
+        // Verificar si las direcciones están registradas
+        if (!fiscalId || !servicioId) {
+            // Si alguna dirección falta, mostrar advertencia y deshabilitar el botón
+            generateButton.disabled = true;
+            warningMessage.style.display = 'block';
+        } else {
+            // Si ambas direcciones existen, habilitar el botón
+            generateButton.disabled = false;
+            warningMessage.style.display = 'none';
+        }
+    });
+</script>
+
 <!-- Pasar las fechas ocupadas al script -->
 <script id="fechasOcupadasAnexo30" type="application/json">
     @json($fechasOcupadasAnexo30)
