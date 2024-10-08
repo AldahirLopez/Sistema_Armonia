@@ -8,7 +8,7 @@ use App\Models\Usuario_Estacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Storage;
 class EstacionController extends Controller
 {
     protected $connection = 'segunda_db';
@@ -149,12 +149,15 @@ class EstacionController extends Controller
             'estado_republica' => $data['estado'],
             'usuario_id' => auth()->id(),
         ]);
+        $this->createEstacionDirectory($data['numestacion']);
     }
 
     // Método privado para eliminar una estación
     private function deleteEstacion($id)
     {
         $estacion = Estacion::findOrFail($id);
+        $baseFolderPath = "Estaciones/{$estacion->num_estacion}";
+        Storage::disk('public')->deleteDirectory($baseFolderPath);
         $estacion->delete();
     }
 
@@ -178,5 +181,37 @@ class EstacionController extends Controller
         ]);
 
         $estacion->save(); // Asegúrate de guardar los cambios
+    }
+    
+    private function createEstacionDirectory($num_estacion)
+    {
+        $baseFolderPath = "Estaciones/{$num_estacion}";
+
+        // Carpetas base: documentos, expediente, pagos, facturas
+        $mainFolders = [
+            'Imagenes',
+        ];
+
+        // Crear las carpetas base
+        foreach ($mainFolders as $folder) {
+            Storage::disk('public')->makeDirectory("{$baseFolderPath}/{$folder}");
+        }
+
+        // Subcarpetas dentro de "Imagenes"
+        $subfolders = [
+            '005',
+            'Anexo',
+            'Generales',
+            'Inspectores',
+            'Bombas',
+            'Tanques',
+            'Anuncio luminario ',
+
+        ];
+
+        // Crear las subcarpetas dentro de "Imagenes"
+        foreach ($subfolders as $subfolder) {
+            Storage::disk('public')->makeDirectory("{$baseFolderPath}/Imagenes/{$subfolder}");
+        }
     }
 }

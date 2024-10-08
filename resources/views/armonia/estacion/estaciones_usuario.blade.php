@@ -88,6 +88,10 @@
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
+
+                                        <a href="{{ route('galeria.show',['id_estacion' => $estacion->id]) }}" class="btn btn-outline-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Galeria de fotos">
+                                            <i class="fas fa-camera"></i>
+                                        </a>
                                         @endif
                                     </div>
                                 </td>

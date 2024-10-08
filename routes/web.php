@@ -7,6 +7,7 @@ use App\Http\Controllers\DocumentacionAnexo30Controller;
 use App\Http\Controllers\DocumentacionServicio005Controller;
 use App\Http\Controllers\EquipoEstacionController;
 use App\Http\Controllers\EstacionController;
+use App\Http\Controllers\GaleriaController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\ListasInspeccionController;
 use App\Http\Controllers\ListasInspeccionMedicionController;
@@ -62,6 +63,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('estacion/{id}/direcciones', [DireccionController::class, 'destroy'])->name('direcciones.destroy');
 
     Route::get('/municipios/{estado}', [DireccionController::class, 'getMunicipios']);
+
+
+    //Galeria de estacion
+
+    Route::get('/estacion/{id_estacion}', [GaleriaController::class, 'show'])->name('galeria.show');
+    Route::post('/estacion/{estacion}', [GaleriaController::class, 'store'])->name('galeria.store');
+    Route::get('/galeria/{estacion}/{categoria}', [GaleriaController::class, 'mostrarImagenes'])->name('galeria.imagenes');
 
     //Servicios
     Route::resource('servicios', ServiciosController::class);
