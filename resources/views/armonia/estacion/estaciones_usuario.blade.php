@@ -75,7 +75,7 @@
                                         </a>
 
                                         <!-- Botón para editar con tooltip y color personalizado -->
-                                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar estación" data-bs-target="#editarEstacionModal-{{ $estacion->id }}">
+                                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarEstacionModal-{{ $estacion->id }}" data-bs-placement="top" title="Editar estación">
                                             <i class="fas fa-edit"></i>
                                         </button>
 
