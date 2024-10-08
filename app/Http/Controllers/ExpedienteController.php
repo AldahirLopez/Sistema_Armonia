@@ -274,7 +274,7 @@ class ExpedienteController extends Controller
                 $verificador = null;
             }
         }
- 
+
         // Obtener las fechas ocupadas de inspección y recepción de servicios Anexo 30 del mismo usuario
         $fechasOcupadasAnexo30 = ServicioAnexo::where('id_usuario', $servicioAnexo->id_usuario)
             ->where('id', '!=', $id) // Excluir el servicio actual
@@ -364,10 +364,17 @@ class ExpedienteController extends Controller
         return Direccion::find($idDireccion);
     }
 
-    // Método para preparar los datos que se usarán en las plantillas
     private function prepareExpedienteData($validatedData, $estacion, $direccionFiscal, $direccionServicio, $usuario)
     {
-        $totalData = $this->calculateTotal($validatedData['cantidad']); // Obtener total, mitad, y restante
+        $cantidadSinIva = $validatedData['cantidad'] / 1.16; // Cantidad sin IVA
+        $totalData = $this->calculateTotal($cantidadSinIva); // Obtener total, mitad, y restante
+
+        // Convertir a letras (sin formatear previamente los números)
+        $cantidadEnLetras = $this->numeroALetras($cantidadSinIva);
+        $ivaEnLetras = $this->numeroALetras($this->calculateIva($validatedData['cantidad']));
+        $totalEnLetras = $this->numeroALetras($totalData['total']);
+        $mitadEnLetras = $this->numeroALetras($totalData['total_mitad']);
+        $restanteEnLetras = $this->numeroALetras($totalData['total_restante']);
 
         return array_merge($validatedData, [
             'numestacion' => $estacion->num_estacion,
@@ -383,14 +390,34 @@ class ExpedienteController extends Controller
             'nom_repre' => $validatedData['nombre_representante_legal'] ?? $estacion->nombre_representante_legal,
             'telefono' => $estacion->telefono,
             'correo' => $estacion->correo_electronico,
-            'iva' => $this->calculateIva($validatedData['cantidad']),
-            'total' => $totalData['total'],
-            'total_mitad' => $totalData['total_mitad'],
-            'total_restante' => $totalData['total_restante'],
+
+            // Cantidades numéricas (formateadas para mostrar, pero calculadas como números)
+            'iva' => number_format($this->calculateIva($validatedData['cantidad']), 2, '.', ','),
+            'cantidad' => number_format($cantidadSinIva, 2, '.', ','), // Cantidad sin IVA
+            'total' => number_format($totalData['total'], 2, '.', ','), // Total con IVA
+            'total_mitad' => number_format($totalData['total_mitad'], 2, '.', ','), // 50% del total
+            'total_restante' => number_format($totalData['total_restante'], 2, '.', ','), // Resto del total
+
+            // Fechas
             'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
             'fecha_recepcion' => Carbon::parse($validatedData['fecha_recepcion'])->format('d-m-Y'),
             'fecha_inspeccion_modificada' => Carbon::parse($validatedData['fecha_inspeccion'])->addYear()->format('d-m-Y'),
+
+            // Cantidades en letras
+            'cantidad_letras' => $cantidadEnLetras,
+            'iva_letras' => $ivaEnLetras,
+            'total_letras' => $totalEnLetras,
+            'total_mitad_letras' => $mitadEnLetras,
+            'total_restante_letras' => $restanteEnLetras,
         ]);
+    }
+
+
+    // Método para convertir números a letras
+    private function numeroALetras($numero)
+    {
+        $formatter = new \NumberFormatter("es", \NumberFormatter::SPELLOUT);
+        return ucfirst($formatter->format($numero));
     }
 
     // Método para formatear las direcciones
@@ -420,25 +447,29 @@ class ExpedienteController extends Controller
         if (!empty($direccion->entidad_federativa)) {
             $components[] = "{$direccion->entidad_federativa}";
         }
+        if (!empty($direccion->codigo_postal)) {
+            $components[] = "C.P. {$direccion->codigo_postal}";
+        }
 
         // Unir los componentes que no son nulos con una coma
         return !empty($components) ? implode(', ', $components) : 'N/A';
     }
-    // Método para calcular IVA y totales
+    // Método para calcular IVA (debe retornar un número, no un string)
     private function calculateIva($cantidad)
     {
-        return number_format($cantidad * 0.16, 2, '.', ',');
+        return ($cantidad / 1.16) * 0.16; // Retorna número sin formatear
     }
 
+    // Método para calcular totales (debe retornar números, no cadenas)
     private function calculateTotal($cantidad)
     {
         $iva = $cantidad * 0.16;
         $total = $cantidad + $iva;
 
         return [
-            'total' => number_format($total, 2, '.', ','),
-            'total_mitad' => number_format($total * 0.50, 2, '.', ','),
-            'total_restante' => number_format($total - ($total * 0.50), 2, '.', ','),
+            'total' => $total, // Retorna número sin formatear
+            'total_mitad' => $total * 0.50, // Retorna número sin formatear
+            'total_restante' => $total - ($total * 0.50), // Retorna número sin formatear
         ];
     }
 
@@ -651,7 +682,7 @@ class ExpedienteController extends Controller
         // Guardar servicio y expediente
         $servicio = ServicioAnexo::updateOrCreate(
             ['id' => $validatedData['id_servicio']],
-            ['date_recepcion_at' => $validatedData['fecha_recepcion'], 'date_inspeccion_at' => $validatedData['fecha_inspeccion'], 'costo_total' => $validatedData['cantidad'] ]
+            ['date_recepcion_at' => $validatedData['fecha_recepcion'], 'date_inspeccion_at' => $validatedData['fecha_inspeccion'], 'costo_total' => $validatedData['cantidad']]
         );
 
         Expediente_Servicio_Anexo_30::updateOrCreate(
@@ -1042,7 +1073,4 @@ class ExpedienteController extends Controller
             ['rutadoc_estacion' => $this->defineFolderPath($validatedData), 'usuario_id' => $validatedData['id_usuario']]
         );
     }
-
-
-
 }
