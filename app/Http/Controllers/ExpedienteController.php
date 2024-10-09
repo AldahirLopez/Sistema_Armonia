@@ -376,6 +376,15 @@ class ExpedienteController extends Controller
         $mitadEnLetras = $this->numeroALetras($totalData['total_mitad']);
         $restanteEnLetras = $this->numeroALetras($totalData['total_restante']);
 
+        // Obtener la fecha actual desglosada
+        $fechaActual = Carbon::now();
+        $diaActual = $fechaActual->format('d');
+        $mesActual = $fechaActual->translatedFormat('F'); // Mes en texto (en español)
+        $anioActual = $fechaActual->format('Y');
+
+        // Formato completo de la fecha
+        $fechaCompleta = "{$diaActual} de {$mesActual} del {$anioActual}";
+
         return array_merge($validatedData, [
             'numestacion' => $estacion->num_estacion,
             'razonsocial' => $estacion->razon_social,
@@ -402,6 +411,9 @@ class ExpedienteController extends Controller
             'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
             'fecha_recepcion' => Carbon::parse($validatedData['fecha_recepcion'])->format('d-m-Y'),
             'fecha_inspeccion_modificada' => Carbon::parse($validatedData['fecha_inspeccion'])->addYear()->format('d-m-Y'),
+
+            // Fecha actual desglosada y en texto completo
+            'fecha_completa' => $fechaCompleta,
 
             // Cantidades en letras
             'cantidad_letras' => $cantidadEnLetras,

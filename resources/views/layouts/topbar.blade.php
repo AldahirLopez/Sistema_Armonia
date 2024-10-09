@@ -118,9 +118,9 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item topbar-light bg-light-subtle border-start border-end"
                     id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user"
+                   <!-- <img class="rounded-circle header-profile-user"
                         src="@if (Auth::user()->avatar != ''){{ URL::asset('build/images/users/'. Auth::user()->avatar) }}@else{{ URL::asset('build/images/users/avatar-1.jpg') }}@endif"
-                        alt="Header Avatar">
+                        alt="Header Avatar">-->
                     <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ Auth::user()->name }}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
