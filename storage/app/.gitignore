@@ -1,7 +1,9 @@
-# Ignora todo dentro de storage
+# Ignorar todo dentro de storage
 /storage/*
+/storage/app/public/Servicios/
+/storage/app/public/Servicios/Anexo_30/
 
-# Permite storage/app/templates/Anexo30
+
+# Permitir solo la carpeta templates y su contenido
 !/storage/app/templates/
-!/storage/app/templates/Anexo30/
-!/storage/app/templates/Anexo30/**
+!/storage/app/templates/**
