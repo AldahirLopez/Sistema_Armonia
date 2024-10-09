@@ -10,7 +10,7 @@
 @slot('title') Estaciones de Servicio @endslot
 @endcomponent
 
-@include('partials.alertas') <!-- Incluyendo las alertas -->
+@include('partials.alertas')
 
 <div class="row">
     <div class="col-lg-12">
@@ -18,26 +18,19 @@
             <div class="card-body">
                 <!-- Filtros y acciones -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <!-- Filtro por estado y búsqueda -->
-                    <div class="d-flex align-items-center">
-                        <form method="GET" action="{{ route('estaciones.usuario') }}" class="d-flex align-items-center me-3">
-                            <label for="filtroEstado" class="me-2">Estado:</label>
-                            <select name="estado" id="filtroEstado" class="form-select w-auto me-2">
-                                <option value="">Todos</option>
-                                @foreach($estados as $estado)
-                                <option value="{{ $estado->description }}" {{ request('estado') == $estado->description ? 'selected' : '' }}>
-                                    {{ $estado->description }}
-                                </option>
-                                @endforeach
-                            </select>
-                            <button type="submit" class="btn btn-primary">Filtrar</button>
-                        </form>
+                    <form method="GET" action="{{ route('estaciones.usuario') }}" class="d-flex w-75">
+                        <select name="estado" id="filtroEstado" class="form-select me-2">
+                            <option value="">Todos los estados</option>
+                            @foreach($estados as $estado)
+                            <option value="{{ $estado->description }}" {{ request('estado') == $estado->description ? 'selected' : '' }}>
+                                {{ $estado->description }}
+                            </option>
+                            @endforeach
+                        </select>
+                        <input type="text" id="buscarEstacion" class="form-control me-2" placeholder="Buscar estación...">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </form>
 
-                        <!-- Input para buscar estaciones -->
-                        <input type="text" id="buscarEstacion" class="form-control w-auto" placeholder="Buscar...">
-                    </div>
-
-                    <!-- Botón para generar nueva estación -->
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#generarEstacionModal">
                         <i class="fas fa-plus"></i> Nueva Estación
                     </button>
@@ -45,14 +38,14 @@
 
                 <!-- Tabla de estaciones -->
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover align-middle">
+                    <table class="table table-hover table-striped table-lg align-middle">
                         <thead class="table-dark">
                             <tr class="text-center">
-                                <th class="text-nowrap">Número</th>
-                                <th class="text-nowrap">Razón Social</th>
-                                <th class="text-nowrap">Estado</th>
-                                <th class="text-nowrap">Municipio</th>
-                                <th class="text-nowrap">Operaciones</th>
+                                <th style="width: 10%;">Número</th>
+                                <th style="width: 25%;">Razón Social</th>
+                                <th style="width: 15%;">Estado</th>
+                                <th style="width: 20%;">Municipio</th>
+                                <th style="width: 30%;">Opciones</th>
                             </tr>
                         </thead>
                         <tbody id="tablaEstaciones">
@@ -63,36 +56,43 @@
                                 <td>{{ $estacion->estado_republica }}</td>
                                 <td>{{ optional($estacion->domicilioServicio)->municipio ?? 'No disponible' }}</td>
                                 <td>
-                                    <div class="btn-group" role="group">
-                                        <!-- Botón para ver direcciones con tooltip y color personalizado -->
-                                        <a href="{{ route('estacion.direcciones', ['id' => $estacion->id]) }}" class="btn btn-outline-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Direcciones de la estación">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                        </a>
-
-                                        <!-- Botón para ver estructura con tooltip y color personalizado -->
-                                        <a href="{{ route('equipo.seleccion', ['id' => $estacion->id]) }}" class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Estructura de la estación">
-                                            <i class="fas fa-building"></i>
-                                        </a>
-
-                                        <!-- Botón para editar con tooltip y color personalizado -->
-                                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarEstacionModal-{{ $estacion->id }}" data-bs-placement="top" title="Editar estación">
-                                            <i class="fas fa-edit"></i>
+                                    <div class="dropdown">
+                                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="opcionesEstacion{{ $estacion->id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-cogs"></i> Opciones
                                         </button>
-
-                                        <!-- Botón para eliminar con tooltip y color personalizado -->
-                                        @if(auth()->check() && auth()->user()->hasRole('Administrador'))
-                                        <form action="{{ route('estaciones.destroy', $estacion->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar estación" onclick="return confirm('¿Eliminar esta estación?');">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
-
-                                        <a href="{{ route('galeria.show',['id_estacion' => $estacion->id]) }}" class="btn btn-outline-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Galeria de fotos">
-                                            <i class="fas fa-camera"></i>
-                                        </a>
-                                        @endif
+                                        <ul class="dropdown-menu" aria-labelledby="opcionesEstacion{{ $estacion->id }}">
+                                            <li>
+                                                <a href="{{ route('estacion.direcciones', ['id' => $estacion->id]) }}" class="dropdown-item">
+                                                    <i class="fas fa-map-marker-alt"></i> Ver Direcciones
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('equipo.seleccion', ['id' => $estacion->id]) }}" class="dropdown-item">
+                                                    <i class="fas fa-building"></i> Ver Estructura
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('galeria.show',['id_estacion' => $estacion->id]) }}" class="dropdown-item">
+                                                    <i class="fas fa-camera"></i> Galería de Fotos
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editarEstacionModal-{{ $estacion->id }}">
+                                                    <i class="fas fa-edit"></i> Editar
+                                                </button>
+                                            </li>
+                                            @if(auth()->check() && auth()->user()->hasRole('Administrador'))
+                                            <li>
+                                                <form action="{{ route('estaciones.destroy', $estacion->id) }}" method="POST" onsubmit="return confirm('¿Eliminar esta estación?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item text-danger">
+                                                        <i class="fas fa-trash-alt"></i> Eliminar
+                                                    </button>
+                                                </form>
+                                            </li>
+                                            @endif
+                                        </ul>
                                     </div>
                                 </td>
                             </tr>
@@ -111,7 +111,6 @@
 
 @include('armonia.estacion.partials.generar-estacion-modal', ['estados' => $estados])
 
-<!-- Scripts para funcionalidades adicionales -->
 <script>
     document.getElementById('buscarEstacion').addEventListener('input', function() {
         const value = this.value.toLowerCase();

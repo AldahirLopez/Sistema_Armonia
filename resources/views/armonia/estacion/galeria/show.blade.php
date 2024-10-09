@@ -13,7 +13,12 @@
 @include('partials.alertas') <!-- Incluyendo las alertas -->
 
 <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- Botón de regreso -->
+    <a href="{{ route('estaciones.usuario') }}" class="btn btn-danger">
+        <i class="bx bx-arrow-back"></i>
+    </a>
     <h4 class="mb-0">Galería de Imágenes</h4>
+
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#storeImage" data-bs-placement="top" title="Agregar imagen">
         <i class="fas fa-plus"></i> Agregar Imágenes
     </button>
