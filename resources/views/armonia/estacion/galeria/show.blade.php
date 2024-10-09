@@ -67,7 +67,7 @@
                         imgCard.className = 'card shadow-sm';
 
                         const img = document.createElement('img');
-                        img.src = imagen;
+                        img.src = imagen.url;
                         img.className = 'card-img-top';
                         img.alt = 'Imagen de categoría ' + categoria;
                         img.style.width = '100%'; // Asegura que la imagen ocupe todo el ancho del contenedor
