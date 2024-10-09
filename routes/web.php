@@ -70,6 +70,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/estacion/{id_estacion}', [GaleriaController::class, 'show'])->name('galeria.show');
     Route::post('/estacion/{estacion}', [GaleriaController::class, 'store'])->name('galeria.store');
     Route::get('/galeria/{estacion}/{categoria}', [GaleriaController::class, 'mostrarImagenes'])->name('galeria.imagenes');
+    Route::delete('/galeria/{num_estacion}/{categoria}/eliminar', [GaleriaController::class, 'destroy'])->name('galeria.eliminar');
+
 
     //Servicios
     Route::resource('servicios', ServiciosController::class);
