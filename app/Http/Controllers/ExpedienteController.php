@@ -311,8 +311,21 @@ class ExpedienteController extends Controller
         $folderPath = "Servicios/Anexo_30/{$anio}/{$servicioAnexo->id_usuario}/{$servicioAnexo->nomenclatura}/expediente";
         $existingFiles = $this->getExistingFiles($folderPath);
 
+
+        //Pasamos las categorias de las imagenes
+
+        $categorias_imagen=[
+            '005',
+            'Anexo',
+            'Anuncio luminario',
+            'Bombas',
+            'Generales',
+            'Inspectores',
+            'Tanques'
+        ]; 
+
         // Pasar datos a la vista
-        return compact('servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios', 'proveedorinfo', 'fechasOcupadasAnexo30', 'fechasOcupadas005');
+        return compact('categorias_imagen','servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios', 'proveedorinfo', 'fechasOcupadasAnexo30', 'fechasOcupadas005');
     }
 
 
@@ -495,24 +508,28 @@ class ExpedienteController extends Controller
     // Método para procesar la plantilla
     private function processTemplate($data, $subFolderPath, $templateName)
     {
+    
         $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Expediente/{$templateName}"));
-        // Si el template es "REPORTE FOTOGRAFICO.docx", manejamos las imágenes
         if ($templateName == "REPORTE FOTOGRAFICO.docx") {
-            if (isset($data['imagePaths']) && is_array($data['imagePaths'])) {
+            if (isset($data['imagePaths'])) {
+               
                 foreach ($data['imagePaths'] as $image) {
-                    if (isset($image['name']) && isset($image['path'])) {
-                        // Agregamos la imagen al documento
-                        $templateProcessor->setImageValue($image['name'], [
-                            'path' => $image['path'],
-                            'width' => 310,
-                            'height' => 285,
-                            'ratio' => false
-                        ]);
+                   
+                    $imageRelativePath="Estaciones/{$data['numestacion']}/Imagenes/{$image['categoria']}/{$image['nombre_original']}";
+
+                    $imagePath = Storage::disk('public')->path($imageRelativePath);
+                    if (!empty($image['name'])) { 
+                            $templateProcessor->setImageValue($image['name'], [
+                                'path' => $imagePath,
+                                'width' => 310,
+                                'height' => 285,
+                                'ratio' => false
+                            ]);  
                     }
                 }
             }
         }
-
+        
         // Reemplazamos los valores en el template
         foreach ($data as $key => $value) {
             // Ignoramos claves especiales que no deben ser procesadas como texto
@@ -537,6 +554,10 @@ class ExpedienteController extends Controller
         // Guardamos el archivo con un nombre único basado en la nomenclatura
         $fileName = pathinfo($templateName, PATHINFO_FILENAME) . "_{$data['nomenclatura']}.docx";
         $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
+    }
+    private function isAssociativeArray(array $array)
+    {
+        return array_keys($array) !== range(0, count($array) - 1);
     }
 
     // Método para procesar las plantillas del dictamen informático
@@ -1030,52 +1051,43 @@ class ExpedienteController extends Controller
             'id_usuario' => 'required|exists:users,id',
             'domicilio_servicio_id' => 'nullable|integer',
             'fecha_inspeccion' => 'required|date',
-            'imagenes' => 'required|array|min:4',
-            'imagenes.*' => ' |image|mimes:jpeg,png,jpg,gif',
+            'selected_images' => 'required',
         ]);
     }
 
     private function prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio)
-    {
-        $anio = now()->year;
-        $carpetaImages = "Servicios/Anexo_30/{$anio}/{$validatedData['id_usuario']}/{$validatedData['nomenclatura']}/expediente/imagenes_reporte_fotografico";
-        //Creamos la carpteta donde iran las imagenes del reporte fotografico
-        if (!Storage::disk('public')->exists($carpetaImages)) {
-            Storage::disk('public')->makeDirectory($carpetaImages);
-        }
+{
+    
+    $imagenesSeleccionadas = $validatedData['selected_images'];
 
-        //Obtener las imagenes
-        $imageNumber = 1;
+    $imageNumber = 1;
+    $imagePaths = [];
 
-        $imagePaths = [];
-        foreach ($validatedData['imagenes'] as $image) {
-            // Generar el nombre de la imagen
-            $imageName = 'img_' . $imageNumber . '.' . $image->extension();
+    foreach ($imagenesSeleccionadas as $imageData) {
+        $image = json_decode($imageData, true);
 
-
-            // Mover la imagen a la carpeta de destino, reemplazando si existe
-            $image->storeAs($carpetaImages, $imageName, 'public');
-
-            // Obtener la ruta completa de la imagen
-            $imagePath = Storage::disk('public')->path("$carpetaImages/$imageName") ?? null;
-            // Almacenar la ruta de la imagen en el array
             $imagePaths[] = [
                 'name' => 'img_' . $imageNumber,
-                'path' => $imagePath,
+                'nombre_original'=>$image['nombre'],
+                'categoria'=>$image['categoria'],
+                'path' => $image['url'],
             ];
             $imageNumber++;
-        }
-
-        return array_merge($validatedData, [
-            'imagePaths' => $imagePaths,
-            'numestacion' => $estacion->num_estacion,
-            'razonsocial' => $estacion->razon_social,
-            'id_usuario' => $validatedData['id_usuario'],
-            'nomenclatura' => $validatedData['nomenclatura'],
-            'domicilio_estacion' => $this->formatAddress($direccionServicio),
-            'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
-        ]);
+        
     }
+  
+    // Retornar datos combinados con la información adicional
+    return array_merge($validatedData, [
+        'imagePaths' => $imagePaths,
+        'numestacion' => $estacion->num_estacion,
+        'razonsocial' => $estacion->razon_social,
+        'id_usuario' => $validatedData['id_usuario'],
+        'nomenclatura' => $validatedData['nomenclatura'],
+        'domicilio_estacion' => $this->formatAddress($direccionServicio),
+        'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
+    ]);
+}
+
 
     private function saveReporteFotograficoData($data, $validatedData, $estacion)
     {
