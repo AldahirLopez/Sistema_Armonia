@@ -314,7 +314,7 @@ class ExpedienteController extends Controller
 
         //Pasamos las categorias de las imagenes
 
-        $categorias_imagen=[
+        $categorias_imagen = [
             '005',
             'Anexo',
             'Anuncio luminario',
@@ -322,10 +322,10 @@ class ExpedienteController extends Controller
             'Generales',
             'Inspectores',
             'Tanques'
-        ]; 
+        ];
 
         // Pasar datos a la vista
-        return compact('categorias_imagen','servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios', 'proveedorinfo', 'fechasOcupadasAnexo30', 'fechasOcupadas005');
+        return compact('categorias_imagen', 'servicioAnexo', 'estacion', 'estados', 'existingFiles', 'direccionEstacion', 'direccionFiscal', 'verificadores', 'verificador', 'usuarios', 'proveedorinfo', 'fechasOcupadasAnexo30', 'fechasOcupadas005');
     }
 
 
@@ -379,15 +379,22 @@ class ExpedienteController extends Controller
 
     private function prepareExpedienteData($validatedData, $estacion, $direccionFiscal, $direccionServicio, $usuario)
     {
-        $cantidadSinIva = $validatedData['cantidad'] / 1.16; // Cantidad sin IVA
+        // Redondear la cantidad sin IVA a 2 decimales
+        $cantidadSinIva = round($validatedData['cantidad'] / 1.16, 2);
+        $iva = round($this->calculateIva($validatedData['cantidad']), 2);
         $totalData = $this->calculateTotal($cantidadSinIva); // Obtener total, mitad, y restante
 
-        // Convertir a letras (sin formatear previamente los números)
+        // Redondear cada parte del total a 2 decimales
+        $total = round($totalData['total'], 2);
+        $totalMitad = round($totalData['total_mitad'], 2);
+        $totalRestante = round($totalData['total_restante'], 2);
+
+        // Convertir a letras después de redondear los números
         $cantidadEnLetras = $this->numeroALetras($cantidadSinIva);
-        $ivaEnLetras = $this->numeroALetras($this->calculateIva($validatedData['cantidad']));
-        $totalEnLetras = $this->numeroALetras($totalData['total']);
-        $mitadEnLetras = $this->numeroALetras($totalData['total_mitad']);
-        $restanteEnLetras = $this->numeroALetras($totalData['total_restante']);
+        $ivaEnLetras = $this->numeroALetras($iva);
+        $totalEnLetras = $this->numeroALetras($total);
+        $mitadEnLetras = $this->numeroALetras($totalMitad);
+        $restanteEnLetras = $this->numeroALetras($totalRestante);
 
         // Obtener la fecha actual desglosada
         $fechaActual = Carbon::now();
@@ -413,12 +420,12 @@ class ExpedienteController extends Controller
             'telefono' => $estacion->telefono,
             'correo' => $estacion->correo_electronico,
 
-            // Cantidades numéricas (formateadas para mostrar, pero calculadas como números)
-            'iva' => number_format($this->calculateIva($validatedData['cantidad']), 2, '.', ','),
-            'cantidad' => number_format($cantidadSinIva, 2, '.', ','), // Cantidad sin IVA
-            'total' => number_format($totalData['total'], 2, '.', ','), // Total con IVA
-            'total_mitad' => number_format($totalData['total_mitad'], 2, '.', ','), // 50% del total
-            'total_restante' => number_format($totalData['total_restante'], 2, '.', ','), // Resto del total
+            // Cantidades numéricas redondeadas y formateadas para mostrar
+            'iva' => number_format($iva, 2, '.', ','),
+            'cantidad' => number_format($cantidadSinIva, 2, '.', ','), // Cantidad sin IVA redondeada
+            'total' => number_format($total, 2, '.', ','), // Total redondeado con IVA
+            'total_mitad' => number_format($totalMitad, 2, '.', ','), // 50% del total redondeado
+            'total_restante' => number_format($totalRestante, 2, '.', ','), // Resto del total redondeado
 
             // Fechas
             'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
@@ -428,7 +435,7 @@ class ExpedienteController extends Controller
             // Fecha actual desglosada y en texto completo
             'fecha_completa' => $fechaCompleta,
 
-            // Cantidades en letras
+            // Cantidades en letras (con valores redondeados)
             'cantidad_letras' => $cantidadEnLetras,
             'iva_letras' => $ivaEnLetras,
             'total_letras' => $totalEnLetras,
@@ -436,13 +443,26 @@ class ExpedienteController extends Controller
             'total_restante_letras' => $restanteEnLetras,
         ]);
     }
-
-
     // Método para convertir números a letras
     private function numeroALetras($numero)
     {
+        // Redondear el número a 2 decimales y separar la parte entera y la parte decimal
+        $entero = floor($numero); // Parte entera del número
+        $decimales = round(($numero - $entero) * 100); // Parte decimal redondeada a dos decimales
+
+        // Usar NumberFormatter para convertir la parte entera a letras
         $formatter = new \NumberFormatter("es", \NumberFormatter::SPELLOUT);
-        return ucfirst($formatter->format($numero));
+        $enteroEnLetras = ucfirst($formatter->format($entero));
+
+        // Si hay decimales, los añadimos en letras con la palabra 'punto'
+        if ($decimales > 0) {
+            // Aquí el uso de 'punto' en vez de 'coma' para la separación decimal
+            $decimalesEnLetras = $formatter->format($decimales);
+            return "{$enteroEnLetras} punto {$decimalesEnLetras}";
+        }
+
+        // Si no hay decimales, solo devolvemos la parte entera en letras
+        return $enteroEnLetras;
     }
 
     // Método para formatear las direcciones
@@ -479,22 +499,22 @@ class ExpedienteController extends Controller
         // Unir los componentes que no son nulos con una coma
         return !empty($components) ? implode(', ', $components) : 'N/A';
     }
-    // Método para calcular IVA (debe retornar un número, no un string)
+    // Método para calcular IVA (debe retornar un número redondeado)
     private function calculateIva($cantidad)
     {
-        return ($cantidad / 1.16) * 0.16; // Retorna número sin formatear
+        return round(($cantidad / 1.16) * 0.16, 2); // Redondea a 2 decimales
     }
 
-    // Método para calcular totales (debe retornar números, no cadenas)
+    // Método para calcular totales (debe retornar números redondeados)
     private function calculateTotal($cantidad)
     {
-        $iva = $cantidad * 0.16;
-        $total = $cantidad + $iva;
+        $iva = round($cantidad * 0.16, 2); // Redondea a 2 decimales
+        $total = round($cantidad + $iva, 2); // Redondea el total a 2 decimales
 
         return [
-            'total' => $total, // Retorna número sin formatear
-            'total_mitad' => $total * 0.50, // Retorna número sin formatear
-            'total_restante' => $total - ($total * 0.50), // Retorna número sin formatear
+            'total' => $total, // Total redondeado
+            'total_mitad' => round($total * 0.50, 2), // Mitad del total redondeada a 2 decimales
+            'total_restante' => round($total - ($total * 0.50), 2), // Resto del total redondeado
         ];
     }
 
@@ -508,28 +528,28 @@ class ExpedienteController extends Controller
     // Método para procesar la plantilla
     private function processTemplate($data, $subFolderPath, $templateName)
     {
-    
+
         $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Expediente/{$templateName}"));
         if ($templateName == "REPORTE FOTOGRAFICO.docx") {
             if (isset($data['imagePaths'])) {
-               
+
                 foreach ($data['imagePaths'] as $image) {
-                   
-                    $imageRelativePath="Estaciones/{$data['numestacion']}/Imagenes/{$image['categoria']}/{$image['nombre_original']}";
+
+                    $imageRelativePath = "Estaciones/{$data['numestacion']}/Imagenes/{$image['categoria']}/{$image['nombre_original']}";
 
                     $imagePath = Storage::disk('public')->path($imageRelativePath);
-                    if (!empty($image['name'])) { 
-                            $templateProcessor->setImageValue($image['name'], [
-                                'path' => $imagePath,
-                                'width' => 310,
-                                'height' => 285,
-                                'ratio' => false
-                            ]);  
+                    if (!empty($image['name'])) {
+                        $templateProcessor->setImageValue($image['name'], [
+                            'path' => $imagePath,
+                            'width' => 310,
+                            'height' => 285,
+                            'ratio' => false
+                        ]);
                     }
                 }
             }
         }
-        
+
         // Reemplazamos los valores en el template
         foreach ($data as $key => $value) {
             // Ignoramos claves especiales que no deben ser procesadas como texto
@@ -1056,37 +1076,36 @@ class ExpedienteController extends Controller
     }
 
     private function prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio)
-{
-    
-    $imagenesSeleccionadas = $validatedData['selected_images'];
+    {
 
-    $imageNumber = 1;
-    $imagePaths = [];
+        $imagenesSeleccionadas = $validatedData['selected_images'];
 
-    foreach ($imagenesSeleccionadas as $imageData) {
-        $image = json_decode($imageData, true);
+        $imageNumber = 1;
+        $imagePaths = [];
+
+        foreach ($imagenesSeleccionadas as $imageData) {
+            $image = json_decode($imageData, true);
 
             $imagePaths[] = [
                 'name' => 'img_' . $imageNumber,
-                'nombre_original'=>$image['nombre'],
-                'categoria'=>$image['categoria'],
+                'nombre_original' => $image['nombre'],
+                'categoria' => $image['categoria'],
                 'path' => $image['url'],
             ];
             $imageNumber++;
-        
+        }
+
+        // Retornar datos combinados con la información adicional
+        return array_merge($validatedData, [
+            'imagePaths' => $imagePaths,
+            'numestacion' => $estacion->num_estacion,
+            'razonsocial' => $estacion->razon_social,
+            'id_usuario' => $validatedData['id_usuario'],
+            'nomenclatura' => $validatedData['nomenclatura'],
+            'domicilio_estacion' => $this->formatAddress($direccionServicio),
+            'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
+        ]);
     }
-  
-    // Retornar datos combinados con la información adicional
-    return array_merge($validatedData, [
-        'imagePaths' => $imagePaths,
-        'numestacion' => $estacion->num_estacion,
-        'razonsocial' => $estacion->razon_social,
-        'id_usuario' => $validatedData['id_usuario'],
-        'nomenclatura' => $validatedData['nomenclatura'],
-        'domicilio_estacion' => $this->formatAddress($direccionServicio),
-        'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
-    ]);
-}
 
 
     private function saveReporteFotograficoData($data, $validatedData, $estacion)
