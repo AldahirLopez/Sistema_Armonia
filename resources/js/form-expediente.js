@@ -73,8 +73,12 @@ document.addEventListener('DOMContentLoaded', function () {
         } while (true);
     }
 
+    // Obtener fechas preexistentes desde el HTML
+    const fechaRecepcionRegistrada = document.getElementById('fecha_recepcion').value;
+    const fechaInspeccionRegistrada = document.getElementById('fecha_inspeccion').value;
+
     // Inicializar Flatpickr en ambos campos de fecha
-    flatpickr("#fecha_recepcion, #fecha_inspeccion", {
+    flatpickr("#fecha_recepcion", {
         dateFormat: "Y-m-d",
         disable: [
             function (date) {
@@ -105,8 +109,43 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         },
-        // Establecer la fecha predeterminada al siguiente día hábil
-        defaultDate: obtenerSiguienteDiaHabil(new Date())
+        // Establecer la fecha predeterminada con la fecha registrada o el siguiente día hábil
+        defaultDate: fechaRecepcionRegistrada ? fechaRecepcionRegistrada : obtenerSiguienteDiaHabil(new Date())
+    });
+
+    flatpickr("#fecha_inspeccion", {
+        dateFormat: "Y-m-d",
+        disable: [
+            function (date) {
+                // Deshabilitar los fines de semana
+                return (date.getDay() === 0 || date.getDay() === 6);
+            },
+            // Deshabilitar las fechas ocupadas
+            ...fechasOcupadas.map(f => f.fecha)
+        ],
+        // Personalizar estilos para los días no seleccionables
+        onDayCreate: function (dObj, dStr, fp, dayElem) {
+            const dateStr = dayElem.dateObj.toISOString().split('T')[0]; // Convertir fecha a 'YYYY-MM-DD'
+
+            // Marcar los fines de semana como opacos
+            if (dayElem.dateObj.getDay() === 0 || dayElem.dateObj.getDay() === 6) {
+                dayElem.classList.add('weekend');
+            }
+
+            // Verificar y aplicar estilos a las fechas ocupadas
+            const fechaOcupada = fechasOcupadas.find(f => f.fecha === dateStr);
+            if (fechaOcupada) {
+                if (fechaOcupada.tipo === 'anexo30') {
+                    dayElem.classList.add('occupied-day-anexo30');
+                    dayElem.setAttribute('data-tooltip', `Anexo 30: ${fechaOcupada.nomenclatura}`);
+                } else if (fechaOcupada.tipo === '005') {
+                    dayElem.classList.add('occupied-day-005');
+                    dayElem.setAttribute('data-tooltip', `005: ${fechaOcupada.nomenclatura}`);
+                }
+            }
+        },
+        // Establecer la fecha predeterminada con la fecha registrada o el siguiente día hábil
+        defaultDate: fechaInspeccionRegistrada ? fechaInspeccionRegistrada : obtenerSiguienteDiaHabil(new Date())
     });
 });
 
