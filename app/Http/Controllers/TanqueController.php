@@ -57,12 +57,15 @@ class TanqueController extends Controller
     }
 
     // Eliminar un tanque
-    public function destroy($id)
+    public function destroy($estacion_id, $id)
     {
+        // Encuentra el tanque por su ID
         $tanque = Tanque::findOrFail($id);
-        $estacion_id = $tanque->estacion_id;
+
+        // Elimina el tanque
         $tanque->delete();
 
+        // Redirecciona de vuelta a la página de selección de equipo
         return redirect()->route('equipo.seleccion', $estacion_id)->with('success', 'Tanque eliminado correctamente.');
     }
 }

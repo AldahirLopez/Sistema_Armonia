@@ -21,9 +21,11 @@ class EquipoEstacionController extends Controller
         $tanques = $estacion->tanques;
         $dispensarios = $estacion->dispensarios;
         $sondas = $estacion->sondas;
+        $veederRoots = $estacion->veeder_root;
+        $medidoresFlujo = $estacion->medidor_flujo;
 
         // Pasar los datos a la vista
-        return view('armonia.equipo_estacion.seleccion', compact('estacion', 'tanques', 'dispensarios', 'sondas'));
+        return view('armonia.equipo_estacion.seleccion', compact('estacion', 'tanques', 'dispensarios', 'sondas', 'veederRoots', 'medidoresFlujo'));
     }
 }
  

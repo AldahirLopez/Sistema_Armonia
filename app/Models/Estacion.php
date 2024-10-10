@@ -88,4 +88,14 @@ class Estacion extends Model
     {
         return $this->hasMany(Sondas::class, 'estacion_id');
     }
+
+    public function veeder_root()
+    {
+        return $this->hasMany(Veeder_Root::class, 'estacion_id');
+    }
+
+    public function medidor_flujo()
+    {
+        return $this->hasMany(Medidor_Flujo::class, 'estacion_id');
+    }
 }

@@ -53,12 +53,15 @@ class SondaController extends Controller
     }
 
     // Eliminar una sonda
-    public function destroy($id)
+    public function destroy($estacion_id, $id)
     {
+        // Encuentra la sonda por su ID
         $sonda = Sondas::findOrFail($id);
-        $estacion_id = $sonda->estacion_id;
+
+        // Elimina la sonda
         $sonda->delete();
 
+        // Redirecciona de vuelta a la página de selección de equipo
         return redirect()->route('equipo.seleccion', $estacion_id)->with('success', 'Sonda eliminada correctamente.');
     }
 }

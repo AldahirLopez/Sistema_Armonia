@@ -18,9 +18,11 @@ use App\Http\Controllers\Servicio005Controller;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ExpendienteServicio005Controller;
+use App\Http\Controllers\MedidorFlujoController;
 use App\Http\Controllers\RutasController;
 use App\Http\Controllers\SondaController;
 use App\Http\Controllers\TanqueController;
+use App\Http\Controllers\VeederRootController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -193,7 +195,7 @@ Route::group(['middleware' => ['auth']], function () {
     //RUTAS PARA LISTAS DE INSPECCION SISTEMAS DE MEDICION 
     //Ruta para el menu de las listas de inspeccio Anexo 30
     Route::get('seleccion_listas/sistema_medicion/{id}', [ListasInspeccionMedicionController::class, 'seleccion'])->name('listas_medicion.seleccion');
-    
+
     // Route::get('/form/{type}', [ListasInspeccionController::class, 'loadForm']);
     Route::get('/form/medicion/{type}/{id_servicio}', [ListasInspeccionMedicionController::class, 'loadForm']);
 
@@ -231,6 +233,20 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/store', [SondaController::class, 'store'])->name('sondas.store');
         Route::put('/{id}', [SondaController::class, 'update'])->name('sondas.update');
         Route::delete('/{id}', [SondaController::class, 'destroy'])->name('sondas.destroy');
+    });
+
+    // Rutas para Veeder-Root
+    Route::prefix('estaciones/{estacion_id}/veeder-root')->group(function () {
+        Route::post('/store', [VeederRootController::class, 'store'])->name('veeder-root.store');
+        Route::put('/{id}', [VeederRootController::class, 'update'])->name('veeder-root.update');
+        Route::delete('/{id}', [VeederRootController::class, 'destroy'])->name('veeder-root.destroy');
+    });
+
+    // Rutas para Medidor de Flujo
+    Route::prefix('estaciones/{estacion_id}/medidor-flujo')->group(function () {
+        Route::post('/store', [MedidorFlujoController::class, 'store'])->name('medidor-flujo.store');
+        Route::put('/{id}', [MedidorFlujoController::class, 'update'])->name('medidor-flujo.update');
+        Route::delete('/{id}', [MedidorFlujoController::class, 'destroy'])->name('medidor-flujo.destroy');
     });
 
     //Update User Details
