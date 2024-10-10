@@ -44,7 +44,7 @@
         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
             <i class="mdi mdi-close-circle-outline"></i> Cerrar
         </button>
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-success" id="guardarReporteBtn" disabled>
             <i class="mdi mdi-content-save"></i> Guardar Reporte
         </button>
     </div>
@@ -185,6 +185,7 @@
         const selectedImagesContainer = document.getElementById('imagenes-seleccionadas');
         const errorMessage = document.getElementById('error-message');
         const alreadySelected = document.querySelector(`input[data-url="${image.url}"]`);
+        const guardarReporteBtn = document.getElementById('guardarReporteBtn');
 
         // Si la imagen ya está seleccionada, mostrar mensaje de error y no agregarla
         if (alreadySelected) {
@@ -218,6 +219,8 @@
             // Remove selected state and hide the checkmark
             container.classList.remove('selected');
             container.querySelector('.checkmark').style.display = 'none';
+
+            toggleGuardarButton();
         };
 
         // Create hidden input to store selected image data
@@ -239,5 +242,17 @@
         // Marcar la imagen como seleccionada
         container.classList.add('selected');
         container.querySelector('.checkmark').style.display = 'flex';
+        toggleGuardarButton();
     }
+
+    function toggleGuardarButton() {
+    const selectedImages = document.querySelectorAll('#imagenes-seleccionadas .selected-image-container');
+    const guardarReporteBtn = document.getElementById('guardarReporteBtn');
+
+    if (selectedImages.length >= 4) {
+        guardarReporteBtn.removeAttribute('disabled');
+    } else {
+        guardarReporteBtn.setAttribute('disabled', true);
+    }
+}
 </script>

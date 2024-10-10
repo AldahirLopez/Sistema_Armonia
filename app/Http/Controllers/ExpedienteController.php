@@ -532,6 +532,8 @@ class ExpedienteController extends Controller
         $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Expediente/{$templateName}"));
         if ($templateName == "REPORTE FOTOGRAFICO.docx") {
             if (isset($data['imagePaths'])) {
+                $totalImages = count($data['imagePaths']);
+                $maxImages = 8;
 
                 foreach ($data['imagePaths'] as $image) {
 
@@ -546,6 +548,10 @@ class ExpedienteController extends Controller
                             'ratio' => false
                         ]);
                     }
+                }
+                for ($i = $totalImages + 1; $i <= $maxImages; $i++) {
+                    
+                    $templateProcessor->setValue("img_$i", '');
                 }
             }
         }
