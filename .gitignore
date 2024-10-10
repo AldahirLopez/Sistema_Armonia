@@ -19,4 +19,5 @@ yarn-error.log
 /.vscode
 # Ignorar la carpeta Servicios/Anexo_30/2024/3 y todo su contenido
 /storage/app/public/Servicios
+/storage/app/public/Estaciones
 

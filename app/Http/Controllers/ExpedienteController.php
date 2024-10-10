@@ -1048,7 +1048,7 @@ class ExpedienteController extends Controller
         $direccionServicio = $this->getDireccion($validatedData['domicilio_servicio_id']);
 
         // Preparar los datos a usar en las plantillas
-        $data = $this->prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio);
+        $data = $this->prepareReporteFotograficoData($usuario, $validatedData, $estacion, $direccionServicio);
 
         // Definir la carpeta de destino y procesar las plantillas
         $subFolderPath = $this->defineFolderPath($validatedData);
@@ -1075,7 +1075,7 @@ class ExpedienteController extends Controller
         ]);
     }
 
-    private function prepareReporteFotograficoData($validatedData, $estacion, $direccionServicio)
+    private function prepareReporteFotograficoData($usuario, $validatedData, $estacion, $direccionServicio)
     {
 
         $imagenesSeleccionadas = $validatedData['selected_images'];
@@ -1100,7 +1100,7 @@ class ExpedienteController extends Controller
             'imagePaths' => $imagePaths,
             'numestacion' => $estacion->num_estacion,
             'razonsocial' => $estacion->razon_social,
-            'id_usuario' => $validatedData['id_usuario'],
+            'id_usuario' => $usuario->name,
             'nomenclatura' => $validatedData['nomenclatura'],
             'domicilio_estacion' => $this->formatAddress($direccionServicio),
             'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
