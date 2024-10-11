@@ -1122,4 +1122,418 @@ class ExpedienteController extends Controller
             ['rutadoc_estacion' => $this->defineFolderPath($validatedData), 'usuario_id' => $validatedData['id_usuario']]
         );
     }
+
+
+
+    public function generarProcedimientoRevision(Request $request)
+    {
+         
+        // Validar los datos del formulario
+        $validatedData = $request->all();
+
+        // Obtener datos relacionados desde la base de datos
+        $estacion = $this->getEstacionData($validatedData['idestacion']);
+        $usuario = $this->getUsuarioData($validatedData['id_usuario']);
+       
+        // Preparar los datos a usar en las plantillas
+        $data = $this->prepareProcedimientoRevisionData($usuario, $validatedData, $estacion);
+
+        // Definir la carpeta de destino y procesar las plantillas
+        $subFolderPath = $this->defineFolderPath($validatedData);
+       
+        
+        $this->processTemplateProcedimiento($data, $subFolderPath, 'PROCEDIMIENTO REVISION DEL EXPEDIENTE V2.docx');
+
+        // Guardar los datos de expediente
+        $this->saveProcedimientoRevisionData($data, $validatedData, $estacion);
+
+       return redirect()->route('expediente.index', ['id' => $validatedData['id_servicio']])
+           ->with('success', 'Procedimiento de revision de expediente guardado correctamente.');
+    }
+
+ 
+    private function prepareProcedimientoRevisionData($usuario, $validatedData, $estacion)
+    {
+
+        // Retornar datos combinados con la información adicional
+        return array_merge($validatedData, [
+            'numestacion' => $estacion->num_estacion,
+            'razonsocial' => $estacion->razon_social,
+            'id_usuario' => $usuario->name,
+            'nomenclatura' => $validatedData['nomenclatura'],
+        ]);
+    }
+
+
+    private function processTemplateProcedimiento($data, $subFolderPath, $templateName)
+    {
+          
+        $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Expediente/{$templateName}"));
+      
+        // Reemplazamos los valores en el template
+        foreach ($data as $key => $value) {
+
+            $templateProcessor->setValue($key,$value);
+            //PRIMERA PAGINA
+            switch ($data['orden_trabajo']) {
+                case 'si':
+                    $templateProcessor->setValue('orden_si', 'X');
+                    $templateProcessor->setValue('orden_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('orden_si', ' ');
+                    $templateProcessor->setValue('orden_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['contrato_prestacion']) {
+                case 'si':
+                    $templateProcessor->setValue('contrato_si', 'X');
+                    $templateProcessor->setValue('contrato_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('contrato_si', ' ');
+                    $templateProcessor->setValue('contrato_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['formato_deteccion']) {
+                case 'si':
+                    $templateProcessor->setValue('formato_si', 'X');
+                    $templateProcessor->setValue('formato_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('formato_si', ' ');
+                    $templateProcessor->setValue('formato_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['plan_inspeccion_m']) {
+                case 'si':
+                    $templateProcessor->setValue('planM_si', 'X');
+                    $templateProcessor->setValue('planM_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('planM_si', ' ');
+                    $templateProcessor->setValue('planM_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['plan_inspeccion_i']) {
+                case 'si':
+                    $templateProcessor->setValue('planI_si', 'X');
+                    $templateProcessor->setValue('planI_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('planI_si', ' ');
+                    $templateProcessor->setValue('planI_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            //SEGUNDA PAGINA
+            switch ($data['constancia_f']) {
+                case 'si':
+                    $templateProcessor->setValue('constancia_f_si', 'X');
+                    $templateProcessor->setValue('constancia_f_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('constancia_f_si', ' ');
+                    $templateProcessor->setValue('constancia_f_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['cree']) {
+                case 'si':
+                    $templateProcessor->setValue('cree_si', 'X');
+                    $templateProcessor->setValue('cree_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('cree_si', ' ');
+                    $templateProcessor->setValue('cree_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['representante_legal']) {
+                case 'si':
+                    $templateProcessor->setValue('identificacion_si', 'X');
+                    $templateProcessor->setValue('identificacion_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('identificacion_si', ' ');
+                    $templateProcessor->setValue('identificacion_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['constancia_l']) {
+                case 'si':
+                    $templateProcessor->setValue('constancia_l_si', 'X');
+                    $templateProcessor->setValue('constancia_l_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('constancia_l_si', ' ');
+                    $templateProcessor->setValue('constancia_l_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['manual']) {
+                case 'si':
+                    $templateProcessor->setValue('manual_si', 'X');
+                    $templateProcessor->setValue('manual_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('manual_si', ' ');
+                    $templateProcessor->setValue('manual_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['ficha']) {
+                case 'si':
+                    $templateProcessor->setValue('ficha_si', 'X');
+                    $templateProcessor->setValue('ficha_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('ficha_si', ' ');
+                    $templateProcessor->setValue('ficha_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['almacen']) {
+                case 'si':
+                    $templateProcessor->setValue('almacen_si', 'X');
+                    $templateProcessor->setValue('almacen_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('almacen_si', ' ');
+                    $templateProcessor->setValue('almacen_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['elementos']) {
+                case 'si':
+                    $templateProcessor->setValue('elementos_si', 'X');
+                    $templateProcessor->setValue('elementos_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('elementos_si', ' ');
+                    $templateProcessor->setValue('elementos_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['planos']) {
+                case 'si':
+                    $templateProcessor->setValue('planos_si', 'X');
+                    $templateProcessor->setValue('planos_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('planos_si', ' ');
+                    $templateProcessor->setValue('planos_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['politicas']) {
+                case 'si':
+                    $templateProcessor->setValue('politicas_si', 'X');
+                    $templateProcessor->setValue('politicas_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('politicas_si', ' ');
+                    $templateProcessor->setValue('politicas_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['inventario']) {
+                case 'si':
+                    $templateProcessor->setValue('inventario_si', 'X');
+                    $templateProcessor->setValue('inventario_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('inventario_si', ' ');
+                    $templateProcessor->setValue('inventario_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['acuerdos']) {
+                case 'si':
+                    $templateProcessor->setValue('acuerdos_si', 'X');
+                    $templateProcessor->setValue('acuerdos_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('acuerdos_si', ' ');
+                    $templateProcessor->setValue('acuerdos_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['registros']) {
+                case 'si':
+                    $templateProcessor->setValue('registros_si', 'X');
+                    $templateProcessor->setValue('registros_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('registros_si', ' ');
+                    $templateProcessor->setValue('registros_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+            //TERCERA PAGINA
+            switch ($data['dt']) {
+                case 'si':
+                    $templateProcessor->setValue('dt_si', 'X');
+                    $templateProcessor->setValue('dt_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('dt_si', ' ');
+                    $templateProcessor->setValue('dt_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['dm']) {
+                case 'si':
+                    $templateProcessor->setValue('dm_si', 'X');
+                    $templateProcessor->setValue('dm_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('dm_si', ' ');
+                    $templateProcessor->setValue('dm_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['rf']) {
+                case 'si':
+                    $templateProcessor->setValue('rf_si', 'X');
+                    $templateProcessor->setValue('rf_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('rf_si', ' ');
+                    $templateProcessor->setValue('rf_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['ct']) {
+                case 'si':
+                    $templateProcessor->setValue('ct_si', 'X');
+                    $templateProcessor->setValue('ct_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('ct_si', ' ');
+                    $templateProcessor->setValue('ct_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            switch ($data['pr']) {
+                case 'si':
+                    $templateProcessor->setValue('pr_si', 'X');
+                    $templateProcessor->setValue('pr_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('pr_si', ' ');
+                    $templateProcessor->setValue('pr_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+            //CUARTA PAGINA
+            switch ($data['cc']) {
+                case 'si':
+                    $templateProcessor->setValue('cc_si', 'X');
+                    $templateProcessor->setValue('cc_no', ' ');
+                    break;
+                case 'no':
+                    $templateProcessor->setValue('cc_si', ' ');
+                    $templateProcessor->setValue('cc_no', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+            }
+
+
+            
+
+
+        }
+
+        // Guardamos el archivo con un nombre único basado en la nomenclatura
+        $fileName = pathinfo($templateName, PATHINFO_FILENAME) . "_{$data['nomenclatura']}.docx";
+        $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
+
+    }
+
+    private function saveProcedimientoRevisionData($data, $validatedData, $estacion)
+    {
+
+        Expediente_Servicio_Anexo_30::updateOrCreate(
+            ['servicio_anexo_id' => $validatedData['id_servicio']],
+            ['rutadoc_estacion' => $this->defineFolderPath($validatedData), 'usuario_id' => $validatedData['id_usuario']]
+        );
+    }
+
+
+
 }

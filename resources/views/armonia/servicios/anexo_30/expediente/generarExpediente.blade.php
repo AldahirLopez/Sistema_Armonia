@@ -58,6 +58,11 @@
                 'title' => 'Dictámenes de Medición',
                 'type' => 'medicion'
                 ])
+
+                @include('armonia.servicios.anexo_30.expediente.componentes.procedimientoRevisionCard', [
+                'title' => 'Procedimientos',
+                'type' => 'procedimiento'
+                ])
             </div>
             @endif
         </div>
@@ -103,6 +108,12 @@
 ])
 
 @include('armonia.servicios.anexo_30.expediente.componentes.generarReporteFotografico', [
+'servicioAnexo' => $servicioAnexo,
+'estacion' => $estacion,
+'estados' => $estados
+])
+
+@include('armonia.servicios.anexo_30.expediente.componentes.generarProcedimiento', [
 'servicioAnexo' => $servicioAnexo,
 'estacion' => $estacion,
 'estados' => $estados

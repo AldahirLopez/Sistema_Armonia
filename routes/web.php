@@ -173,7 +173,8 @@ Route::group(['middleware' => ['auth']], function () {
     //Ruta para guardar el reporte fotografico
     Route::post('/expediente-anexo/generar_reporte_fotografico', [ExpedienteController::class, 'generarReporteFotografico'])->name('reporte_fotografico_anexo_30.generar');
 
-
+    //Ruta para guardar el procedimiento de revision del expediente v2
+    Route::post('/expediente-anexo/generar_procedimiento_revision', [ExpedienteController::class, 'generarProcedimientoRevision'])->name('procedimiento_revision_anexo_30.generar');
 
     ///Expediente de Servicio 005
     Route::get('expediente/servicio_005/{id}', [ExpendienteServicio005Controller::class, 'index'])->name('expediente_servicio_005.index');
