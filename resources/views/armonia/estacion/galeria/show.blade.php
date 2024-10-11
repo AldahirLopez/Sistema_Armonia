@@ -43,6 +43,17 @@
     </div>
 </div>
 
+<!-- Agregamos estilo para las imágenes -->
+<style>
+    .gallery-image {
+        width: 100%;
+        height: 200px;
+        /* Ajustar altura uniforme para todas las imágenes */
+        object-fit: cover;
+        /* Mantener la proporción de la imagen y recortar el exceso */
+    }
+</style>
+
 <script>
     function cargarImagenes(categoria) {
         const num_estacion = "{{ $estacion->num_estacion }}";
@@ -68,10 +79,8 @@
 
                         const img = document.createElement('img');
                         img.src = imagen.url;
-                        img.className = 'card-img-top';
+                        img.className = 'card-img-top gallery-image'; // Clase añadida para el estilo de las imágenes
                         img.alt = 'Imagen de categoría ' + categoria;
-                        img.style.width = '100%'; // Asegura que la imagen ocupe todo el ancho del contenedor
-                        img.style.height = 'auto'; // Mantiene la proporción sin distorsionar la imagen
 
                         const cardBody = document.createElement('div');
                         cardBody.className = 'card-body';
@@ -105,16 +114,18 @@
         if (confirm('¿Estás seguro de que deseas eliminar esta imagen?')) {
             $.ajax({
                 url: `/galeria/${num_estacion}/${categoria}/eliminar`,
-                method: 'DELETE',
+                method: 'POST', // Usamos POST ya que DELETE necesita el token CSRF
                 data: {
                     _token: '{{ csrf_token() }}',
-                    imagen: imagen
+                    _method: 'DELETE', // Le decimos a Laravel que realmente es un DELETE
+                    imagen: imagen.url // Aquí pasamos solo la URL de la imagen, no el objeto completo
                 },
                 success: function(response) {
                     alert(response.message);
-                    cargarImagenes(categoria);
+                    cargarImagenes(categoria); // Recargar las imágenes después de eliminar
                 },
-                error: function() {
+                error: function(xhr, status, error) {
+                    console.error('Error al eliminar la imagen:', error);
                     alert('Error al eliminar la imagen.');
                 }
             });
