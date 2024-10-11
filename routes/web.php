@@ -128,6 +128,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/inspeccion/store', [DocumentacionAnexo30Controller::class, 'store'])->name('documentacion.inspeccion.store');
         Route::delete('/inspeccion/{id}', [DocumentacionAnexo30Controller::class, 'destroy'])->name('documentacion.inspeccion.delete');
 
+        // Documentación SGM
+        Route::get('/sgm', [DocumentacionAnexo30Controller::class, 'documentosSGM'])->name('documentacion.sgm');
+        Route::post('/sgm/store', [DocumentacionAnexo30Controller::class, 'storeSGM'])->name('documentacion.sgm.store');
+        // Ruta para eliminar documentos
+        Route::delete('/sgm/{id}', [DocumentacionAnexo30Controller::class, 'destroySGM'])->name('documentacionsgm.destroy');
+
+
 
 
         //Documentacion General servicio 005

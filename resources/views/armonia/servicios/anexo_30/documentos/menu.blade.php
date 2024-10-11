@@ -26,7 +26,7 @@
         <div class="row">
             <!-- Columna 1: Datos del Servicio -->
             <div class="col-md-6">
-            <div class="d-flex align-items-center mb-2">
+                <div class="d-flex align-items-center mb-2">
                     <i class="bx bx-building-house me-2"></i>
                     <strong>Tipo de Servicio:</strong>
                     <span class="ms-1 text-muted">{{ $servicio->estaciones->first()->tipo_estacion ?? 'Desconocido' }}</span>
@@ -41,7 +41,6 @@
                     <strong>Estación:</strong>
                     <span class="ms-1 text-muted">{{ $servicio->estaciones->first()->razon_social ?? 'Desconocido' }}</span>
                 </div>
-                
             </div>
 
             <!-- Columna 2: Dirección -->
@@ -51,8 +50,7 @@
                 @endphp
 
                 @if($direccion)
-                <div class="row g-1"> <!-- Reducir espacio entre columnas con 'g-1' -->
-                    <!-- Sub-Columna 1 de la Dirección -->
+                <div class="row g-1">
                     <div class="col-6">
                         <div class="d-flex align-items-center mb-1">
                             <i class="bx bx-street-view me-2"></i>
@@ -78,7 +76,6 @@
                         </div>
                     </div>
 
-                    <!-- Sub-Columna 2 de la Dirección -->
                     <div class="col-6">
                         <div class="d-flex align-items-center mb-1">
                             <i class="bx bx-mail-send me-2"></i>
@@ -112,7 +109,6 @@
     </div>
 </div>
 
-
 <div class="row">
     @php
     $documentaciones = [
@@ -120,6 +116,7 @@
     ['title' => 'Documentación Informática', 'action' => route('documentacion.informatica', ['id' => $servicio->id]), 'categoria' => 'informatica'],
     ['title' => 'Documentación de Medición', 'action' => route('documentacion.medicion', ['id' => $servicio->id]), 'categoria' => 'medicion'],
     ['title' => 'Documentación Inspección', 'action' => route('documentacion.inspeccion', ['id' => $servicio->id]), 'categoria' => 'inspeccion'],
+    ['title' => 'Documentación SGM', 'action' => route('documentacion.sgm', ['id' => $servicio->id]), 'categoria' => 'sgm'],
     ];
     @endphp
 
@@ -141,7 +138,4 @@
     ])
     @endforeach
 </div>
-
-
-
 @endsection

@@ -22,7 +22,7 @@ class DocumentacionAnexo30Controller extends Controller
         $servicio = ServicioAnexo::findOrFail($id);
 
         // Obtener todas las categorías
-        $categorias = ['generales', 'informatica', 'medicion', 'inspeccion'];
+        $categorias = ['generales', 'informatica', 'medicion', 'inspeccion', 'sgm'];
 
         // Obtener los documentos de la base de datos relacionados con el servicio
         $documentos = Documentos::where('servicio_id', $id)->get();
@@ -73,6 +73,12 @@ class DocumentacionAnexo30Controller extends Controller
     public function documentosInspeccion(Request $request)
     {
         return $this->documentacion($request, 'inspeccion', 'documentos_inspeccion');
+    }
+
+    // Documentación de Inspección
+    public function documentosSGM(Request $request)
+    {
+        return $this->documentacionSGM($request, 'sgm', 'documentos_sgm');
     }
 
     // Método genérico para manejar la obtención de documentos
@@ -138,11 +144,7 @@ class DocumentacionAnexo30Controller extends Controller
                 ['descripcion' => 'Plano mecánico de la estación de servicio', 'codigo' => '', 'tipo' => 'Documental', 'id' => 8],
                 ['descripcion' => 'Fichas técnicas y/o manuales de equipos de medición (sondas, dispensarios y consola de telemedición)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 9],
                 ['descripcion' => '(Opcional) Informes de calibración de sondas de medición en magnitudes: nivel y temperatura', 'codigo' => '', 'tipo' => 'Documental', 'id' => 10],
-                ['descripcion' => 'Certificado de calibración de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 12],
-                ['descripcion' => 'Tablas de cubicación de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 13],
-                ['descripcion' => 'Sistema de gestión de medición (SGM) digital: manual, procedimientos y formatos', 'codigo' => '', 'tipo' => 'Documental', 'id' => 14],
-                ['descripcion' => 'Constancia de capacitación al personal involucrado en las actividades del SGM', 'codigo' => '', 'tipo' => 'Documental', 'id' => 15],
-                ['descripcion' => 'Certificados de calibración vigentes de equipos de medición manual para la correcta verificación de los equipos automáticos (Cinta petrolera con plomada, Termómetro electrónico portátil, Jarra patrón)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 16],
+                ['descripcion' => 'Certificado de calibración de tanques o Tablas de cubicación de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 12],
                 ['descripcion' => 'Reportes de laboratorio de la calidad del petrolífero correspondientes al primero y segundo semestre del año', 'codigo' => '', 'tipo' => 'Documental', 'id' => 17],
             ],
             'inspeccion' => [
@@ -150,6 +152,14 @@ class DocumentacionAnexo30Controller extends Controller
                 ['descripcion' => 'Impresión de la configuración de la consola de monitoreo de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
                 ['descripcion' => 'La factura de una compra con su soporte (Remisión, Carta porte, Tira de Inicio y Fin de Incremento)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
                 ['descripcion' => 'La factura de una venta', 'codigo' => '', 'tipo' => 'Documental', 'id' => 4],
+                // Agrega más documentos según sea necesario
+            ],
+            'sgm' => [
+                ['descripcion' => 'Manual', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
+                ['descripcion' => 'Procedimientos', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
+                ['descripcion' => 'Formatos', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
+                ['descripcion' => 'Constancia de capacitación al personal involucrado en las actividades del SGM', 'codigo' => '', 'tipo' => 'Documental', 'id' => 15],
+                ['descripcion' => 'Certificados de calibración vigentes de equipos de medición manual para la correcta verificación de los equipos automáticos (Cinta petrolera con plomada, Termómetro electrónico portátil, Jarra patrón)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 16],
                 // Agrega más documentos según sea necesario
             ],
         ];
@@ -268,6 +278,125 @@ class DocumentacionAnexo30Controller extends Controller
             return $pdf->download('lista_completa_requisitos_anexo_30_31.pdf');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error al generar el PDF: ' . $e->getMessage());
+        }
+    }
+
+    public function storeSGM(Request $request)
+    {
+        // Validar los archivos que están presentes
+        $request->validate([
+            'file' => 'nullable|file|mimes:pdf,jpg,jpeg,png,doc,docx',
+            'categoria' => 'required|string',
+            'servicio_id' => 'required',
+            'documento_id' => 'nullable|integer' // Documento ID para editar si es necesario
+        ]);
+
+        try {
+            $servicioId = $request->input('servicio_id');
+            $servicio = ServicioAnexo::findOrFail($servicioId);
+            $anio = date('Y');
+            $userId = $servicio->id_usuario;
+            $nomenclatura = str_replace([' ', '.'], '_', $servicio->nomenclatura);
+            $categoria = $request->input('categoria');
+
+            // Ruta base personalizada para la carpeta del servicio
+            $customFolderPath = "Servicios/Anexo_30/{$anio}/{$userId}/{$nomenclatura}/documentos/sgm";
+
+            // Si se proporciona un documento_id, estamos en modo edición
+            $documentoId = $request->input('documento_id');
+            if ($documentoId) {
+                $documento = Documentos::findOrFail($documentoId);
+
+                // Si hay un archivo, actualizar el documento
+                if ($request->hasFile('file')) {
+                    // Eliminar el archivo anterior si existe
+                    if (Storage::disk('public')->exists($documento->ruta)) {
+                        Storage::disk('public')->delete($documento->ruta);
+                    }
+
+                    // Subir el nuevo archivo y actualizar la ruta en la base de datos
+                    $rutaArchivo = $this->uploadFile($request->file('file'), $customFolderPath, $categoria, "SGM_Digital_{$categoria}");
+                    $documento->ruta = $rutaArchivo;
+                }
+
+                // Actualizar otros campos del documento en la base de datos (si es necesario)
+                $documento->nombre = "SGM_Digital_{$categoria}";
+                $documento->categoria = 'sgm';
+                $documento->save();
+
+                return redirect()->back()->with('success', 'Documento actualizado exitosamente.');
+            }
+
+            // Si no hay documento_id, agregar un nuevo documento
+            if ($request->hasFile('file')) {
+                $this->uploadFileAndCreateDatabaseRecord($request->file('file'), $customFolderPath, $servicioId, $categoria, "SGM_Digital_{$categoria}");
+            }
+
+            return redirect()->back()->with('success', 'Archivo subido exitosamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al subir o actualizar el archivo: ' . $e->getMessage());
+        }
+    }
+
+    private function uploadFileAndCreateDatabaseRecord($file, $path, $servicioId, $categoria, $nombreBase)
+    {
+        $nombreArchivo = $nombreBase . '-' . now()->format('Y-m-d') . '.' . $file->getClientOriginalExtension();
+        $rutaArchivo = $file->storeAs("{$path}/{$categoria}", $nombreArchivo, 'public');
+
+        // Crear un nuevo documento en la base de datos
+        Documentos::create([
+            'nombre' => $nombreBase,
+            'ruta' => $rutaArchivo,
+            'servicio_id' => $servicioId,
+            'categoria' => 'sgm',
+            'usuario_id' => Auth::id(),
+        ]);
+    }
+
+    private function uploadFile($file, $path, $categoria, $nombreBase)
+    {
+        $nombreArchivo = $nombreBase . '-' . now()->format('Y-m-d') . '.' . $file->getClientOriginalExtension();
+        return $file->storeAs("{$path}/{$categoria}", $nombreArchivo, 'public');
+    }
+
+    // Método genérico para manejar la obtención de documentos
+    private function documentacionSGM(Request $request, $categoria, $vista)
+    {
+        try {
+            $id = $request->input('id');
+            $servicio = ServicioAnexo::findOrFail($id);
+
+            // Obtener los documentos de la categoría 'sgm' por descripciones específicas
+            $manuales = Documentos::where('servicio_id', $id)->where('categoria', 'sgm')->where('nombre', 'like', '%Manual%')->get();
+            $procedimientos = Documentos::where('servicio_id', $id)->where('categoria', 'sgm')->where('nombre', 'like', '%Procedimientos%')->get();
+            $formatos = Documentos::where('servicio_id', $id)->where('categoria', 'sgm')->where('nombre', 'like', '%Formatos%')->get();
+            $capacitaciones = Documentos::where('servicio_id', $id)->where('categoria', 'sgm')->where('nombre', 'like', '%Constancia%')->get();
+            $certificados = Documentos::where('servicio_id', $id)->where('categoria', 'sgm')->where('nombre', 'like', '%Certificados%')->get();
+
+            return view("armonia.servicios.anexo_30.documentos.sub_documentos.{$vista}", compact('manuales', 'procedimientos', 'formatos', 'capacitaciones', 'certificados', 'servicio'));
+        } catch (\Exception $e) {
+            return redirect()->route('anexo.index')->with('error', 'Error al obtener la documentación: ' . $e->getMessage());
+        }
+    }
+
+
+    public function destroySGM($id)
+    {
+        try {
+            // Buscar el documento por su ID
+            $documento = Documentos::findOrFail($id);
+
+            // Eliminar el archivo del sistema de archivos
+            if (Storage::disk('public')->exists($documento->ruta)) {
+                Storage::disk('public')->delete($documento->ruta);
+            }
+
+            // Eliminar el registro de la base de datos
+            $documento->delete();
+
+            return redirect()->back()->with('success', 'Documento eliminado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al eliminar el documento: ' . $e->getMessage());
         }
     }
 }
