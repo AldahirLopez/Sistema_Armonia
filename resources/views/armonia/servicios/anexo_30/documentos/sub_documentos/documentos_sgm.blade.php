@@ -15,315 +15,203 @@
         <div class="d-flex justify-content-between mb-4">
             <form action="{{ route('armonia.servicios.anexo_30.documentos.menu') }}" method="GET">
                 <input type="hidden" name="id" value="{{ $servicio->id }}">
-                <button type="submit" class="btn btn-danger">
+                <button type="submit" class="btn btn-danger btn-sm">
                     <i class="bx bx-arrow-back"></i>
                 </button>
             </form>
         </div>
 
-        <!-- Botones para abrir modales de subida -->
-        <div class="mb-3">
-            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalUpload" data-categoria="manual">Subir Manual</button>
-            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalUpload" data-categoria="procedimientos">Subir Procedimientos</button>
-            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalUpload" data-categoria="formatos">Subir Formatos</button>
-            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalUpload" data-categoria="constancia">Subir Constancia de Capacitación</button>
-            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalUpload" data-categoria="certificados">Subir Certificados de Calibración</button>
-        </div>
+        <!-- Sección con tablas independientes y botones pequeños -->
 
         <!-- Tabla de Manuales -->
-        <h6>Manuales</h6>
-        <table class="table table-striped mt-3">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Fecha de Subida</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($manuales as $manual)
-                <tr>
-                    <td>{{ $manual->nombre }}</td>
-                    <td>{{ $manual->created_at->format('d/m/Y') }}</td>
-                    <td>
-                        <a href="{{ Storage::url($manual->ruta) }}" target="_blank" class="btn btn-info btn-sm">Ver</a>
-                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $manual->id }}">Editar</button>
-                        <form action="{{ route('documentacionsgm.destroy', $manual->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                <!-- Modal para editar manual -->
-                <div class="modal fade" id="modalEdit-{{ $manual->id }}" tabindex="-1" aria-labelledby="modalEditLabel-{{ $manual->id }}" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary text-white">
-                                <h5 class="modal-title" id="modalEditLabel-{{ $manual->id }}">Editar Manual</h5>
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('documentacion.sgm.store') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="file" class="form-label">Seleccionar Nuevo Archivo</label>
-                                        <input type="file" name="file" class="form-control" required>
-                                    </div>
-
-                                    <!-- Campos ocultos -->
-                                    <input type="hidden" name="servicio_id" value="{{ $servicio->id }}">
-                                    <input type="hidden" name="categoria" value="manual">
-                                    <input type="hidden" name="documento_id" value="{{ $manual->id }}">
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary">Actualizar Documento</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="mb-4">
+            <h6>Manuales</h6>
+            <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalUpload" data-categoria="manual">
+                <i class="bx bx-upload"></i> Subir Manual
+            </button>
+            <table class="table table-striped table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($manuales as $manual)
+                    <tr>
+                        <td>{{ $manual->nombre }}</td>
+                        <td class="text-center">
+                            <a href="{{ Storage::url($manual->ruta) }}" target="_blank" class="btn btn-info btn-sm" title="Ver">
+                                <i class="bx bx-show"></i>
+                            </a>
+                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $manual->id }}" title="Editar">
+                                <i class="bx bx-edit-alt"></i>
+                            </button>
+                            <form action="{{ route('documentacionsgm.destroy', $manual->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                                    <i class="bx bx-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
         <!-- Tabla de Procedimientos -->
-        <h6>Procedimientos</h6>
-        <table class="table table-striped mt-3">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Fecha de Subida</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($procedimientos as $procedimiento)
-                <tr>
-                    <td>{{ $procedimiento->nombre }}</td>
-                    <td>{{ $procedimiento->created_at->format('d/m/Y') }}</td>
-                    <td>
-                        <a href="{{ Storage::url($procedimiento->ruta) }}" target="_blank" class="btn btn-info btn-sm">Ver</a>
-                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $procedimiento->id }}">Editar</button>
-                        <form action="{{ route('documentacionsgm.destroy', $procedimiento->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                <!-- Modal para editar procedimiento -->
-                <div class="modal fade" id="modalEdit-{{ $procedimiento->id }}" tabindex="-1" aria-labelledby="modalEditLabel-{{ $procedimiento->id }}" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary text-white">
-                                <h5 class="modal-title" id="modalEditLabel-{{ $procedimiento->id }}">Editar Procedimiento</h5>
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('documentacion.sgm.store') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="file" class="form-label">Seleccionar Nuevo Archivo</label>
-                                        <input type="file" name="file" class="form-control" required>
-                                    </div>
-
-                                    <!-- Campos ocultos -->
-                                    <input type="hidden" name="servicio_id" value="{{ $servicio->id }}">
-                                    <input type="hidden" name="categoria" value="procedimientos">
-                                    <input type="hidden" name="documento_id" value="{{ $procedimiento->id }}">
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary">Actualizar Documento</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="mb-4">
+            <h6>Procedimientos</h6>
+            <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalUpload" data-categoria="procedimientos">
+                <i class="bx bx-upload"></i> Subir Procedimientos
+            </button>
+            <table class="table table-striped table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($procedimientos as $procedimiento)
+                    <tr>
+                        <td>{{ $procedimiento->nombre }}</td>
+                        <td class="text-center">
+                            <a href="{{ Storage::url($procedimiento->ruta) }}" target="_blank" class="btn btn-info btn-sm" title="Ver">
+                                <i class="bx bx-show"></i>
+                            </a>
+                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $procedimiento->id }}" title="Editar">
+                                <i class="bx bx-edit-alt"></i>
+                            </button>
+                            <form action="{{ route('documentacionsgm.destroy', $procedimiento->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                                    <i class="bx bx-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
         <!-- Tabla de Formatos -->
-        <h6>Formatos</h6>
-        <table class="table table-striped mt-3">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Fecha de Subida</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($formatos as $formato)
-                <tr>
-                    <td>{{ $formato->nombre }}</td>
-                    <td>{{ $formato->created_at->format('d/m/Y') }}</td>
-                    <td>
-                        <a href="{{ Storage::url($formato->ruta) }}" target="_blank" class="btn btn-info btn-sm">Ver</a>
-                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $formato->id }}">Editar</button>
-                        <form action="{{ route('documentacionsgm.destroy', $formato->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                <!-- Modal para editar formato -->
-                <div class="modal fade" id="modalEdit-{{ $formato->id }}" tabindex="-1" aria-labelledby="modalEditLabel-{{ $formato->id }}" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary text-white">
-                                <h5 class="modal-title" id="modalEditLabel-{{ $formato->id }}">Editar Formato</h5>
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('documentacion.sgm.store') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="file" class="form-label">Seleccionar Nuevo Archivo</label>
-                                        <input type="file" name="file" class="form-control" required>
-                                    </div>
-
-                                    <!-- Campos ocultos -->
-                                    <input type="hidden" name="servicio_id" value="{{ $servicio->id }}">
-                                    <input type="hidden" name="categoria" value="formatos">
-                                    <input type="hidden" name="documento_id" value="{{ $formato->id }}">
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary">Actualizar Documento</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="mb-4">
+            <h6>Formatos</h6>
+            <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalUpload" data-categoria="formatos">
+                <i class="bx bx-upload"></i> Subir Formatos
+            </button>
+            <table class="table table-striped table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($formatos as $formato)
+                    <tr>
+                        <td>{{ $formato->nombre }}</td>
+                        <td class="text-center">
+                            <a href="{{ Storage::url($formato->ruta) }}" target="_blank" class="btn btn-info btn-sm" title="Ver">
+                                <i class="bx bx-show"></i>
+                            </a>
+                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $formato->id }}" title="Editar">
+                                <i class="bx bx-edit-alt"></i>
+                            </button>
+                            <form action="{{ route('documentacionsgm.destroy', $formato->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                                    <i class="bx bx-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
         <!-- Tabla de Constancias de Capacitación -->
-        <h6>Constancias de Capacitación</h6>
-        <table class="table table-striped mt-3">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Fecha de Subida</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($capacitaciones as $capacitacion)
-                <tr>
-                    <td>{{ $capacitacion->nombre }}</td>
-                    <td>{{ $capacitacion->created_at->format('d/m/Y') }}</td>
-                    <td>
-                        <a href="{{ Storage::url($capacitacion->ruta) }}" target="_blank" class="btn btn-info btn-sm">Ver</a>
-                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $capacitacion->id }}">Editar</button>
-                        <form action="{{ route('documentacionsgm.destroy', $capacitacion->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                <!-- Modal para editar constancia -->
-                <div class="modal fade" id="modalEdit-{{ $capacitacion->id }}" tabindex="-1" aria-labelledby="modalEditLabel-{{ $capacitacion->id }}" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary text-white">
-                                <h5 class="modal-title" id="modalEditLabel-{{ $capacitacion->id }}">Editar Constancia</h5>
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('documentacion.sgm.store') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="file" class="form-label">Seleccionar Nuevo Archivo</label>
-                                        <input type="file" name="file" class="form-control" required>
-                                    </div>
-
-                                    <!-- Campos ocultos -->
-                                    <input type="hidden" name="servicio_id" value="{{ $servicio->id }}">
-                                    <input type="hidden" name="categoria" value="Constancia">
-                                    <input type="hidden" name="documento_id" value="{{ $capacitacion->id }}">
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary">Actualizar Documento</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="mb-4">
+            <h6>Constancias de Capacitación</h6>
+            <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalUpload" data-categoria="constancia">
+                <i class="bx bx-upload"></i> Subir Constancia de Capacitación
+            </button>
+            <table class="table table-striped table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($capacitaciones as $capacitacion)
+                    <tr>
+                        <td>{{ $capacitacion->nombre }}</td>
+                        <td class="text-center">
+                            <a href="{{ Storage::url($capacitacion->ruta) }}" target="_blank" class="btn btn-info btn-sm" title="Ver">
+                                <i class="bx bx-show"></i>
+                            </a>
+                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $capacitacion->id }}" title="Editar">
+                                <i class="bx bx-edit-alt"></i>
+                            </button>
+                            <form action="{{ route('documentacionsgm.destroy', $capacitacion->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                                    <i class="bx bx-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
         <!-- Tabla de Certificados de Calibración -->
-        <h6>Certificados de Calibración</h6>
-        <table class="table table-striped mt-3">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Fecha de Subida</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($certificados as $certificado)
-                <tr>
-                    <td>{{ $certificado->nombre }}</td>
-                    <td>{{ $certificado->created_at->format('d/m/Y') }}</td>
-                    <td>
-                        <a href="{{ Storage::url($certificado->ruta) }}" target="_blank" class="btn btn-info btn-sm">Ver</a>
-                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $certificado->id }}">Editar</button>
-                        <form action="{{ route('documentacionsgm.destroy', $certificado->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                <!-- Modal para editar certificado -->
-                <div class="modal fade" id="modalEdit-{{ $certificado->id }}" tabindex="-1" aria-labelledby="modalEditLabel-{{ $certificado->id }}" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary text-white">
-                                <h5 class="modal-title" id="modalEditLabel-{{ $certificado->id }}">Editar Certificado</h5>
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('documentacion.sgm.store') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="file" class="form-label">Seleccionar Nuevo Archivo</label>
-                                        <input type="file" name="file" class="form-control" required>
-                                    </div>
-
-                                    <!-- Campos ocultos -->
-                                    <input type="hidden" name="servicio_id" value="{{ $servicio->id }}">
-                                    <input type="hidden" name="categoria" value="Certificados">
-                                    <input type="hidden" name="documento_id" value="{{ $certificado->id }}">
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary">Actualizar Documento</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="mb-4">
+            <h6>Certificados de Calibración</h6>
+            <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalUpload" data-categoria="certificados">
+                <i class="bx bx-upload"></i> Subir Certificados de Calibración
+            </button>
+            <table class="table table-striped table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($certificados as $certificado)
+                    <tr>
+                        <td>{{ $certificado->nombre }}</td>
+                        <td class="text-center">
+                            <a href="{{ Storage::url($certificado->ruta) }}" target="_blank" class="btn btn-info btn-sm" title="Ver">
+                                <i class="bx bx-show"></i>
+                            </a>
+                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit-{{ $certificado->id }}" title="Editar">
+                                <i class="bx bx-edit-alt"></i>
+                            </button>
+                            <form action="{{ route('documentacionsgm.destroy', $certificado->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                                    <i class="bx bx-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -348,8 +236,8 @@
                     <input type="hidden" name="categoria" id="modalCategoria" value="">
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Subir Documento</button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Subir Documento</button>
                     </div>
                 </form>
             </div>
