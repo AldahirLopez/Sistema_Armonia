@@ -154,6 +154,13 @@ class DocumentacionAnexo30Controller extends Controller
                 ['descripcion' => 'La factura de una venta', 'codigo' => '', 'tipo' => 'Documental', 'id' => 4],
                 // Agrega más documentos según sea necesario
             ],
+            'transporte' => [
+                ['descripcion' => 'Una tirilla de inventario de la consola de monitoreo de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
+                ['descripcion' => 'Impresión de la configuración de la consola de monitoreo de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
+                ['descripcion' => 'La factura de una compra con su soporte (Remisión, Carta porte, Tira de Inicio y Fin de Incremento)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
+                ['descripcion' => 'La factura de una venta', 'codigo' => '', 'tipo' => 'Documental', 'id' => 4],
+                // Agrega más documentos según sea necesario
+            ],
             'sgm' => [
                 ['descripcion' => 'Manual', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
                 ['descripcion' => 'Procedimientos', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
