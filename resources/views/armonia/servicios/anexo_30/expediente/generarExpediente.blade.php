@@ -63,6 +63,11 @@
                 'title' => 'Procedimientos',
                 'type' => 'procedimiento'
                 ])
+
+                @include('armonia.servicios.anexo_30.expediente.componentes.comprobanteTrasladoCard', [
+                'title' => 'Comprobante de traslado',
+                'type' => 'Comprobante'
+                ])
             </div>
             @endif
         </div>
@@ -114,6 +119,12 @@
 ])
 
 @include('armonia.servicios.anexo_30.expediente.componentes.generarProcedimiento', [
+'servicioAnexo' => $servicioAnexo,
+'estacion' => $estacion,
+'estados' => $estados
+])
+
+@include('armonia.servicios.anexo_30.expediente.componentes.generarComprobanteTraslado', [
 'servicioAnexo' => $servicioAnexo,
 'estacion' => $estacion,
 'estados' => $estados

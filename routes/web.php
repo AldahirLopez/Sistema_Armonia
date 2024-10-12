@@ -176,6 +176,8 @@ Route::group(['middleware' => ['auth']], function () {
     //Ruta para guardar el procedimiento de revision del expediente v2
     Route::post('/expediente-anexo/generar_procedimiento_revision', [ExpedienteController::class, 'generarProcedimientoRevision'])->name('procedimiento_revision_anexo_30.generar');
 
+    //Ruta para guardar el comprobante de traslado
+    Route::post('/expediente-anexo/generar_comprobante_traslado', [ExpedienteController::class, 'generarComprobanteTraslado'])->name('comprobante_traslado_anexo_30.generar');
     ///Expediente de Servicio 005
     Route::get('expediente/servicio_005/{id}', [ExpendienteServicio005Controller::class, 'index'])->name('expediente_servicio_005.index');
     // Ruta para generar el expediente servicio 005

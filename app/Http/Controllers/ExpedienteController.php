@@ -1535,5 +1535,260 @@ class ExpedienteController extends Controller
     }
 
 
+    public function generarComprobanteTraslado(Request $request)
+    {
+         
+        // Validar los datos del formulario
+        $validatedData = $request->all();
+
+        // Obtener datos relacionados desde la base de datos
+        $estacion = $this->getEstacionData($validatedData['idestacion']);
+        $usuario = $this->getUsuarioData($validatedData['id_usuario']);
+        $direccionServicio = $this->getDireccion($estacion->domicilio_servicio_id);
+       
+        // Preparar los datos a usar en las plantillas
+        $data = $this->prepareComprobanteTrasladoData($usuario, $validatedData, $estacion, $direccionServicio);
+
+        // Definir la carpeta de destino y procesar las plantillas
+        $subFolderPath = $this->defineFolderPath($validatedData);
+        
+        
+        $this->processTemplateComprobanteTraslado($data, $subFolderPath, 'COMPROBANTE DE TRASLADO INDICE 4.docx');
+
+        // Guardar los datos de expediente
+       $this->saveComprobanteTrasladoData($data, $validatedData, $estacion);
+
+       return redirect()->route('expediente.index', ['id' => $validatedData['id_servicio']])
+           ->with('success', 'Comprobante Traslado guardado correctamente.');
+    }
+
+    private function prepareComprobanteTrasladoData($usuario, $validatedData, $estacion,$direccionServicio)
+    {
+
+        // Retornar datos combinados con la información adicional
+        return array_merge($validatedData, [
+            'domicilio_estacion' => $this->formatAddress($direccionServicio),
+            'razonsocial' => $estacion->razon_social,
+            'id_usuario' => $usuario->name,
+            'nomenclatura' => $validatedData['nomenclatura'],
+        ]);
+    }
+
+    private function processTemplateComprobanteTraslado($data, $subFolderPath, $templateName)
+    {
+          
+        $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Expediente/{$templateName}"));
+      
+        // Reemplazamos los valores en el template
+        foreach ($data as $key => $value) {
+
+            $templateProcessor->setValue($key,$value);
+            
+            switch ($data['trasnporte']) {
+                case 'avion':
+                    $templateProcessor->setValue('av1', 'X');
+                    $templateProcessor->setValue('au1', ' ');
+                    $templateProcessor->setValue('ta1', ' ');
+                    $templateProcessor->setValue('of1', ' ');
+                    $templateProcessor->setValue('otro1', ' ');
+
+                    break;
+                case 'autobus':
+                    $templateProcessor->setValue('av1', ' ');
+                    $templateProcessor->setValue('au1', 'X');
+                    $templateProcessor->setValue('ta1', ' ');
+                    $templateProcessor->setValue('of1', ' ');
+                    $templateProcessor->setValue('otro1', ' ');
+                    break;
+                case 'taxi':
+                    $templateProcessor->setValue('av1', ' ');
+                    $templateProcessor->setValue('au1', ' ');
+                    $templateProcessor->setValue('ta1', 'X');
+                    $templateProcessor->setValue('of1', ' ');
+                    $templateProcessor->setValue('otro1', ' ');
+                    break;
+                case 'oficial':
+                    $templateProcessor->setValue('av1', ' ');
+                    $templateProcessor->setValue('au1', ' ');
+                    $templateProcessor->setValue('ta1', ' ');
+                    $templateProcessor->setValue('of1', 'X');
+                    $templateProcessor->setValue('otro1', ' ');
+                    break;
+                case 'otro':
+                    $templateProcessor->setValue('av1', ' ');
+                    $templateProcessor->setValue('au1', ' ');
+                    $templateProcessor->setValue('ta1', ' ');
+                    $templateProcessor->setValue('of1', ' ');
+                    $templateProcessor->setValue('otro1', 'X');
+                    break;
+
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+
+                }
+            switch ($data['comprobante']) {
+                     case 'factura':
+                        $templateProcessor->setValue('fa1', 'X');
+                        $templateProcessor->setValue('bo1', ' ');
+                        $templateProcessor->setValue('otro20', ' ');
+                        break;
+                    case 'boleto':
+                        $templateProcessor->setValue('fa1', ' ');
+                        $templateProcessor->setValue('bo1', 'X');
+                        $templateProcessor->setValue('otro20', ' ');
+                        break;                      
+                    case 'otro':
+                        $templateProcessor->setValue('fa1', ' ');
+                        $templateProcessor->setValue('bo1', ' ');
+                        $templateProcessor->setValue('otro20', 'X');
+                        break;
+                    default:
+                         // Manejar cualquier otro caso aquí si es necesario
+                        break;
+            }
+
+            switch ($data['concepto']) {
+                case 'pasaje':
+                   $templateProcessor->setValue('pa1', 'X');
+                   $templateProcessor->setValue('ca1', ' ');
+                   $templateProcessor->setValue('co1', ' ');
+                   $templateProcessor->setValue('otro3', ' ');
+                   break;
+               case 'caseta':
+                    $templateProcessor->setValue('pa1', ' ');
+                    $templateProcessor->setValue('ca1', 'X');
+                    $templateProcessor->setValue('co1', ' ');
+                    $templateProcessor->setValue('otro3', ' ');
+                   break;
+                case 'combustible':
+                    $templateProcessor->setValue('pa1', ' ');
+                    $templateProcessor->setValue('ca1', ' ');
+                    $templateProcessor->setValue('co1', 'X');
+                    $templateProcessor->setValue('otro3', ' ');
+                    break;                      
+               case 'otro':
+                    $templateProcessor->setValue('pa1', ' ');
+                    $templateProcessor->setValue('ca1', ' ');
+                    $templateProcessor->setValue('co1', ' ');
+                    $templateProcessor->setValue('otro3', 'X');
+                   break;
+               default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                   break;
+            }
+
+
+            //SEGUNDA PARTE O ROW 2
+            switch ($data['trasnporte2']) {
+                case 'avion':
+                    $templateProcessor->setValue('av2', 'X');
+                    $templateProcessor->setValue('au2', ' ');
+                    $templateProcessor->setValue('ta2', ' ');
+                    $templateProcessor->setValue('of2', ' ');
+                    $templateProcessor->setValue('otro4', ' ');
+
+                    break;
+                case 'autobus':
+                    $templateProcessor->setValue('av2', ' ');
+                    $templateProcessor->setValue('au2', 'X');
+                    $templateProcessor->setValue('ta2', ' ');
+                    $templateProcessor->setValue('of2', ' ');
+                    $templateProcessor->setValue('otro4', ' ');
+                    break;
+                case 'taxi':
+                    $templateProcessor->setValue('av2', ' ');
+                    $templateProcessor->setValue('au2', ' ');
+                    $templateProcessor->setValue('ta2', 'X');
+                    $templateProcessor->setValue('of2', ' ');
+                    $templateProcessor->setValue('otro4', ' ');
+                    break;
+                case 'oficial':
+                    $templateProcessor->setValue('av2', ' ');
+                    $templateProcessor->setValue('au2', ' ');
+                    $templateProcessor->setValue('ta2', ' ');
+                    $templateProcessor->setValue('of2', 'X');
+                    $templateProcessor->setValue('otro4', ' ');
+                    break;
+                case 'otro':
+                    $templateProcessor->setValue('av2', ' ');
+                    $templateProcessor->setValue('au2', ' ');
+                    $templateProcessor->setValue('ta2', ' ');
+                    $templateProcessor->setValue('of2', ' ');
+                    $templateProcessor->setValue('otro4', 'X');
+                    break;
+
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
+
+                }
+            switch ($data['comprobante2']) {
+                     case 'factura':
+                        $templateProcessor->setValue('fa2', 'X');
+                        $templateProcessor->setValue('bo2', ' ');
+                        $templateProcessor->setValue('otro5', ' ');
+                        break;
+                    case 'boleto':
+                        $templateProcessor->setValue('fa2', ' ');
+                        $templateProcessor->setValue('bo2', 'X');
+                        $templateProcessor->setValue('otro5', ' ');
+                        break;                      
+                    case 'otro':
+                        $templateProcessor->setValue('fa2', ' ');
+                        $templateProcessor->setValue('bo2', ' ');
+                        $templateProcessor->setValue('otro5', 'X');
+                        break;
+                    default:
+                         // Manejar cualquier otro caso aquí si es necesario
+                        break;
+            }
+
+            switch ($data['concepto2']) {
+                case 'pasaje':
+                   $templateProcessor->setValue('pa2', 'X');
+                   $templateProcessor->setValue('ca2', ' ');
+                   $templateProcessor->setValue('co2', ' ');
+                   $templateProcessor->setValue('otro6', ' ');
+                   break;
+               case 'caseta':
+                    $templateProcessor->setValue('pa2', ' ');
+                    $templateProcessor->setValue('ca2', 'X');
+                    $templateProcessor->setValue('co2', ' ');
+                    $templateProcessor->setValue('otro6', ' ');
+                   break;
+                case 'combustible':
+                    $templateProcessor->setValue('pa2', ' ');
+                    $templateProcessor->setValue('ca2', ' ');
+                    $templateProcessor->setValue('co2', 'X');
+                    $templateProcessor->setValue('otro6', ' ');
+                    break;                      
+               case 'otro':
+                    $templateProcessor->setValue('pa2', ' ');
+                    $templateProcessor->setValue('ca2', ' ');
+                    $templateProcessor->setValue('co2', ' ');
+                    $templateProcessor->setValue('otro6', 'X');
+                   break;
+               default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                   break;
+            }
+         }
+
+        
+        // Guardamos el archivo con un nombre único basado en la nomenclatura
+        $fileName = pathinfo($templateName, PATHINFO_FILENAME) . "_{$data['nomenclatura']}.docx";
+        $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
+
+    }
+
+    private function saveComprobanteTrasladoData($data, $validatedData, $estacion)
+    {
+
+        Expediente_Servicio_Anexo_30::updateOrCreate(
+            ['servicio_anexo_id' => $validatedData['id_servicio']],
+            ['rutadoc_estacion' => $this->defineFolderPath($validatedData), 'usuario_id' => $validatedData['id_usuario']]
+        );
+    }
 
 }

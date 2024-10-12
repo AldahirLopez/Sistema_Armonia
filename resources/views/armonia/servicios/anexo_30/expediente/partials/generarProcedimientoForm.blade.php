@@ -38,10 +38,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="orden_trabajo" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="orden_trabajo" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="orden_trabajo" value="no"> No
+                                    <input class="form-check-input" type="radio" name="orden_trabajo" value="no"> No
                                 </label>
                             </td>
 
@@ -63,10 +63,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="contrato_prestacion" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="contrato_prestacion" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="contrato_prestacion" value="no"> No
+                                    <input class="form-check-input" type="radio" name="contrato_prestacion" value="no"> No
                                 </label>
                             </td>
 
@@ -88,10 +88,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="formato_deteccion" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="formato_deteccion" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="formato_deteccion" value="no"> No
+                                    <input class="form-check-input" type="radio" name="formato_deteccion" value="no"> No
                                 </label>
                             </td>
 
@@ -113,10 +113,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="plan_inspeccion_m" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="plan_inspeccion_m" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="plan_inspeccion_m" value="no"> No
+                                    <input class="form-check-input" type="radio" name="plan_inspeccion_m" value="no"> No
                                 </label>
                             </td>
 
@@ -138,10 +138,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="plan_inspeccion_i" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="plan_inspeccion_i" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="plan_inspeccion_i" value="no"> No
+                                    <input class="form-check-input" type="radio" name="plan_inspeccion_i" value="no"> No
                                 </label>
                             </td>
 
@@ -196,10 +196,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="constancia_f" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="constancia_f" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="constancia_f" value="no"> No
+                                    <input class="form-check-input" type="radio" name="constancia_f" value="no"> No
                                 </label>
                             </td>
 
@@ -221,10 +221,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="cree" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="cree" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="cree" value="no"> No
+                                    <input class="form-check-input" type="radio" name="cree" value="no"> No
                                 </label>
                             </td>
 
@@ -247,10 +247,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="representante_legal" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="representante_legal" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="representante_legal" value="no"> No
+                                    <input class="form-check-input" type="radio" name="representante_legal" value="no"> No
                                 </label>
                             </td>
 
@@ -272,10 +272,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="constancia_l" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="constancia_l" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="constancia_l" value="no"> No
+                                    <input class="form-check-input" type="radio" name="constancia_l" value="no"> No
                                 </label>
                             </td>
 
@@ -297,10 +297,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="manual" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="manual" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="manual" value="no"> No
+                                    <input class="form-check-input" type="radio" name="manual" value="no"> No
                                 </label>
                             </td>
 
@@ -322,10 +322,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="ficha" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="ficha" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="ficha" value="no"> No
+                                    <input class="form-check-input" type="radio" name="ficha" value="no"> No
                                 </label>
                             </td>
 
@@ -349,10 +349,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="almacen" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="almacen" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="almacen" value="no"> No
+                                    <input class="form-check-input" type="radio" name="almacen" value="no"> No
                                 </label>
                             </td>
 
@@ -375,10 +375,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elementos" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="elementos" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elementos" value="no"> No
+                                    <input class="form-check-input" type="radio" name="elementos" value="no"> No
                                 </label>
                             </td>
 
@@ -403,10 +403,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="planos" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="planos" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="planos" value="no"> No
+                                    <input class="form-check-input" type="radio" name="planos" value="no"> No
                                 </label>
                             </td>
 
@@ -429,10 +429,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="politicas" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="politicas" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="politicas" value="no"> No
+                                    <input class="form-check-input" type="radio" name="politicas" value="no"> No
                                 </label>
                             </td>
 
@@ -454,10 +454,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="inventario" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="inventario" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="inventario" value="no"> No
+                                    <input class="form-check-input" type="radio" name="inventario" value="no"> No
                                 </label>
                             </td>
 
@@ -480,10 +480,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="acuerdos" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="acuerdos" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="acuerdos" value="no"> No
+                                    <input class="form-check-input" type="radio" name="acuerdos" value="no"> No
                                 </label>
                             </td>
 
@@ -505,10 +505,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registros" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="registros" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="registros" value="no"> No
+                                    <input class="form-check-input" type="radio" name="registros" value="no"> No
                                 </label>
                             </td>
  
@@ -565,10 +565,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="dt" value="si" checked> Sí
+                                    <input  class="form-check-input" type="radio" name="dt" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="dt" value="no"> No
+                                    <input class="form-check-input" type="radio" name="dt" value="no"> No
                                 </label>
                             </td>
 
@@ -590,10 +590,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="dm" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="dm" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="dm" value="no"> No
+                                    <input class="form-check-input" type="radio" name="dm" value="no"> No
                                 </label>
                             </td>
 
@@ -615,10 +615,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="rf" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="rf" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="rf" value="no"> No
+                                    <input class="form-check-input" type="radio" name="rf" value="no"> No
                                 </label>
                             </td>
 
@@ -640,10 +640,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="ct" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="ct" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="ct" value="no"> No
+                                    <input class="form-check-input" type="radio" name="ct" value="no"> No
                                 </label>
                             </td>
 
@@ -665,10 +665,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="pr" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="pr" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="pr" value="no"> No
+                                    <input class="form-check-input" type="radio" name="pr" value="no"> No
                                 </label>
                             </td>
 
@@ -722,10 +722,10 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="cc" value="si" checked> Sí
+                                    <input class="form-check-input" type="radio" name="cc" value="si" checked> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="cc" value="no"> No
+                                    <input class="form-check-input" type="radio" name="cc" value="no"> No
                                 </label>
                             </td>
 
