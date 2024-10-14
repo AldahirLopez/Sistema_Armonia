@@ -132,7 +132,6 @@ class DocumentacionAnexo30Controller extends Controller
                 ['descripcion' => 'Organigrama, estructura y mapa de la red informática que interactúa con los sistemas de medición y los programas informáticos de control volumétrico', 'codigo' => '', 'tipo' => 'Documental', 'id' => 12],
                 ['descripcion' => 'Políticas y procedimientos para la gestión de incidentes de seguridad relacionados con el programa informático para llevar controles volumétricos', 'codigo' => '', 'tipo' => 'Documental', 'id' => 13],
                 ['descripcion' => 'Acuerdos de confidencialidad firmados con el personal de desarrollo e implementación del programa informático', 'codigo' => '', 'tipo' => 'Documental', 'id' => 14],
-                ['descripcion' => 'Pólizas y contratos de control volumétrico', 'codigo' => '', 'tipo' => 'Documental', 'id' => 15],
             ],
             'medicion' => [
                 ['descripcion' => 'Dictámenes de calibración de dispensarios (primero y segundo semestre del año a inspeccionar)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],

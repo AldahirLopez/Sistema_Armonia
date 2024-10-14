@@ -20,11 +20,18 @@ class Medidor_Flujo extends Model
         'marca',
         'numero_serie',
         'estacion_id',
+        'dispensario_id',
     ];
 
     // Definir la relación con la estación
     public function estacion()
     {
         return $this->belongsTo(Estacion::class, 'estacion_id');
+    }
+
+    // Relación con Dispensario
+    public function dispensario()
+    {
+        return $this->belongsTo(Dispensario::class, 'dispensario_id');
     }
 }

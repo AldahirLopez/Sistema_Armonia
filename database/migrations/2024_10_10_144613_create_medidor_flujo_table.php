@@ -16,9 +16,11 @@ return new class extends Migration
             $table->string('marca');
             $table->string('numero_serie');
             $table->foreignId('estacion_id'); // Relación con la estación
+            $table->foreignId('dispensario_id'); // Relación con la estación
             $table->timestamps();
 
             // Foreign key constraint
+            $table->foreign('dispensario_id')->references('id')->on('datos_armonia.dispensarios')->onDelete('cascade');
             $table->foreign('estacion_id')->references('id')->on('datos_armonia.estacion')->onDelete('cascade');
         });
     }

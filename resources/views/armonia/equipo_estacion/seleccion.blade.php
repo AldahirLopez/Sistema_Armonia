@@ -121,6 +121,16 @@
 ])
 <!-- Contenido del modal para Medidor de Flujo -->
 <div class="mb-3">
+    <label for="dispensario_id" class="form-label">Seleccionar Dispensario</label>
+    <select name="dispensario_id" id="dispensario_id" class="form-select" required>
+        <option value="">Seleccione un dispensario</option>
+        @foreach($dispensarios as $dispensario)
+        <option value="{{ $dispensario->id }}">Isla: {{ $dispensario->num_isla }} - Marca: {{ $dispensario->marca }}</option>
+        @endforeach
+    </select>
+</div>
+
+<div class="mb-3">
     <label for="marca" class="form-label">Marca</label>
     <input type="text" class="form-control" id="marca" name="marca" placeholder="Ingrese la marca" required>
 </div>

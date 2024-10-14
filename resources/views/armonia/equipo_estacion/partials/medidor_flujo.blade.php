@@ -11,6 +11,7 @@
             <table class="table table-bordered table-striped">
                 <thead class="table-light">
                     <tr>
+                        <th>Isla</th> <!-- Nueva columna Isla -->
                         <th>Marca</th>
                         <th>Número de Serie</th>
                         @if(auth()->user()->hasRole('Administrador'))
@@ -21,6 +22,7 @@
                 <tbody>
                     @foreach($medidoresFlujo as $medidorFlujo)
                     <tr>
+                        <td>Isla: {{ optional($medidorFlujo->dispensario)->num_isla ?? 'No asignado' }}</td> <!-- Mostrar el número de isla -->
                         <td>{{ $medidorFlujo->marca }}</td>
                         <td>{{ $medidorFlujo->numero_serie }}</td>
                         @if(auth()->user()->hasRole('Administrador'))

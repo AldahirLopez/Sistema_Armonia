@@ -10,10 +10,12 @@ use App\Models\Expediente_Servicio_Anexo_30;
 use App\Models\ProveedorInformatico;
 use App\Models\ServicioAnexo;
 use App\Models\Estacion;
+use App\Models\Medidor_Flujo;
 use App\Models\Servicio_005;
 use App\Models\Sondas;
 use App\Models\Tanque;
 use App\Models\User;
+use App\Models\Veeder_Root;
 use App\Models\Verificador;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -550,7 +552,7 @@ class ExpedienteController extends Controller
                     }
                 }
                 for ($i = $totalImages + 1; $i <= $maxImages; $i++) {
-                    
+
                     $templateProcessor->setValue("img_$i", '');
                 }
             }
@@ -654,12 +656,14 @@ class ExpedienteController extends Controller
     }
 
     // Método para obtener los datos de los equipos de medición
+    // Método para obtener los datos de los equipos de medición
     private function getEquiposMedicionData($estacion_id)
     {
-        // Obtener tanques, sondas y dispensarios de la estación
+        // Obtener tanques, sondas, dispensarios y veeder-root de la estación
         $tanques = Tanque::where('estacion_id', $estacion_id)->get();
         $sondas = Sondas::where('estacion_id', $estacion_id)->get();
         $dispensarios = Dispensario::where('estacion_id', $estacion_id)->get();
+        $veederRoots = Veeder_Root::where('estacion_id', $estacion_id)->get();
 
         $equipos = [];
 
@@ -681,11 +685,35 @@ class ExpedienteController extends Controller
             ];
         }
 
-        // Agregar dispensarios a la lista de equipos
+        // Agregar dispensarios y sus medidores de flujo a la lista de equipos
         foreach ($dispensarios as $dispensario) {
+            // Agregar el dispensario con formato: Dispensario {num_isla} - {marca} - {modelo}
             $equipos[] = [
-                'EQUIPO' => 'Controlador del Surtidor de Combustible',
+                'EQUIPO' => 'Dispensario ' . $dispensario->num_isla . ' - ' . $dispensario->marca . ' - ' . $dispensario->modelo,
                 'IDENTIFICACION' => $dispensario->numero_serie,
+                'NORMA' => 'ANEXOS 30 Y 31 DE LA RESOLUCIÓN MISCELÁNEA FISCAL PARA 2023',
+            ];
+
+            // Obtener los medidores de flujo asociados a este dispensario
+            $medidoresFlujo = Medidor_Flujo::where('dispensario_id', $dispensario->id)->get();
+
+            // Agregar cada medidor de flujo asociado con el formato: Medidor de Flujo tipo Desplazamiento Positivo {numero_medidor} Dispensario {num_isla}
+            $contador = 1; // Contador para numerar los medidores de flujo
+            foreach ($medidoresFlujo as $medidorFlujo) {
+                $equipos[] = [
+                    'EQUIPO' => 'Medidor de Flujo tipo Desplazamiento Positivo ' . $contador . ' Dispensario ' . $dispensario->num_isla,
+                    'IDENTIFICACION' => $medidorFlujo->numero_serie,
+                    'NORMA' => 'ANEXOS 30 Y 31 DE LA RESOLUCIÓN MISCELÁNEA FISCAL PARA 2023',
+                ];
+                $contador++; // Incrementar el contador para el siguiente medidor
+            }
+        }
+
+        // Agregar los Veeder-Root a la lista de equipos con el formato: Consola de Telemedición - VEEDER ROOT – {modelo}
+        foreach ($veederRoots as $veederRoot) {
+            $equipos[] = [
+                'EQUIPO' => 'Consola de Telemedición - VEEDER ROOT – ' . $veederRoot->modelo,
+                'IDENTIFICACION' => $veederRoot->numero_serie,
                 'NORMA' => 'ANEXOS 30 Y 31 DE LA RESOLUCIÓN MISCELÁNEA FISCAL PARA 2023',
             ];
         }
@@ -1127,31 +1155,31 @@ class ExpedienteController extends Controller
 
     public function generarProcedimientoRevision(Request $request)
     {
-         
+
         // Validar los datos del formulario
         $validatedData = $request->all();
 
         // Obtener datos relacionados desde la base de datos
         $estacion = $this->getEstacionData($validatedData['idestacion']);
         $usuario = $this->getUsuarioData($validatedData['id_usuario']);
-       
+
         // Preparar los datos a usar en las plantillas
         $data = $this->prepareProcedimientoRevisionData($usuario, $validatedData, $estacion);
 
         // Definir la carpeta de destino y procesar las plantillas
         $subFolderPath = $this->defineFolderPath($validatedData);
-       
-        
+
+
         $this->processTemplateProcedimiento($data, $subFolderPath, 'PROCEDIMIENTO REVISION DEL EXPEDIENTE V2.docx');
 
         // Guardar los datos de expediente
         $this->saveProcedimientoRevisionData($data, $validatedData, $estacion);
 
-       return redirect()->route('expediente.index', ['id' => $validatedData['id_servicio']])
-           ->with('success', 'Procedimiento de revision de expediente guardado correctamente.');
+        return redirect()->route('expediente.index', ['id' => $validatedData['id_servicio']])
+            ->with('success', 'Procedimiento de revision de expediente guardado correctamente.');
     }
 
- 
+
     private function prepareProcedimientoRevisionData($usuario, $validatedData, $estacion)
     {
 
@@ -1167,13 +1195,13 @@ class ExpedienteController extends Controller
 
     private function processTemplateProcedimiento($data, $subFolderPath, $templateName)
     {
-          
+
         $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Expediente/{$templateName}"));
-      
+
         // Reemplazamos los valores en el template
         foreach ($data as $key => $value) {
 
-            $templateProcessor->setValue($key,$value);
+            $templateProcessor->setValue($key, $value);
             //PRIMERA PAGINA
             switch ($data['orden_trabajo']) {
                 case 'si':
@@ -1512,17 +1540,11 @@ class ExpedienteController extends Controller
                     // Manejar cualquier otro caso aquí si es necesario
                     break;
             }
-
-
-            
-
-
         }
 
         // Guardamos el archivo con un nombre único basado en la nomenclatura
         $fileName = pathinfo($templateName, PATHINFO_FILENAME) . "_{$data['nomenclatura']}.docx";
         $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
-
     }
 
     private function saveProcedimientoRevisionData($data, $validatedData, $estacion)
@@ -1537,7 +1559,7 @@ class ExpedienteController extends Controller
 
     public function generarComprobanteTraslado(Request $request)
     {
-         
+
         // Validar los datos del formulario
         $validatedData = $request->all();
 
@@ -1545,24 +1567,24 @@ class ExpedienteController extends Controller
         $estacion = $this->getEstacionData($validatedData['idestacion']);
         $usuario = $this->getUsuarioData($validatedData['id_usuario']);
         $direccionServicio = $this->getDireccion($estacion->domicilio_servicio_id);
-       
+
         // Preparar los datos a usar en las plantillas
         $data = $this->prepareComprobanteTrasladoData($usuario, $validatedData, $estacion, $direccionServicio);
 
         // Definir la carpeta de destino y procesar las plantillas
         $subFolderPath = $this->defineFolderPath($validatedData);
-        
-        
+
+
         $this->processTemplateComprobanteTraslado($data, $subFolderPath, 'COMPROBANTE DE TRASLADO INDICE 4.docx');
 
         // Guardar los datos de expediente
-       $this->saveComprobanteTrasladoData($data, $validatedData, $estacion);
+        $this->saveComprobanteTrasladoData($data, $validatedData, $estacion);
 
-       return redirect()->route('expediente.index', ['id' => $validatedData['id_servicio']])
-           ->with('success', 'Comprobante Traslado guardado correctamente.');
+        return redirect()->route('expediente.index', ['id' => $validatedData['id_servicio']])
+            ->with('success', 'Comprobante Traslado guardado correctamente.');
     }
 
-    private function prepareComprobanteTrasladoData($usuario, $validatedData, $estacion,$direccionServicio)
+    private function prepareComprobanteTrasladoData($usuario, $validatedData, $estacion, $direccionServicio)
     {
 
         // Retornar datos combinados con la información adicional
@@ -1576,14 +1598,14 @@ class ExpedienteController extends Controller
 
     private function processTemplateComprobanteTraslado($data, $subFolderPath, $templateName)
     {
-          
+
         $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Expediente/{$templateName}"));
-      
+
         // Reemplazamos los valores en el template
         foreach ($data as $key => $value) {
 
-            $templateProcessor->setValue($key,$value);
-            
+            $templateProcessor->setValue($key, $value);
+
             switch ($data['trasnporte']) {
                 case 'avion':
                     $templateProcessor->setValue('av1', 'X');
@@ -1625,57 +1647,56 @@ class ExpedienteController extends Controller
                 default:
                     // Manejar cualquier otro caso aquí si es necesario
                     break;
-
-                }
+            }
             switch ($data['comprobante']) {
-                     case 'factura':
-                        $templateProcessor->setValue('fa1', 'X');
-                        $templateProcessor->setValue('bo1', ' ');
-                        $templateProcessor->setValue('otro20', ' ');
-                        break;
-                    case 'boleto':
-                        $templateProcessor->setValue('fa1', ' ');
-                        $templateProcessor->setValue('bo1', 'X');
-                        $templateProcessor->setValue('otro20', ' ');
-                        break;                      
-                    case 'otro':
-                        $templateProcessor->setValue('fa1', ' ');
-                        $templateProcessor->setValue('bo1', ' ');
-                        $templateProcessor->setValue('otro20', 'X');
-                        break;
-                    default:
-                         // Manejar cualquier otro caso aquí si es necesario
-                        break;
+                case 'factura':
+                    $templateProcessor->setValue('fa1', 'X');
+                    $templateProcessor->setValue('bo1', ' ');
+                    $templateProcessor->setValue('otro20', ' ');
+                    break;
+                case 'boleto':
+                    $templateProcessor->setValue('fa1', ' ');
+                    $templateProcessor->setValue('bo1', 'X');
+                    $templateProcessor->setValue('otro20', ' ');
+                    break;
+                case 'otro':
+                    $templateProcessor->setValue('fa1', ' ');
+                    $templateProcessor->setValue('bo1', ' ');
+                    $templateProcessor->setValue('otro20', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
             }
 
             switch ($data['concepto']) {
                 case 'pasaje':
-                   $templateProcessor->setValue('pa1', 'X');
-                   $templateProcessor->setValue('ca1', ' ');
-                   $templateProcessor->setValue('co1', ' ');
-                   $templateProcessor->setValue('otro3', ' ');
-                   break;
-               case 'caseta':
+                    $templateProcessor->setValue('pa1', 'X');
+                    $templateProcessor->setValue('ca1', ' ');
+                    $templateProcessor->setValue('co1', ' ');
+                    $templateProcessor->setValue('otro3', ' ');
+                    break;
+                case 'caseta':
                     $templateProcessor->setValue('pa1', ' ');
                     $templateProcessor->setValue('ca1', 'X');
                     $templateProcessor->setValue('co1', ' ');
                     $templateProcessor->setValue('otro3', ' ');
-                   break;
+                    break;
                 case 'combustible':
                     $templateProcessor->setValue('pa1', ' ');
                     $templateProcessor->setValue('ca1', ' ');
                     $templateProcessor->setValue('co1', 'X');
                     $templateProcessor->setValue('otro3', ' ');
-                    break;                      
-               case 'otro':
+                    break;
+                case 'otro':
                     $templateProcessor->setValue('pa1', ' ');
                     $templateProcessor->setValue('ca1', ' ');
                     $templateProcessor->setValue('co1', ' ');
                     $templateProcessor->setValue('otro3', 'X');
-                   break;
-               default:
+                    break;
+                default:
                     // Manejar cualquier otro caso aquí si es necesario
-                   break;
+                    break;
             }
 
 
@@ -1721,65 +1742,63 @@ class ExpedienteController extends Controller
                 default:
                     // Manejar cualquier otro caso aquí si es necesario
                     break;
-
-                }
+            }
             switch ($data['comprobante2']) {
-                     case 'factura':
-                        $templateProcessor->setValue('fa2', 'X');
-                        $templateProcessor->setValue('bo2', ' ');
-                        $templateProcessor->setValue('otro5', ' ');
-                        break;
-                    case 'boleto':
-                        $templateProcessor->setValue('fa2', ' ');
-                        $templateProcessor->setValue('bo2', 'X');
-                        $templateProcessor->setValue('otro5', ' ');
-                        break;                      
-                    case 'otro':
-                        $templateProcessor->setValue('fa2', ' ');
-                        $templateProcessor->setValue('bo2', ' ');
-                        $templateProcessor->setValue('otro5', 'X');
-                        break;
-                    default:
-                         // Manejar cualquier otro caso aquí si es necesario
-                        break;
+                case 'factura':
+                    $templateProcessor->setValue('fa2', 'X');
+                    $templateProcessor->setValue('bo2', ' ');
+                    $templateProcessor->setValue('otro5', ' ');
+                    break;
+                case 'boleto':
+                    $templateProcessor->setValue('fa2', ' ');
+                    $templateProcessor->setValue('bo2', 'X');
+                    $templateProcessor->setValue('otro5', ' ');
+                    break;
+                case 'otro':
+                    $templateProcessor->setValue('fa2', ' ');
+                    $templateProcessor->setValue('bo2', ' ');
+                    $templateProcessor->setValue('otro5', 'X');
+                    break;
+                default:
+                    // Manejar cualquier otro caso aquí si es necesario
+                    break;
             }
 
             switch ($data['concepto2']) {
                 case 'pasaje':
-                   $templateProcessor->setValue('pa2', 'X');
-                   $templateProcessor->setValue('ca2', ' ');
-                   $templateProcessor->setValue('co2', ' ');
-                   $templateProcessor->setValue('otro6', ' ');
-                   break;
-               case 'caseta':
+                    $templateProcessor->setValue('pa2', 'X');
+                    $templateProcessor->setValue('ca2', ' ');
+                    $templateProcessor->setValue('co2', ' ');
+                    $templateProcessor->setValue('otro6', ' ');
+                    break;
+                case 'caseta':
                     $templateProcessor->setValue('pa2', ' ');
                     $templateProcessor->setValue('ca2', 'X');
                     $templateProcessor->setValue('co2', ' ');
                     $templateProcessor->setValue('otro6', ' ');
-                   break;
+                    break;
                 case 'combustible':
                     $templateProcessor->setValue('pa2', ' ');
                     $templateProcessor->setValue('ca2', ' ');
                     $templateProcessor->setValue('co2', 'X');
                     $templateProcessor->setValue('otro6', ' ');
-                    break;                      
-               case 'otro':
+                    break;
+                case 'otro':
                     $templateProcessor->setValue('pa2', ' ');
                     $templateProcessor->setValue('ca2', ' ');
                     $templateProcessor->setValue('co2', ' ');
                     $templateProcessor->setValue('otro6', 'X');
-                   break;
-               default:
+                    break;
+                default:
                     // Manejar cualquier otro caso aquí si es necesario
-                   break;
+                    break;
             }
-         }
+        }
 
-        
+
         // Guardamos el archivo con un nombre único basado en la nomenclatura
         $fileName = pathinfo($templateName, PATHINFO_FILENAME) . "_{$data['nomenclatura']}.docx";
         $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
-
     }
 
     private function saveComprobanteTrasladoData($data, $validatedData, $estacion)
@@ -1790,5 +1809,4 @@ class ExpedienteController extends Controller
             ['rutadoc_estacion' => $this->defineFolderPath($validatedData), 'usuario_id' => $validatedData['id_usuario']]
         );
     }
-
 }

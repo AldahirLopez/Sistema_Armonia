@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Estacion;
 use App\Models\Medidor_Flujo;
+use App\Models\Dispensario; // Importar el modelo de dispensarios
 
 class MedidorFlujoController extends Controller
 {
@@ -14,11 +15,13 @@ class MedidorFlujoController extends Controller
         $request->validate([
             'marca' => 'required|string',
             'numero_serie' => 'nullable|string',
+            'dispensario_id' => 'required', // Validar que exista el dispensario
         ]);
 
         Medidor_Flujo::create([
             'marca' => $request->input('marca'),
             'numero_serie' => $request->input('numero_serie'),
+            'dispensario_id' => $request->input('dispensario_id'), // Relacionar con el dispensario
             'estacion_id' => $estacion_id,
         ]);
 
@@ -33,11 +36,13 @@ class MedidorFlujoController extends Controller
         $request->validate([
             'marca' => 'required|string',
             'numero_serie' => 'nullable|string',
+            'dispensario_id' => 'required', // Validar que exista el dispensario
         ]);
 
         $medidorFlujo->update([
             'marca' => $request->input('marca'),
             'numero_serie' => $request->input('numero_serie'),
+            'dispensario_id' => $request->input('dispensario_id'), // Relacionar con el dispensario
         ]);
 
         return redirect()->route('equipo.seleccion', $medidorFlujo->estacion_id)->with('success', 'Medidor de Flujo actualizado correctamente.');
