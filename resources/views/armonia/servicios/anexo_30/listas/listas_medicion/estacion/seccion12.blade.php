@@ -42,19 +42,20 @@
                             ii. Presión absoluta 101.325 kPa (1 atmósfera). 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="petrolíferos_presion_absoluta_1" value="si"> Sí
+                                    <input type="radio" name="petrolíferos_presion_absoluta_1" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="petrolíferos_presion_absoluta_1" value="no"> No
+                                    <input type="radio" name="petrolíferos_presion_absoluta_1" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="petrolíferos_presion_absoluta_1" value="no_aplica"> No Aplica
+                                    <input type="radio" name="petrolíferos_presion_absoluta_1" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_petrolíferos_presion_absoluta_1" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>La tecnologia no permite la compensacionde presion a una atmosfera</strong>
+                                <input type="hidden" name="observaciones_petrolíferos_presion_absoluta_1" class="form-control" value="La tecnologia no permite la compensacionde presion a una atmosfera">
                             </td>
                         </tr>
                         <!-- Continúa con el resto de requisitos -->

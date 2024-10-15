@@ -49,19 +49,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_especificos_estaciones_servicio_gas_licuado_petroleo" value="si"> Sí
+                                    <input type="radio" name="requerimientos_especificos_estaciones_servicio_gas_licuado_petroleo" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="requerimientos_especificos_estaciones_servicio_gas_licuado_petroleo" value="no"> No
+                                    <input type="radio" name="requerimientos_especificos_estaciones_servicio_gas_licuado_petroleo" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_especificos_estaciones_servicio_gas_licuado_petroleo" value="no_aplica"> No Aplica
+                                    <input type="radio" name="requerimientos_especificos_estaciones_servicio_gas_licuado_petroleo" value="no_aplica" checked> No Aplica
                                 </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_requerimientos_especificos_estaciones_servicio_gas_licuado_petroleo" class="form-control">
+                                <td class="align-middle">
+                                <strong>No Aplica por ser una estación de servicio</strong>
+                                <input type="hidden" name="observaciones_requerimientos_especificos_estaciones_servicio_gas_licuado_petroleo" class="form-control" value="No aplica por ser una estación de servicio">
                             </td>
                         </tr>
 
