@@ -123,6 +123,7 @@ class EstacionController extends Controller
             'correo' => 'nullable|email|max:255',
             'repre' => 'required|string|max:255',
             'estado' => 'required',
+            'fecha_apertura'=>'required',
         ]);
     }
 
@@ -148,6 +149,7 @@ class EstacionController extends Controller
             'nombre_representante_legal' => $data['repre'],
             'estado_republica' => $data['estado'],
             'usuario_id' => auth()->id(),
+            'fecha_apertura'=>$data['fecha_apertura']
         ]);
         $this->createEstacionDirectory($data['numestacion']);
     }
@@ -178,6 +180,7 @@ class EstacionController extends Controller
             'telefono' => $data['telefono'],
             'correo_electronico' => $data['correo'],
             'nombre_representante_legal' => $data['repre'],
+            'fecha_apertura'=>$data['fecha_apertura'],
         ]);
 
         $estacion->save(); // Asegúrate de guardar los cambios

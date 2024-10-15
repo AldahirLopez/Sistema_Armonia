@@ -31,6 +31,7 @@ class Estacion extends Model
         'usuario_id',
         'domicilio_fiscal_id',
         'domicilio_servicio_id',
+        'fecha_apertura',
     ];
 
     /**

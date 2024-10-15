@@ -34,6 +34,10 @@
                                 <label for="rfc">RFC</label>
                                 <input type="text" name="rfc" class="form-control" value="{{ $estacion->rfc }}" required>
                             </div>
+                            <div class="form-group mb-3">
+                                <label for="fecha_apertura">Fecha de apertura</label>
+                                <input type="date" name="fecha_apertura" class="form-control" required value="{{ $estacion->fecha_apertura }}">
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
