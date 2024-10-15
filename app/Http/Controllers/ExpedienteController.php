@@ -77,7 +77,6 @@ class ExpedienteController extends Controller
         }, $fileNameWithoutExtension . '.pdf');  // Aquí se usa el nombre original con extensión .pdf
     }
 
-
     public function index($id)
     {
         // Obtener datos para la vista
@@ -100,21 +99,24 @@ class ExpedienteController extends Controller
 
             // Preparar los datos a usar en las plantillas
             $data = $this->prepareExpedienteData($validatedData, $estacion, $direccionFiscal, $direccionServicio, $usuario);
+            $data2 = $this->prepareExpedienteDataCalibracion($validatedData, $estacion, $direccionFiscal, $direccionServicio, $usuario);
 
             // Definir la carpeta de destino y procesar las plantillas
             $subFolderPath = $this->defineFolderPath($validatedData);
+            //$subFolderPath2 = $this->defineFolderPathCalibraciones($validatedData);
             $this->processTemplate($data, $subFolderPath, 'FORMATO DE DETECCIÓN DE RIESGOS A LA IMPARCIALIDAD.docx');
             $this->processTemplate($data, $subFolderPath, 'FORMATO PARA CONTRATO DE PRESTACIÓN DE SERVICIOS DE INSPECCIÓN DE LOS ANEXOS 30 Y 31 RESOLUCIÓN MISCELÁNEA FISCAL PARA 2024.docx');
             $this->processTemplate($data, $subFolderPath, 'ORDEN DE TRABAJO.docx');
             $this->processTemplate($data, $subFolderPath, 'PLAN DE INSPECCIÓN DE LOS SISTEMAS DE MEDICION.docx');
             $this->processTemplate($data, $subFolderPath, 'PLAN DE INSPECCIÓN DE PROGRAMAS INFORMATICOS.docx');
+            $this->processTemplateCalibraciones($data2, $subFolderPath, 'CALIBRACION SONDAS.docx');
             // Guardar los datos de expediente
             $this->saveExpedienteData($data, $validatedData, $estacion);
 
             return redirect()->route('expediente.index', ['id' => $validatedData['id_servicio']])
                 ->with('success', 'Expediente generado y guardado correctamente.');
         } catch (\Exception $e) {
-            \Log::error("Error al generar el expediente: " . $e->getMessage());
+            //\Log::error("Error al generar el expediente: " . $e->getMessage());
             return response()->json(['error' => 'Ocurrió un error al generar el expediente.'], 500);
         }
     }
@@ -1862,5 +1864,81 @@ class ExpedienteController extends Controller
             ['servicio_anexo_id' => $validatedData['id_servicio']],
             ['rutadoc_estacion' => $this->defineFolderPath($validatedData), 'usuario_id' => $validatedData['id_usuario']]
         );
+    }
+
+    private function defineFolderPathCalibraciones($validatedData)
+    {
+        $anio = now()->year;
+        return "Servicios/Anexo_30/{$anio}/{$validatedData['id_usuario']}/{$validatedData['nomenclatura']}/calibraciones/";
+    }
+
+    // Método para procesar la plantilla
+    private function processTemplateCalibraciones($data, $subFolderPath, $templateName)
+    {
+
+        $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Calibraciones/{$templateName}"));
+
+        // Reemplazamos los valores en el template
+        foreach ($data as $key => $value) {
+            // Ignoramos claves especiales que no deben ser procesadas como texto
+            if ($key == 'imagePaths' || $key == 'imagenes') {
+                continue; // Saltar estas claves
+            }
+            // Si el valor es un array, verificamos cómo manejarlo
+            if (is_array($value)) {
+                // Verificamos si es un array simple (no asociativo)
+                if ($this->isAssociativeArray($value)) {
+                    continue;
+                } else {
+                    // Si es un array numérico, lo convertimos a una cadena
+                    $value = implode(", ", $value);
+                }
+            }
+
+            // Reemplazamos el valor en el template
+            $templateProcessor->setValue($key, (string) $value);
+        }
+
+        // Guardamos el archivo con un nombre único basado en la nomenclatura
+        $fileName = pathinfo($templateName, PATHINFO_FILENAME) . "_{$data['nomenclatura']}.docx";
+        $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
+    }
+
+    private function prepareExpedienteDataCalibracion($validatedData, $estacion, $direccionFiscal, $direccionServicio, $usuario)
+    {
+
+        // Obtener la fecha actual desglosada
+        $fechaActual = Carbon::now();
+        $diaActual = $fechaActual->format('d');
+        $mesActual = $fechaActual->translatedFormat('F'); // Mes en texto (en español)
+        $anioActual = $fechaActual->format('Y');
+
+        // Formato completo de la fecha
+        $fechaCompleta = "{$diaActual} de {$mesActual} del {$anioActual}";
+
+        return array_merge($validatedData, [
+            'numestacion' => $estacion->num_estacion,
+            'razonsocial' => $estacion->razon_social,
+            'id_usuario' => $usuario->name,
+            'rfc' => $estacion->rfc,
+            'fecha_actual' => now()->format('d/m/Y'),
+            'domicilio_fiscal' => $this->formatAddress($direccionFiscal),
+            'domicilio_estacion' => $this->formatAddress($direccionServicio),
+            'cre' => $validatedData['num_cre'] ?? $estacion->num_cre,
+            'constancia' => $validatedData['num_constancia'] ?? $estacion->num_constancia,
+            'contacto' => $validatedData['contacto'] ?? $estacion->contacto,
+            'nom_repre' => $validatedData['nombre_representante_legal'] ?? $estacion->nombre_representante_legal,
+            'telefono' => $estacion->telefono,
+            'correo' => $estacion->correo_electronico,
+
+
+            // Fechas
+            'fecha_inspeccion' => Carbon::parse($validatedData['fecha_inspeccion'])->format('d-m-Y'),
+            'fecha_recepcion' => Carbon::parse($validatedData['fecha_recepcion'])->format('d-m-Y'),
+            'fecha_inspeccion_modificada' => Carbon::parse($validatedData['fecha_inspeccion'])->addYear()->format('d-m-Y'),
+
+            // Fecha actual desglosada y en texto completo
+            'fecha_completa' => $fechaCompleta,
+        ]);
     }
 }

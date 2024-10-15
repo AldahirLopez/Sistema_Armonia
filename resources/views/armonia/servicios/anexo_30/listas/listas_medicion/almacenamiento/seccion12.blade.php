@@ -8,7 +8,7 @@
 
                         <tr class="table-info">
                             <th scope="row" colspan="100%">
-                            2. Para Petrolíferos:  
+                                2. Para Petrolíferos:
                             </th>
                         </tr>
 
@@ -16,7 +16,7 @@
                         <!-- PRIMER BLOQUE DE REQUISITOS -->
                         <tr>
                             <td class="align-middle">
-                            i. Temperatura 20 °C (293.15 K).
+                                i. Temperatura 20 °C (293.15 K).
 
                             <td class="text-center align-middle">
                                 <label>
@@ -36,25 +36,26 @@
                             </td>
                         </tr>
 
-                
+
                         <tr>
                             <td class="align-middle">
-                            ii. Presión absoluta 101.325 kPa (1 atmósfera). 
+                                ii. Presión absoluta 101.325 kPa (1 atmósfera).
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="petroliferos_presion_absoluta_1" value="si"> Sí
+                                    <input type="radio" name="petroliferos_presion_absoluta_1" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="petroliferos_presion_absoluta_1" value="no"> No
+                                    <input type="radio" name="petroliferos_presion_absoluta_1" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="petroliferos_presion_absoluta_1" value="no_aplica"> No Aplica
+                                    <input type="radio" name="petroliferos_presion_absoluta_1" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_petroliferos_presion_absoluta_1" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>La tecnologia no permite la compensacion de presion a una atmosfera</strong>
+                                <input type="hidden" name="observaciones_petroliferos_presion_absoluta_1" class="form-control" value="La tecnologia no permite la compensacion de presion a una atmosfera">
                             </td>
                         </tr>
                         <!-- Continúa con el resto de requisitos -->
