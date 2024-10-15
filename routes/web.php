@@ -186,6 +186,9 @@ Route::group(['middleware' => ['auth']], function () {
     //Ruta para generar el reporte fotografico del servicio 005
     Route::post('/servicio_005/generar_reporte_fotografico', [ExpendienteServicio005Controller::class, 'generarReporteFotografico'])->name('reporte_fotografico_servicio_005.generar');
 
+    Route::get('/convertir-pdf/{filePath}', [ExpedienteController::class, 'convertirDocxAPdf'])
+    ->where('filePath', '.*') // Esto asegura que la ruta capture todos los caracteres especiales
+    ->name('convertir.pdf');
     //RUTAS PARA LISTAS DE INSPECCION PROGRAMAS INFORMATICOS
     //Ruta para el menu de las listas de inspeccio Anexo 30 
     Route::get('/servicios/anexo_30/listas_inspeccion/menu', [ListasInspeccionController::class, 'menu'])->name('armonia.servicios.anexo_30.listas_inspeccion.menu');

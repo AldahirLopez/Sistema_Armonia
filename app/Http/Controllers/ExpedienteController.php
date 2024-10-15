@@ -22,8 +22,62 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\TemplateProcessor;
 
+use CloudConvert\CloudConvert;
+use CloudConvert\Models\Job;
+use CloudConvert\Models\Task;
+
 class ExpedienteController extends Controller
 {
+
+    public function convertirDocxAPdf($filePath)
+    {
+        // Inicializar CloudConvert con tu API Key
+        $cloudconvert = new CloudConvert(['api_key' => env('CLOUDCONVERT_API_KEY')]);
+
+        // Ruta completa del archivo .docx
+        $fullPath = storage_path('app/public/' . $filePath);
+
+        // Extraer el nombre del archivo sin la extensión
+        $fileNameWithoutExtension = pathinfo($filePath, PATHINFO_FILENAME);
+
+        // Crear una tarea de CloudConvert
+        $job = (new Job())
+            ->addTask(
+                (new Task('import/upload', 'upload-my-file'))
+            )
+            ->addTask(
+                (new Task('convert', 'convert-my-file'))
+                    ->set('input', 'upload-my-file')
+                    ->set('output_format', 'pdf')
+            )
+            ->addTask(
+                (new Task('export/url', 'export-my-file'))
+                    ->set('input', 'convert-my-file')
+            );
+
+        // Crear el trabajo en CloudConvert y obtener el resultado
+        $jobResult = $cloudconvert->jobs()->create($job);
+
+        // Subir el archivo a CloudConvert
+        $uploadTask = $jobResult->getTasks()->whereName('upload-my-file')[0];
+        $cloudconvert->tasks()->upload($uploadTask, fopen($fullPath, 'r'));
+
+        // Esperar a que el trabajo finalice y obtener el resultado
+        $job = $cloudconvert->jobs()->wait($jobResult);
+
+        // Obtener la tarea de exportación
+        $exportTask = $job->getTasks()->whereName('export-my-file')[0];
+
+        // Obtener la URL del archivo convertido
+        $exportedFileUrl = $exportTask->getResult()->files[0]->url;
+
+        // Descargar el archivo convertido en PDF usando el nombre original
+        return response()->streamDownload(function () use ($exportedFileUrl) {
+            echo file_get_contents($exportedFileUrl);
+        }, $fileNameWithoutExtension . '.pdf');  // Aquí se usa el nombre original con extensión .pdf
+    }
+
+
     public function index($id)
     {
         // Obtener datos para la vista
