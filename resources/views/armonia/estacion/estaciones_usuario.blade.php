@@ -45,7 +45,7 @@
                                 <th style="width: 25%;">Razón Social</th>
                                 <th style="width: 15%;">Estado</th>
                                 <th style="width: 20%;">Municipio</th>
-                                <th style="width: 20%;">Antiguedad</th>
+                                <th style="width: 20%;">Antigüedad</th>
                                 <th style="width: 30%;">Opciones</th>
                             </tr>
                         </thead>
@@ -57,10 +57,10 @@
                                 <td>{{ $estacion->estado_republica }}</td>
                                 <td>{{ optional($estacion->domicilioServicio)->municipio ?? 'No disponible' }}</td>
                                 <td>
-                                    
                                     @if($estacion->fecha_apertura)
                                         {{$estacion->fecha_apertura}}<br>
-                                       Antiguedad: {{ \Carbon\Carbon::parse($estacion->fecha_apertura)->diff(now())->y }} años
+                                        Antigüedad: {{ \Carbon\Carbon::parse($estacion->fecha_apertura)->diff(now())->y }} años 
+                                        y {{ \Carbon\Carbon::parse($estacion->fecha_apertura)->diff(now())->m }} meses
                                     @else
                                         Sin fecha de apertura
                                     @endif
