@@ -26,19 +26,20 @@
                             i. Medición por reflexión de ondas (ultrasónico, radar y radiación).
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_reflexion" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_medicion_reflexion" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_reflexion" value="no"> No
+                                    <input type="radio" name="elemento_primario_medicion_reflexion" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_reflexion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_medicion_reflexion" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_medicion_reflexion" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_medicion_reflexion" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -47,19 +48,20 @@
                             ii. Medición eléctrica (medidor capacitivo o inductivo).
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_electrica" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_medicion_electrica" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_electrica" value="no"> No
+                                    <input type="radio" name="elemento_primario_medicion_electrica" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_electrica" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_medicion_electrica" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_medicion_electrica" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_medicion_electrica" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -68,19 +70,20 @@
                             iii. Medición bajo principio de presión hidrostática (medidor manométrico, presión diferencial y membrana).
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_bajo_presion" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_medicion_bajo_presion" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_bajo_presion" value="no"> No
+                                    <input type="radio" name="elemento_primario_medicion_bajo_presion" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_bajo_presion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_medicion_bajo_presion" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_medicion_bajo_presion" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_medicion_bajo_presion" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -89,19 +92,20 @@
                             iv. Medición bajo principio magnetostrictivo, tratándose de estaciones de servicio, según corresponda..
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_bajo_principio_magnetostrictivo" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_medicion_bajo_principio_magnetostrictivo" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_bajo_principio_magnetostrictivo" value="no"> No
+                                    <input type="radio" name="elemento_primario_medicion_bajo_principio_magnetostrictivo" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_bajo_principio_magnetostrictivo" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_medicion_bajo_principio_magnetostrictivo" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_medicion_bajo_principio_magnetostrictivo" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_medicion_bajo_principio_magnetostrictivo" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -110,19 +114,20 @@
                             v. Medición por servomecanismo o flotador
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_servomecanismos_flotador" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_medicion_servomecanismos_flotador" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_servomecanismos_flotador" value="no"> No
+                                    <input type="radio" name="elemento_primario_medicion_servomecanismos_flotador" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_servomecanismos_flotador" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_medicion_servomecanismos_flotador" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_medicion_servomecanismos_flotador" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_medicion_servomecanismos_flotador" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -131,19 +136,20 @@
                             vi. Medición de tipo flotador con indicador magnético de operación manual o automática.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_tipo_flotador_con_indicador" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_medicion_tipo_flotador_con_indicador" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_tipo_flotador_con_indicador" value="no"> No
+                                    <input type="radio" name="elemento_primario_medicion_tipo_flotador_con_indicador" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_medicion_tipo_flotador_con_indicador" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_medicion_tipo_flotador_con_indicador" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_medicion_tipo_flotador_con_indicador" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_medicion_tipo_flotador_con_indicador" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -173,19 +179,20 @@
                             3. Disponer   de   mecanismos   de   mitigación   a   perturbaciones   de   radiación   y/o electromagnéticas.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_mecanismos_mitigacion" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_mecanismos_mitigacion" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_mecanismos_mitigacion" value="no"> No
+                                    <input type="radio" name="elemento_primario_mecanismos_mitigacion" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_mecanismos_mitigacion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_mecanismos_mitigacion" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_mecanismos_mitigacion" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_mecanismos_mitigacion" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -240,19 +247,20 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_elementos_secundarios_volumen" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_elementos_secundarios_volumen" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_elementos_secundarios_volumen" value="no"> No
+                                    <input type="radio" name="elemento_primario_elementos_secundarios_volumen" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_elementos_secundarios_volumen" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_elementos_secundarios_volumen" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_elementos_secundarios_volumen" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_elementos_secundarios_volumen" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -263,19 +271,20 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_elemento_terciario" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_elemento_terciario" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_elemento_terciario" value="no"> No
+                                    <input type="radio" name="elemento_primario_elemento_terciario" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_elemento_terciario" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_elemento_terciario" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_elemento_terciario" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_elemento_terciario" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -331,19 +340,20 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_ventana_graduada" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_ventana_graduada" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_ventana_graduada" value="no"> No
+                                    <input type="radio" name="elemento_primario_ventana_graduada" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_ventana_graduada" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_ventana_graduada" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_ventana_graduada" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_ventana_graduada" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -352,19 +362,20 @@
                             c) Otros dispositivos de medición con una escala graduada (con una mirilla o un tubo)
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_dispositivos_medicion_graduada" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_dispositivos_medicion_graduada" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_dispositivos_medicion_graduada" value="no"> No
+                                    <input type="radio" name="elemento_primario_dispositivos_medicion_graduada" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_dispositivos_medicion_graduada" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_dispositivos_medicion_graduada" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_dispositivos_medicion_graduada" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_dispositivos_medicion_graduada" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -374,19 +385,20 @@
                             d) Cinta de nivel o similares.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_cinta_nivel" value="si"> Sí
+                                    <input type="radio" name="elemento_primario_cinta_nivel" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_primario_cinta_nivel" value="no"> No
+                                    <input type="radio" name="elemento_primario_cinta_nivel" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_primario_cinta_nivel" value="no_aplica"> No Aplica
+                                    <input type="radio" name="elemento_primario_cinta_nivel" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_elemento_primario_cinta_nivel" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_elemento_primario_cinta_nivel" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
                                    

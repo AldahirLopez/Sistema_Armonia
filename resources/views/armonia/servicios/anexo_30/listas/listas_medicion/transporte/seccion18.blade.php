@@ -20,19 +20,20 @@
                             Se deben utilizar para medir el volumen del Hidrocarburo o Petrolífero de que se trate, que se transfiere a través de ductos de transporte o distribución, ductos de entrada/salida a medios de almacenamiento y ductos de carga/descarga a autotanques, carrotanques o buquetanques.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_especificos_medir_volumen_hidrocarburo" value="si"> Sí
+                                    <input type="radio" name="requerimientos_especificos_medir_volumen_hidrocarburo" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="requerimientos_especificos_medir_volumen_hidrocarburo" value="no"> No
+                                    <input type="radio" name="requerimientos_especificos_medir_volumen_hidrocarburo" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_especificos_medir_volumen_hidrocarburo" value="no_aplica"> No Aplica
+                                    <input type="radio" name="requerimientos_especificos_medir_volumen_hidrocarburo" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_requerimientos_especificos_medir_volumen_hidrocarburo" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_requerimientos_especificos_medir_volumen_hidrocarburo" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -40,26 +41,8 @@
                             <td class="align-middle">
                             Además de lo establecido en la fracción I anterior, los sistemas de medición
                             dinámica deben cumplir con los siguientes requerimientos:  
-
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="sistemas_medicion_dinamica_otros_requerimientos" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="sistemas_medicion_dinamica_otros_requerimientos" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="sistemas_medicion_dinamica_otros_requerimientos" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_sistemas_medicion_dinamica_otros_requerimientos" class="form-control">
                             </td>
                         </tr>
-
-                                  
                         <!-- Continúa con el resto de requisitos -->
                     </tbody>
                 </table>

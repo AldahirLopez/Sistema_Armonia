@@ -33,19 +33,20 @@
                             1. Lineamientos Técnicos en Materia de Medición de Hidrocarburos, emitidos por la CNH, publicados en el DOF el 29 de septiembre de 2015, modificados mediante acuerdos publicados el 11 de febrero y 2 de agosto de 2016, 11 de diciembre de 2017 y 23 de febrero de 2021.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="lineamientos_tecnicos_medicion_hidrocarburos" value="si"> Sí
+                                    <input type="radio" name="lineamientos_tecnicos_medicion_hidrocarburos" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="lineamientos_tecnicos_medicion_hidrocarburos" value="no"> No
+                                    <input type="radio" name="lineamientos_tecnicos_medicion_hidrocarburos" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="lineamientos_tecnicos_medicion_hidrocarburos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="lineamientos_tecnicos_medicion_hidrocarburos" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_lineamientos_tecnicos_medicion_hidrocarburos" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_lineamientos_tecnicos_medicion_hidrocarburos" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -54,19 +55,20 @@
                             2. Disposiciones Administrativas de Carácter General en materia de medición aplicables a la actividad de transporte por ducto de hidrocarburos, petrolíferos y petroquímicos, emitidas por la CRE y publicadas en el DOF el 17 de diciembre de 2015.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="disposiciones_administrativas_caracter_transporte" value="si"> Sí
+                                    <input type="radio" name="disposiciones_administrativas_caracter_transporte" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="disposiciones_administrativas_caracter_transporte" value="no"> No
+                                    <input type="radio" name="disposiciones_administrativas_caracter_transporte" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="disposiciones_administrativas_caracter_transporte" value="no_aplica"> No Aplica
+                                    <input type="radio" name="disposiciones_administrativas_caracter_transporte" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_disposiciones_administrativas_caracter_transporte" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones_disposiciones_administrativas_caracter_transporte" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
