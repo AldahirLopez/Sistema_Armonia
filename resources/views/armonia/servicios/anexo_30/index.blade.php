@@ -55,7 +55,7 @@
         <div class="card border-0 shadow-sm">
             <div class="card-body d-flex justify-content-between align-items-center">
                 <a href="{{ route('documentacion.generarPDF') }}" class="btn btn-primary">
-                    <i class="bx bxs-file-pdf"></i> Generar Lista de Requisitos
+                    <i class="bx bxs-file-pdf"></i> Generar Lista de Requisitos 
                 </a>
                 @if($estaciones->isNotEmpty())
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#generarServicioModal">

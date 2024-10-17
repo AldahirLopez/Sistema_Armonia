@@ -240,6 +240,44 @@
                 @endforeach
             </tbody>
         </table>
+
+        <h2 style="text-align: center; font-weight: bold; text-decoration: underline; font-size: 16px; margin-top: 30px;">
+            Requisitos Anexo 30 y 31 Sistema de Gestion de Medicion SGM</h2>
+        <table class="tabla-propuesta">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($allDocuments['sgm'] as $doc)
+                <tr>
+                    <td class="concepto">{{ $doc['descripcion'] }}</td>
+                    <td>{{ $doc['tipo'] }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <h2 style="text-align: center; font-weight: bold; text-decoration: underline; font-size: 16px; margin-top: 30px;">
+            Requisitos Anexo 30 y 31 Transporte</h2>
+        <table class="tabla-propuesta">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($allDocuments['transporte'] as $doc)
+                <tr>
+                    <td class="concepto">{{ $doc['descripcion'] }}</td>
+                    <td>{{ $doc['tipo'] }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </body>
 

@@ -154,10 +154,13 @@ class DocumentacionAnexo30Controller extends Controller
                 // Agrega más documentos según sea necesario
             ],
             'transporte' => [
-                ['descripcion' => 'Una tirilla de inventario de la consola de monitoreo de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
-                ['descripcion' => 'Impresión de la configuración de la consola de monitoreo de tanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
-                ['descripcion' => 'La factura de una compra con su soporte (Remisión, Carta porte, Tira de Inicio y Fin de Incremento)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
-                ['descripcion' => 'La factura de una venta', 'codigo' => '', 'tipo' => 'Documental', 'id' => 4],
+                ['descripcion' => 'Listados de sistemas de medición instalados (SISA-NICE) en tractotanques', 'codigo' => '', 'tipo' => 'Documental', 'id' => 1],
+                ['descripcion' => 'Evidencias de volúmenes recibidos como transferidos (En ES y TAR)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 2],
+                ['descripcion' => 'Facturas de Ingreso de combustible, con soporte del sistema volumétrico (1 mes )', 'codigo' => '', 'tipo' => 'Documental', 'id' => 3],
+                ['descripcion' => 'Comprobante de venta o salida del producto (1 mes )', 'codigo' => '', 'tipo' => 'Documental', 'id' => 4],
+                ['descripcion' => 'Reporte mensual de recepción de producto del sistema volumétrico', 'codigo' => '', 'tipo' => 'Documental', 'id' => 5],
+                ['descripcion' => 'Facturación mensual de recepción de producto', 'codigo' => '', 'tipo' => 'Documental', 'id' => 6],
+                ['descripcion' => 'Reporte mensual de ventas', 'codigo' => '', 'tipo' => 'Documental', 'id' => 7],
                 // Agrega más documentos según sea necesario
             ],
             'sgm' => [
@@ -168,7 +171,7 @@ class DocumentacionAnexo30Controller extends Controller
                 ['descripcion' => 'Certificados de calibración vigentes de equipos de medición manual para la correcta verificación de los equipos automáticos (Cinta petrolera con plomada, Termómetro electrónico portátil, Jarra patrón)', 'codigo' => '', 'tipo' => 'Documental', 'id' => 16],
                 // Agrega más documentos según sea necesario
             ],
-        ];
+        ]; 
         return $documents[$categoria] ?? [];
     }
 
@@ -269,7 +272,7 @@ class DocumentacionAnexo30Controller extends Controller
     {
         try {
             // Obtener todas las categorías y sus documentos
-            $categorias = ['generales', 'informatica', 'medicion'];
+            $categorias = ['generales', 'informatica', 'medicion', 'inspeccion', 'transporte', 'sgm'];
             $allDocuments = [];
 
             // Obtener los documentos de cada categoría
