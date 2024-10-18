@@ -23,19 +23,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_admin" value="si"> Sí
+                                    <input type="radio" name="opcion4" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_admin" value="no"> No
+                                    <input type="radio" name="opcion4" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_admin" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion4" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_admin" class="form-control">
+                                <input type="text" name="observaciones4" class="form-control">
                             </td>
                         </tr>
 
@@ -45,19 +45,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="si"> Sí
+                                    <input type="radio" name="opcion5" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no"> No
+                                    <input type="radio" name="opcion5" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion5" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_supervisor" class="form-control">
+                                <input type="text" name="observaciones5" class="form-control">
                             </td>
                         </tr>
 
@@ -68,19 +68,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_operador" value="si"> Sí
+                                    <input type="radio" name="opcion6" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_operador" value="no"> No
+                                    <input type="radio" name="opcion6" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_operador" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion6" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_operador" class="form-control">
+                                <input type="text" name="observaciones6" class="form-control">
                             </td>
                         </tr>
 
@@ -90,19 +90,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_auditor" value="si"> Sí
+                                    <input type="radio" name="opcion7" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_auditor" value="no"> No
+                                    <input type="radio" name="opcion7" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_auditor" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion7" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_auditor" class="form-control">
+                                <input type="text" name="observaciones7" class="form-control">
                             </td>
                         </tr>
 
@@ -112,19 +112,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="admin_ingreso_users" value="si"> Sí
+                                    <input type="radio" name="opcion8" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="admin_ingreso_users" value="no"> No
+                                    <input type="radio" name="opcion8" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="admin_ingreso_users" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion8" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_admin_ingreso_users" class="form-control">
+                                <input type="text" name="observaciones8" class="form-control">
                             </td>
                         </tr>
                         <!---- hasta aca compuesto --->
@@ -134,19 +134,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="admin_registro_user" value="si"> Sí
+                                    <input type="radio" name="opcion9" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="admin_registro_user" value="no"> No
+                                    <input type="radio" name="opcion9" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="admin_registro_user" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion9" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_admin_registro_user" class="form-control">
+                                <input type="text" name="observaciones9" class="form-control">
                             </td>
                         </tr>
                         <tr>
@@ -155,19 +155,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_nueva_password" value="si"> Sí
+                                    <input type="radio" name="opcion10" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="informatico_nueva_password" value="no"> No
+                                    <input type="radio" name="opcion10" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informatico_nueva_password" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion10" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_informatico_nueva_password" class="form-control">
+                                <input type="text" name="observaciones10" class="form-control">
                             </td>
                         </tr>
 
@@ -177,19 +177,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="pantalla_usuario_correcta" value="si"> Sí
+                                    <input type="radio" name="opcion11" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="pantalla_usuario_correcta" value="no"> No
+                                    <input type="radio" name="opcion11" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="pantalla_usuario_correcta" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion11" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_pantalla_usuario_correcta" class="form-control">
+                                <input type="text" name="observaciones11" class="form-control">
                             </td>
                         </tr>
 
@@ -200,19 +200,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="permisos_perfil" value="si"> Sí
+                                    <input type="radio" name="opcion12" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="permisos_perfil" value="no"> No
+                                    <input type="radio" name="opcion12" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="permisos_perfil" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion12" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_permisos_perfil" class="form-control">
+                                <input type="text" name="observaciones12" class="form-control">
                             </td>
                         </tr>
 
@@ -223,19 +223,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="acciones_users_automatico" value="si"> Sí
+                                    <input type="radio" name="opcion13" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="acciones_users_automatico" value="no"> No
+                                    <input type="radio" name="opcion13" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="acciones_users_automatico" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion13" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_acciones_users_automatico" class="form-control">
+                                <input type="text" name="observaciones13" class="form-control">
                             </td>
                         </tr>
 
@@ -245,19 +245,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="enlaces_comunicacion_trasnferencia" value="si"> Sí
+                                    <input type="radio" name="opcion14" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="enlaces_comunicacion_trasnferencia" value="no"> No
+                                    <input type="radio" name="opcion14" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="enlaces_comunicacion_trasnferencia" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion14" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_enlaces_comunicacion_trasnferencia" class="form-control">
+                                <input type="text" name="observaciones14" class="form-control">
                             </td>
                         </tr>
 

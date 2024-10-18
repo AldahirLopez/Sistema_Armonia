@@ -28,19 +28,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_ductos" value="si"> Sí
+                                    <input type="radio" name="opcion49" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_identificacion_ductos" value="no"> No
+                                    <input type="radio" name="opcion49" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_ductos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion49" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_identificacion_ductos" class="form-control">
+                                <input type="text" name="observaciones49" class="form-control">
                             </td>
                         </tr>
 
@@ -51,19 +51,19 @@
                                 Ducto de descarga del autotanque de clave TQS-ATQ-1234 de distribución de gas licuado de petróleo.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="localización_ductos" value="si"> Sí
+                                    <input type="radio" name="opcion50" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="localización_ductos" value="no"> No
+                                    <input type="radio" name="opcion50" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="localización_ductos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion50" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_localización_ductos" class="form-control">
+                                <input type="text" name="observaciones50" class="form-control">
                             </td>
                         </tr>
 
@@ -73,19 +73,19 @@
                                 3. Diámetro del ducto en pulgadas.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="diametro_ducto" value="si"> Sí
+                                    <input type="radio" name="opcion51" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="diametro_ducto" value="no"> No
+                                    <input type="radio" name="opcion51" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="diametro_ducto" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion51" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_diametro_ducto" class="form-control">
+                                <input type="text" name="observaciones51" class="form-control">
                             </td>
                         </tr>
 
@@ -94,19 +94,19 @@
                                 4. Sistemas de medición. Se deben registrar los sistemas de medición instalados en cada ducto asignándoles una clave y registrando su descripción o localización, vigencia de calibración e incertidumbre de medición.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_ducto" value="si"> Sí
+                                    <input type="radio" name="opcion52" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sistema_medicion_ducto" value="no"> No
+                                    <input type="radio" name="opcion52" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_ducto" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion52" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sistema_medicion_ducto" class="form-control">
+                                <input type="text" name="observaciones52" class="form-control">
                             </td>
                         </tr>
 
@@ -115,19 +115,19 @@
                                 5. Capacidad gas talón.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="capacidad_gas_talon" value="si"> Sí
+                                    <input type="radio" name="opcion53" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="capacidad_gas_talon" value="no"> No
+                                    <input type="radio" name="opcion53" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="capacidad_gas_talon" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion53" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_capacidad_gas_talon" class="form-control">
+                                <input type="text" name="observaciones53" class="form-control">
                             </td>
                         </tr>
 
@@ -136,19 +136,19 @@
                                 6. Recepciones y entregas
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="repecion_entregas_ducto" value="si"> Sí
+                                    <input type="radio" name="opcion54" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="repecion_entregas_ducto" value="no"> No
+                                    <input type="radio" name="opcion54" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="repecion_entregas_ducto" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion54" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_repecion_entregas_ducto" class="form-control">
+                                <input type="text" name="observaciones54" class="form-control">
                             </td>
                         </tr>
 
