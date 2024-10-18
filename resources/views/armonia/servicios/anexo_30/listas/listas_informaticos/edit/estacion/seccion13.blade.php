@@ -22,19 +22,19 @@
                             a) Reglas para la creación de contraseñas (longitud mínima de 8 caracteres que incluyan mayúsculas, minúsculas, números, caracteres especiales y no reutilizar contraseñas). 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="reglas_password" value="si"> Sí
+                                    <input type="radio" name="opcion123" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="reglas_password" value="no"> No
+                                    <input type="radio" name="opcion123" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="reglas_password" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion123" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_reglas_password" class="form-control">
+                                <input type="text" name="observaciones123" class="form-control">
                             </td>
                         </tr>
 
@@ -45,19 +45,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="password_encriptadas" value="si"> Sí
+                                    <input type="radio" name="opcion124" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="password_encriptadas" value="no"> No
+                                    <input type="radio" name="opcion124" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="password_encriptadas" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion124" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_password_encriptadas" class="form-control">
+                                <input type="text" name="observaciones124" class="form-control">
                             </td>
                         </tr>
 
@@ -68,19 +68,19 @@
  
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="password_responsivas" value="si"> Sí
+                                    <input type="radio" name="opcion125" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="password_responsivas" value="no"> No
+                                    <input type="radio" name="opcion125" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="password_responsivas" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion125" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_password_responsivas" class="form-control">
+                                <input type="text" name="observaciones125" class="form-control">
                             </td>
                         </tr>
 
@@ -90,19 +90,19 @@
                             d) Actualización periódica de contraseñas
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="actualizacion_periodica_password" value="si"> Sí
+                                    <input type="radio" name="opcion126" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="actualizacion_periodica_password" value="no"> No
+                                    <input type="radio" name="opcion126" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="actualizacion_periodica_password" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion126" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_actualizacion_periodica_password" class="form-control">
+                                <input type="text" name="observaciones126" class="form-control">
                             </td>
                         </tr>
 
@@ -112,19 +112,19 @@
                             VI. El programa informático debe contar con sesiones que expiren después de 10 minutos como máximo de inactividad
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad" value="si"> Sí
+                                    <input type="radio" name="opcion127" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad" value="no"> No
+                                    <input type="radio" name="opcion127" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion127" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sesiones_expiradas_inactividad" class="form-control">
+                                <input type="text" name="observaciones127" class="form-control">
                             </td>
                         </tr>
                     

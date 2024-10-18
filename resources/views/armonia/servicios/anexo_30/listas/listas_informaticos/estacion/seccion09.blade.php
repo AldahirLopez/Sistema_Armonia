@@ -24,19 +24,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_pozos" value="si"> Sí
+                                    <input type="radio" name="opcion55" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_identificacion_pozos" value="no"> No
+                                    <input type="radio" name="opcion55" value="no"disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_pozos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion55" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_identificacion_pozos" class="form-control">
+                                <input type="text" name="observaciones55" class="form-control">
                             </td>
                         </tr>
 
@@ -49,20 +49,21 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="descripcion_pozos" value="si"> Sí
+                                    <input type="radio" name="opcion56" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="descripcion_pozos" value="no"> No
+                                    <input type="radio" name="opcion56" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="descripcion_pozos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion56" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_descripcion_pozos" class="form-control">
+                                <input type="text" name="observaciones56" class="form-control">
                             </td>
+
                         </tr>
 
 
@@ -72,19 +73,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_pozos" value="si"> Sí
+                                    <input type="radio" name="opcion57" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sistema_medicion_pozos" value="no"> No
+                                    <input type="radio" name="opcion57" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_pozos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion57" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sistema_medicion_pozos" class="form-control">
+                                <input type="text" name="observaciones57" class="form-control">
                             </td>
                         </tr>
 
@@ -92,21 +93,22 @@
                         <tr>
                             <td class="align-middle">
                                 4. Recepciones y entregas
+
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="repecion_entregas_pozos" value="si"> Sí
+                                    <input type="radio" name="opcion58" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="repecion_entregas_pozos" value="no"> No
+                                    <input type="radio" name="opcion58" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="repecion_entregas_pozos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion58" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_repecion_entregas_pozos" class="form-control">
+                                <input type="text" name="observaciones58" class="form-control">
                             </td>
                         </tr>
 

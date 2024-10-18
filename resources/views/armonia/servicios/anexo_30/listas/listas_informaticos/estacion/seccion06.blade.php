@@ -77,19 +77,19 @@
                                 a) Clave en el RFC.</td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc" value="si"> Sí
+                                    <input type="radio" name="opcion35" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_rfc" value="no"> No
+                                    <input type="radio" name="opcion35" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion35" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_rfc" class="form-control">
+                                <input type="text" name="observaciones35" class="form-control">
                             </td>
                         </tr>
 
@@ -98,19 +98,19 @@
                             b) Clave en el RFC del representante legal.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_representante" value="si"> Sí
+                                    <input type="radio" name="opcion36" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_rfc_representante" value="no"> No
+                                    <input type="radio" name="opcion36" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_representante" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion36" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_rfc_representante" class="form-control">
+                                <input type="text" name="observaciones36" class="form-control">
                             </td>
                         </tr>
 
@@ -119,19 +119,19 @@
                             c) Clave en el RFC del o de los proveedores de equipos y programas para llevar controles volumétricos.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_proveedores" value="si"> Sí
+                                    <input type="radio" name="opcion37" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_rfc_proveedores" value="no"> No
+                                    <input type="radio" name="opcion37" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_proveedores" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion37" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_rfc_proveedores" class="form-control">
+                                <input type="text" name="observaciones37" class="form-control">
                             </td>
                         </tr>
 
@@ -140,19 +140,19 @@
                                 d) Carácter con el que actúa para efectos regulatorios: contratista, asignatario, permisionario o usuario.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="efectos_regulatorios" value="si"> Sí
+                                    <input type="radio" name="opcion38" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="efectos_regulatorios" value="no"> No
+                                    <input type="radio" name="opcion38" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="efectos_regulatorios" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion38" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_efectos_regulatorios" class="form-control">
+                                <input type="text" name="observaciones38" class="form-control">
                             </td>
                         </tr>
 
@@ -161,19 +161,19 @@
                             e) Número de Asignación o Permiso expedido por la Secretaría de Energía o de Contrato expedido por la CNH o de Permiso expedido por la CRE.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="permiso_expedido_secretaria" value="si"> Sí
+                                    <input type="radio" name="opcion39" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="permiso_expedido_secretaria" value="no"> No
+                                    <input type="radio" name="opcion39" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="permiso_expedido_secretaria" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion39" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_permiso_expedido_secretaria" class="form-control">
+                                <input type="text" name="observaciones39" class="form-control">
                             </td>
                         </tr>
 
@@ -195,19 +195,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_medicion" value="si"> Sí
+                                    <input type="radio" name="opcion40" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_identificacion_medicion" value="no"> No
+                                    <input type="radio" name="opcion40" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_medicion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion40" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_identificacion_medicion" class="form-control">
+                                <input type="text" name="observaciones40" class="form-control">
                             </td>
                         </tr>
 
@@ -222,19 +222,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="descripcion_medicion" value="si"> Sí
+                                    <input type="radio" name="opcion41" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="descripcion_medicion" value="no"> No
+                                    <input type="radio" name="opcion41" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="descripcion_medicion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion41" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_descripcion_medicion" class="form-control">
+                                <input type="text" name="observaciones41" class="form-control">
                             </td>
                         </tr>
 
@@ -251,46 +251,32 @@
                             PR14 Propano.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_hidrocarburo" value="si"> Sí
+                                    <input type="radio" name="opcion42" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_identificacion_hidrocarburo" value="no"> No
+                                    <input type="radio" name="opcion42" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_hidrocarburo" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion42" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_identificacion_hidrocarburo" class="form-control">
+                                <input type="text" name="observaciones42" class="form-control">
                             </td>
                         </tr>
 
+                      
                         <tr>
-                            <td class="align-middle">
+                            <th class="table" scope="row" colspan="100%">
                             III. Equipos:
                             Todos los tanques, ductos, pozos, dispensarios y sistemas de medición  
                             utilizados para llevar el control volumétrico deben tener una clave de 
                             identificación asignada por el contribuyente al momento de darse de 
                             alta.  
-                            La información que se debe recopilar es la siguiente
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="equipos" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="equipos" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="equipos" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_equipos" class="form-control">
-                            </td>
+                            La información que se debe recopilar es la siguiente                      
+                            </th>
                         </tr>
                         <!-- Continúa con el resto de requisitos -->
                     </tbody>

@@ -23,19 +23,19 @@
                                 servicio.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_dispensarios" value="si"> Sí
+                                    <input type="radio" name="opcion59" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_identificacion_dispensarios" value="no"> No
+                                    <input type="radio" name="opcion59" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_dispensarios" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion59" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_identificacion_dispensarios" class="form-control">
+                                <input type="text" name="observaciones59" class="form-control">
                             </td>
                         </tr>
 
@@ -45,23 +45,21 @@
                                 instalados en cada dispensario asignándoles una clave y registrando su
                                 descripción o localización, vigencia de calibración e incertidumbre de
                                 medición.
-
-
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_dispensario" value="si"> Sí
+                                    <input type="radio" name="opcion60" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sistema_medicion_dispensario" value="no"> No
+                                    <input type="radio" name="opcion60" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_dispensario" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion60" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sistema_medicion_dispensario" class="form-control">
+                                <input type="text" name="observaciones60" class="form-control">
                             </td>
                         </tr>
 
@@ -74,19 +72,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="mangueras" value="si"> Sí
+                                    <input type="radio" name="opcion61" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="mangueras" value="no"> No
+                                    <input type="radio" name="opcion61" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="mangueras" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion61" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_mangueras" class="form-control">
+                                <input type="text" name="observaciones61" class="form-control">
                             </td>
                         </tr>
 
@@ -94,21 +92,8 @@
                         <tr>
                             <td class="align-middle">
                                 4. Entregas.
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="entregas_dispensario" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="entregas_dispensario" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="entregas_dispensario" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_entregas_dispensario" class="form-control">
+                            <td class="text-center align-middle" colspan="3">
+                                <strong>No Aplica</strong>
                             </td>
                         </tr>
 

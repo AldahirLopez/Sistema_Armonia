@@ -23,19 +23,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registro_control_diariamente" value="si"> Sí
+                                    <input type="radio" name="opcion78" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="registro_control_diariamente" value="no"> No
+                                    <input type="radio" name="opcion78" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registro_control_diariamente" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion78" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_registro_control_diariamente" class="form-control">
+                                <input type="text" name="observaciones78" class="form-control">
                             </td>
                         </tr>
 
@@ -47,19 +47,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="calculo_existencias_dias" value="si"> Sí
+                                    <input type="radio" name="opcion79" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="calculo_existencias_dias" value="no"> No
+                                    <input type="radio" name="opcion79" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="calculo_existencias_dias" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion79" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_calculo_existencias_dias" class="form-control">
+                                <input type="text" name="observaciones79" class="form-control">
                             </td>
                         </tr>
 
@@ -70,19 +70,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="calculo_existencias_valor_entregue" value="si"> Sí
+                                    <input type="radio" name="opcion80" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="calculo_existencias_valor_entregue" value="no"> No
+                                    <input type="radio" name="opcion80" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="calculo_existencias_valor_entregue" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion80" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_calculo_existencias_valor_entregue" class="form-control">
+                                <input type="text" name="observaciones80" class="form-control">
                             </td>
                         </tr>
 
@@ -100,19 +100,19 @@
                                 Cuando se haya realizado la medición en una unidad de medida distinta, deberá realizarse la conversión, describiendo el factor de conversión utilizado, la operación aritmética y el resultado.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informacion_por_registro" value="si"> Sí
+                                    <input type="radio" name="opcion81" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="informacion_por_registro" value="no"> No
+                                    <input type="radio" name="opcion81" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informacion_por_registro" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion81" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_informacion_por_registro" class="form-control">
+                                <input type="text" name="observaciones81" class="form-control">
                             </td>
                         </tr>
 
@@ -123,19 +123,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="volumen_existencias_calculado" value="si"> Sí
+                                    <input type="radio" name="opcion82" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="volumen_existencias_calculado" value="no"> No
+                                    <input type="radio" name="opcion82" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="volumen_existencias_calculado" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion82" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_volumen_existencias_calculado" class="form-control">
+                                <input type="text" name="observaciones82" class="form-control">
                             </td>
                         </tr>
 
@@ -145,19 +145,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registro_informacion_totalizador" value="si"> Sí
+                                    <input type="radio" name="opcion83" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="registro_informacion_totalizador" value="no"> No
+                                    <input type="radio" name="opcion83" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registro_informacion_totalizador" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion83" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_registro_informacion_totalizador" class="form-control">
+                                <input type="text" name="observaciones83" class="form-control">
                             </td>
                         </tr>
 
@@ -174,19 +174,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="nombre_rfc_proveedor_hidrocarburo" value="si"> Sí
+                                    <input type="radio" name="opcion84" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="nombre_rfc_proveedor_hidrocarburo" value="no"> No
+                                    <input type="radio" name="opcion84" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="nombre_rfc_proveedor_hidrocarburo" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion84" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_nombre_rfc_proveedor_hidrocarburo" class="form-control">
+                                <input type="text" name="observaciones84" class="form-control">
                             </td>
                         </tr>
 
@@ -196,8 +196,21 @@
                                 a) Del petróleo:<br>
                                 1. Densidad del aceite, expresada en grados API a una posición decimal.<br>
                                 2. Contenido de azufre, expresado en porcentaje a una posición decimal.
-                            <td class="text-center align-middle" colspan="3">
-                                <strong>No Aplica</strong>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion85" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion85" value="no" disabled> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion85" value="no_aplica" checked> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones85" class="form-control">
                             </td>
                         </tr>
 
@@ -208,8 +221,21 @@
                                 1. Fracción molar de los siguientes componentes en la mezcla: metano, etano, propano, butanos (n-butano, isobutano), pentanos, hexanos, heptanos, octanos, nonanos y decanos.<br>
                                 2. Poder calorífico de dichos componentes expresado en BTU/pie cúbico para el gas natural y en MMBTU, tratándose de condensados.
 
-                            <td class="text-center align-middle" colspan="3">
-                                <strong>No Aplica</strong>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion86" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion86" value="no" disabled> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion86" value="no_aplica" checked> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones86" class="form-control">
                             </td>
                         </tr>
 
@@ -219,8 +245,22 @@
                                 III. Para Petróleo, en estaciones de proceso:<br>
                                 a)Densidad del aceite, expresada en grados API a una posición decimal.<br>
                                 b)Contenido de azufre, expresado en porcentaje a una posición decimal.
-                            <td class="text-center align-middle" colspan="3">
-                                <strong>No Aplica</strong>
+                            
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion87" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion87" value="no" disabled> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion87" value="no_aplica" checked> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones87" class="form-control">
                             </td>
                         </tr>
 
@@ -231,8 +271,21 @@
                                 a) Poder calorífico promedio expresado en mega joule/metro cúbico
                                 para el gas natural y MMBTU, tratándose de condensados.
 
-                            <td class="text-center align-middle" colspan="3">
-                                <strong>No Aplica</strong>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion88" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion88" value="no" disabled> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion88" value="no_aplica" checked> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones88" class="form-control">
                             </td>
                         </tr>
 
@@ -243,19 +296,19 @@
                                 b)Porcentaje del combustible no fósil en la mezcla.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_medicion_gasolinas" value="si"> Sí
+                                    <input type="radio" name="opcion89" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="punto_medicion_gasolinas" value="no"> No
+                                    <input type="radio" name="opcion89" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_medicion_gasolinas" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion89" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_punto_medicion_gasolinas" class="form-control">
+                                <input type="text" name="observaciones89" class="form-control">
                             </td>
                         </tr>
 
@@ -265,19 +318,19 @@
                                 a) Porcentaje del combustible no fósil en la mezcla.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_medicion_diesel" value="si"> Sí
+                                    <input type="radio" name="opcion90" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="punto_medicion_diesel" value="no"> No
+                                    <input type="radio" name="opcion90" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_medicion_diesel" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion90" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_punto_medicion_diesel" class="form-control">
+                                <input type="text" name="observaciones90" class="form-control">
                             </td>
                         </tr>
 
@@ -286,8 +339,22 @@
                             <td class="align-middle">
                                 VII. Para turbosina:<br>
                                 a) Porcentaje del combustible no fósil en la mezcla.
-                            <td class="text-center align-middle" colspan="3">
-                                <strong>No Aplica</strong>
+
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion91" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion91" value="no" disabled> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion91" value="no_aplica" checked> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones91" class="form-control">
                             </td>
                         </tr>
 
@@ -308,8 +375,21 @@
                                 combustible, que no se obtienen o derivan de un proceso de destilación
                                 del petróleo crudo o del procesamiento de gas natural.
 
-                            <td class="text-center align-middle" colspan="3">
-                                <strong>No Aplica</strong>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion92" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion92" value="no" disabled> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion92" value="no_aplica" checked> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones92" class="form-control">
                             </td>
                         </tr>
 
@@ -326,19 +406,19 @@
                                 I. Clave en el RFC del emisor o receptor (adquisición o enajenación) y, en su caso, del prestador o prestatario del servicio, según corresponda.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_emisor_receptor_emisor_prestador_prestatario" value="si"> Sí
+                                    <input type="radio" name="opcion93" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_rfc_emisor_receptor_emisor_prestador_prestatario" value="no"> No
+                                    <input type="radio" name="opcion93" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_emisor_receptor_emisor_prestador_prestatario" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion93" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_rfc_emisor_receptor_emisor_prestador_prestatario" class="form-control">
+                                <input type="text" name="observaciones93" class="form-control">
                             </td>
                         </tr>
 
@@ -347,19 +427,19 @@
                                 II. Folio fiscal del CFDI.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="folio_fiscal_CFDI" value="si"> Sí
+                                    <input type="radio" name="opcion94" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="folio_fiscal_CFDI" value="no"> No
+                                    <input type="radio" name="opcion94" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="folio_fiscal_CFDI" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion94" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_folio_fiscal_CFDI" class="form-control">
+                                <input type="text" name="observaciones94" class="form-control">
                             </td>
                         </tr>
 
@@ -368,19 +448,19 @@
                                 III. Tratándose de los CFDI de adquisición o enajenación, el volumen, el precio por unidad de medida del bien y el importe total de la transacción.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="volumen_precio_importe_CFDI" value="si"> Sí
+                                    <input type="radio" name="opcion95" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="volumen_precio_importe_CFDI" value="no"> No
+                                    <input type="radio" name="opcion95" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="volumen_precio_importe_CFDI" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion95" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_volumen_precio_importe_CFDI" class="form-control">
+                                <input type="text" name="observaciones95" class="form-control">
                             </td>
                         </tr>
 
@@ -389,19 +469,19 @@
                                 IV. Tratándose de los CFDI de los servicios, el tipo y descripción del servicio prestado, así como el importe total del servicio.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="tipo_descripcion_importe_CFDI" value="si"> Sí
+                                    <input type="radio" name="opcion96" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="tipo_descripcion_importe_CFDI" value="no"> No
+                                    <input type="radio" name="opcion96" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="tipo_descripcion_importe_CFDI" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion96" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_tipo_descripcion_importe_CFDI" class="form-control">
+                                <input type="text" name="observaciones96" class="form-control">
                             </td>
                         </tr>
 
@@ -419,19 +499,19 @@
                                 I. Punto de exportación.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_exportacion_comerciales_internacionales" value="si"> Sí
+                                    <input type="radio" name="opcion97" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="punto_exportacion_comerciales_internacionales" value="no"> No
+                                    <input type="radio" name="opcion97" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_exportacion_comerciales_internacionales" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion97" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_punto_exportacion_comerciales_internacionales" class="form-control">
+                                <input type="text" name="observaciones97" class="form-control">
                             </td>
                         </tr>
 
@@ -440,19 +520,19 @@
                                 II. Punto de internación.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_internacion_comerciales_internacionales" value="si"> Sí
+                                    <input type="radio" name="opcion98" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="punto_internacion_comerciales_internacionales" value="no"> No
+                                    <input type="radio" name="opcion98" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_internacion_comerciales_internacionales" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion98" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_punto_internacion_comerciales_internacionales" class="form-control">
+                                <input type="text" name="observaciones98" class="form-control">
                             </td>
                         </tr>
 
@@ -461,19 +541,19 @@
                                 III. País destino.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="pais_destino_comerciales_internacionales" value="si"> Sí
+                                    <input type="radio" name="opcion99" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="pais_destino_comerciales_internacionales" value="no"> No
+                                    <input type="radio" name="opcion99" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="pais_destino_comerciales_internacionales" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion99" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_pais_destino_comerciales_internacionales" class="form-control">
+                                <input type="text" name="observaciones99" class="form-control">
                             </td>
                         </tr>
 
@@ -482,19 +562,19 @@
                                 IV. País origen.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="pais_origen_comerciales_internacionales" value="si"> Sí
+                                    <input type="radio" name="opcion100" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="pais_origen_comerciales_internacionales" value="no"> No
+                                    <input type="radio" name="opcion100" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="pais_origen_comerciales_internacionales" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion100" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_pais_origen_comerciales_internacionales" class="form-control">
+                                <input type="text" name="observaciones100" class="form-control">
                             </td>
                         </tr>
 
@@ -503,19 +583,19 @@
                                 V. Medio de transporte por el cual entra a la aduana.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="trasnporte_entra_aduana_comerciales_internacionales" value="si"> Sí
+                                    <input type="radio" name="opcion101" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="trasnporte_entra_aduana_comerciales_internacionales" value="no"> No
+                                    <input type="radio" name="opcion101" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="trasnporte_entra_aduana_comerciales_internacionales" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion101" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_trasnporte_entra_aduana_comerciales_internacionales" class="form-control">
+                                <input type="text" name="observaciones101" class="form-control">
                             </td>
                         </tr>
 
@@ -524,19 +604,19 @@
                                 VI. Medio de transporte por el cual sale a la aduana.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="trasnporte_sale_aduana_comerciales_internacionales" value="si"> Sí
+                                    <input type="radio" name="opcion102" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="trasnporte_sale_aduana_comerciales_internacionales" value="no"> No
+                                    <input type="radio" name="opcion102" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="trasnporte_sale_aduana_comerciales_internacionales" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion102" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_trasnporte_sale_aduana_comerciales_internacionales" class="form-control">
+                                <input type="text" name="observaciones102" class="form-control">
                             </td>
                         </tr>
 
@@ -545,19 +625,19 @@
                                 VII. Incoterms.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="Incoterms_comerciales_internacionales" value="si"> Sí
+                                    <input type="radio" name="opcion103" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="Incoterms_comerciales_internacionales" value="no"> No
+                                    <input type="radio" name="opcion103" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="Incoterms_comerciales_internacionales" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion103" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_Incoterms_comerciales_internacionales" class="form-control">
+                                <input type="text" name="observaciones103" class="form-control">
                             </td>
                         </tr>
 
@@ -580,19 +660,19 @@
                                 I. Toda la información almacenada debe contar con mecanismos de prevención contra la eliminación de la información o su borrado sin las autorizaciones correspondientes. Cualquier modificación realizada a la información almacenada debe quedar registrada mediante bitácoras.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informacion_mecanismos_almacen" value="si"> Sí
+                                    <input type="radio" name="opcion104" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="informacion_mecanismos_almacen" value="no"> No
+                                    <input type="radio" name="opcion104" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informacion_mecanismos_almacen" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion104" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_informacion_mecanismos_almacen" class="form-control">
+                                <input type="text" name="observaciones104" class="form-control">
                             </td>
                         </tr>
 
@@ -601,19 +681,19 @@
                                 II. Toda la información que se almacene debe estar interrelacionada e integrada en una base de datos, la cual debe cumplir las siguientes especificaciones:
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informacion_interrelacionada_almacen" value="si"> Sí
+                                    <input type="radio" name="opcion105" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="informacion_interrelacionada_almacen" value="no"> No
+                                    <input type="radio" name="opcion105" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="informacion_interrelacionada_almacen" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion105" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_informacion_interrelacionada_almacen" class="form-control">
+                                <input type="text" name="observaciones105" class="form-control">
                             </td>
                         </tr>
 
@@ -622,19 +702,19 @@
                                 a) Ser del tipo relacional
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="tipo_relacional_almacen" value="si"> Sí
+                                    <input type="radio" name="opcion106" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="tipo_relacional_almacen" value="no"> No
+                                    <input type="radio" name="opcion106" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="tipo_relacional_almacen" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion106" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_tipo_relacional_almacen" class="form-control">
+                                <input type="text" name="observaciones106" class="form-control">
                             </td>
                         </tr>
 
@@ -643,19 +723,19 @@
                                 b) Contar con una herramienta para gestión de la base de datos.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="herramienta_gestion_almacen" value="si"> Sí
+                                    <input type="radio" name="opcion107" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="herramienta_gestion_almacen" value="no"> No
+                                    <input type="radio" name="opcion107" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="herramienta_gestion_almacen" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion107" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_herramienta_gestion_almacen" class="form-control">
+                                <input type="text" name="observaciones107" class="form-control">
                             </td>
                         </tr>
 
@@ -664,19 +744,19 @@
                                 c) Soportar intercambio de datos bajo estándar JSON y/o XML
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="intercambio_datos_json_xml_almacen" value="si"> Sí
+                                    <input type="radio" name="opcion108" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="intercambio_datos_json_xml_almacen" value="no"> No
+                                    <input type="radio" name="opcion108" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="intercambio_datos_json_xml_almacen" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion108" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_intercambio_datos_json_xml_almacen" class="form-control">
+                                <input type="text" name="observaciones108" class="form-control">
                             </td>
                         </tr>
 
@@ -694,19 +774,19 @@
                                 I. La integración de la información en la base de datos a que se refiere el apartado 30.6.1.3.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="integracion_informacion_reportes" value="si"> Sí
+                                    <input type="radio" name="opcion109" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="integracion_informacion_reportes" value="no"> No
+                                    <input type="radio" name="opcion109" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="integracion_informacion_reportes" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion109" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_integracion_informacion_reportes" class="form-control">
+                                <input type="text" name="observaciones109" class="form-control">
                             </td>
                         </tr>
 
@@ -715,19 +795,19 @@
                                 II. La generación de los reportes de información diarios y mensuales conforme a las especificaciones y características técnicas para su generación publicadas en el Portal del SAT.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="reportes_diarios_mensuales" value="si"> Sí
+                                    <input type="radio" name="opcion110" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="reportes_diarios_mensuales" value="no"> No
+                                    <input type="radio" name="opcion110" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="reportes_diarios_mensuales" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion110" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_reportes_diarios_mensuales" class="form-control">
+                                <input type="text" name="observaciones110" class="form-control">
                             </td>
                         </tr>
 
@@ -736,19 +816,19 @@
                                 III. El sellado de los reportes con el Certificado de Sello Digital del contribuyente emitido por el SAT.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sellado_reportes" value="si"> Sí
+                                    <input type="radio" name="opcion111" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sellado_reportes" value="no"> No
+                                    <input type="radio" name="opcion111" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sellado_reportes" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion111" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sellado_reportes" class="form-control">
+                                <input type="text" name="observaciones111" class="form-control">
                             </td>
                         </tr>
 
@@ -759,19 +839,40 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="reportes_mensuales_sat" value="si"> Sí
+                                    <input type="radio" name="opcion112" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="reportes_mensuales_sat" value="no"> No
+                                    <input type="radio" name="opcion112" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="reportes_mensuales_sat" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion112" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_reportes_mensuales_sat" class="form-control">
+                                <input type="text" name="observaciones112" class="form-control">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="align-middle">
+                                Adicionalmente, el programa informático debe cumplir con los requerimientos de funcionalidad informática que se darán a conocer en el Portal del SAT.
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion113" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion113" value="no"> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion113" value="no_aplica"> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones113" class="form-control">
                             </td>
                         </tr>
 
@@ -801,19 +902,19 @@
                                 a) Arquitectura.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_arquitectura" value="si"> Sí
+                                    <input type="radio" name="opcion114" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_arquitectura" value="no"> No
+                                    <input type="radio" name="opcion114" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_arquitectura" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion114" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_requerimientos_seguridad_arquitectura" class="form-control">
+                                <input type="text" name="observaciones114" class="form-control">
                             </td>
                         </tr>
 
@@ -822,19 +923,19 @@
                                 b) Flujo de Datos
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_flujo_datos" value="si"> Sí
+                                    <input type="radio" name="opcion115" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_flujo_datos" value="no"> No
+                                    <input type="radio" name="opcion115" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_flujo_datos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion115" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_requerimientos_seguridad_flujo_datos" class="form-control">
+                                <input type="text" name="observaciones115" class="form-control">
                             </td>
                         </tr>
 
@@ -843,19 +944,19 @@
                                 c) Modelo y Diccionario de Datos
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_modelo_diccionario" value="si"> Sí
+                                    <input type="radio" name="opcion116" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_modelo_diccionario" value="no"> No
+                                    <input type="radio" name="opcion116" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_modelo_diccionario" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion116" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_requerimientos_seguridad_modelo_diccionario" class="form-control">
+                                <input type="text" name="observaciones116" class="form-control">
                             </td>
                         </tr>
 
@@ -864,19 +965,19 @@
                                 d) Diagrama de implementación
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_diagrama_implementacion" value="si"> Sí
+                                    <input type="radio" name="opcion117" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_diagrama_implementacion" value="no"> No
+                                    <input type="radio" name="opcion117" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_diagrama_implementacion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion117" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_requerimientos_seguridad_diagrama_implementacion" class="form-control">
+                                <input type="text" name="observaciones117" class="form-control">
                             </td>
                         </tr>
 
@@ -885,19 +986,19 @@
                                 e) Manuales de usuarios
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_manuales_usuario" value="si"> Sí
+                                    <input type="radio" name="opcion118" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_manuales_usuario" value="no"> No
+                                    <input type="radio" name="opcion118" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_manuales_usuario" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion118" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_requerimientos_seguridad_manuales_usuario" class="form-control">
+                                <input type="text" name="observaciones118" class="form-control">
                             </td>
                         </tr>
 
@@ -906,19 +1007,19 @@
                                 f) Roles de usuarios
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_roles_usuario" value="si"> Sí
+                                    <input type="radio" name="opcion119" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_roles_usuario" value="no"> No
+                                    <input type="radio" name="opcion119" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_roles_usuario" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion119" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_requerimientos_seguridad_roles_usuario" class="form-control">
+                                <input type="text" name="observaciones119" class="form-control">
                             </td>
                         </tr>
 
@@ -927,19 +1028,19 @@
                                 II. El programa informático debe contar con control de acceso, de acuerdo a las políticas y procedimientos de control de accesos definidas por el contribuyente.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_control_acceso" value="si"> Sí
+                                    <input type="radio" name="opcion120" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_control_acceso" value="no"> No
+                                    <input type="radio" name="opcion120" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_control_acceso" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion120" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_requerimientos_seguridad_control_acceso" class="form-control">
+                                <input type="text" name="observaciones120" class="form-control">
                             </td>
                         </tr>
 
@@ -948,19 +1049,19 @@
                                 III. Se deberá contar con procedimientos formales para restringir y controlar la asignación y uso de los privilegios de acceso al programa informático.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_procedimientos_formales" value="si"> Sí
+                                    <input type="radio" name="opcion121" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_procedimientos_formales" value="no"> No
+                                    <input type="radio" name="opcion121" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_procedimientos_formales" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion121" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_requerimientos_seguridad_procedimientos_formales" class="form-control">
+                                <input type="text" name="observaciones121" class="form-control">
                             </td>
                         </tr>
 
@@ -969,19 +1070,19 @@
                                 IV. Se debe realizar periódicamente (por lo menos cada 6 meses) una revisión y depuración de los usuarios y privilegios de acceso existentes en el programa informático y activos tecnológicos asociados, para corroborar que sigan vigentes.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_revision_depuracion" value="si"> Sí
+                                    <input type="radio" name="opcion122" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_revision_depuracion" value="no"> No
+                                    <input type="radio" name="opcion122" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="requerimientos_seguridad_revision_depuracion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion122" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_requerimientos_seguridad_revision_depuracion" class="form-control">
+                                <input type="text" name="observaciones122" class="form-control">
                             </td>
                         </tr>
 

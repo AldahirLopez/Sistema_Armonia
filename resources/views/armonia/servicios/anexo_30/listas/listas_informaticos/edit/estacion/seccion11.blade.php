@@ -26,19 +26,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medicion_estatica" value="si"> Sí
+                                    <input type="radio" name="opcion63" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="medicion_estatica" value="no"> No
+                                    <input type="radio" name="opcion63" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medicion_estatica" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion63" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_medicion_estatica" class="form-control">
+                                <input type="text" name="observaciones63" class="form-control">
                             </td>
                         </tr>
 
@@ -60,19 +60,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medicion_dinamica_tanque" value="si"> Sí
+                                    <input type="radio" name="opcion64" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="medicion_dinamica_tanque" value="no"> No
+                                    <input type="radio" name="opcion64" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medicion_dinamica_tanque" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion64" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_medicion_dinamica_tanque" class="form-control">
+                                <input type="text" name="observaciones64" class="form-control">
                             </td>
                         </tr>
 
@@ -85,8 +85,22 @@
                                 Para identificar el sistema de medición dinámico de un ducto de
                                 transporte de gas natural se emplea la clave SMD-DUC-TRA-3433.
                             </td>
-                            <td class="text-center align-middle" colspan="3">
-                                <strong>No Aplica</strong>
+
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion65" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion65" value="no" disabled> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion65" value="no_aplica" checked> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones65" class="form-control">
                             </td>
                         </tr>
 
@@ -100,8 +114,22 @@
                                 del campo Sol se emplea la clave SMD-POZ-SOL-0001DEL.
                                 Para identificar el sistema de medición dinámico de un pozo desviado del
                                 campo Medianoche se emplea la clave SMD-POZ-Medianoche-1000DES.
-                            <td class="text-center align-middle" colspan="3">
-                                <strong>No Aplica</strong>
+                            </td>
+                                <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion66" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion66" value="no" disabled> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion66" value="no_aplica" checked> No Aplica
+                                </label>
+                            </td>
+                            <td class="align-middle">
+                                <input type="text" name="observaciones66" class="form-control">
                             </td>
                         </tr>
 
@@ -114,19 +142,19 @@
                                 estación de servicio se emplea la clave SMD-DISP-0004
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medicion_dinamica_dispensarios" value="si"> Sí
+                                    <input type="radio" name="opcion67" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="medicion_dinamica_dispensarios" value="no"> No
+                                    <input type="radio" name="opcion67" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medicion_dinamica_dispensarios" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion67" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_medicion_dinamica_dispensarios" class="form-control">
+                                <input type="text" name="observaciones67" class="form-control">
                             </td>
                         </tr>
 
@@ -146,19 +174,19 @@
                                 I. Por operación. Se debe realizar al término de cada operación de recepción o entrega.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="operacion_entrega_repecion" value="si"> Sí
+                                    <input type="radio" name="opcion68" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="operacion_entrega_repecion" value="no"> No
+                                    <input type="radio" name="opcion68" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="operacion_entrega_repecion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion68" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_operacion_entrega_repecion" class="form-control">
+                                <input type="text" name="observaciones68" class="form-control">
                             </td>
                         </tr>
 
@@ -167,19 +195,19 @@
                                 II. Acumulado. Se debe realizar diariamente, a una misma hora prefijada y debe incluir el acumulado de los volúmenes recibidos y los volúmenes transferidos.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="operacion_acumulado" value="si"> Sí
+                                    <input type="radio" name="opcion69" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="operacion_acumulado" value="no"> No
+                                    <input type="radio" name="opcion69" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="operacion_acumulado" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion69" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_operacion_acumulado" class="form-control">
+                                <input type="text" name="observaciones69" class="form-control">
                             </td>
                         </tr>
 
@@ -195,19 +223,19 @@
                                 a) Número de registro, único y consecutivo.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="numero_registro" value="si"> Sí
+                                    <input type="radio" name="opcion70" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="numero_registro" value="no"> No
+                                    <input type="radio" name="opcion70" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="numero_registro" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion70" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_numero_registro" class="form-control">
+                                <input type="text" name="observaciones70" class="form-control">
                             </td>
                         </tr>
 
@@ -217,19 +245,19 @@
                                 b) Tipo de registro.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="tipo_registro" value="si"> Sí
+                                    <input type="radio" name="opcion71" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="tipo_registro" value="no"> No
+                                    <input type="radio" name="opcion71" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="tipo_registro" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion71" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_tipo_registro" class="form-control">
+                                <input type="text" name="observaciones71" class="form-control">
                             </td>
                         </tr>
 
@@ -238,19 +266,19 @@
                                 c) Fecha de la operación.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="fecha_operacion" value="si"> Sí
+                                    <input type="radio" name="opcion72" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="fecha_operacion" value="no"> No
+                                    <input type="radio" name="opcion72" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="fecha_operacion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion72" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_fecha_operacion" class="form-control">
+                                <input type="text" name="observaciones72" class="form-control">
                             </td>
                         </tr>
 
@@ -259,19 +287,19 @@
                                 d) Hora de la operación.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hora_operacion" value="si"> Sí
+                                    <input type="radio" name="opcion73" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="hora_operacion" value="no"> No
+                                    <input type="radio" name="opcion73" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hora_operacion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion73" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_hora_operacion" class="form-control">
+                                <input type="text" name="observaciones73" class="form-control">
                             </td>
                         </tr>
 
@@ -280,19 +308,19 @@
                                 e) Clave en el RFC del proveedor/cliente (recepción/entrega).
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_proveedor_cliente" value="si"> Sí
+                                    <input type="radio" name="opcion74" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_rfc_proveedor_cliente" value="no"> No
+                                    <input type="radio" name="opcion74" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_proveedor_cliente" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion74" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_rfc_proveedor_cliente" class="form-control">
+                                <input type="text" name="observaciones74" class="form-control">
                             </td>
                         </tr>
 
@@ -309,19 +337,19 @@
                                 i. Tratándose de petróleo y condensados, la unidad de medida es el barril.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="unidad_medida_barril" value="si"> Sí
+                                    <input type="radio" name="opcion75" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="unidad_medida_barril" value="no"> No
+                                    <input type="radio" name="opcion75" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="unidad_medida_barril" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion75" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_unidad_medida_barril" class="form-control">
+                                <input type="text" name="observaciones75" class="form-control">
                             </td>
                         </tr>
 
@@ -330,19 +358,19 @@
                                 ii. Tratándose de gas natural, las unidades de medida son el metro cúbico y el Megajoule/metro cúbico. Excepto para los contribuyentes a que se refiere la regla 2.6.1.2., fracción I, para los que las unidades de medida son el pie cúbico y el BTU/pie cúbico.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="unidad_medida_metro_cubico_megajoule" value="si"> Sí
+                                    <input type="radio" name="opcion76" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="unidad_medida_metro_cubico_megajoule" value="no"> No
+                                    <input type="radio" name="opcion76" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="unidad_medida_metro_cubico_megajoule" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion76" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_unidad_medida_metro_cubico_megajoule" class="form-control">
+                                <input type="text" name="observaciones76" class="form-control">
                             </td>
                         </tr>
 
@@ -357,19 +385,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="unidad_medida_litro" value="si"> Sí
+                                    <input type="radio" name="opcion77" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="unidad_medida_litro" value="no"> No
+                                    <input type="radio" name="opcion77" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="unidad_medida_litro" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion77" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_unidad_medida_litro" class="form-control">
+                                <input type="text" name="observaciones77" class="form-control">
                             </td>
                         </tr>
 
