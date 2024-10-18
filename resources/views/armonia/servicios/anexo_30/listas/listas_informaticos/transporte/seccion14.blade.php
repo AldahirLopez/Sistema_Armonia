@@ -25,19 +25,19 @@
                           
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_fecha_hora" value="si"> Sí
+                                    <input type="radio" name="opcion128" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="bitacoras_fecha_hora" value="no"> No
+                                    <input type="radio" name="opcion128" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_fecha_hora" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion128" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_fecha_hora" class="form-control">
+                                <input type="text" name="observaciones128" class="form-control">
                             </td>
                         </tr>
 
@@ -48,19 +48,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_usuario" value="si"> Sí
+                                    <input type="radio" name="opcion129" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="bitacoras_usuario" value="no"> No
+                                    <input type="radio" name="opcion129" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_usuario" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion129" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_usuario" class="form-control">
+                                <input type="text" name="observaciones129" class="form-control">
                             </td>
                         </tr>
 
@@ -71,19 +71,19 @@
  
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_ip_origen" value="si"> Sí
+                                    <input type="radio" name="opcion130" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="bitacoras_ip_origen" value="no"> No
+                                    <input type="radio" name="opcion130" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_ip_origen" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion130" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_ip_origen" class="form-control">
+                                <input type="text" name="observaciones130" class="form-control">
                             </td>
                         </tr>
 
@@ -93,19 +93,19 @@
                             d) MacAdress.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_mac_adress" value="si"> Sí
+                                    <input type="radio" name="opcion131" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="bitacoras_mac_adress" value="no"> No
+                                    <input type="radio" name="opcion131" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_mac_adress" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion131" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_mac_adress" class="form-control">
+                                <input type="text" name="observaciones131" class="form-control">
                             </td>
                         </tr>
 
@@ -115,19 +115,19 @@
                             e) Registro de intentos de acceso fallidos
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_intentos_acceso_fallidos" value="si"> Sí
+                                    <input type="radio" name="opcion132" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="bitacoras_intentos_acceso_fallidos" value="no"> No
+                                    <input type="radio" name="opcion132" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_intentos_acceso_fallidos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion132" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_intentos_acceso_fallidos" class="form-control">
+                                <input type="text" name="observaciones132" class="form-control">
                             </td>
                         </tr>
 
@@ -136,19 +136,19 @@
                             f) Registro de accesos exitosos
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_intentos_acceso_exitosos" value="si"> Sí
+                                    <input type="radio" name="opcion133" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="bitacoras_intentos_acceso_exitosos" value="no"> No
+                                    <input type="radio" name="opcion133" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_intentos_acceso_exitosos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion133" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_intentos_acceso_exitosos" class="form-control">
+                                <input type="text" name="observaciones133" class="form-control">
                             </td>
                         </tr>
 
@@ -157,19 +157,19 @@
                             g) Registro de actividad de los usuarios
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad_registro" value="si"> Sí
+                                    <input type="radio" name="opcion134" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad_registro" value="no"> No
+                                    <input type="radio" name="opcion134" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad_registro" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion134" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sesiones_expiradas_inactividad_registro" class="form-control">
+                                <input type="text" name="observaciones134" class="form-control">
                             </td>
                         </tr>
 
@@ -178,19 +178,19 @@
                             h) Registro de inicio y fin de cierre de sesión
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_inicio_fin_sesion" value="si"> Sí
+                                    <input type="radio" name="opcion135" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="bitacoras_inicio_fin_sesion" value="no"> No
+                                    <input type="radio" name="opcion135" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_inicio_fin_sesion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion135" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_inicio_fin_sesion" class="form-control">
+                                <input type="text" name="observaciones135" class="form-control">
                             </td>
                         </tr>
 
@@ -199,19 +199,19 @@
                             i) Registro de cierre de sesión ya sea por inactividad o por parte del usuario
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_cierre_sesion_inactividad" value="si"> Sí
+                                    <input type="radio" name="opcion136" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="bitacoras_cierre_sesion_inactividad" value="no"> No
+                                    <input type="radio" name="opcion136" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_cierre_sesion_inactividad" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion136" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_cierre_sesion_inactividad" class="form-control">
+                                <input type="text" name="observaciones136" class="form-control">
                             </td>
                         </tr>
 
@@ -220,19 +220,19 @@
                             j) Registro de consulta de las bitácoras
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad_consulta" value="si"> Sí
+                                    <input type="radio" name="opcion137" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad_consulta" value="no"> No
+                                    <input type="radio" name="opcion137" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sesiones_expiradas_inactividad_consulta" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion137" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sesiones_expiradas_inactividad_consulta" class="form-control">
+                                <input type="text" name="observaciones137" class="form-control">
                             </td>
                         </tr>
 
@@ -241,19 +241,19 @@
                             k) Registro de errores y/o excepciones en la operación del programa informático
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_registro_errores_informatico" value="si"> Sí
+                                    <input type="radio" name="opcion138" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="bitacoras_registro_errores_informatico" value="no"> No
+                                    <input type="radio" name="opcion138" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_registro_errores_informatico" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion138" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_registro_errores_informatico" class="form-control">
+                                <input type="text" name="observaciones138" class="form-control">
                             </td>
                         </tr>                 
                         <!-- Continúa con el resto de requisitos -->

@@ -71,6 +71,13 @@
                         </a>                        
                         @endif
 
+                        @if(auth()->user()->hasRole('Administrador'))
+                        <a href="{{route('lista_inspeccion.descargar',['id_lista'=>$listas_inspeccion->id])}}" class="btn btn-outline-success btn-sm ms-2 d-inline-flex align-items-center">
+                            <i class="bx bx-download" style="font-size: 1.2rem;"></i> <!-- Icono de editar con tamaño mayor -->
+                            
+                        </a>                        
+                        @endif
+
 
                     </div>
 

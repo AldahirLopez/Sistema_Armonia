@@ -24,19 +24,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_tanque" value="si"> Sí
+                                    <input type="radio" name="opcion43" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_identificacion_tanque" value="no"> No
+                                    <input type="radio" name="opcion43" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_tanque" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion43" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_identificacion_tanque" class="form-control">
+                                <input type="text" name="observaciones43" class="form-control">
                             </td>
                         </tr>
 
@@ -49,19 +49,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="localizacion_tanque" value="si"> Sí
+                                    <input type="radio" name="opcion44" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="localizacion_tanque" value="no"> No
+                                    <input type="radio" name="opcion44" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="localizacion_tanque" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion44" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_localizacion_tanque" class="form-control">
+                                <input type="text" name="observaciones44" class="form-control">
                             </td>
                         </tr>
 
@@ -70,19 +70,19 @@
                             3. Capacidades del tanque o medio de almacenamiento. 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="capacidades_tanque_o_almacenamiento" value="si"> Sí
+                                    <input type="radio" name="opcion45" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="capacidades_tanque_o_almacenamiento" value="no"> No
+                                    <input type="radio" name="opcion45" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="capacidades_tanque_o_almacenamiento" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion45" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_capacidades_tanque_o_almacenamiento" class="form-control">
+                                <input type="text" name="observaciones45" class="form-control">
                             </td>
                         </tr>
 
@@ -91,19 +91,19 @@
                             4. Vigencia de Calibración o Cubicación.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="vigencia_calibracion" value="si"> Sí
+                                    <input type="radio" name="opcion46" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="vigencia_calibracion" value="no"> No
+                                    <input type="radio" name="opcion46" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="vigencia_calibracion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion46" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_vigencia_calibracion" class="form-control">
+                                <input type="text" name="observaciones46" class="form-control">
                             </td>
                         </tr>
 
@@ -113,19 +113,19 @@
                             localización, vigencia de calibración e incertidumbre de medición.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistemas_medicion" value="si"> Sí
+                                    <input type="radio" name="opcion47" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sistemas_medicion" value="no"> No
+                                    <input type="radio" name="opcion47" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistemas_medicion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion47" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sistemas_medicion" class="form-control">
+                                <input type="text" name="observaciones47" class="form-control">
                             </td>
                         </tr>
 
@@ -135,19 +135,19 @@
                             6. Recepciones, entregas y existencias 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="repecion_entregas_existencias" value="si"> Sí
+                                    <input type="radio" name="opcion48" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="repecion_entregas_existencias" value="no"> No
+                                    <input type="radio" name="opcion48" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="repecion_entregas_existencias" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion48" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_repecion_entregas_existencias" class="form-control">
+                                <input type="text" name="observaciones48" class="form-control">
                             </td>
                         </tr>
                         <!-- Continúa con el resto de requisitos -->

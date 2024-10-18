@@ -204,6 +204,9 @@ Route::group(['middleware' => ['auth']], function () {
     //Ruta para eliminar la lista de inspeccion
     Route::delete('/lista_inspeccion/{id}', [ListasInspeccionController::class, 'destroy'])->name('lista_inspeccion.destroy');
 
+    //Ruta para descargar la lista de inspeccion en pdf 
+    Route::get('/lista_inspeccion/descargar/{id_lista}', [ListasInspeccionController::class, 'descargar'])->name('lista_inspeccion.descargar');
+
 
     //RUTAS PARA LISTAS DE INSPECCION SISTEMAS DE MEDICION 
     //Ruta para el menu de las listas de inspeccio Anexo 30

@@ -19,19 +19,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="respaldo" value="si"> Sí
+                                    <input type="radio" name="opcion1" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="respaldo" value="no"> No
+                                    <input type="radio" name="opcion1" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="respaldo" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion1" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_respaldo" class="form-control">
+                                <input type="text" name="observaciones1" class="form-control">
                             </td>
                         </tr>
 
@@ -41,19 +41,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="si"> Sí
+                                    <input type="radio" name="opcion2" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no"> No
+                                    <input type="radio" name="opcion2" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="entorno_visual" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion2" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_entorno_visual" class="form-control">
+                                <input type="text" name="observaciones2" class="form-control">
                             </td>
                         </tr>
 
@@ -63,19 +63,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="control_acceso" value="si"> Sí
+                                    <input type="radio" name="opcion3" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="control_acceso" value="no"> No
+                                    <input type="radio" name="opcion3" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="control_acceso" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion3" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_control_acceso" class="form-control">
+                                <input type="text" name="observaciones3" class="form-control">
                             </td>
                         </tr>
                         <!-- Continúa con el resto de requisitos -->
