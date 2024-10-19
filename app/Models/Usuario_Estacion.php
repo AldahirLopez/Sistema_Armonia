@@ -14,4 +14,10 @@ class Usuario_Estacion extends Model
 
     // Especificar la tabla asociada al modelo
     protected $table = 'usuario_estacion';
+
+    // Definir los campos que se pueden asignar en masa
+    protected $fillable = [
+        'usuario_id',
+        'estacion_id',
+    ];
 }

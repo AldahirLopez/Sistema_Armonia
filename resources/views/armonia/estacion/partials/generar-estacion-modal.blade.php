@@ -16,9 +16,13 @@
                                 <label for="tipo_estacion">Tipo de servicio</label>
                                 <select name="tipo_estacion" id="tipo_estacion" class="form-select" required>
                                     <option value="" disabled selected>Seleccione el tipo de servicio</option>
-                                    <option value="Transporte">Transporte</option>
-                                    <option value="Estacion de servicio">Estación de servicio</option>
-                                    <option value="Almacenamiento">Almacenamiento</option>
+                                    <option value="Areas_contractuales_asignaciones">Áreas contractuales y asignaciones</option>
+                                    <option value="Estaciones_de_Proceso">Estaciones de Proceso</option>
+                                    <option value="Produccion_petroliferos">Producción de petrolíferos</option>
+                                    <option value="Terminales_almacenamiento">Terminales de almacenamiento y áreas de almacenamiento para usos propios</option>
+                                    <option value="Transporte_distribucion">Transporte y distribución</option>
+                                    <option value="Comercializacion">Comercialización</option>
+                                    <option value="Estaciones_de_Servicio">Estaciones de Servicio</option>
                                 </select>
                             </div>
                             <div class="form-group mb-3">

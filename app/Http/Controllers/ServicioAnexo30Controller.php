@@ -35,8 +35,15 @@ class ServicioAnexo30Controller extends Controller
             $isAdminOrAuditor = $usuario->hasAnyRole(['Administrador', 'Auditor']);
             $estaciones = $this->getEstacionesSinServicio($usuario, $isAdminOrAuditor);
 
-            $servicios = ServicioAnexo::when($usuarioSeleccionado, function ($query, $usuarioSeleccionado) {
-                return $query->where('id_usuario', $usuarioSeleccionado);
+            // Consultar los servicios según si es administrador/auditor o un usuario normal
+            $servicios = ServicioAnexo::when($isAdminOrAuditor, function ($query) use ($usuarioSeleccionado) {
+                // Si es administrador o auditor, permitirle filtrar por usuario
+                return $query->when($usuarioSeleccionado, function ($query, $usuarioSeleccionado) {
+                    return $query->where('id_usuario', $usuarioSeleccionado);
+                });
+            }, function ($query) use ($usuario) {
+                // Si no es administrador o auditor, solo mostrar los servicios del usuario autenticado
+                return $query->where('id_usuario', $usuario->id);
             })
                 ->when($estadoServicio, function ($query, $estadoServicio) {
                     // Filtrar según el estado del servicio
@@ -47,8 +54,6 @@ class ServicioAnexo30Controller extends Controller
                     } elseif ($estadoServicio == 'pendiente') {
                         return $query->where('pending_apro_servicio', false)->where('pending_deletion_servicio', false);
                     }
-                }, function ($query) use ($usuario, $isAdminOrAuditor) {
-                    return $isAdminOrAuditor ? $query : $query->where('id_usuario', $usuario->id);
                 })
                 ->orderByRaw("CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(nomenclatura, '-', -2), '-', 1) AS UNSIGNED) ASC")
                 ->orderBy('nomenclatura', 'asc')
@@ -59,6 +64,7 @@ class ServicioAnexo30Controller extends Controller
 
         return redirect()->route('anexo.index')->with('error', 'No se ha autenticado el usuario.');
     }
+
 
     public function store(Request $request)
     {
@@ -98,6 +104,12 @@ class ServicioAnexo30Controller extends Controller
         Estacion_Servicio::create([
             'id_servicio_anexo' => $servicio->id,
             'id_estacion' => $estacionId,
+        ]);
+
+        // Crear la relación con la estación
+        Usuario_Estacion::create([
+            'usuario_id' => $usuarioSeleccionado->id,
+            'estacion_id' => $estacionId,
         ]);
 
         // Crear la carpeta para el servicio

@@ -22,11 +22,23 @@ class CalendarioController extends Controller
      */
     public function fetchEvents(Request $request)
     {
-        // Obtener eventos dentro del rango de fechas seleccionadas
+        // Obtener las fechas de inicio y fin del rango seleccionado
         $start = $request->start;
         $end = $request->end;
 
-        $events = Evento::whereBetween('start_date', [$start, $end])->get();
+        // Obtener el usuario autenticado
+        $usuario = Auth::user();
+
+        // Si el usuario es administrador, puede ver todos los eventos, de lo contrario, solo verá los suyos
+        if ($usuario->hasRole('Administrador')) {
+            // Si es administrador, obtener todos los eventos dentro del rango de fechas
+            $events = Evento::whereBetween('start_date', [$start, $end])->get();
+        } else {
+            // Si no es administrador, solo obtener los eventos creados por el usuario autenticado
+            $events = Evento::where('user_id', $usuario->id)
+                ->whereBetween('start_date', [$start, $end])
+                ->get();
+        }
 
         // Formatear los eventos para que FullCalendar los entienda correctamente
         $formattedEvents = $events->map(function ($event) {
@@ -40,7 +52,6 @@ class CalendarioController extends Controller
                 'end' => $end_time->toIso8601String(),
                 'className' => $event->category,
                 'duration_days' => $event->duration_days // Enviamos la duración al cliente
-
             ];
         });
 

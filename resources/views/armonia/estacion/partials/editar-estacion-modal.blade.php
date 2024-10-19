@@ -17,9 +17,13 @@
                                 <label for="tipo_estacion">Tipo de servicio</label>
                                 <select name="tipo_estacion" id="tipo_estacion" class="form-select" required>
                                     <option value="" disabled {{ is_null($estacion->tipo_estacion) ? 'selected' : '' }}>Seleccione el tipo de servicio</option>
-                                    <option value="Transporte" {{ $estacion->tipo_estacion == 'Transporte' ? 'selected' : '' }}>Transporte</option>
-                                    <option value="Estacion de servicio" {{ $estacion->tipo_estacion == 'Estacion de servicio' ? 'selected' : '' }}>Estación de servicio</option>
-                                    <option value="Almacenamiento" {{ $estacion->tipo_estacion == 'Almacenamiento' ? 'selected' : '' }}>Almacenamiento</option>
+                                    <option value="Areas_contractuales_asignaciones" {{ $estacion->tipo_estacion == 'Areas_contractuales_asignaciones' ? 'selected' : '' }}>Áreas contractuales y asignaciones</option>
+                                    <option value="Estaciones_de_Proceso" {{ $estacion->tipo_estacion == 'Estaciones_de_Proceso' ? 'selected' : '' }}>Estaciones de Proceso</option>
+                                    <option value="Produccion_petroliferos" {{ $estacion->tipo_estacion == 'Produccion_petroliferos' ? 'selected' : '' }}>Producción de petrolíferos</option>
+                                    <option value="Terminales_almacenamiento" {{ $estacion->tipo_estacion == 'Terminales_almacenamiento' ? 'selected' : '' }}>Terminales de almacenamiento y áreas de almacenamiento para usos propios</option>
+                                    <option value="Transporte_distribucion" {{ $estacion->tipo_estacion == 'Transporte_distribucion' ? 'selected' : '' }}>Transporte y distribución</option>
+                                    <option value="Comercializacion" {{ $estacion->tipo_estacion == 'Comercializacion' ? 'selected' : '' }}>Comercialización</option>
+                                    <option value="Estaciones_de_Servicio" {{ $estacion->tipo_estacion == 'Estaciones_de_Servicio' ? 'selected' : '' }}>Estaciones de Servicio</option>
                                 </select>
                             </div>
                             <div class="form-group mb-3">

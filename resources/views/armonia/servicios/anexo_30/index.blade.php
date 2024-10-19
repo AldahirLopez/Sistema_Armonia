@@ -12,13 +12,13 @@
 
 @include('partials.alertas') <!-- Including alerts -->
 
-<!-- Filtro por Usuario -->
 <!-- Filtro por Usuario y Estado de Servicio -->
 <div class="row mb-4">
     <div class="col-lg-12">
         <form method="GET" action="{{ route('anexo.index') }}" class="d-flex align-items-center justify-content-center">
             <div class="input-group">
-                <!-- Filtro por Usuario -->
+                <!-- Filtro por Usuario (Solo para Administradores) -->
+                @if(auth()->user()->hasRole('Administrador'))
                 <label for="usuario_id" class="input-group-text border-end-0">Usuario:</label>
                 <select name="usuario_id" id="usuario_id" class="form-select border-start-0" style="max-width: 200px;">
                     <option value="">Todos los usuarios</option>
@@ -28,6 +28,7 @@
                     </option>
                     @endforeach
                 </select>
+                @endif
 
                 <!-- Filtro por Estado de Servicio -->
                 <label for="estado_servicio" class="input-group-text border-end-0 ms-2">Estado:</label>
@@ -55,7 +56,7 @@
         <div class="card border-0 shadow-sm">
             <div class="card-body d-flex justify-content-between align-items-center">
                 <a href="{{ route('documentacion.generarPDF') }}" class="btn btn-primary">
-                    <i class="bx bxs-file-pdf"></i> Generar Lista de Requisitos 
+                    <i class="bx bxs-file-pdf"></i> Generar Lista de Requisitos
                 </a>
                 @if($estaciones->isNotEmpty())
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#generarServicioModal">
