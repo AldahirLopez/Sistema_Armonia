@@ -26,20 +26,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hidrocarburos_temperatura_60" value="si" disabled> Sí
+                                    <input type="radio" name="opcion50" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="hidrocarburos_temperatura_60" value="no" disabled> No
+                                    <input type="radio" name="opcion50" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hidrocarburos_temperatura_60" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion50" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_hidrocarburos_temperatura_60" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones50" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -49,20 +49,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hidrocarburos_presion_absoluta_1" value="si" disabled> Sí
+                                    <input type="radio" name="opcion51" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="hidrocarburos_presion_absoluta_1" value="no" disabled> No
+                                    <input type="radio" name="opcion51" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hidrocarburos_presion_absoluta_1" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion51" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_hidrocarburos_presion_absoluta_1" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones51" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 

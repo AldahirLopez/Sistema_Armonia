@@ -40,19 +40,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistemas_medicion_volumenes" value="si"> Sí
+                                    <input type="radio" name="opcion1" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sistemas_medicion_volumenes" value="no"> No
+                                    <input type="radio" name="opcion1" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistemas_medicion_volumenes" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion1" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sistemas_medicion_volumenes" class="form-control">
+                                <input type="text" name="observaciones1" class="form-control">
                             </td>
                         </tr>
 
@@ -65,19 +65,19 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="cantidad_sistemas_medicion_requeridos" value="si"> Sí
+                                    <input type="radio" name="opcion2" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="cantidad_sistemas_medicion_requeridos" value="no"> No
+                                    <input type="radio" name="opcion2" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="cantidad_sistemas_medicion_requeridos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion2" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_cantidad_sistemas_medicion_requeridos" class="form-control">
+                                <input type="text" name="observaciones2" class="form-control">
                             </td>
                         </tr>
                                           

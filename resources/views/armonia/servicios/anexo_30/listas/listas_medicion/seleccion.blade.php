@@ -64,7 +64,7 @@
                         
                         <!-- Mostrar botón de editar solo si el usuario tiene el rol de 'Administrador' -->
                         @if(auth()->user()->hasRole('Administrador'))
-                        <a href="{{route('lista_inspeccion.edit',['id'=>$listas_inspeccion->id])}}" class="btn btn-outline-primary btn-sm ms-2 d-inline-flex align-items-center">
+                        <a href="{{route('lista_inspeccion_medicion.edit',['id'=>$listas_inspeccion->id])}}" class="btn btn-outline-primary btn-sm ms-2 d-inline-flex align-items-center">
                             <i class="bx bx-edit me-1" style="font-size: 1.2rem;"></i> <!-- Icono de editar con tamaño mayor -->
                             <span>Editar</span>
                         </a>                        

@@ -7,145 +7,115 @@
                         <!-- TERCER BLOQUE DE REQUISITOS -->
                         <tr class="table-info">
                             <th scope="row" colspan="100%">
-                                VII. Debe registrar en una bitácora todos los eventos relacionados con la configuración y operación del mismo, con
-                                las siguientes especificaciones:
+                                c) Producción de Petrolíferos:
                             </th>
                         </tr>
                         <!-- PRIMER BLOQUE DE REQUISITOS -->
                         <tr>
                             <td class="align-middle">
-                                a) Los registros deben generarse de manera automática, para todos los eventos clasificados que se listan en el inciso g) de la presente fracción. Adicionalmente, los usuarios deben tener la posibilidad de registrar eventos no clasificados, pero que requieren su registro. </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="bitacoras_configuracion_operacion" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="bitacoras_configuracion_operacion" value="no"> No
-                                </label>
+                                En las refinerías el sistema de medición se debe implementar en la etapa de almacenamiento para generar los registros de las operaciones de producción (recepción), entrega y control de existencias de Hidrocarburos o Petrolíferos de que se trate.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_configuracion_operacion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion11" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion11" value="no" disabled> No
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion11" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_configuracion_operacion" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una estación de servicio</strong>
+                                <input type="hidden" name="observaciones11" value="No Aplica por ser una estación de servicio">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                b) Se deben almacenar todos los registros en la bitácora.
+                                Se deben instalar medidores dinámicos en los ductos de entrada y salida al (a los) medio(s) de almacenamiento y medidor(es) estático(s) en el (los) medio(s) de almacenamiento.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacortas_almacenar_registros" value="si"> Sí
+                                    <input type="radio" name="opcion12" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="bitacortas_almacenar_registros" value="no"> No
+                                    <input type="radio" name="opcion12" value="no" disabled> No
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion12" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="bitacortas_almacenar_registros" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_bitacortas_almacenar_registros" class="form-control">
+                                <strong>No Aplica por ser una estación de servicio</strong>
+                                <input type="hidden" name="observaciones12" value="No Aplica por ser una estación de servicio">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                c) Todos los usuarios deben tener acceso a la bitácora para su visualización. Los perfiles de administrador, supervisor y operador, además, deben tener acceso para el registro de eventos. </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="bitacora_visible" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="bitacora_visible" value="no"> No
-                                </label>
+                                Se deben seleccionar los medidores conforme a los requisitos metrológicos: características de los fluidos, intervalos de medición y condiciones técnicas u operativas del proceso.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacora_visible" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion13" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion13" value="no" disabled> No
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion13" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_bitacora_visible" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una estación de servicio</strong>
+                                <input type="hidden" name="observaciones13" value="No Aplica por ser una estación de servicio">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                d) Todos los registros de la bitácora deben estar protegidos para evitar su modificación o eliminación.
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="bitacoras_protegidas_modificacion" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="bitacoras_protegidas_modificacion" value="no"> No
-                                </label>
+                                Los medidores estáticos deben cumplir con la normatividad descrita en el apartado 30.7., fracciones I y II, que les corresponda, así como VI.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_protegidas_modificacion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion14" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion14" value="no" disabled> No
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion14" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_protegidas_modificacion" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una estación de servicio</strong>
+                                <input type="hidden" name="observaciones14" value="No Aplica por ser una estación de servicio">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                e) Cualquier intento de modificación o eliminación de un registro de la bitácora debe registrarse de forma automática en la misma bitácora y generar una alarma.
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="bitacoras_alarma_modificacion_eliminacion" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="bitacoras_alarma_modificacion_eliminacion" value="no"> No
-                                </label>
+                                Los medidores dinámicos deben cumplir con la normatividad que les corresponda descrita en el apartado 30.7., fracciones I y VI, así como III para el petróleo o, IV para el gas natural.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="bitacoras_alarma_modificacion_eliminacion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion15" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion15" value="no" disabled> No
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion15" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_bitacoras_alarma_modificacion_eliminacion" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una estación de servicio</strong>
+                                <input type="hidden" name="observaciones15" value="No Aplica por ser una estación de servicio">
                             </td>
                         </tr>
 
-                        <tr>
-                            <td class="align-middle">
-                                f) Los datos que deben incluirse en el registro de la bitácora son:
-                                <ol>
-                                    <li>Número de registro, único y consecutivo.</li>
-                                    <li>Fecha del evento.</li>
-                                    <li>Hora del evento.</li>
-                                    <li>Usuario responsable, tratándose de registros que no se generen automáticamente.</li>
-                                    <li>Tipo de evento.</li>
-                                    <li>Descripción del evento.</li>
-                                </ol>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="datos_bitacoras" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="datos_bitacoras" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="datos_bitacoras" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_datos_bitacoras" class="form-control">
-                            </td>
-                        </tr>
                         <!-- Continúa con el resto de requisitos -->
                     </tbody>
                 </table>

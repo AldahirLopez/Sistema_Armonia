@@ -12,14 +12,14 @@
 
 
 <div class="section-header" style="margin: 5px 5px 15px 5px;">
-        <a href="{{ route('listas.seleccion', ['id' => $id_servicio]) }}" class="btn btn-danger">
+        <a href="{{ route('listas_medicion.seleccion', ['id' => $id_servicio]) }}" class="btn btn-danger">
             <i class="bi bi-arrow-return-left"></i> Volver
         </a>
 </div>
 
 <h4 style="padding-top: 40px;">Formulario para Transporte</h4>
 <!-- Formulario principal que envuelve todas las secciones -->
-<form action="{{route('lista_inspeccion.store')}}" method="POST">
+<form action="{{route('lista_inspeccion_medicion.store')}}" method="POST">
     @csrf
     <input type="hidden" id="id_servicio" value="{{ $id_servicio }}" name="id_servicio">
     <!-- Página 1 -->
@@ -115,6 +115,50 @@
             {!! $seccion16 !!}
         </div>
 
+        <div id="seccion17">
+            {!! $seccion17 !!}
+        </div>
+
+        <div id="seccion18">
+            {!! $seccion18 !!}
+        </div>
+
+        <div id="seccion19">
+            {!! $seccion19 !!}
+        </div>
+
+        <div id="seccion20">
+            {!! $seccion20 !!}
+        </div>
+
+        <div id="seccion21">
+            {!! $seccion21 !!}
+        </div>
+
+        <div id="seccion22">
+            {!! $seccion22 !!}
+        </div>
+
+        <div id="seccion23">
+            {!! $seccion23 !!}
+        </div>
+
+        <div id="seccion24">
+            {!! $seccion24 !!}
+        </div>
+
+        <div id="seccion25">
+            {!! $seccion25 !!}
+        </div>
+
+        <div id="seccion26">
+            {!! $seccion26 !!}
+        </div>
+
+        <div id="seccion27">
+            {!! $seccion27 !!}
+        </div>
+
         <!-- Botón para ir a la página anterior y finalizar -->
         <button type="button" class="btn btn-secondary" onclick="mostrarPagina(4)">Anterior</button>
         <button type="submit" class="btn btn-success">Finalizar</button>
@@ -122,36 +166,29 @@
 </form>
 
 
-
 <script>
-  
     const lista = @json($lista);
-    function fillForm(json) {
     
-          // Iterar sobre cada sección en el JSON
-    for (const [sectionKey, sectionData] of Object.entries(json)) {
-        // Saltar la clave "tipo" ya que no es una sección del formulario
-        if (sectionKey === 'tipo') continue;
+    function fillForm(json) {
+        // Iterar sobre cada clave y valor en el objeto JSON
+        for (const [key, value] of Object.entries(json)) {
+            // Saltar la clave "tipo" y "tipo_general" ya que no son campos del formulario
+            if (key === 'tipo' || key === 'tipo_general') continue;
 
-        // Iterar sobre cada campo dentro de la sección
-        for (const [key, value] of Object.entries(sectionData)) {
             // Seleccionar y marcar el radio button si existe y coincide con el valor
             const radioButton = document.querySelector(`input[name="${key}"][value="${value}"]`);
             if (radioButton && radioButton.type === 'radio') {
                 radioButton.checked = true;
-            }else{
+            } else {
                 // Seleccionar el campo de texto o textarea y asignar valor si existe
                 const inputField = document.querySelector(`input[name="${key}"], textarea[name="${key}"]`);
-                    if (inputField && (inputField.type === 'text')) {
-                            inputField.value = value; // Asigna el valor o vacío si es null
-                        }
+                if (inputField && (inputField.type === 'text')) {
+                    inputField.value = value; // Asigna el valor o vacío si es null
+                }
             }
-
-            
         }
     }
-        
-    }
+
     // Llama a la función para rellenar el formulario
     fillForm(lista);
 </script>

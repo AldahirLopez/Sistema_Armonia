@@ -17,19 +17,19 @@
                             Los Hidrocarburos o Petrolíferos transportados o distribuidos por medios distintos a ductos, deben ser medidos tanto en la instalación que los transfiere como en la que los recibe, incluidas las instalaciones y operaciones de trasvase.</td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hidrocarburos_medidos_medios_distintos" value="si"> Sí
+                                    <input type="radio" name="opcion24" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="hidrocarburos_medidos_medios_distintos" value="no"> No
+                                    <input type="radio" name="opcion24" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hidrocarburos_medidos_medios_distintos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion24" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_hidrocarburos_medidos_medios_distintos" class="form-control">
+                                <input type="text" name="observaciones24" class="form-control">
                             </td>
                         </tr>
 
@@ -38,20 +38,20 @@
                             Los Hidrocarburos o Petrolíferos transportados o distribuidos por medio de ductos deben ser medidos en la instalación que los transfiere o en la que los recibe.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hidrocarburos_medidos_medios_ductos" value="si" disabled> Sí
+                                    <input type="radio" name="opcion25" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="hidrocarburos_medidos_medios_ductos" value="no" disabled> No
+                                    <input type="radio" name="opcion25" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hidrocarburos_medidos_medios_ductos" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion25" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_hidrocarburos_medidos_medios_ductos" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones25" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -60,19 +60,19 @@
                             Los registros del volumen de las operaciones de entrega y recepción, derivadas del transporte o distribución de tales productos, se deben generar en las instalaciones que transfieren y reciben dichos Hidrocarburos o Petrolíferos tratándose de medios distintos a ductos.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registros_volumen_entrega_recepcion" value="si"> Sí
+                                    <input type="radio" name="opcion26" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="registros_volumen_entrega_recepcion" value="no"> No
+                                    <input type="radio" name="opcion26" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registros_volumen_entrega_recepcion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion26" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
-                                <input type="text" name="observaciones_registros_volumen_entrega_recepcion" class="form-control">
+                                <input type="text" name="observaciones26" class="form-control">
                             </td>
                         </tr>
 
@@ -84,20 +84,20 @@
                             gas natural por medio de ductos, lo dispuesto en este párrafo es aplicable a los equipos de medición y sus registros de volumen en cada uno de los puntos de inyección a los sistemas de transporte, almacenamiento y distribución, así como en cada uno de los puntos de transferencia de custodia a otros permisionarios o usuarios finales y no será aplicable tratándose de instalaciones para consumo de gas natural del usuario final residencial.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registros_volumen_entrega_recepcion_transporte_transporte" value="si" disabled> Sí
+                                    <input type="radio" name="opcion27" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="registros_volumen_entrega_recepcion_transporte_transporte" value="no" disabled> No
+                                    <input type="radio" name="opcion27" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registros_volumen_entrega_recepcion_transporte_transporte" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion27" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_registros_volumen_entrega_recepcion_transporte_transporte" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones27" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -106,20 +106,20 @@
                             Los ductos para transporte o distribución, ductos de entrada y salida a medios de almacenamiento, incluyendo aquéllos en las plantas de distribución, y ductos de carga y descarga de autotanques, carrotanques y buquetanques, deben tener implementado un sistema de medición dinámica que debe cumplir con la normatividad que les corresponda descrita en el apartado 30.7., fracciones I y VI, así como III para el petróleo o, IV para el gas natural.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistemas_medicion_dinamica_ductos_trasnporte_distribucion" value="si" disabled> Sí
+                                    <input type="radio" name="opcion28" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sistemas_medicion_dinamica_ductos_trasnporte_distribucion" value="no" disabled> No
+                                    <input type="radio" name="opcion28" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistemas_medicion_dinamica_ductos_trasnporte_distribucion" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion28" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_sistemas_medicion_dinamica_ductos_trasnporte_distribucion" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones28" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -129,19 +129,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_estatica_medios_transporte" value="si"> Sí
+                                    <input type="radio" name="opcion29" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sistema_medicion_estatica_medios_transporte" value="no"> No
+                                    <input type="radio" name="opcion29" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_estatica_medios_transporte" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion29" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_sistema_medicion_estatica_medios_transporte" class="form-control">
+                                <input type="text" name="observaciones29" class="form-control">
                             </td>
                         </tr>
 
@@ -154,20 +154,20 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="tanques_indicador_liquido_manual_automatico" value="si" disabled> Sí
+                                    <input type="radio" name="opcion30" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="tanques_indicador_liquido_manual_automatico" value="no" disabled> No
+                                    <input type="radio" name="opcion30" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="tanques_indicador_liquido_manual_automatico" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion30" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_tanques_indicador_liquido_manual_automatico" class="form-control"  value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones30" class="form-control"  value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
                         

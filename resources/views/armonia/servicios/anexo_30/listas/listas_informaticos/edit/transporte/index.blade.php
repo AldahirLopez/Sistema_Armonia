@@ -7,7 +7,7 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Seleccion @endslot
-@slot('title') Estaciones de Servicio @endslot
+@slot('title') Lista de inspección verificación de programas informáticos @endslot
 @endcomponent
 
 

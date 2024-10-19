@@ -17,18 +17,18 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="refinerias_sistemas_medicion_almacenamiento" value="si" disabled> Sí
+                                    <input type="radio" name="opcion11" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="refinerias_sistemas_medicion_almacenamiento" value="no" disabled> No
+                                    <input type="radio" name="opcion11" value="no" disabled> No
                                 </label>
                                 <label>
-                                    <input type="radio" name="refinerias_sistemas_medicion_almacenamiento" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion11" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_refinerias_sistemas_medicion_almacenamiento" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones11" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -38,18 +38,18 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medidores_dinamicos_petroliferos" value="si" disabled> Sí
+                                    <input type="radio" name="opcion12" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="medidores_dinamicos_petroliferos" value="no" disabled> No
+                                    <input type="radio" name="opcion12" value="no" disabled> No
                                 </label>
                                 <label>
-                                    <input type="radio" name="medidores_dinamicos_petroliferos" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion12" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_medidores_dinamicos_petroliferos" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones12" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -59,18 +59,18 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medidores_petroliferos_metrologicos" value="si" disabled> Sí
+                                    <input type="radio" name="opcion13" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="medidores_petroliferos_metrologicos" value="no" disabled> No
+                                    <input type="radio" name="opcion13" value="no" disabled> No
                                 </label>
                                 <label>
-                                    <input type="radio" name="medidores_petroliferos_metrologicos" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion13" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_medidores_petroliferos_metrologicos" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones13" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -80,18 +80,18 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medidores_estaticos_petroliferos_normatividad" value="si" disabled> Sí
+                                    <input type="radio" name="opcion14" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="medidores_estaticos_petroliferos_normatividad" value="no" disabled> No
+                                    <input type="radio" name="opcion14" value="no" disabled> No
                                 </label>
                                 <label>
-                                    <input type="radio" name="medidores_estaticos_petroliferos_normatividad" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion14" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_medidores_estaticos_petroliferos_normatividad" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones14" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -101,18 +101,18 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medidores_dinamicos_petroliferos_apartado_30" value="si" disabled> Sí
+                                    <input type="radio" name="opcion15" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="medidores_dinamicos_petroliferos_apartado_30" value="no" disabled> No
+                                    <input type="radio" name="opcion15" value="no" disabled> No
                                 </label>
                                 <label>
-                                    <input type="radio" name="medidores_dinamicos_petroliferos_apartado_30" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion15" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_medidores_dinamicos_petroliferos_apartado_30" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones15" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 

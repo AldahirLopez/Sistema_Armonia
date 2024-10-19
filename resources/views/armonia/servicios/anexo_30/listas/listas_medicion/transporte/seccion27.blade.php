@@ -21,19 +21,19 @@
                             i. Revisar la existencia de programas de verificación y calibración, así como verificar la aplicación de éstos, para determinar si los instrumentos de medición cuentan con certificados de calibración con información vigente, de acuerdo al programa de verificación y calibración.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="revision_existencias_programas" value="si"> Sí
+                                    <input type="radio" name="opcion141" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="revision_existencias_programas" value="no"> No
+                                    <input type="radio" name="opcion141" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="revision_existencias_programas" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion141" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_revision_existencias_programas" class="form-control">
+                                <input type="text" name="observaciones141" class="form-control">
                             </td>
                         </tr>
 
@@ -43,19 +43,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="revision_seguimiento_estadistico" value="si"> Sí
+                                    <input type="radio" name="opcion142" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="revision_seguimiento_estadistico" value="no"> No
+                                    <input type="radio" name="opcion142" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="revision_seguimiento_estadistico" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion142" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_revision_seguimiento_estadistico" class="form-control">
+                                <input type="text" name="observaciones142" class="form-control">
                             </td>
                         </tr>
 
@@ -65,19 +65,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="revision_estimacion_incertidumbre" value="si"> Sí
+                                    <input type="radio" name="opcion143" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="revision_estimacion_incertidumbre" value="no"> No
+                                    <input type="radio" name="opcion143" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="revision_estimacion_incertidumbre" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion143" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_revision_estimacion_incertidumbre" class="form-control">
+                                <input type="text" name="observaciones143" class="form-control">
                             </td>
                         </tr>
 

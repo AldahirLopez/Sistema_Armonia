@@ -25,20 +25,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_medicion_aprobado_CNH" value="si" disabled> Sí
+                                    <input type="radio" name="opcion3" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="punto_medicion_aprobado_CNH" value="no" disabled> No
+                                    <input type="radio" name="opcion3" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_medicion_aprobado_CNH" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion3" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_punto_medicion_aprobado_CNH" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones3" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -52,20 +52,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="seleccion_medidor_metrologicos" value="si" disabled> Sí
+                                    <input type="radio" name="opcion4" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="seleccion_medidor_metrologicos" value="no" disabled> No
+                                    <input type="radio" name="opcion4" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="seleccion_medidor_metrologicos" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion4" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_seleccion_medidor_metrologicos" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones4" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -75,24 +75,24 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registro_produccion_diaria_acumulada_mensual" value="si" disabled> Sí
+                                    <input type="radio" name="opcion5" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="registro_produccion_diaria_acumulada_mensual" value="no" disabled> No
+                                    <input type="radio" name="opcion5" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registro_produccion_diaria_acumulada_mensual" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion5" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_registro_produccion_diaria_acumulada_mensual" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones5" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
-                        <!-- Continúa con el resto de requisitos de la tabla de forma similar -->
+                        
                     </tbody>
                 </table>
             </td>

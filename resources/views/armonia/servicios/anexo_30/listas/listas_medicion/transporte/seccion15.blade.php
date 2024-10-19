@@ -18,20 +18,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_terciario_instalacion_configuracion" value="si" disabled> Sí
+                                    <input type="radio" name="opcion62" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_terciario_instalacion_configuracion" value="no" disabled> No
+                                    <input type="radio" name="opcion62" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_terciario_instalacion_configuracion" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion62" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_elemento_terciario_instalacion_configuracion" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones62" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -41,20 +41,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_terciario_configuracion_transferencia" value="si" disabled> Sí
+                                    <input type="radio" name="opcion63" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_terciario_configuracion_transferencia" value="no" disabled> No
+                                    <input type="radio" name="opcion63" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_terciario_configuracion_transferencia" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion63" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_elemento_terciario_configuracion_transferencia" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones63" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -64,20 +64,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_terciario_operacion_continua" value="si" disabled> Sí
+                                    <input type="radio" name="opcion64" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_terciario_operacion_continua" value="no" disabled> No
+                                    <input type="radio" name="opcion64" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_terciario_operacion_continua" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion64" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_elemento_terciario_operacion_continua" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones64" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -87,20 +87,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_terciario_funciones_seguridad" value="si" disabled> Sí
+                                    <input type="radio" name="opcion65" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_terciario_funciones_seguridad" value="no" disabled> No
+                                    <input type="radio" name="opcion65" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_terciario_funciones_seguridad" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion65" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_elemento_terciario_funciones_seguridad" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones65" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -110,20 +110,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_terciario_actualizacion_variables" value="si" disabled> Sí
+                                    <input type="radio" name="opcion66" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elemento_terciario_actualizacion_variables" value="no" disabled> No
+                                    <input type="radio" name="opcion66" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elemento_terciario_actualizacion_variables" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion66" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_elemento_terciario_actualizacion_variables" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones66" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
                     </tbody>

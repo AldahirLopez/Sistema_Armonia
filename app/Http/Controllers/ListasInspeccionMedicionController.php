@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Listas_inspeccion;
-
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpWord\TemplateProcessor;
 class ListasInspeccionMedicionController extends Controller
 {
 
@@ -46,28 +47,110 @@ class ListasInspeccionMedicionController extends Controller
             'id_servicio' => $request->input('id_servicio'),
         ];
 
+        $servicio_anexo=ServicioAnexo::findOrFail($request->input('id_servicio'));
 
-        $lista_inspeccion = Listas_inspeccion::where('id_servicio', $request->input('id_servicio'))
+        $lista_inspeccion = Listas_inspeccion::where('id_servicio', $servicio_anexo->id)
             ->whereJsonContains('lista->tipo_general_lista',$tipo_general_lista)
             ->first();
+
+
     
         if (!$lista_inspeccion) {
+                $data_word= array_merge($data, $this->processListaOptions($data));
                 Listas_inspeccion::create($data2);
+                $this->processListaTemplates($data_word,$servicio_anexo);
         } else {
 
             $tipo_actual = $lista_inspeccion->lista['tipo_lista'];
             $lista_actualizada = $data2['lista'];
             // Si ya hay un tipo existente, lo mantenemos para no sobrescribirlo
             $lista_actualizada['tipo_lista'] = $tipo_actual;                   
-            $lista_inspeccion->lista = $lista_actualizada;
+            $lista_inspeccion->lista = $lista_actualizada;           
             $lista_inspeccion->save();
+
+            $data_word= array_merge($data, $this->processListaOptions($data));
+            $this->processListaTemplates($data_word,$servicio_anexo);
+
+            return redirect()->route('listas_medicion.seleccion', ['id' => $request->input('id_servicio')])->with('info', 'Lista actualizada exitosamente');   
         }
 
-                
+        return redirect()->route('listas_medicion.seleccion', ['id' => $request->input('id_servicio')])->with('success', 'Lista creada exitosamente');     
 
-        return redirect()->route('listas_medicion.seleccion', ['id' => $request->input('id_servicio')]);    
-    
+       
     }
+
+
+    private function processListaOptions($data)
+    {
+
+        $numero_max_requisitos=143;
+        $processedData = [];
+
+        for ($i = 1; $i <= $numero_max_requisitos; $i++) {
+            $opcion = $data["opcion{$i}"] ?? null;
+
+            // Procesar la opción seleccionada y asignar los valores correspondientes en la plantilla
+            switch ($opcion) {
+                case 'si':
+                    $processedData["si{$i}"] = 'X';
+                    $processedData["no{$i}"] = ' ';
+                    $processedData["noaplica{$i}"] = ' ';
+                    break;
+                case 'no':
+                    $processedData["si{$i}"] = ' ';
+                    $processedData["no{$i}"] = 'X';
+                    $processedData["noaplica{$i}"] = ' ';
+                    break;
+                case 'no_aplica':
+                    $processedData["si{$i}"] = ' ';
+                    $processedData["no{$i}"] = ' ';
+                    $processedData["noaplica{$i}"] = 'X';
+                    break;
+                default:
+                    $processedData["si{$i}"] = ' ';
+                    $processedData["no{$i}"] = ' ';
+                    $processedData["noaplica{$i}"] = ' ';
+                    break;
+            }
+        }
+
+        return $processedData;
+    }
+
+    // Método para procesar las plantillas del dictamen informático
+    private function processListaTemplates($data,ServicioAnexo $servicio)
+    {
+        $templatePaths = [
+            'LISTA DE INSPECCIÓN VERIFICACION DE LOS SISTEMAS DE MEDICIÓN.docx',
+        ];
+
+        // Definir la carpeta de destino usando el método defineFolderPath
+        $subFolderPath = $this->defineFolderPath($servicio);
+
+        // Crear la carpeta personalizada si no existe
+        if (!Storage::disk('public')->exists($subFolderPath)) {
+            Storage::disk('public')->makeDirectory($subFolderPath);
+        }
+
+        // Reemplazar marcadores en las plantillas
+        foreach ($templatePaths as $templatePath) {
+            $templateProcessor = new TemplateProcessor(storage_path("app/templates/Anexo30/Listas/{$templatePath}"));
+
+            foreach ($data as $key => $value) {
+                $templateProcessor->setValue($key, $value);
+            }
+
+            $fileName = pathinfo($templatePath, PATHINFO_FILENAME) . "_{$servicio->nomenclatura}.docx";
+            $templateProcessor->saveAs(storage_path("app/public/{$subFolderPath}/{$fileName}"));
+        }
+    }
+
+     // Método para definir la carpeta de destino
+     private function defineFolderPath(ServicioAnexo $servicio)
+     {
+         $anio = now()->year;
+         return "Servicios/Anexo_30/{$anio}/{$servicio->id_usuario}/{$servicio->nomenclatura}/Listas";
+     }
 
     
     public function loadForm($type,$id_servicio)
@@ -177,7 +260,117 @@ class ListasInspeccionMedicionController extends Controller
 
 
 
+    public function edit(Request $request, $id)
+    {
+        $lista_inspeccion = Listas_inspeccion::findOrFail($id);
+  
+        $lista = $lista_inspeccion->lista;
+        $id_servicio=$lista_inspeccion->id_servicio;
+        
 
+        switch ($lista_inspeccion->lista['tipo_lista']){
+
+            case 'estacion':
+                return view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.index', compact('lista'))
+                    ->with('id_servicio', $id_servicio) 
+                    ->with('seccion01', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion01')->render())
+                    ->with('seccion02', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion02')->render())
+                    ->with('seccion03', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion03')->render())
+                    ->with('seccion04', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion04')->render())
+                    ->with('seccion05', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion05')->render())
+                    ->with('seccion06', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion06')->render())
+                    ->with('seccion07', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion07')->render())
+                    ->with('seccion08', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion08')->render())
+                    ->with('seccion09', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion09')->render())
+                    ->with('seccion10', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion10')->render())
+                    ->with('seccion11', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion11')->render())
+                    ->with('seccion12', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion12')->render())
+                    ->with('seccion13', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion13')->render())
+                    ->with('seccion14', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion14')->render())
+                    ->with('seccion15', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion15')->render())
+                    ->with('seccion16', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion16')->render())
+                    ->with('seccion17', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion17')->render())
+                    ->with('seccion18', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion18')->render())
+                    ->with('seccion19', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion19')->render())
+                    ->with('seccion20', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion20')->render())
+                    ->with('seccion21', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion21')->render())
+                    ->with('seccion22', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion22')->render())
+                    ->with('seccion23', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion23')->render())
+                    ->with('seccion24', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion24')->render())
+                    ->with('seccion25', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion25')->render())
+                    ->with('seccion26', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion26')->render())
+                    ->with('seccion27', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.estacion.seccion27')->render());
+                
+            case 'transporte':
+
+                return view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.index', compact('lista'))
+                ->with('id_servicio', $id_servicio) 
+                ->with('seccion01', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion01')->render())
+                ->with('seccion02', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion02')->render())
+                ->with('seccion03', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion03')->render())
+                ->with('seccion04', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion04')->render())
+                ->with('seccion05', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion05')->render())
+                ->with('seccion06', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion06')->render())
+                ->with('seccion07', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion07')->render())
+                ->with('seccion08', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion08')->render())
+                ->with('seccion09', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion09')->render())
+                ->with('seccion10', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion10')->render())
+                ->with('seccion11', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion11')->render())
+                ->with('seccion12', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion12')->render())
+                ->with('seccion13', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion13')->render())
+                ->with('seccion14', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion14')->render())
+                ->with('seccion15', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion15')->render())
+                ->with('seccion16', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion16')->render())
+                ->with('seccion17', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion17')->render())
+                ->with('seccion18', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion18')->render())
+                ->with('seccion19', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion19')->render())
+                ->with('seccion20', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion20')->render())
+                ->with('seccion21', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion21')->render())
+                ->with('seccion22', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion22')->render())
+                ->with('seccion23', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion23')->render())
+                ->with('seccion24', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion24')->render())
+                ->with('seccion25', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion25')->render())
+                ->with('seccion26', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion26')->render())
+                ->with('seccion27', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.transporte.seccion27')->render());
+
+            case 'almacenamiento':
+
+                return view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.index', compact('lista'))
+                ->with('id_servicio', $id_servicio) 
+                ->with('seccion01', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion01')->render())
+                ->with('seccion02', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion02')->render())
+                ->with('seccion03', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion03')->render())
+                ->with('seccion04', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion04')->render())
+                ->with('seccion05', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion05')->render())
+                ->with('seccion06', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion06')->render())
+                ->with('seccion07', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion07')->render())
+                ->with('seccion08', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion08')->render())
+                ->with('seccion09', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion09')->render())
+                ->with('seccion10', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion10')->render())
+                ->with('seccion11', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion11')->render())
+                ->with('seccion12', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion12')->render())
+                ->with('seccion13', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion13')->render())
+                ->with('seccion14', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion14')->render())
+                ->with('seccion15', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion15')->render())
+                ->with('seccion16', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion16')->render())
+                ->with('seccion17', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion17')->render())
+                ->with('seccion18', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion18')->render())
+                ->with('seccion19', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion19')->render())
+                ->with('seccion20', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion20')->render())
+                ->with('seccion21', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion21')->render())
+                ->with('seccion22', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion22')->render())
+                ->with('seccion23', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion23')->render())
+                ->with('seccion24', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion24')->render())
+                ->with('seccion25', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion25')->render())
+                ->with('seccion26', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion26')->render())
+                ->with('seccion27', view('armonia.servicios.anexo_30.listas.listas_medicion.edit.almacenamiento.seccion27')->render());
+
+            default:
+                abort(404); // Maneja el error si el tipo no es válido
+        }
+
+           
+    }
 
     
 }

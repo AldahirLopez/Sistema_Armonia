@@ -28,19 +28,19 @@
                             a) El medio de almacenamiento debe tener Calibración válida (cartas), realizada por un laboratorio acreditado por una entidad de acreditación, de conformidad con lo establecido en la LFMN o en la LIC. 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medio_almacenamiento_calibracion" value="si"> Sí
+                                    <input type="radio" name="opcion67" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="medio_almacenamiento_calibracion" value="no"> No
+                                    <input type="radio" name="opcion67" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medio_almacenamiento_calibracion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion67" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_medio_almacenamiento_calibracion" class="form-control">
+                                <input type="text" name="observaciones67" class="form-control">
                             </td>
                         </tr>
 
@@ -49,19 +49,19 @@
                             b) El Hidrocarburo o Petrolífero de que se trate debe estar en condiciones de reposo total.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hidrocarburo_petrolifero_reposo_total" value="si"> Sí
+                                    <input type="radio" name="opcion68" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="hidrocarburo_petrolifero_reposo_total" value="no"> No
+                                    <input type="radio" name="opcion68" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="hidrocarburo_petrolifero_reposo_total" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion68" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_hidrocarburo_petrolifero_reposo_total" class="form-control">
+                                <input type="text" name="observaciones68" class="form-control">
                             </td>
                         </tr>
                                    

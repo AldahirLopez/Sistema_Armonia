@@ -25,19 +25,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="normatividad_procedimientos" value="si"> Sí
+                                    <input type="radio" name="opcion42" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="normatividad_procedimientos" value="no"> No
+                                    <input type="radio" name="opcion42" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="normatividad_procedimientos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion42" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_normatividad_procedimientos" class="form-control">
+                                <input type="text" name="observaciones42" class="form-control">
                             </td>
                         </tr>
                         
@@ -48,19 +48,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="SMG_sistemas_medicion" value="si"> Sí
+                                    <input type="radio" name="opcion43" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="SMG_sistemas_medicion" value="no"> No
+                                    <input type="radio" name="opcion43" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="SMG_sistemas_medicion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion43" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_SMG_sistemas_medicion" class="form-control">
+                                <input type="text" name="observaciones43" class="form-control">
                             </td>
                         </tr>  
 
@@ -70,19 +70,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="responsabilidad_competencia_personal_sistemas_medicion" value="si"> Sí
+                                    <input type="radio" name="opcion44" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="responsabilidad_competencia_personal_sistemas_medicion" value="no"> No
+                                    <input type="radio" name="opcion44" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="responsabilidad_competencia_personal_sistemas_medicion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion44" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_responsabilidad_competencia_personal_sistemas_medicion" class="form-control">
+                                <input type="text" name="observaciones44" class="form-control">
                             </td>
                         </tr> 
                         

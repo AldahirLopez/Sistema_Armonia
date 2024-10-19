@@ -20,19 +20,19 @@
                             i. Las condiciones de operación del proceso (temperaturas, presiones, intervalos de flujo, niveles, etc.).
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="principio_medicion_condiciones_operacion" value="si"> Sí
+                                    <input type="radio" name="opcion110" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="principio_medicion_condiciones_operacion" value="no"> No
+                                    <input type="radio" name="opcion110" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="principio_medicion_condiciones_operacion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion110" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_principio_medicion_condiciones_operacion" class="form-control">
+                                <input type="text" name="observaciones110" class="form-control">
                             </td>
                         </tr>
 
@@ -42,19 +42,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="principio_medicion_tipo_hidrocarburo_petrolifero" value="si"> Sí
+                                    <input type="radio" name="opcion111" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="principio_medicion_tipo_hidrocarburo_petrolifero" value="no"> No
+                                    <input type="radio" name="opcion111" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="principio_medicion_tipo_hidrocarburo_petrolifero" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion111" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_principio_medicion_tipo_hidrocarburo_petrolifero" class="form-control">
+                                <input type="text" name="observaciones111" class="form-control">
                             </td>
                         </tr>
 
@@ -64,19 +64,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="principio_medicion_dimensionamiento_medidor" value="si"> Sí
+                                    <input type="radio" name="opcion112" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="principio_medicion_dimensionamiento_medidor" value="no"> No
+                                    <input type="radio" name="opcion112" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="principio_medicion_dimensionamiento_medidor" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion112" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_principio_medicion_dimensionamiento_medidor" class="form-control">
+                                <input type="text" name="observaciones112" class="form-control">
                             </td>
                         </tr>
 
@@ -86,19 +86,19 @@
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="principio_medicion_caracteristicas_fabricante" value="si"> Sí
+                                    <input type="radio" name="opcion113" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="principio_medicion_caracteristicas_fabricante" value="no"> No
+                                    <input type="radio" name="opcion113" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="principio_medicion_caracteristicas_fabricante" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion113" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_principio_medicion_caracteristicas_fabricante" class="form-control">
+                                <input type="text" name="observaciones113" class="form-control">
                             </td>
                         </tr>
 

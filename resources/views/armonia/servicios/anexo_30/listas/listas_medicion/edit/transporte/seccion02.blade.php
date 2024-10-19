@@ -7,261 +7,92 @@
                         <!-- SEGUNDO BLOQUE DE REQUISITOS -->
                         <tr class="table-info">
                             <th scope="row" colspan="100%">
-                                IV. Debe permitir el registro de las personas autorizadas para acceder al programa, así como establecer el perfil asignado y, con ello, los privilegios de que dispone:
+                                III. Los sistemas de medición deben instalarse en los siguientes puntos:
                             </th>
                         </tr>
-                        <!-- SEGUNDO BLOQUE DE REQUISITOS -->
-                        <tr class="table-info   ">
+
+                        <tr class="table">
                             <th scope="row" colspan="100%">
-                                a) Los perfiles que podrán registrarse son: Administrador, Supervisor, Operador y Auditor Fiscal, con los siguientes atributos:
+                                a) Áreas contractuales y asignaciones
                             </th>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                1. Perfil de Administrador, debe tener atributos para: registro de usuarios, configuración del control volumétrico, definir desplegados gráficos de operación, visualizar información almacenada, registro de acciones o eventos en la bitácora de eventos y consulta e impresión de informes de la base de datos.
+                                Punto de medición aprobado, o en su caso determinado por la CNH, en
+                                donde se llevará a cabo la medición del volumen de los Hidrocarburos
+                                producidos al amparo de un contrato o Asignación.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_admin" value="si"> Sí
+                                    <input type="radio" name="opcion3" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_admin" value="no"> No
+                                    <input type="radio" name="opcion3" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_admin" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion3" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_admin" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones3" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                2. Perfil de Supervisor, debe tener atributos para: configuración del control volumétrico, definir desplegados gráficos de operación, visualizar información almacenada, registro de acciones o eventos en la bitácora de eventos y consulta e impresión de informes de la base de datos.
+                                Se debe seleccionar el medidor conforme a los requisitos metrológicos:
+                                características de los fluidos, intervalos de medición y condiciones técnicas
+                                u operativas del proceso. En caso de emplearse, el medidor multifásico debe
+                                cumplir con la normatividad descrita en el apartado 30.7., fracciones I, V y
+                                VI, señalados en este Anexo.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="si"> Sí
+                                    <input type="radio" name="opcion4" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_supervisor" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="perfil_supervisor" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_supervisor" class="form-control">
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td class="align-middle">
-                                3. Perfil de Operador, debe tener atributos para: visualizar desplegados gráficos de operación, visualizar información almacenada y registro de acciones o eventos en la bitácora de eventos.
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="perfil_operador" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="perfil_operador" value="no"> No
+                                    <input type="radio" name="opcion4" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_operador" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion4" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_operador" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones4" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                4. Perfil de Auditor Fiscal, debe tener atributos para: visualizar desplegados gráficos de operación, visualizar información almacenada y consulta e impresión de informes de la base de datos.
+                                Se deben realizar registros de la producción diaria y la producción acumulada mensual.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_auditor" value="si"> Sí
+                                    <input type="radio" name="opcion5" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="perfil_auditor" value="no"> No
+                                    <input type="radio" name="opcion5" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="perfil_auditor" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion5" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_perfil_auditor" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones5" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
-                        <tr>
-                            <td class="align-middle">
-                                b) El Administrador es el único que podrá registrar usuarios y actualizar su información
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="admin_ingreso_users" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="admin_ingreso_users" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="admin_ingreso_users" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_admin_ingreso_users" class="form-control">
-                            </td>
-                        </tr>
-                        <!---- hasta aca compuesto --->
-                        <tr>
-                            <td class="align-middle">
-                                c) En el registro de cada usuario, el Administrador deberá registrar el nombre de usuario y una contraseña temporal, así como el perfil que se le asigne.
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="admin_registro_user" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="admin_registro_user" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="admin_registro_user" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_admin_registro_user" class="form-control">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">
-                                d) Cuando un usuario acceda por primera vez a un inicio de sesión, el programa informático le deberá solicitar el registro de una nueva contraseña.
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="informatico_nueva_password" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="informatico_nueva_password" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="informatico_nueva_password" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_informatico_nueva_password" class="form-control">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="align-middle">
-                                e) Dependiendo del perfil del usuario que inicie la sesión, se deberá presentar la pantalla de usuario correspondiente.
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="pantalla_usuario_correcta" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="pantalla_usuario_correcta" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="pantalla_usuario_correcta" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_pantalla_usuario_correcta" class="form-control">
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td class="align-middle">
-                                f) Cada pantalla de usuario debe permitir únicamente el acceso a las funciones que tiene permiso el perfil.
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="permisos_perfil" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="permisos_perfil" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="permisos_perfil" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_permisos_perfil" class="form-control">
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td class="align-middle">
-                                g) Todas las acciones realizadas por los usuarios deben registrarse de forma automática en la bitácora de eventos.
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="acciones_users_automatico" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="acciones_users_automatico" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="acciones_users_automatico" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_acciones_users_automatico" class="form-control">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="align-middle">
-                                V. Debe ser capaz de establecer y configurar los enlaces de comunicación para la transferencia de información de cada sistema de medición utilizado, cuando la tecnología empleada lo permita. Dicho enlace debe permitir que el programa informático reciba y recopile la información de la medición, realizada al término de las operaciones de recepción y entrega y del control de existencias.
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="enlaces_comunicacion_trasnferencia" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="enlaces_comunicacion_trasnferencia" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="enlaces_comunicacion_trasnferencia" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_enlaces_comunicacion_trasnferencia" class="form-control">
-                            </td>
-                        </tr>
-
-                        <!-- Continúa con el resto de requisitos -->
+                        
                     </tbody>
                 </table>
             </td>

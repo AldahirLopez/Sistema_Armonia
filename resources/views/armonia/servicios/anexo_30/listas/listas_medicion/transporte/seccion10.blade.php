@@ -19,20 +19,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="disponer_protocolo_comunicaciones_UCC" value="si" disabled> Sí
+                                    <input type="radio" name="opcion45" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="disponer_protocolo_comunicaciones_UCC" value="no" disabled> No
+                                    <input type="radio" name="opcion45" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="disponer_protocolo_comunicaciones_UCC" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion45" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_disponer_protocolo_comunicaciones_UCC" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones45" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -42,20 +42,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="mecanismos_mitigacion_pertubaciones" value="si" disabled> Sí
+                                    <input type="radio" name="opcion46" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="mecanismos_mitigacion_pertubaciones" value="no" disabled> No
+                                    <input type="radio" name="opcion46" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="mecanismos_mitigacion_pertubaciones" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion46" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_mecanismos_mitigacion_pertubaciones" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones46" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -65,20 +65,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="estable_tolerante_fallas_electricas" value="si" disabled> Sí
+                                    <input type="radio" name="opcion47" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="estable_tolerante_fallas_electricas" value="no" disabled> No
+                                    <input type="radio" name="opcion47" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="estable_tolerante_fallas_electricas" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion47" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_estable_tolerante_fallas_electricas" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones47" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -88,20 +88,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="conexiones_interfaz_sistema_medicion_UCC" value="si" disabled> Sí
+                                    <input type="radio" name="opcion48" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="conexiones_interfaz_sistema_medicion_UCC" value="no" disabled> No
+                                    <input type="radio" name="opcion48" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="conexiones_interfaz_sistema_medicion_UCC" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion48" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_conexiones_interfaz_sistema_medicion_UCC" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones48" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -111,20 +111,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="ningun_elemento_mecanico_alterar_informacion" value="si" disabled> Sí
+                                    <input type="radio" name="opcion49" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="ningun_elemento_mecanico_alterar_informacion" value="no" disabled> No
+                                    <input type="radio" name="opcion49" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="ningun_elemento_mecanico_alterar_informacion" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion49" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_ningun_elemento_mecanico_alterar_informacion" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones49" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 

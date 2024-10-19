@@ -18,20 +18,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_tipo_hidrocarburo_petrolifero" value="si" disabled> Sí
+                                    <input type="radio" name="opcion58" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_tipo_hidrocarburo_petrolifero" value="no" disabled> No
+                                    <input type="radio" name="opcion58" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_tipo_hidrocarburo_petrolifero" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion58" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_elementos_secundarios_tipo_hidrocarburo_petrolifero" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones58" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -41,20 +41,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_instalacion_operacion_apartado" value="si" disabled> Sí
+                                    <input type="radio" name="opcion59" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_instalacion_operacion_apartado" value="no" disabled> No
+                                    <input type="radio" name="opcion59" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_instalacion_operacion_apartado" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion59" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_elementos_secundarios_instalacion_operacion_apartado" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones59" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -64,20 +64,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_calibracion_valida" value="si" disabled> Sí
+                                    <input type="radio" name="opcion60" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_calibracion_valida" value="no" disabled> No
+                                    <input type="radio" name="opcion60" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_calibracion_valida" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion60" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_elementos_secundarios_calibracion_valida" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones60" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
@@ -87,20 +87,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_placas_identificacion" value="si" disabled> Sí
+                                    <input type="radio" name="opcion61" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_placas_identificacion" value="no" disabled> No
+                                    <input type="radio" name="opcion61" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="elementos_secundarios_placas_identificacion" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion61" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por el tipo de instalación</strong>
-                                <input type="hidden" name="observaciones_elementos_secundarios_placas_identificacion" class="form-control" value="No aplica por el tipo de instalación">
+                                <input type="hidden" name="observaciones61" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 

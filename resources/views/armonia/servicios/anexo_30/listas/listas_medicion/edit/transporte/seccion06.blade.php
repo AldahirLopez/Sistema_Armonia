@@ -7,291 +7,170 @@
                         <!-- TERCER BLOQUE DE REQUISITOS -->
                         <tr class="table-info">
                             <th scope="row" colspan="100%">
-                                a) Los eventos que deben generar una alarma son:
-                                <ol>
-                                    <li>Calibración no válida.</li>
-                                    <li>Inconsistencias en la información volumétrica a que se refiere el apartado 30.6.1.1., fracción VII, inciso g), numeral 7</li>
-                                    <li>Intento de alteración de cualquier registro.</li>
-                                    <li>Registros incompletos o duplicados.</li>
-                                    <li>Problemas de comunicación.</li>
-                                    <li>Falla del medio de almacenamiento.</li>
-                                    <li>Falla en la red de comunicación.</li>
-                                    <li>Falla de energía.</li>
-                                    <li>Error en la transmisión de información.</li>
-                                    <li>Rechazos de inicio de sesión.</li>
-                                    <li>Paro de emergencia.</li>
-                                    <li>Reanudación de operaciones. En caso de que no se atienda en un plazo máximo de 72 horas, cualquier falla o   
-                                    condición anómala de los componentes de los equipos y programas informáticos para llevar controles volumétricos,
-                                    como fallas de comunicación o energía y sistemas de medición con calibración no válida, contadas a partir de que estas 
-                                    se  presenten 
-                                    </li>
-                                </ol>
+                                e) Transporte o distribución.
                             </th>
                         </tr>
-
-
-                        <tr class="table-info">
-                            <th scope="row" colspan="100%">
-                                b) Los datos que deben incluirse para cada registro de alarma son:
-                                <ol>
-                                    <li>Número de registro, único y consecutivo.</li>
-                                    <li>Fecha del evento.</li>
-                                    <li>Hora del evento.</li>
-                                    <li>Identificación del componente que origina la alarma. Ejemplos:
-                                    Canal de comunicación 
-                                    Dispensarios 
-                                    Sistemas de medición 
-                                    </li>
-                                    <li>Tipos de evento. Ejemplos:
-                                    Problemas de calibración. Falla en sistema 
-                                    de medición. Falla de energía eléctrica.
-                                    </li>
-                                    <li>Descripción del evento.</li>
-                                    
-                                </ol>
-                            </th>
-                        </tr>
-
-                        <tr>
-                            <th class="table-success" scope="row" colspan="100%">
-                            30.6.1.2. Información a recopilar. La información que debe recopilar el programa informático es la siguiente:                             
-                            </th>
-                        </tr>
-
-                        <tr>
-                            <th class="table-success" scope="row" colspan="100%">
-                            30.6.1.2.1. Datos generales.                            
-                            </th>
-                        </tr>
-
-                        <tr>
-                            <th class="table-info" scope="row" colspan="100%">
-                            I. Identificación del contribuyente:                        
-                            </th>
-                        </tr>
-
 
                         <!-- PRIMER BLOQUE DE REQUISITOS -->
                         <tr>
                             <td class="align-middle">
-                                a) Clave en el RFC.</td>
+                            Los Hidrocarburos o Petrolíferos transportados o distribuidos por medios distintos a ductos, deben ser medidos tanto en la instalación que los transfiere como en la que los recibe, incluidas las instalaciones y operaciones de trasvase.</td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc" value="si"> Sí
+                                    <input type="radio" name="opcion24" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_rfc" value="no"> No
+                                    <input type="radio" name="opcion24" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion24" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_clave_rfc" class="form-control">
+                                <input type="text" name="observaciones24" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            b) Clave en el RFC del representante legal.
+                            Los Hidrocarburos o Petrolíferos transportados o distribuidos por medio de ductos deben ser medidos en la instalación que los transfiere o en la que los recibe.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_representante" value="si"> Sí
+                                    <input type="radio" name="opcion25" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_rfc_representante" value="no"> No
+                                    <input type="radio" name="opcion25" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_representante" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion25" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_clave_rfc_representante" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones25" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            c) Clave en el RFC del o de los proveedores de equipos y programas para llevar controles volumétricos.
+                            Los registros del volumen de las operaciones de entrega y recepción, derivadas del transporte o distribución de tales productos, se deben generar en las instalaciones que transfieren y reciben dichos Hidrocarburos o Petrolíferos tratándose de medios distintos a ductos.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_proveedores" value="si"> Sí
+                                    <input type="radio" name="opcion26" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="clave_rfc_proveedores" value="no"> No
+                                    <input type="radio" name="opcion26" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_rfc_proveedores" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion26" value="no_aplica"> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_clave_rfc_proveedores" class="form-control">
+                            <td class="text-center align-middle">
+                                <input type="text" name="observaciones26" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                d) Carácter con el que actúa para efectos regulatorios: contratista, asignatario, permisionario o usuario.
+                            Los registros del volumen de las operaciones de entrega o recepción, derivadas del transporte o distribución por medio de ductos, se deben generar en las instalaciones que transfieren o en las instalaciones que reciben dichos Hidrocarburos o Petrolíferos, en cualquier caso, el permisionario de la instalación en la que se realizó la medición deberá
+                            proporcionar el registro del volumen al sujeto al cual le transfirió o de quien
+                            recibió dichos Hidrocarburos o Petrolíferos. Tratándose de la distribución de
+                            gas natural por medio de ductos, lo dispuesto en este párrafo es aplicable a los equipos de medición y sus registros de volumen en cada uno de los puntos de inyección a los sistemas de transporte, almacenamiento y distribución, así como en cada uno de los puntos de transferencia de custodia a otros permisionarios o usuarios finales y no será aplicable tratándose de instalaciones para consumo de gas natural del usuario final residencial.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="efectos_regulatorios" value="si"> Sí
+                                    <input type="radio" name="opcion27" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="efectos_regulatorios" value="no"> No
+                                    <input type="radio" name="opcion27" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="efectos_regulatorios" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion27" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_efectos_regulatorios" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones27" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            e) Número de Asignación o Permiso expedido por la Secretaría de Energía o de Contrato expedido por la CNH o de Permiso expedido por la CRE.
+                            Los ductos para transporte o distribución, ductos de entrada y salida a medios de almacenamiento, incluyendo aquéllos en las plantas de distribución, y ductos de carga y descarga de autotanques, carrotanques y buquetanques, deben tener implementado un sistema de medición dinámica que debe cumplir con la normatividad que les corresponda descrita en el apartado 30.7., fracciones I y VI, así como III para el petróleo o, IV para el gas natural.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="permiso_expedido_secretaria" value="si"> Sí
+                                    <input type="radio" name="opcion28" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="permiso_expedido_secretaria" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="permiso_expedido_secretaria" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_permiso_expedido_secretaria" class="form-control">
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <th class="table" scope="row" colspan="100%">
-                            II. Instalación o proceso donde deban instalarse sistemas de medición:                       
-                            </th>
-                        </tr>
-
-                        <tr>
-                            <td class="align-middle">
-                            a) Clave de identificación. 
-                            Ejemplos:
-                            Para identificar una refinería se emplea la clave REF-0001.
-                            Para identificar un área contractual del tipo terrestre, se emplea la clave                                             
-                            ACL-TRE-0045. 
-                            Para identificar una estación de servicio, se emplea la clave EDS-0001. 
-
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="clave_identificacion_medicion" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="clave_identificacion_medicion" value="no"> No
+                                    <input type="radio" name="opcion28" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="clave_identificacion_medicion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion28" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_clave_identificacion_medicion" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones28" class="form-control" value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            b) Descripción.
-                            Ejemplo: 
-                            Para una estación de servicio se emplea la siguiente descripción: E.S.    
-                            ubicada en Av. México 3000, conformada por 2 tanques de 50,000 litros 
-                            y 8 dispensarios. 
-
+                            Los medios de transporte o distribución distintos a ducto deben tener implementado un sistema de medición estática, en cumplimiento con la normatividad listada en el apartado 30.7., fracciones I, II y VI para cuantificar el volumen almacenado en su respectivo tanque, el cual se debe utilizar para verificar el volumen a la carga y descarga de los Hidrocarburos o Petrolíferos.
 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="descripcion_medicion" value="si"> Sí
+                                    <input type="radio" name="opcion29" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="descripcion_medicion" value="no"> No
+                                    <input type="radio" name="opcion29" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="descripcion_medicion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion29" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_descripcion_medicion" class="form-control">
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td class="align-middle">
-                            c) Clave de identificación del Hidrocarburo o Petrolífero de que se trate. 
-                            Ejemplos: 
-                            PR08 Petróleo. PR09 Gas Natural.
-                            PR10 Condensados. PR07 
-                            Gasolinas. PR03 Diésel. 
-                            PR11 Turbosina.
-                            PR12 Gas licuado de petróleo.
-                            PR14 Propano.
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="clave_identificacion_hidrocarburo" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="clave_identificacion_hidrocarburo" value="no"> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="clave_identificacion_hidrocarburo" value="no_aplica"> No Aplica
-                                </label>
-                            </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_clave_identificacion_hidrocarburo" class="form-control">
+                                <input type="text" name="observaciones29" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            III. Equipos:
-                            Todos los tanques, ductos, pozos, dispensarios y sistemas de medición  
-                            utilizados para llevar el control volumétrico deben tener una clave de 
-                            identificación asignada por el contribuyente al momento de darse de 
-                            alta.  
-                            La información que se debe recopilar es la siguiente
+                            Tratándose de las operaciones de recepción y entrega de gas licuado de petróleo en plantas de distribución e instalaciones de aprovechamiento,
+                            los tanques podrán contar con indicador de nivel de líquido, mecánico de operación manual o automática para indicar el nivel, de conformidad con la
+                            NOM-001-SESH-2014, Plantas de distribución de Gas L.P. Diseño, construcción y condiciones seguras en su operación, o aquélla que la sustituya. 
+
+
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="equipos" value="si"> Sí
+                                    <input type="radio" name="opcion30" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="equipos" value="no"> No
+                                    <input type="radio" name="opcion30" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="equipos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion30" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_equipos" class="form-control">
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por el tipo de instalación</strong>
+                                <input type="hidden" name="observaciones30" class="form-control"  value="No aplica por el tipo de instalación">
                             </td>
                         </tr>
+                        
                         <!-- Continúa con el resto de requisitos -->
                     </tbody>
                 </table>

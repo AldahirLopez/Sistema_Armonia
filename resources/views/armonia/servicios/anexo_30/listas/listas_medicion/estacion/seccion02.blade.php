@@ -7,66 +7,66 @@
                         <!-- SEGUNDO BLOQUE DE REQUISITOS -->
                         <tr class="table-info">
                             <th scope="row" colspan="100%">
-                            III. Los sistemas de medición deben instalarse en los siguientes puntos:
+                                III. Los sistemas de medición deben instalarse en los siguientes puntos:
                             </th>
                         </tr>
 
                         <tr class="table">
                             <th scope="row" colspan="100%">
-                                a) Áreas contractuales y asignaciones 
+                                a) Áreas contractuales y asignaciones
                             </th>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            Punto de medición aprobado, o en su caso determinado por la CNH, en        
-                            donde se llevará a cabo la medición del volumen de los Hidrocarburos 
-                            producidos al amparo de un contrato o Asignación. 
+                                Punto de medición aprobado, o en su caso determinado por la CNH, en
+                                donde se llevará a cabo la medición del volumen de los Hidrocarburos
+                                producidos al amparo de un contrato o Asignación.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_medicion_aprobado_CNH" value="si"> Sí
+                                    <input type="radio" name="opcion3" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="punto_medicion_aprobado_CNH" value="no"> No
+                                    <input type="radio" name="opcion3" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_medicion_aprobado_CNH" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion3" value="no_aplica"> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_punto_medicion_aprobado_CNH" class="form-control">
+                            <td class="text-center align-middle">
+                                <input type="text" name="observaciones3" class="form-control">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            Se debe seleccionar el medidor conforme a los requisitos metrológicos:
-                            características de los fluidos, intervalos de medición y condiciones técnicas     
-                            u operativas del proceso. En caso de emplearse, el medidor multifásico debe
-                            cumplir con la normatividad descrita en el apartado 30.7., fracciones I, V y     
-                            VI, señalados en este Anexo. 
+                                Se debe seleccionar el medidor conforme a los requisitos metrológicos:
+                                características de los fluidos, intervalos de medición y condiciones técnicas
+                                u operativas del proceso. En caso de emplearse, el medidor multifásico debe
+                                cumplir con la normatividad descrita en el apartado 30.7., fracciones I, V y
+                                VI, señalados en este Anexo.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="seleccion_medidor_metrologicos" value="si"> Sí
+                                    <input type="radio" name="opcion4" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="seleccion_medidor_metrologicos" value="no"> No
+                                    <input type="radio" name="opcion4" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="seleccion_medidor_metrologicos" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion4" value="no_aplica"> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_seleccion_medidor_metrologicos" class="form-control">
+                            <td class="text-center align-middle">
+
+                                <input type="text" name="observaciones4" class="form-control">
                             </td>
                         </tr>
-
 
                         <tr>
                             <td class="align-middle">
@@ -74,23 +74,23 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registro_produccion_diaria_acumulada_mensual" value="si"> Sí
+                                    <input type="radio" name="opcion5" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="registro_produccion_diaria_acumulada_mensual" value="no"> No
+                                    <input type="radio" name="opcion5" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registro_produccion_diaria_acumulada_mensual" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion5" value="no_aplica"> No Aplica
                                 </label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_registro_produccion_diaria_acumulada_mensual" class="form-control">
+                            <td class="text-center align-middle">
+                                <input type="text" name="observaciones5" class="form-control">
                             </td>
                         </tr>
 
-                        <!-- Continúa con el resto de requisitos -->
+                        
                     </tbody>
                 </table>
             </td>
