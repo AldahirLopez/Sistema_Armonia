@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Listas_inspeccion;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\TemplateProcessor;
+
+use CloudConvert\CloudConvert;
+use CloudConvert\Models\Job;
+use CloudConvert\Models\Task;
 class ListasInspeccionMedicionController extends Controller
 {
 
@@ -399,6 +403,103 @@ class ListasInspeccionMedicionController extends Controller
         $lista_inspeccion->delete();
         
         return redirect()->route('listas_medicion.seleccion', ['id' => $id_servicio]);
+
+    }
+
+
+
+    public function descargar_pdf($id_lista){
+
+        $lista_inspeccion=Listas_inspeccion::findOrFail($id_lista);
+        $servicio=$lista_inspeccion->servicio_anexo;
+        $anio = now()->year;
+
+        $templatePaths = [
+            'LISTA DE INSPECCIÓN VERIFICACION DE LOS SISTEMAS DE MEDICIÓN.docx',
+        ];
+
+       foreach ($templatePaths as $templatePath) {
+
+           $fileName = pathinfo($templatePath, PATHINFO_FILENAME) . "_{$servicio->nomenclatura}.docx";
+           $customFolderPath = "Servicios/Anexo_30/{$anio}/{$servicio->id_usuario}/{$servicio->nomenclatura}/Listas/${fileName}"; 
+
+       }
+
+        // Inicializar CloudConvert con tu API Key
+        $cloudconvert = new CloudConvert(['api_key' => env('CLOUDCONVERT_API_KEY')]);
+
+        // Ruta completa del archivo .docx
+        $fullPath = storage_path('app/public/' . $customFolderPath);
+
+        // Extraer el nombre del archivo sin la extensión
+        $fileNameWithoutExtension = pathinfo($customFolderPath, PATHINFO_FILENAME);
+
+        // Crear una tarea de CloudConvert
+        $job = (new Job())
+            ->addTask(
+                (new Task('import/upload', 'upload-my-file'))
+            )
+            ->addTask(
+                (new Task('convert', 'convert-my-file'))
+                    ->set('input', 'upload-my-file')
+                    ->set('output_format', 'pdf')
+            )
+            ->addTask(
+                (new Task('export/url', 'export-my-file'))
+                    ->set('input', 'convert-my-file')
+            );
+
+        // Crear el trabajo en CloudConvert y obtener el resultado
+        $jobResult = $cloudconvert->jobs()->create($job);
+
+        // Subir el archivo a CloudConvert
+        $uploadTask = $jobResult->getTasks()->whereName('upload-my-file')[0];
+        $cloudconvert->tasks()->upload($uploadTask, fopen($fullPath, 'r'));
+
+        // Esperar a que el trabajo finalice y obtener el resultado
+        $job = $cloudconvert->jobs()->wait($jobResult);
+
+        // Obtener la tarea de exportación
+        $exportTask = $job->getTasks()->whereName('export-my-file')[0];
+
+        // Obtener la URL del archivo convertido
+        $exportedFileUrl = $exportTask->getResult()->files[0]->url;
+
+        // Descargar el archivo convertido en PDF usando el nombre original
+        return response()->streamDownload(function () use ($exportedFileUrl) {
+            echo file_get_contents($exportedFileUrl);
+        }, $fileNameWithoutExtension . '.pdf');  // Aquí se usa el nombre original con extensión .pdf
+
+
+    }
+
+
+    public function descargar_word($id_lista){
+        
+        $lista_inspeccion=Listas_inspeccion::findOrFail($id_lista);
+        $servicio=$lista_inspeccion->servicio_anexo;
+        $anio = now()->year;
+
+        $templatePaths = [
+            'LISTA DE INSPECCIÓN VERIFICACION DE LOS SISTEMAS DE MEDICIÓN.docx',
+        ];
+
+       foreach ($templatePaths as $templatePath) {
+
+           $fileName = pathinfo($templatePath, PATHINFO_FILENAME) . "_{$servicio->nomenclatura}.docx";
+           $customFolderPath = "Servicios/Anexo_30/{$anio}/{$servicio->id_usuario}/{$servicio->nomenclatura}/Listas/${fileName}"; 
+
+       }
+
+
+
+        $file = Storage::disk('public')->path($customFolderPath);
+        
+        if (Storage::disk('public')->exists($customFolderPath)) {
+            return response()->download($file);
+        } else {
+            return redirect()->back()->with('error', 'Archivo no encontrado.');
+        }
 
     }
 

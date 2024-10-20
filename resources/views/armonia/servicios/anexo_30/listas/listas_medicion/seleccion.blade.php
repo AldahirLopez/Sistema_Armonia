@@ -68,8 +68,20 @@
                         <a href="{{route('lista_inspeccion_medicion.edit',['id'=>$listas_inspeccion->id])}}" class="btn btn-outline-primary btn-sm ms-2 d-inline-flex align-items-center">
                             <i class="bx bx-edit me-1" style="font-size: 1.2rem;"></i> <!-- Icono de editar con tamaño mayor -->
                             <span>Editar</span>
-                        </a>                        
+                        </a>   
+                        
+                        
+                        <a href="{{route('lista_inspeccion_medicion.descargar_pdf',['id_lista'=>$listas_inspeccion->id])}}" class="btn btn-outline-danger btn-sm" title="Descargar como PDF">
+                            <i class="fas fa-file-pdf fa-2x"></i>
+                            
+                        </a> 
+
+                        <a href="{{route('lista_inspeccion_medicion.descargar_word',['id_lista'=>$listas_inspeccion->id])}}" class="btn btn-outline-primary btn-sm" title="Descargar en Word">
+                            <i class="fas fa-file-word fa-2x"></i>
+                            
+                        </a>
                         @endif
+
 
 
                     </div>

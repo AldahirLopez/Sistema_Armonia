@@ -72,10 +72,17 @@
                         @endif
 
                         @if(auth()->user()->hasRole('Administrador'))
-                        <a href="{{route('lista_inspeccion.descargar',['id_lista'=>$listas_inspeccion->id])}}" class="btn btn-outline-success btn-sm ms-2 d-inline-flex align-items-center">
-                            <i class="bx bx-download" style="font-size: 1.2rem;"></i> <!-- Icono de editar con tamaño mayor -->
+                        <a href="{{route('lista_inspeccion.descargar_pdf',['id_lista'=>$listas_inspeccion->id])}}" class="btn btn-outline-danger btn-sm" title="Descargar como PDF">
+                            <i class="fas fa-file-pdf fa-2x"></i>
                             
-                        </a>                        
+                        </a> 
+
+                        <a href="{{route('lista_inspeccion.descargar_word',['id_lista'=>$listas_inspeccion->id])}}" class="btn btn-outline-primary btn-sm" title="Descargar en Word">
+                            <i class="fas fa-file-word fa-2x"></i>
+                            
+                        </a>
+                        
+                        
                         @endif
 
 

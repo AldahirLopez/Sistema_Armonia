@@ -205,8 +205,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/lista_inspeccion/{id}', [ListasInspeccionController::class, 'destroy'])->name('lista_inspeccion.destroy');
 
     //Ruta para descargar la lista de inspeccion en pdf 
-    Route::get('/lista_inspeccion/descargar/{id_lista}', [ListasInspeccionController::class, 'descargar'])->name('lista_inspeccion.descargar');
+    Route::get('/lista_inspeccion/descargar_pdf/{id_lista}', [ListasInspeccionController::class, 'descargar_pdf'])->name('lista_inspeccion.descargar_pdf');
 
+    Route::get('/lista_inspeccion/descargar_word/{id_lista}', [ListasInspeccionController::class, 'descargar_word'])->name('lista_inspeccion.descargar_word');
 
     //RUTAS PARA LISTAS DE INSPECCION SISTEMAS DE MEDICION 
     //Ruta para el menu de las listas de inspeccio Anexo 30
@@ -224,6 +225,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Ruta para eliminar la lista de inspeccion
     Route::delete('/lista_inspeccion/medicion/{id}', [ListasInspeccionMedicionController::class, 'destroy'])->name('lista_inspeccion_medicion.destroy');
+
+    //Ruta para descargar la lista de inspeccion en pdf 
+    Route::get('/lista_inspeccion/medicio/descargar_pdf/{id_lista}', [ListasInspeccionMedicionController::class, 'descargar_pdf'])->name('lista_inspeccion_medicion.descargar_pdf');
+
+    Route::get('/lista_inspeccion/medicion/descargar_word/{id_lista}', [ListasInspeccionMedicionController::class, 'descargar_word'])->name('lista_inspeccion_medicion.descargar_word');
 
     // Calendario
     Route::get('/calendario', [CalendarioController::class, 'index'])->name('calendario.index');
