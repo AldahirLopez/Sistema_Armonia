@@ -56,7 +56,7 @@
                 
                     <div class="d-flex justify-content-end align-items-center mt-auto">                        
                        
-                            <form action="{{ route('lista_inspeccion.destroy',['id'=>$listas_inspeccion->id]) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('lista_inspeccion_medicion.destroy',['id'=>$listas_inspeccion->id]) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar la lista?');"> <i class="bx bx-trash"></i></button>

@@ -372,5 +372,15 @@ class ListasInspeccionMedicionController extends Controller
            
     }
 
+     public function destroy($id){
+        $lista_inspeccion=Listas_inspeccion::findOrFail($id);
+        $id_servicio =$lista_inspeccion->id_servicio;
+        $lista_inspeccion->delete();
+        
+        return redirect()->route('listas_medicion.seleccion', ['id' => $id_servicio]);
+
+    }
+
+
     
 }
