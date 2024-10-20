@@ -374,6 +374,27 @@ class ListasInspeccionMedicionController extends Controller
 
      public function destroy($id){
         $lista_inspeccion=Listas_inspeccion::findOrFail($id);
+        $servicio=$lista_inspeccion->servicio_anexo;
+        $anio = now()->year;
+
+        $templatePaths = [
+            'LISTA DE INSPECCIÓN VERIFICACION DE LOS SISTEMAS DE MEDICIÓN.docx',
+        ];
+
+
+        foreach ($templatePaths as $templatePath) {
+            
+            $fileName = pathinfo($templatePath, PATHINFO_FILENAME) . "_{$servicio->nomenclatura}.docx";
+            $customFolderPath = "Servicios/Anexo_30/{$anio}/{$servicio->id_usuario}/{$servicio->nomenclatura}/Listas/${fileName}"; 
+
+        }
+      
+
+       
+        if (Storage::disk('public')->exists($customFolderPath)) {
+            Storage::disk('public')->delete($customFolderPath);
+        } 
+
         $id_servicio =$lista_inspeccion->id_servicio;
         $lista_inspeccion->delete();
         

@@ -10,6 +10,7 @@
 @slot('title') Lista de inspección verificacion de los sistemas de medición @endslot
 @endcomponent
 
+@include('partials.alertas') <!-- Incluyendo las alertas -->
 <div class="row mb-4">
     <div class="col-lg-12">
         <div class="card border-0 shadow-sm">
