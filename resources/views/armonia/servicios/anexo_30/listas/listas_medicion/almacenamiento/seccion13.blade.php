@@ -28,19 +28,19 @@
                             i. Selección de acuerdo al tipo de Hidrocarburo o Petrolífero de que se trate, las condiciones del proceso, los intervalos de operación y la exactitud requerida, para satisfacer los  requisitos metrológicos. 
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="seleccion_tipo_hidrocarburo_pretrolifero" value="si"> Sí
+                                    <input type="radio" name="opcion54" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="seleccion_tipo_hidrocarburo_pretrolifero" value="no"> No
+                                    <input type="radio" name="opcion54" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="seleccion_tipo_hidrocarburo_pretrolifero" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion54" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_seleccion_tipo_hidrocarburo_pretrolifero" class="form-control">
+                                <input type="text" name="observaciones54" class="form-control">
                             </td>
                         </tr>
 
@@ -49,19 +49,19 @@
                             ii. Instalación y operación conforme a lo dispuesto en el apartado 30.5.1., fracción I, inciso a), en función de la variable a medir y la tecnología a emplear.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="instalacion_operaciones_apartado_30_tecnologia" value="si"> Sí
+                                    <input type="radio" name="opcion55" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="instalacion_operaciones_apartado_30_tecnologia" value="no"> No
+                                    <input type="radio" name="opcion55" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="instalacion_operaciones_apartado_30_tecnologia" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion55" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_instalacion_operaciones_apartado_30_tecnologia" class="form-control">
+                                <input type="text" name="observaciones55" class="form-control">
                             </td>
                         </tr>
 
@@ -71,19 +71,19 @@
                             iii. Calibración válida, realizada por un laboratorio acreditado por una entidad de acreditación, de conformidad con lo establecido en la LFMN o en la LIC.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="calibracion_valida_entidad_acreditacion" value="si"> Sí
+                                    <input type="radio" name="opcion56" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="calibracion_valida_entidad_acreditacion" value="no"> No
+                                    <input type="radio" name="opcion56" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="calibracion_valida_entidad_acreditacion" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion56" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_calibracion_valida_entidad_acreditacion" class="form-control">
+                                <input type="text" name="observaciones56" class="form-control">
                             </td>
                         </tr>
 
@@ -92,19 +92,19 @@
                             iv. Placa de identificación del elemento.
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="placa_identificacion_elemento" value="si"> Sí
+                                    <input type="radio" name="opcion57" value="si"> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="placa_identificacion_elemento" value="no"> No
+                                    <input type="radio" name="opcion57" value="no"> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="placa_identificacion_elemento" value="no_aplica"> No Aplica
+                                    <input type="radio" name="opcion57" value="no_aplica"> No Aplica
                                 </label>
                             </td>
                             <td class="align-middle">
-                                <input type="text" name="observaciones_placa_identificacion_elemento" class="form-control">
+                                <input type="text" name="observaciones57" class="form-control">
                             </td>
                         </tr>
                         <!-- Continúa con el resto de requisitos -->

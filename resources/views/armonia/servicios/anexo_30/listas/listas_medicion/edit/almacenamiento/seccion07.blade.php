@@ -5,151 +5,132 @@
                 <table class="table table-bordered mb-0">
                     <tbody>
                         <!-- TERCER BLOQUE DE REQUISITOS -->
-                       
                         <tr class="table-info">
                             <th scope="row" colspan="100%">
-                                a) Tanques o medios de almacenamiento: 
-                               
+                                f) Estaciones de servicio.
                             </th>
                         </tr>
 
-                      
                         <!-- PRIMER BLOQUE DE REQUISITOS -->
                         <tr>
                             <td class="align-middle">
-                            1. Clave de identificación.
-                            Ejemplo:
-                            TQS-TDA-0001. Se emplea para identificar un tanque en una terminal de 
-                            almacenamiento. 
-
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="clave_identificacion_tanque" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="clave_identificacion_tanque" value="no"> No
-                                </label>
+                                En las estaciones de servicio el sistema de medición se debe implementar para generar los registros del volumen de las operaciones de recepción, entrega y control de existencias del Hidrocarburo o Petrolífero que se trate.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="clave_identificacion_tanque" value="no_aplica"> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion31" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion31" value="no" disabled> No</label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_clave_identificacion_tanque" class="form-control">
+                            <td class="text-center align-middle">
+                                <label><input type="radio" name="opcion31" value="no_aplica" checked> No Aplica</label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
+                                <input type="hidden" name="observaciones31" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            2. Localización y/o descripción. 
-                            Ejemplo: 
-                            Tanque de almacenamiento ubicado en la terminal 2 de reparto Gas LP        
-                            3456. 
-
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="localizacion_tanque" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="localizacion_tanque" value="no"> No
-                                </label>
+                                Las operaciones de recepción que se realicen en las estaciones de servicio deben corresponder a los volúmenes recibidos.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="localizacion_tanque" value="no_aplica"> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion32" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion32" value="no" disabled> No</label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_localizacion_tanque" class="form-control">
+                            <td class="text-center align-middle">
+                                <label><input type="radio" name="opcion32" value="no_aplica" checked> No Aplica</label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
+                                <input type="hidden" name="observaciones32" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            3. Capacidades del tanque o medio de almacenamiento. 
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="capacidades_tanque_o_almacenamiento" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="capacidades_tanque_o_almacenamiento" value="no"> No
-                                </label>
+                                Se deben instalar medidor(es) estático(s) en el (los) tanque(s) de almacenamiento y dinámico(s) en los dispensadores.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="capacidades_tanque_o_almacenamiento" value="no_aplica"> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion33" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion33" value="no" disabled> No</label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_capacidades_tanque_o_almacenamiento" class="form-control">
+                            <td class="text-center align-middle">
+                                <label><input type="radio" name="opcion33" value="no_aplica" checked> No Aplica</label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
+                                <input type="hidden" name="observaciones33" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            4. Vigencia de Calibración o Cubicación.
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="vigencia_calibracion" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="vigencia_calibracion" value="no"> No
-                                </label>
+                                Los medidores estáticos deben cumplir con la normatividad descrita en el apartado 30.7., fracciones I y II, que les corresponda, así como VI.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="vigencia_calibracion" value="no_aplica"> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion34" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion34" value="no" disabled> No</label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_vigencia_calibracion" class="form-control">
+                            <td class="text-center align-middle">
+                                <label><input type="radio" name="opcion34" value="no_aplica" checked> No Aplica</label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
+                                <input type="hidden" name="observaciones34" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                            5. Sistemas de medición. Se deben registrar los sistemas de en el medio de almacenamiento, indicando si se trata de sistemas estáticos o dinámicos asignándoles una clave y registrando su descripción o
-                            localización, vigencia de calibración e incertidumbre de medición.
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="sistemas_medicion" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="sistemas_medicion" value="no"> No
-                                </label>
+                                Los medidores dinámicos deben cumplir con la normatividad descrita en el apartado 30.7., fracciones I y III, incisos a), b) y c), que les corresponda.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="sistemas_medicion" value="no_aplica"> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion35" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion35" value="no" disabled> No</label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_sistemas_medicion" class="form-control">
+                            <td class="text-center align-middle">
+                                <label><input type="radio" name="opcion35" value="no_aplica" checked> No Aplica</label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
+                                <input type="hidden" name="observaciones35" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
-
 
                         <tr>
                             <td class="align-middle">
-                            6. Recepciones, entregas y existencias 
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="repecion_entregas_existencias" value="si"> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="repecion_entregas_existencias" value="no"> No
-                                </label>
+                                Los totalizadores generales deben cumplir con normatividad descrita en el apartado 30.7., fracción III, inciso b), que les corresponda.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="repecion_entregas_existencias" value="no_aplica"> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion36" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion36" value="no" disabled> No</label>
                             </td>
-                            <td class="align-middle">
-                                <input type="text" name="observaciones_repecion_entregas_existencias" class="form-control">
+                            <td class="text-center align-middle">
+                                <label><input type="radio" name="opcion36" value="no_aplica" checked> No Aplica</label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
+                                <input type="hidden" name="observaciones36" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
+
+                        <tr>
+                            <td class="align-middle">
+                                En las estaciones de gas licuado de petróleo para carburación, los tanques podrán contar con indicador de nivel de líquido, mecánico de operación manual o automática para indicar el nivel, de conformidad con la NOM-001-SESH-2014, Plantas de distribución de Gas L.P. Diseño, construcción y condiciones seguras en su operación, o aquélla que la sustituya.
+                            </td>
+                            <td class="text-center align-middle">
+                                <label><input type="radio" name="opcion37" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion37" value="no" disabled> No</label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label><input type="radio" name="opcion37" value="no_aplica" checked> No Aplica</label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
+                                <input type="hidden" name="observaciones37" value="No Aplica por ser una planta de almacenamiento y distribución">
+                            </td>
+                        </tr>
+
                         <!-- Continúa con el resto de requisitos -->
                     </tbody>
                 </table>

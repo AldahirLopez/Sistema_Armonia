@@ -17,21 +17,15 @@
                                 En las estaciones de servicio el sistema de medición se debe implementar para generar los registros del volumen de las operaciones de recepción, entrega y control de existencias del Hidrocarburo o Petrolífero que se trate.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="sistema_medicion_volumenes_operaciones_recepcion" value="si" disabled> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="sistema_medicion_volumenes_operaciones_recepcion" value="no" disabled> No
-                                </label>
+                                <label><input type="radio" name="opcion31" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion31" value="no" disabled> No</label>
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="sistema_medicion_volumenes_operaciones_recepcion" value="no_aplica" checked> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion31" value="no_aplica" checked> No Aplica</label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_sistema_medicion_volumenes_operaciones_recepcion" value="No aplica por ser una planta de almacenamiento y distribución">
+                                <input type="hidden" name="observaciones31" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
@@ -40,21 +34,15 @@
                                 Las operaciones de recepción que se realicen en las estaciones de servicio deben corresponder a los volúmenes recibidos.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="operaciones_recepcion_volumenes" value="si" disabled> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="operaciones_recepcion_volumenes" value="no" disabled> No
-                                </label>
+                                <label><input type="radio" name="opcion32" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion32" value="no" disabled> No</label>
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="operaciones_recepcion_volumenes" value="no_aplica" checked> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion32" value="no_aplica" checked> No Aplica</label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_operaciones_recepcion_volumenes" value="No aplica por ser una planta de almacenamiento y distribución">
+                                <input type="hidden" name="observaciones32" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
@@ -63,21 +51,15 @@
                                 Se deben instalar medidor(es) estático(s) en el (los) tanque(s) de almacenamiento y dinámico(s) en los dispensadores.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="medidor_estaticos_tanques_almacenamiento_dinamico_dispensadores" value="si" disabled> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="medidor_estaticos_tanques_almacenamiento_dinamico_dispensadores" value="no" disabled> No
-                                </label>
+                                <label><input type="radio" name="opcion33" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion33" value="no" disabled> No</label>
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="medidor_estaticos_tanques_almacenamiento_dinamico_dispensadores" value="no_aplica" checked> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion33" value="no_aplica" checked> No Aplica</label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_medidor_estaticos_tanques_almacenamiento_dinamico_dispensadores" value="No aplica por ser una planta de almacenamiento y distribución">
+                                <input type="hidden" name="observaciones33" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
@@ -86,21 +68,15 @@
                                 Los medidores estáticos deben cumplir con la normatividad descrita en el apartado 30.7., fracciones I y II, que les corresponda, así como VI.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="medidores_estaticos_normatividad_apartado_estaciones" value="si" disabled> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="medidores_estaticos_normatividad_apartado_estaciones" value="no" disabled> No
-                                </label>
+                                <label><input type="radio" name="opcion34" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion34" value="no" disabled> No</label>
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="medidores_estaticos_normatividad_apartado_estaciones" value="no_aplica" checked> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion34" value="no_aplica" checked> No Aplica</label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_medidores_estaticos_normatividad_apartado_estaciones" value="No aplica por ser una planta de almacenamiento y distribución">
+                                <input type="hidden" name="observaciones34" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
@@ -109,21 +85,15 @@
                                 Los medidores dinámicos deben cumplir con la normatividad descrita en el apartado 30.7., fracciones I y III, incisos a), b) y c), que les corresponda.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="medidores_dinamicos_normatividad_apartado_estaciones" value="si" disabled> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="medidores_dinamicos_normatividad_apartado_estaciones" value="no" disabled> No
-                                </label>
+                                <label><input type="radio" name="opcion35" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion35" value="no" disabled> No</label>
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="medidores_dinamicos_normatividad_apartado_estaciones" value="no_aplica" checked> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion35" value="no_aplica" checked> No Aplica</label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_medidores_dinamicos_normatividad_apartado_estaciones" value="No aplica por ser una planta de almacenamiento y distribución">
+                                <input type="hidden" name="observaciones35" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
@@ -132,21 +102,15 @@
                                 Los totalizadores generales deben cumplir con normatividad descrita en el apartado 30.7., fracción III, inciso b), que les corresponda.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="totalizadores_normatividad_apartado" value="si" disabled> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="totalizadores_normatividad_apartado" value="no" disabled> No
-                                </label>
+                                <label><input type="radio" name="opcion36" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion36" value="no" disabled> No</label>
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="totalizadores_normatividad_apartado" value="no_aplica" checked> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion36" value="no_aplica" checked> No Aplica</label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_totalizadores_normatividad_apartado" value="No aplica por ser una planta de almacenamiento y distribución">
+                                <input type="hidden" name="observaciones36" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
@@ -155,23 +119,19 @@
                                 En las estaciones de gas licuado de petróleo para carburación, los tanques podrán contar con indicador de nivel de líquido, mecánico de operación manual o automática para indicar el nivel, de conformidad con la NOM-001-SESH-2014, Plantas de distribución de Gas L.P. Diseño, construcción y condiciones seguras en su operación, o aquélla que la sustituya.
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="gas_licuado_pretroleo_nivel_liquido_NOM" value="si" disabled> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="gas_licuado_pretroleo_nivel_liquido_NOM" value="no" disabled> No
-                                </label>
+                                <label><input type="radio" name="opcion37" value="si" disabled> Sí</label>
+                                <label><input type="radio" name="opcion37" value="no" disabled> No</label>
                             </td>
                             <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="gas_licuado_pretroleo_nivel_liquido_NOM" value="no_aplica" checked> No Aplica
-                                </label>
+                                <label><input type="radio" name="opcion37" value="no_aplica" checked> No Aplica</label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_gas_licuado_pretroleo_nivel_liquido_NOM" value="No aplica por ser una planta de almacenamiento y distribución">
+                                <input type="hidden" name="observaciones37" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
+
+                        <!-- Continúa con el resto de requisitos -->
                     </tbody>
                 </table>
             </td>

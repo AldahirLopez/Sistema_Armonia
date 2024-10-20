@@ -25,20 +25,20 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_medicion_aprobado_CNH" value="si" disabled> Sí
+                                    <input type="radio" name="opcion3" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="punto_medicion_aprobado_CNH" value="no" disabled> No
+                                    <input type="radio" name="opcion3" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="punto_medicion_aprobado_CNH" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion3" value="no_aplica"checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_punto_medicion_aprobado_CNH" class="form-control" name="observaciones_seleccion_medidor_metrologicos" class="form-control" value="No aplica por ser una planta de almacenamiento y distribución" disabled>
+                                <input type="hidden" name="observaciones3" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
@@ -52,23 +52,22 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="seleccion_medidor_metrologicos" value="si" disabled> Sí
+                                    <input type="radio" name="opcion4" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="seleccion_medidor_metrologicos" value="no" disabled> No
+                                    <input type="radio" name="opcion4" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="seleccion_medidor_metrologicos" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion4" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
-                            <td class="text-center align-middle" colspan="3">
+                            <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_seleccion_medidor_metrologicos" value="No aplica por ser una planta de almacenamiento y distribución">
+                                <input type="hidden" name="observaciones4" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
-
 
                         <tr>
                             <td class="align-middle">
@@ -76,24 +75,24 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registro_produccion_diaria_acumulada_mensual" value="si" disabled> Sí
+                                    <input type="radio" name="opcion5" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="registro_produccion_diaria_acumulada_mensual" value="no" disabled> No
+                                    <input type="radio" name="opcion5" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="registro_produccion_diaria_acumulada_mensual" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion5" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_registro_produccion_diaria_acumulada_mensual" class="form-control" value="No aplica por ser una planta de almacenamiento y distribución" disabled>
+                                <input type="hidden" name="observaciones5" class="form-control" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
-                        <!-- Continúa con el resto de requisitos -->
+                        
                     </tbody>
                 </table>
             </td>

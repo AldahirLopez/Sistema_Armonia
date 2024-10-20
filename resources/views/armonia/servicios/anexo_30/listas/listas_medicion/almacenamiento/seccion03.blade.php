@@ -13,25 +13,24 @@
                         <!-- PRIMER BLOQUE DE REQUISITOS -->
                         <tr>
                             <td class="align-middle">
-                                En las estaciones de proceso de petróleo o gas natural y sus condensados, el sistema de medición se debe implementar en la etapa de almacenamiento para integrar los registros de las operaciones de producción (recepción), entrega y de control de existencias de los
-                                Hidrocarburos o Petrolíferos de que se trate.
+                                En las estaciones de proceso de petróleo o gas natural y sus condensados, el sistema de medición se debe implementar en la etapa de almacenamiento para integrar los registros de las operaciones de producción (recepción), entrega y de control de existencias de los Hidrocarburos o Petrolíferos de que se trate.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_etapa_almacenamiento" value="si" disabled> Sí
+                                    <input type="radio" name="opcion6" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="sistema_medicion_etapa_almacenamiento" value="no" disabled> No
+                                    <input type="radio" name="opcion6" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="sistema_medicion_etapa_almacenamiento" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion6" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_sistema_medicion_etapa_almacenamiento" class="form-control" value="No aplica por ser una planta de almacenamiento y distribución" disabled>
+                                <input type="hidden" name="observaciones6" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
@@ -41,99 +40,89 @@
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="instalar_medidores_dinamicos_ductos" value="si" disabled> Sí
+                                    <input type="radio" name="opcion7" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="instalar_medidores_dinamicos_ductos" value="no" disabled> No
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="instalar_medidores_dinamicos_ductos" value="no_aplica" checked> No Aplica
-                                </label>
-                            </td>
-                            <td class="text-center align-middle">
-                                <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_instalar_medidores_dinamicos_ductos" class="form-control" value="No aplica por ser una planta de almacenamiento y distribución" disabled>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td class="align-middle">
-                                Se deben seleccionar los medidores conforme a los requisitos
-                                metrológicos: características de los fluidos, intervalos de medición y
-                                condiciones técnicas u operativas del proceso.
-
-                            </td>
-                            <td class="text-center align-middle">
-                                <label>
-                                    <input type="radio" name="medidores_fluidos_tecnicas" value="si" disabled> Sí
-                                </label>
-                                <label>
-                                    <input type="radio" name="medidores_fluidos_tecnicas" value="no" disabled> No
+                                    <input type="radio" name="opcion7" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medidores_fluidos_tecnicas" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion7" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_medidores_fluidos_tecnicas" class="form-control" value="No aplica por ser una planta de almacenamiento y distribución" disabled>
+                                <input type="hidden" name="observaciones7" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                Los medidores estáticos deben cumplir con la normatividad descrita en el
-                                apartado 30.7., fracciones I y II, que les corresponda, así como VI
-
+                                Se deben seleccionar los medidores conforme a los requisitos metrológicos: características de los fluidos, intervalos de medición y condiciones técnicas u operativas del proceso.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medidores_estaticos_normatividad" value="si" disabled> Sí
+                                    <input type="radio" name="opcion8" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="medidores_estaticos_normatividad" value="no" disabled> No
+                                    <input type="radio" name="opcion8" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medidores_estaticos_normatividad" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion8" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_medidores_estaticos_normatividad" class="form-control" value="No aplica por ser una planta de almacenamiento y distribución" disabled>
+                                <input type="hidden" name="observaciones8" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="align-middle">
-                                Los medidores dinámicos deben cumplir con la normatividad que les
-                                corresponda descrita en el apartado 30.7., fracciones I y VI, así como III para
-                                el petróleo o, IV para el gas natural, señalados en este Anexo.
-
-
+                                Los medidores estáticos deben cumplir con la normatividad descrita en el apartado 30.7., fracciones I y II, que les corresponda, así como VI.
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medidores_dinamicos_normatividad_30" value="si" disabled> Sí
+                                    <input type="radio" name="opcion9" value="si" disabled> Sí
                                 </label>
                                 <label>
-                                    <input type="radio" name="medidores_dinamicos_normatividad_30" value="no" disabled> No
+                                    <input type="radio" name="opcion9" value="no" disabled> No
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <label>
-                                    <input type="radio" name="medidores_dinamicos_normatividad_30" value="no_aplica" checked> No Aplica
+                                    <input type="radio" name="opcion9" value="no_aplica" checked> No Aplica
                                 </label>
                             </td>
                             <td class="text-center align-middle">
                                 <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
-                                <input type="hidden" name="observaciones_medidores_dinamicos_normatividad_30" class="form-control" value="No aplica por ser una planta de almacenamiento y distribución" disabled>
+                                <input type="hidden" name="observaciones9" value="No Aplica por ser una planta de almacenamiento y distribución">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="align-middle">
+                                Los medidores dinámicos deben cumplir con la normatividad que les corresponda descrita en el apartado 30.7., fracciones I y VI, así como III para el petróleo o, IV para el gas natural, señalados en este Anexo.
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion10" value="si" disabled> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="opcion10" value="no" disabled> No
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <label>
+                                    <input type="radio" name="opcion10" value="no_aplica" checked> No Aplica
+                                </label>
+                            </td>
+                            <td class="text-center align-middle">
+                                <strong>No Aplica por ser una planta de almacenamiento y distribución</strong>
+                                <input type="hidden" name="observaciones10" value="No Aplica por ser una planta de almacenamiento y distribución">
                             </td>
                         </tr>
 
