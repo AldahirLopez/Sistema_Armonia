@@ -43,23 +43,43 @@ class HomeController extends Controller
 
     public function root()
     {
-        // Obtiene los eventos del mes actual y los ordena por fecha y hora de inicio
-        $currentMonth = Carbon::now()->month;
-        $eventos = Evento::whereMonth('start_date', $currentMonth)
-            ->orderBy('start_date', 'asc') // Ordena por fecha de inicio ascendente
-            ->orderBy('start_time', 'asc') // Ordena por hora de inicio ascendente
-            ->get();
+        // Obtiene el usuario autenticado
+        $usuario = Auth::user();
 
-        // Obtiene los servicios creados por cada inspector (usuario)
-        $serviciosPorInspector = ServicioAnexo::with('usuario')
-            ->select('id_usuario', \DB::raw('count(*) as total_servicios'))
-            ->groupBy('id_usuario')
-            ->get();
+        // Obtiene el mes actual
+        $currentMonth = Carbon::now()->month;
+
+        // Si el usuario es administrador, obtiene todos los eventos del mes actual
+        if ($usuario->hasRole('Administrador')) {
+            // Si es administrador, obtiene todos los eventos
+            $eventos = Evento::whereMonth('start_date', $currentMonth)
+                ->orderBy('start_date', 'asc') // Ordena por fecha de inicio ascendente
+                ->orderBy('start_time', 'asc') // Ordena por hora de inicio ascendente
+                ->get();
+
+            // Si es administrador, obtiene todos los servicios
+            $serviciosPorInspector = ServicioAnexo::with('usuario')
+                ->select('id_usuario', \DB::raw('count(*) as total_servicios'))
+                ->groupBy('id_usuario')
+                ->get();
+        } else {
+            // Si no es administrador, obtiene solo los eventos creados por el usuario autenticado
+            $eventos = Evento::where('user_id', $usuario->id)
+                ->whereMonth('start_date', $currentMonth)
+                ->orderBy('start_date', 'asc') // Ordena por fecha de inicio ascendente
+                ->orderBy('start_time', 'asc') // Ordena por hora de inicio ascendente
+                ->get();
+
+            // Si no es administrador, obtiene solo los servicios creados por el usuario autenticado
+            $serviciosPorInspector = ServicioAnexo::where('id_usuario', $usuario->id)
+                ->select('id_usuario', \DB::raw('count(*) as total_servicios'))
+                ->groupBy('id_usuario')
+                ->get();
+        }
 
         // Pasa los datos de eventos y servicios a la vista
         return view('index', compact('eventos', 'serviciosPorInspector'));
     }
-
 
     public function lang($locale)
     {
